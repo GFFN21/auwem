@@ -1,0 +1,1217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Antoine + Gabi — Beautiful websites for Swiss businesses</title>
+<meta name="description" content="We design and ship complete websites for Swiss small businesses in 48 hours. 500 CHF flat.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..900,0..100;1,9..144,300..900,0..100&family=DM+Sans:opsz,wght@9..40,300..700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #F2EDE3;
+  --bg-warm: #EBE4D5;
+  --ink: #161412;
+  --ink-soft: #4A453E;
+  --accent: #E84E1B;
+  --accent-soft: rgba(232, 78, 27, 0.08);
+  --green: #2A4D3A;
+  --line: #C9C0AE;
+  --paper: #FAF6EE;
+
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body: 'DM Sans', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+::selection { background: var(--accent); color: var(--paper); }
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+/* ───────── NAV ───────── */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 18px 32px;
+  background: rgba(242, 237, 227, 0.78);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.3s, padding 0.3s;
+}
+.nav.scrolled {
+  border-bottom-color: var(--line);
+  padding: 14px 32px;
+}
+.nav-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 18px;
+}
+.logo {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 600;
+  font-variation-settings: "SOFT" 50, "opsz" 144;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+.logo .plus {
+  color: var(--accent);
+  font-style: italic;
+  font-weight: 400;
+  padding: 0 2px;
+}
+.nav-links {
+  display: flex;
+  gap: 28px;
+  list-style: none;
+  align-items: center;
+}
+.nav-links a:not(.btn) {
+  color: var(--ink);
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+  transition: color 0.2s;
+  position: relative;
+}
+.nav-links a:not(.btn)::after {
+  content: '';
+  position: absolute;
+  left: 0; bottom: -4px;
+  width: 100%;
+  height: 1.5px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+.nav-links a:not(.btn):hover::after { transform: scaleX(1); }
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 22px;
+  background: var(--ink);
+  color: var(--paper);
+  border: none;
+  border-radius: 999px;
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.2s;
+  white-space: nowrap;
+}
+.btn:hover {
+  background: var(--accent);
+  transform: translateY(-1px);
+}
+.btn-outline {
+  background: transparent;
+  color: var(--ink);
+  border: 1.5px solid var(--ink);
+}
+.btn-outline:hover {
+  background: var(--ink);
+  color: var(--paper);
+  transform: translateY(-1px);
+}
+.btn .arrow {
+  display: inline-block;
+  transition: transform 0.25s;
+}
+.btn:hover .arrow { transform: translateX(4px); }
+
+/* ───────── LANGUAGE SWITCHER ───────── */
+.lang-switch {
+  display: inline-flex;
+  gap: 2px;
+  background: var(--bg-warm);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 3px;
+}
+.lang-btn {
+  background: transparent;
+  border: none;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: var(--ink-soft);
+  cursor: pointer;
+  padding: 6px 11px;
+  border-radius: 999px;
+  transition: all 0.25s;
+  text-transform: uppercase;
+}
+.lang-btn:hover { color: var(--ink); }
+.lang-btn.active {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+/* ───────── HERO ───────── */
+.hero {
+  padding: 160px 0 100px;
+  position: relative;
+}
+.hero-deco {
+  position: absolute;
+  top: 140px;
+  right: -120px;
+  width: 480px;
+  height: 480px;
+  background: radial-gradient(circle, var(--accent-soft) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+.hero .container { position: relative; z-index: 1; }
+
+.label {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: 36px;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  opacity: 0;
+  animation: fadeUp 0.7s ease forwards;
+}
+.label::before {
+  content: '';
+  display: inline-block;
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.4); }
+}
+
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(48px, 8.5vw, 124px);
+  font-weight: 400;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  font-variation-settings: "SOFT" 50, "opsz" 144;
+  margin-bottom: 40px;
+  max-width: 1100px;
+}
+.rotating-word {
+  display: inline-block;
+  font-style: italic;
+  color: var(--accent);
+  position: relative;
+  vertical-align: baseline;
+  transition: opacity 0.3s, transform 0.3s;
+  font-variation-settings: "SOFT" 100, "opsz" 144;
+}
+.rotating-word::after {
+  content: '';
+  position: absolute;
+  left: 4%; right: 4%;
+  bottom: 0.12em;
+  height: 0.05em;
+  background: var(--accent);
+  opacity: 0.25;
+  border-radius: 2px;
+}
+
+.hero-sub {
+  font-size: 22px;
+  color: var(--ink-soft);
+  max-width: 640px;
+  margin-bottom: 48px;
+  line-height: 1.45;
+}
+.hero-ctas {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.hero-title, .hero-sub, .hero-ctas {
+  opacity: 0;
+  animation: fadeUp 0.9s ease forwards;
+}
+.hero-title { animation-delay: 0.15s; }
+.hero-sub   { animation-delay: 0.35s; }
+.hero-ctas  { animation-delay: 0.5s; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ───────── MARQUEE ───────── */
+.marquee {
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  background: var(--bg-warm);
+  padding: 22px 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.marquee-track {
+  display: inline-flex;
+  gap: 64px;
+  animation: marquee 34s linear infinite;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink);
+  padding-left: 64px;
+}
+.marquee-track span {
+  display: inline-flex;
+  align-items: center;
+  gap: 64px;
+}
+.marquee-track span::after {
+  content: '✦';
+  color: var(--accent);
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ───────── SECTION BASE ───────── */
+.section {
+  padding: 120px 0;
+  position: relative;
+}
+.section-label {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(40px, 5.5vw, 76px);
+  font-weight: 400;
+  line-height: 1.0;
+  letter-spacing: -0.02em;
+  margin-bottom: 24px;
+  max-width: 900px;
+  font-variation-settings: "SOFT" 50, "opsz" 144;
+}
+.section-title em {
+  font-style: italic;
+  color: var(--accent);
+  font-variation-settings: "SOFT" 100, "opsz" 144;
+}
+.section-intro {
+  font-size: 20px;
+  color: var(--ink-soft);
+  max-width: 620px;
+  margin-bottom: 64px;
+  line-height: 1.5;
+}
+
+/* ───────── PRICING CARD ───────── */
+.pricing {
+  background: var(--paper);
+  border-radius: 24px;
+  padding: 56px;
+  border: 1px solid var(--line);
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 64px;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+.pricing::before {
+  content: '';
+  position: absolute;
+  top: -120px; right: -120px;
+  width: 340px; height: 340px;
+  background: radial-gradient(circle, var(--accent-soft) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+.price-tag {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+  margin-bottom: 18px;
+}
+.price-big {
+  font-family: var(--font-display);
+  font-size: clamp(96px, 14vw, 200px);
+  font-weight: 400;
+  line-height: 0.88;
+  letter-spacing: -0.05em;
+  color: var(--ink);
+  font-variation-settings: "SOFT" 30, "opsz" 144;
+}
+.price-big .currency {
+  font-size: 0.32em;
+  vertical-align: 1.6em;
+  color: var(--ink-soft);
+  font-style: italic;
+  margin-right: 6px;
+  letter-spacing: 0;
+}
+.price-desc {
+  font-size: 17px;
+  color: var(--ink-soft);
+  margin-top: 28px;
+  max-width: 380px;
+  line-height: 1.5;
+}
+
+.price-features {
+  list-style: none;
+}
+.price-features li {
+  display: flex;
+  gap: 14px;
+  padding: 15px 0;
+  border-bottom: 1px dashed var(--line);
+  font-size: 16px;
+  align-items: flex-start;
+}
+.price-features li:last-child { border-bottom: none; }
+.check {
+  flex-shrink: 0;
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  background: var(--ink);
+  color: var(--paper);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  margin-top: 2px;
+}
+
+/* ───────── AFTER-LAUNCH CARDS ───────── */
+.after-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+.after-card {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 40px 32px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.35s ease, border-color 0.35s, box-shadow 0.35s;
+}
+.after-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--accent);
+  box-shadow: 0 20px 40px -20px rgba(22, 20, 18, 0.15);
+}
+.after-card .num {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  color: var(--ink-soft);
+  margin-bottom: 18px;
+  text-transform: uppercase;
+}
+.after-card h3 {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 500;
+  margin-bottom: 16px;
+  letter-spacing: -0.01em;
+  font-variation-settings: "SOFT" 30, "opsz" 80;
+}
+.after-card .big-price {
+  font-family: var(--font-display);
+  font-size: 52px;
+  font-weight: 400;
+  color: var(--accent);
+  margin-bottom: 14px;
+  letter-spacing: -0.02em;
+  font-variation-settings: "SOFT" 40, "opsz" 96;
+  line-height: 1;
+}
+.after-card .big-price .unit {
+  font-size: 0.42em;
+  color: var(--ink-soft);
+  font-style: italic;
+  margin-left: 2px;
+}
+.after-card .big-price.free {
+  color: var(--green);
+  font-style: italic;
+  font-variation-settings: "SOFT" 100, "opsz" 96;
+}
+.after-card p {
+  color: var(--ink-soft);
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+/* ───────── PROCESS ───────── */
+.process {
+  background: var(--ink);
+  color: var(--paper);
+  border-radius: 32px;
+  padding: 96px 64px;
+  position: relative;
+  overflow: hidden;
+}
+.process::before {
+  content: '';
+  position: absolute;
+  top: -150px; left: -150px;
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(232, 78, 27, 0.15) 0%, transparent 70%);
+  border-radius: 50%;
+}
+.process > * { position: relative; z-index: 1; }
+.process .section-label { color: var(--accent); }
+.process .section-title { color: var(--paper); }
+.process .section-title em { color: var(--accent); }
+
+.process-steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 48px;
+  margin-top: 72px;
+}
+.step-num {
+  font-family: var(--font-display);
+  font-size: 96px;
+  font-weight: 300;
+  line-height: 1;
+  color: var(--accent);
+  margin-bottom: 28px;
+  font-variation-settings: "SOFT" 100, "opsz" 144;
+  font-style: italic;
+}
+.step h3 {
+  font-family: var(--font-display);
+  font-size: 30px;
+  font-weight: 500;
+  margin-bottom: 14px;
+  letter-spacing: -0.01em;
+  font-variation-settings: "SOFT" 30, "opsz" 80;
+}
+.step p {
+  color: rgba(250, 246, 238, 0.65);
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+/* ───────── PORTFOLIO ───────── */
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 22px;
+}
+.work-card {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 40px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.45s ease;
+  cursor: pointer;
+  min-height: 280px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.work-card:hover {
+  background: var(--ink);
+  color: var(--paper);
+  transform: translateY(-6px);
+  border-color: var(--ink);
+}
+.work-card:hover .work-meta { color: var(--accent); }
+.work-card:hover .work-arrow {
+  background: var(--accent);
+  color: var(--paper);
+  border-color: var(--accent);
+  transform: rotate(-45deg);
+}
+.work-meta {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-soft);
+  transition: color 0.3s;
+}
+.work-title {
+  font-family: var(--font-display);
+  font-size: 40px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  margin-top: 14px;
+  font-variation-settings: "SOFT" 30, "opsz" 96;
+}
+.work-title em {
+  font-style: italic;
+  font-variation-settings: "SOFT" 100, "opsz" 96;
+}
+.work-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-top: 40px;
+}
+.work-city {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.05em;
+}
+.work-arrow {
+  width: 46px; height: 46px;
+  border-radius: 50%;
+  background: transparent;
+  border: 1.5px solid currentColor;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.4s ease;
+  font-size: 18px;
+}
+
+/* ───────── CONTACT ───────── */
+.contact {
+  background: var(--accent);
+  color: var(--paper);
+  border-radius: 32px;
+  padding: 96px 64px;
+  position: relative;
+  overflow: hidden;
+}
+.contact::before {
+  content: '';
+  position: absolute;
+  bottom: -200px; right: -200px;
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(250, 246, 238, 0.1) 0%, transparent 70%);
+  border-radius: 50%;
+}
+.contact > * { position: relative; z-index: 1; }
+.contact .section-label { color: rgba(250, 246, 238, 0.7); }
+
+.contact-title {
+  font-family: var(--font-display);
+  font-size: clamp(48px, 7vw, 96px);
+  font-weight: 400;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  margin-bottom: 56px;
+  max-width: 900px;
+  font-variation-settings: "SOFT" 50, "opsz" 144;
+}
+.contact-title em {
+  font-style: italic;
+  font-variation-settings: "SOFT" 100, "opsz" 144;
+}
+
+.contact-info {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 48px;
+  align-items: end;
+  padding-top: 48px;
+  border-top: 1px solid rgba(250, 246, 238, 0.3);
+}
+.contact-info .label-small {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: rgba(250, 246, 238, 0.7);
+  margin-bottom: 12px;
+}
+.contact-info .value {
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  font-variation-settings: "SOFT" 30, "opsz" 80;
+}
+.contact-info a {
+  color: var(--paper);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s;
+}
+.contact-info a:hover { border-bottom-color: var(--paper); }
+
+/* ───────── FOOTER ───────── */
+.footer {
+  padding: 40px 32px;
+  border-top: 1px solid var(--line);
+}
+.footer-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--ink-soft);
+  letter-spacing: 0.03em;
+}
+.footer .accent {
+  color: var(--accent);
+  font-style: italic;
+  padding: 0 2px;
+}
+
+/* ───────── REVEAL ───────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.85s cubic-bezier(0.2, 0.7, 0.2, 1),
+              transform 0.85s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ───────── RESPONSIVE ───────── */
+@media (max-width: 900px) {
+  .nav-item-link { display: none; }
+  .pricing { grid-template-columns: 1fr; padding: 40px 28px; gap: 36px; }
+  .after-grid, .process-steps, .portfolio-grid, .contact-info { grid-template-columns: 1fr; gap: 28px; }
+  .section { padding: 80px 0; }
+  .hero { padding: 130px 0 60px; }
+  .process, .contact { padding: 64px 32px; }
+  .hero-sub { font-size: 19px; }
+  .section-intro { font-size: 18px; margin-bottom: 48px; }
+  .work-card { padding: 32px; min-height: 220px; }
+  .work-title { font-size: 32px; }
+}
+@media (max-width: 560px) {
+  .container { padding: 0 20px; }
+  .nav, .nav.scrolled { padding: 14px 18px; }
+  .nav-cta { display: none; }
+  .footer-inner { flex-direction: column; gap: 12px; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <div class="logo">Antoine<span class="plus">+</span>Gabi</div>
+    <ul class="nav-links">
+      <li class="nav-item-link"><a href="#work" data-i18n="nav.work">Work</a></li>
+      <li class="nav-item-link"><a href="#pricing" data-i18n="nav.pricing">Pricing</a></li>
+      <li class="nav-item-link"><a href="#process" data-i18n="nav.process">Process</a></li>
+      <li>
+        <div class="lang-switch" role="group" aria-label="Language">
+          <button class="lang-btn active" data-lang="en">EN</button>
+          <button class="lang-btn" data-lang="fr">FR</button>
+          <button class="lang-btn" data-lang="de">DE</button>
+        </div>
+      </li>
+      <li class="nav-cta"><a href="#contact" class="btn"><span data-i18n="nav.cta">Start a project</span> <span class="arrow">→</span></a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-deco"></div>
+  <div class="container">
+    <div class="label" data-i18n="hero.label">Swiss web studio · Established 2026</div>
+    <h1 class="hero-title">
+      <span data-i18n="hero.titlePrefix">Beautiful websites<br>for </span><span class="rotating-word" id="rotator">bakers</span><span data-i18n="hero.titleSuffix"><br>too busy to build one.</span>
+    </h1>
+    <p class="hero-sub" data-i18n="hero.sub">
+      We design, write and ship complete websites for Swiss small businesses in 48 hours. 500 CHF flat. No subscriptions, no surprises.
+    </p>
+    <div class="hero-ctas">
+      <a href="#pricing" class="btn"><span data-i18n="hero.cta1">See what's included</span> <span class="arrow">→</span></a>
+      <a href="#contact" class="btn btn-outline" data-i18n="hero.cta2">Start your project</a>
+    </div>
+  </div>
+</header>
+
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track" id="marquee-track"></div>
+</div>
+
+<section class="section" id="pricing">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label" data-i18n="s1.label">[01] — The price</div>
+      <h2 class="section-title" data-i18n="s1.title">One website. <em>One price.</em><br>One invoice.</h2>
+      <p class="section-intro" data-i18n="s1.intro">Everything you need to look professional online — designed, written, and live in 48 hours.</p>
+    </div>
+    <div class="pricing reveal">
+      <div>
+        <div class="price-tag" data-i18n="s1.tag">All-in flat fee</div>
+        <div class="price-big"><span class="currency">CHF</span>500</div>
+        <p class="price-desc" data-i18n="s1.desc">A complete, mobile-friendly website. Designed for you. Live before the week is out.</p>
+      </div>
+      <ul class="price-features">
+        <li><span class="check">✓</span> <span data-i18n="s1.f1">Custom-designed website, up to 5 pages</span></li>
+        <li><span class="check">✓</span> <span data-i18n="s1.f2">Mobile-first, lightning-fast loading</span></li>
+        <li><span class="check">✓</span> <span data-i18n="s1.f3">Contact form &amp; Google Maps integration</span></li>
+        <li><span class="check">✓</span> <span data-i18n="s1.f4">Basic SEO setup (titles, meta, sitemap)</span></li>
+        <li><span class="check">✓</span> <span data-i18n="s1.f5">Bilingual French / English (or +DE on request)</span></li>
+        <li><span class="check">✓</span> <span data-i18n="s1.f6">Copywriting — we write your pages for you</span></li>
+        <li><span class="check">✓</span> <span data-i18n="s1.f7">Live in 48h after content received</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0;">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label" data-i18n="s2.label">[02] — After launch</div>
+      <h2 class="section-title" data-i18n="s2.title">No nasty <em>surprises.</em></h2>
+      <p class="section-intro" data-i18n="s2.intro">You pay once for the website. After that, you only pay when you actually need something.</p>
+    </div>
+    <div class="after-grid">
+      <div class="after-card reveal">
+        <div class="num" data-i18n="s2.c1.num">// Year 1</div>
+        <h3 data-i18n="s2.c1.title">Hosting</h3>
+        <div class="big-price free" data-i18n="s2.c1.price">Free.</div>
+        <p data-i18n="s2.c1.desc">We cover hosting, custom domain setup, SSL and backups for your first full year. Focus on your business, not your invoices.</p>
+      </div>
+      <div class="after-card reveal">
+        <div class="num" data-i18n="s2.c2.num">// Year 2 onward</div>
+        <h3 data-i18n="s2.c2.title">Hosting</h3>
+        <div class="big-price">20 <span class="unit" data-i18n="s2.c2.unit">CHF/mo</span></div>
+        <p data-i18n="s2.c2.desc">Fast Swiss hosting, daily backups, SSL, uptime monitoring and minor security updates. Cancel anytime — we hand over your site.</p>
+      </div>
+      <div class="after-card reveal">
+        <div class="num" data-i18n="s2.c3.num">// On-demand</div>
+        <h3 data-i18n="s2.c3.title">Changes</h3>
+        <div class="big-price">20 <span class="unit" data-i18n="s2.c3.unit">CHF/change</span></div>
+        <p data-i18n="s2.c3.desc">New opening hours, a price, a photo, an extra service? Send us a message — we update it within 24 hours.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="process">
+  <div class="container">
+    <div class="process reveal">
+      <div class="section-label" data-i18n="s3.label">[03] — How it works</div>
+      <h2 class="section-title" data-i18n="s3.title">From <em>"we should really build one"</em><br>to live, in 3 days.</h2>
+      <div class="process-steps">
+        <div class="step">
+          <div class="step-num">01</div>
+          <h3 data-i18n="s3.step1.title">Fill the brief</h3>
+          <p data-i18n="s3.step1.desc">A 5-minute form: your business, your services, the vibe. Send us your photos — or tell us you don't have any, and we handle it.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">02</div>
+          <h3 data-i18n="s3.step2.title">We build it</h3>
+          <p data-i18n="s3.step2.desc">Within 48 hours of receiving your content, we design, write and build your site. You get one preview link.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">03</div>
+          <h3 data-i18n="s3.step3.title">You go live</h3>
+          <p data-i18n="s3.step3.desc">One round of revisions included. Then we publish to your domain. Free hosting kicks in on day one.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="work">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label" data-i18n="s4.label">[04] — Selected work</div>
+      <h2 class="section-title" data-i18n="s4.title">Small businesses, <em>online,</em><br>in 48 hours.</h2>
+    </div>
+    <div class="portfolio-grid">
+      <div class="work-card reveal">
+        <div>
+          <div class="work-meta" data-i18n="s4.w1.meta">Bakery · Pastry</div>
+          <div class="work-title">Boulangerie <em>du Lac</em></div>
+        </div>
+        <div class="work-bottom">
+          <span class="work-city">Lausanne, VD</span>
+          <span class="work-arrow">→</span>
+        </div>
+      </div>
+      <div class="work-card reveal">
+        <div>
+          <div class="work-meta" data-i18n="s4.w2.meta">Accounting firm</div>
+          <div class="work-title">Cabinet <em>Morel</em></div>
+        </div>
+        <div class="work-bottom">
+          <span class="work-city">Nyon, VD</span>
+          <span class="work-arrow">→</span>
+        </div>
+      </div>
+      <div class="work-card reveal">
+        <div>
+          <div class="work-meta" data-i18n="s4.w3.meta">Photography</div>
+          <div class="work-title">Studio <em>Linnea</em></div>
+        </div>
+        <div class="work-bottom">
+          <span class="work-city">Vevey, VD</span>
+          <span class="work-arrow">→</span>
+        </div>
+      </div>
+      <div class="work-card reveal">
+        <div>
+          <div class="work-meta" data-i18n="s4.w4.meta">Hair salon</div>
+          <div class="work-title">Atelier <em>Rouge</em></div>
+        </div>
+        <div class="work-bottom">
+          <span class="work-city">Montreux, VD</span>
+          <span class="work-arrow">→</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="contact">
+  <div class="container">
+    <div class="contact reveal">
+      <div class="section-label" data-i18n="s5.label">[05] — Start your project</div>
+      <h2 class="contact-title" data-i18n="s5.title">Let's get your business <em>online</em><br>this week.</h2>
+      <div class="contact-info">
+        <div>
+          <div class="label-small" data-i18n="s5.phone">Phone</div>
+          <div class="value"><a href="tel:+41215550488">+41 21 555 04 88</a></div>
+        </div>
+        <div>
+          <div class="label-small" data-i18n="s5.email">Email</div>
+          <div class="value"><a href="mailto:hello@antoinegabi.ch">hello@antoinegabi.ch</a></div>
+        </div>
+        <div>
+          <div class="label-small" data-i18n="s5.studio">Studio</div>
+          <div class="value">Lausanne, Vaud</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div>© 2026 Antoine <span class="accent">+</span> Gabi · Lausanne, CH</div>
+    <div data-i18n="footer.built">Built (of course) in 48 hours.</div>
+  </div>
+</footer>
+
+<script>
+/* ─── Translations ─── */
+const T = {
+  en: {
+    'nav.work': 'Work',
+    'nav.pricing': 'Pricing',
+    'nav.process': 'Process',
+    'nav.cta': 'Start a project',
+    'hero.label': 'Swiss web studio · Established 2026',
+    'hero.titlePrefix': 'Beautiful websites<br>for ',
+    'hero.titleSuffix': '<br>too busy to build one.',
+    'hero.sub': 'We design, write and ship complete websites for Swiss small businesses in 48 hours. 500 CHF flat. No subscriptions, no surprises.',
+    'hero.cta1': "See what's included",
+    'hero.cta2': 'Start your project',
+    's1.label': '[01] — The price',
+    's1.title': 'One website. <em>One price.</em><br>One invoice.',
+    's1.intro': 'Everything you need to look professional online — designed, written, and live in 48 hours.',
+    's1.tag': 'All-in flat fee',
+    's1.desc': 'A complete, mobile-friendly website. Designed for you. Live before the week is out.',
+    's1.f1': 'Custom-designed website, up to 5 pages',
+    's1.f2': 'Mobile-first, lightning-fast loading',
+    's1.f3': 'Contact form &amp; Google Maps integration',
+    's1.f4': 'Basic SEO setup (titles, meta, sitemap)',
+    's1.f5': 'Bilingual French / English (or +DE on request)',
+    's1.f6': 'Copywriting — we write your pages for you',
+    's1.f7': 'Live in 48h after content received',
+    's2.label': '[02] — After launch',
+    's2.title': 'No nasty <em>surprises.</em>',
+    's2.intro': 'You pay once for the website. After that, you only pay when you actually need something.',
+    's2.c1.num': '// Year 1',
+    's2.c1.title': 'Hosting',
+    's2.c1.price': 'Free.',
+    's2.c1.desc': 'We cover hosting, custom domain setup, SSL and backups for your first full year. Focus on your business, not your invoices.',
+    's2.c2.num': '// Year 2 onward',
+    's2.c2.title': 'Hosting',
+    's2.c2.unit': 'CHF/mo',
+    's2.c2.desc': 'Fast Swiss hosting, daily backups, SSL, uptime monitoring and minor security updates. Cancel anytime — we hand over your site.',
+    's2.c3.num': '// On-demand',
+    's2.c3.title': 'Changes',
+    's2.c3.unit': 'CHF/change',
+    's2.c3.desc': 'New opening hours, a price, a photo, an extra service? Send us a message — we update it within 24 hours.',
+    's3.label': '[03] — How it works',
+    's3.title': 'From <em>"we should really build one"</em><br>to live, in 3 days.',
+    's3.step1.title': 'Fill the brief',
+    's3.step1.desc': "A 5-minute form: your business, your services, the vibe. Send us your photos — or tell us you don't have any, and we handle it.",
+    's3.step2.title': 'We build it',
+    's3.step2.desc': 'Within 48 hours of receiving your content, we design, write and build your site. You get one preview link.',
+    's3.step3.title': 'You go live',
+    's3.step3.desc': 'One round of revisions included. Then we publish to your domain. Free hosting kicks in on day one.',
+    's4.label': '[04] — Selected work',
+    's4.title': 'Small businesses, <em>online,</em><br>in 48 hours.',
+    's4.w1.meta': 'Bakery · Pastry',
+    's4.w2.meta': 'Accounting firm',
+    's4.w3.meta': 'Photography',
+    's4.w4.meta': 'Hair salon',
+    's5.label': '[05] — Start your project',
+    's5.title': "Let's get your business <em>online</em><br>this week.",
+    's5.phone': 'Phone',
+    's5.email': 'Email',
+    's5.studio': 'Studio',
+    'footer.built': 'Built (of course) in 48 hours.'
+  },
+  fr: {
+    'nav.work': 'Réalisations',
+    'nav.pricing': 'Tarif',
+    'nav.process': 'Processus',
+    'nav.cta': 'Démarrer un projet',
+    'hero.label': 'Studio web suisse · Fondé en 2026',
+    'hero.titlePrefix': 'De beaux sites web<br>pour les ',
+    'hero.titleSuffix': '<br>trop occupés pour en créer un.',
+    'hero.sub': 'Nous concevons, rédigeons et livrons des sites web complets pour les PME suisses en 48 heures. 500 CHF tout compris. Sans abonnement, sans surprise.',
+    'hero.cta1': 'Voir ce qui est inclus',
+    'hero.cta2': 'Démarrer votre projet',
+    's1.label': '[01] — Le tarif',
+    's1.title': 'Un site. <em>Un prix.</em><br>Une facture.',
+    's1.intro': "Tout ce qu'il vous faut pour une présence en ligne professionnelle — conçu, rédigé et en ligne en 48 heures.",
+    's1.tag': 'Tarif forfaitaire',
+    's1.desc': 'Un site web complet, adapté au mobile. Conçu sur mesure. En ligne avant la fin de la semaine.',
+    's1.f1': "Site sur mesure, jusqu'à 5 pages",
+    's1.f2': "Mobile d'abord, ultra-rapide",
+    's1.f3': 'Formulaire de contact &amp; intégration Google Maps',
+    's1.f4': 'SEO de base (titres, méta, sitemap)',
+    's1.f5': 'Bilingue français / anglais (ou +DE sur demande)',
+    's1.f6': 'Rédaction incluse — nous écrivons vos pages',
+    's1.f7': 'En ligne 48h après réception du contenu',
+    's2.label': '[02] — Après la mise en ligne',
+    's2.title': 'Pas de mauvaises <em>surprises.</em>',
+    's2.intro': "Vous payez une fois pour le site. Ensuite, vous ne payez que lorsque vous en avez réellement besoin.",
+    's2.c1.num': '// 1ère année',
+    's2.c1.title': 'Hébergement',
+    's2.c1.price': 'Gratuit.',
+    's2.c1.desc': "Nous prenons en charge l'hébergement, le nom de domaine, le SSL et les sauvegardes pendant toute la première année. Concentrez-vous sur votre activité, pas sur vos factures.",
+    's2.c2.num': '// Dès la 2e année',
+    's2.c2.title': 'Hébergement',
+    's2.c2.unit': 'CHF/mois',
+    's2.c2.desc': "Hébergement suisse rapide, sauvegardes quotidiennes, SSL, surveillance et mises à jour de sécurité. Résiliable à tout moment — nous vous remettons votre site.",
+    's2.c3.num': '// À la demande',
+    's2.c3.title': 'Modifications',
+    's2.c3.unit': 'CHF/modif.',
+    's2.c3.desc': 'De nouveaux horaires, un prix, une photo, un service en plus ? Envoyez-nous un message — modification effectuée sous 24 heures.',
+    's3.label': '[03] — Comment ça marche',
+    's3.title': "De <em>« il faudrait vraiment qu'on en fasse un »</em><br>à en ligne, en 3 jours.",
+    's3.step1.title': 'Remplir le brief',
+    's3.step1.desc': "Un formulaire de 5 minutes : votre activité, vos services, l'ambiance. Envoyez-nous vos photos — ou dites-nous que vous n'en avez pas, on s'en charge.",
+    's3.step2.title': 'On le construit',
+    's3.step2.desc': "Dans les 48 heures suivant la réception de votre contenu, nous concevons, rédigeons et construisons votre site. Vous recevez un lien d'aperçu.",
+    's3.step3.title': 'Mise en ligne',
+    's3.step3.desc': "Un tour de révisions inclus. Puis nous publions sur votre domaine. L'hébergement gratuit commence dès le jour 1.",
+    's4.label': '[04] — Sélection de réalisations',
+    's4.title': 'Des PME, <em>en ligne,</em><br>en 48 heures.',
+    's4.w1.meta': 'Boulangerie · Pâtisserie',
+    's4.w2.meta': 'Fiduciaire',
+    's4.w3.meta': 'Photographie',
+    's4.w4.meta': 'Coiffure · Salon',
+    's5.label': '[05] — Démarrer votre projet',
+    's5.title': 'Mettons votre entreprise <em>en ligne</em><br>cette semaine.',
+    's5.phone': 'Téléphone',
+    's5.email': 'E-mail',
+    's5.studio': 'Studio',
+    'footer.built': 'Construit (évidemment) en 48 heures.'
+  },
+  de: {
+    'nav.work': 'Arbeiten',
+    'nav.pricing': 'Preise',
+    'nav.process': 'Ablauf',
+    'nav.cta': 'Projekt starten',
+    'hero.label': 'Schweizer Webstudio · Gegründet 2026',
+    'hero.titlePrefix': 'Schöne Websites<br>für ',
+    'hero.titleSuffix': ',<br>die zu beschäftigt sind, eine zu bauen.',
+    'hero.sub': 'Wir gestalten, schreiben und liefern komplette Websites für Schweizer KMU in 48 Stunden. 500 CHF pauschal. Keine Abos, keine Überraschungen.',
+    'hero.cta1': 'Sehen, was enthalten ist',
+    'hero.cta2': 'Projekt starten',
+    's1.label': '[01] — Der Preis',
+    's1.title': 'Eine Website. <em>Ein Preis.</em><br>Eine Rechnung.',
+    's1.intro': 'Alles, was Sie für einen professionellen Online-Auftritt brauchen — gestaltet, geschrieben und in 48 Stunden online.',
+    's1.tag': 'Pauschalpreis',
+    's1.desc': 'Eine komplette, mobiloptimierte Website. Massgeschneidert. Online vor Wochenende.',
+    's1.f1': 'Massgeschneiderte Website, bis zu 5 Seiten',
+    's1.f2': 'Mobile-First, blitzschnell',
+    's1.f3': 'Kontaktformular &amp; Google Maps-Integration',
+    's1.f4': 'Basis-SEO (Titel, Meta, Sitemap)',
+    's1.f5': 'Zweisprachig Französisch / Englisch (oder +DE auf Anfrage)',
+    's1.f6': 'Texterstellung inklusive — wir schreiben Ihre Seiten',
+    's1.f7': 'Online 48h nach Erhalt des Inhalts',
+    's2.label': '[02] — Nach dem Launch',
+    's2.title': 'Keine bösen <em>Überraschungen.</em>',
+    's2.intro': 'Sie zahlen einmal für die Website. Danach nur, wenn Sie wirklich etwas brauchen.',
+    's2.c1.num': '// Jahr 1',
+    's2.c1.title': 'Hosting',
+    's2.c1.price': 'Gratis.',
+    's2.c1.desc': 'Wir übernehmen Hosting, Domain-Setup, SSL und Backups für Ihr ganzes erstes Jahr. Konzentrieren Sie sich auf Ihr Geschäft, nicht auf Rechnungen.',
+    's2.c2.num': '// Ab Jahr 2',
+    's2.c2.title': 'Hosting',
+    's2.c2.unit': 'CHF/Mt.',
+    's2.c2.desc': 'Schnelles Schweizer Hosting, tägliche Backups, SSL, Uptime-Monitoring und kleinere Sicherheitsupdates. Jederzeit kündbar — wir übergeben Ihre Website.',
+    's2.c3.num': '// Auf Anfrage',
+    's2.c3.title': 'Änderungen',
+    's2.c3.unit': 'CHF/Änd.',
+    's2.c3.desc': 'Neue Öffnungszeiten, ein Preis, ein Foto, eine zusätzliche Dienstleistung? Schreiben Sie uns — wir aktualisieren innerhalb von 24 Stunden.',
+    's3.label': "[03] — So funktioniert's",
+    's3.title': 'Von <em>„wir sollten wirklich eine machen"</em><br>zu online — in 3 Tagen.',
+    's3.step1.title': 'Briefing ausfüllen',
+    's3.step1.desc': 'Ein 5-Minuten-Formular: Ihr Geschäft, Ihre Dienstleistungen, der Stil. Schicken Sie uns Fotos — oder sagen Sie uns, dass Sie keine haben, wir kümmern uns.',
+    's3.step2.title': 'Wir bauen es',
+    's3.step2.desc': 'Innerhalb von 48 Stunden nach Erhalt Ihres Inhalts gestalten, schreiben und bauen wir Ihre Website. Sie erhalten einen Vorschau-Link.',
+    's3.step3.title': 'Sie gehen live',
+    's3.step3.desc': 'Eine Korrekturrunde inklusive. Dann veröffentlichen wir auf Ihrer Domain. Gratis-Hosting beginnt ab Tag 1.',
+    's4.label': '[04] — Ausgewählte Arbeiten',
+    's4.title': 'KMU, <em>online,</em><br>in 48 Stunden.',
+    's4.w1.meta': 'Bäckerei · Konditorei',
+    's4.w2.meta': 'Treuhand',
+    's4.w3.meta': 'Fotografie',
+    's4.w4.meta': 'Coiffeur · Salon',
+    's5.label': '[05] — Projekt starten',
+    's5.title': 'Bringen wir Ihr Geschäft <em>online</em><br>diese Woche.',
+    's5.phone': 'Telefon',
+    's5.email': 'E-Mail',
+    's5.studio': 'Studio',
+    'footer.built': 'Erstellt (natürlich) in 48 Stunden.'
+  }
+};
+
+/* Rotating words per language */
+const ROTATING = {
+  en: ['bakers', 'fiduciaires', 'restaurants', 'coiffeurs', 'consultants', 'artisans', 'garagistes', 'photographers'],
+  fr: ['boulangers', 'fiduciaires', 'restaurants', 'coiffeurs', 'consultants', 'artisans', 'garagistes', 'photographes'],
+  de: ['Bäcker', 'Treuhänder', 'Restaurants', 'Coiffeure', 'Berater', 'Handwerker', 'Garagisten', 'Fotografen']
+};
+
+/* Marquee items per language */
+const MARQUEE = {
+  en: ['500 CHF flat', '48-hour delivery', 'Hosting free Year 1', 'Based in Vaud', 'FR · EN · DE', 'Made in Switzerland'],
+  fr: ['500 CHF tout compris', 'Livraison en 48h', 'Hébergement gratuit la 1ère année', 'Basés dans le canton de Vaud', 'FR · EN · DE', 'Fait en Suisse'],
+  de: ['500 CHF pauschal', 'Lieferung in 48 Stunden', 'Hosting im 1. Jahr gratis', 'Aus dem Kanton Waadt', 'FR · EN · DE', 'Made in Switzerland']
+};
+
+let currentLang = 'en';
+let words = ROTATING.en;
+let wordIdx = 0;
+
+const rotator = document.getElementById('rotator');
+const marqueeTrack = document.getElementById('marquee-track');
+
+function renderMarquee(lang) {
+  const items = MARQUEE[lang];
+  marqueeTrack.innerHTML = [...items, ...items].map(it => `<span>${it}</span>`).join('');
+}
+
+function setLanguage(lang) {
+  if (!T[lang]) return;
+  currentLang = lang;
+  document.documentElement.lang = lang;
+
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    const val = T[lang][key];
+    if (val !== undefined) el.innerHTML = val;
+  });
+
+  words = ROTATING[lang];
+  wordIdx = 0;
+  rotator.textContent = words[0];
+
+  renderMarquee(lang);
+
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.lang === lang);
+  });
+}
+
+document.querySelectorAll('.lang-btn').forEach(btn => {
+  btn.addEventListener('click', () => setLanguage(btn.dataset.lang));
+});
+
+function rotateWord() {
+  rotator.style.opacity = '0';
+  rotator.style.transform = 'translateY(-12px)';
+  setTimeout(() => {
+    wordIdx = (wordIdx + 1) % words.length;
+    rotator.textContent = words[wordIdx];
+    rotator.style.transform = 'translateY(12px)';
+    requestAnimationFrame(() => {
+      rotator.style.opacity = '1';
+      rotator.style.transform = 'translateY(0)';
+    });
+  }, 300);
+}
+setInterval(rotateWord, 2200);
+
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 40) nav.classList.add('scrolled');
+  else nav.classList.remove('scrolled');
+}, { passive: true });
+
+const reveals = document.querySelectorAll('.reveal');
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 70);
+      obs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.12, rootMargin: '-40px' });
+reveals.forEach(r => obs.observe(r));
+
+renderMarquee('en');
+</script>
+</body>
+</html>

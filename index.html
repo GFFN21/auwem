@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Antoine + Gabi — Beautiful websites for Swiss businesses</title>
-<meta name="description" content="We design and ship complete websites for Swiss small businesses in 48 hours. 500 CHF flat.">
+<title>Auwem — Automated web maker</title>
+<meta name="description" content="Auwem builds professional websites for Swiss small businesses in 48 hours. 400 CHF flat.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..900,0..100;1,9..144,300..900,0..100&family=DM+Sans:opsz,wght@9..40,300..700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -36,14 +36,45 @@ body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
+  position: relative;
 }
 
 ::selection { background: var(--accent); color: var(--paper); }
+
+/* Film grain overlay */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.05;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+}
 
 .container {
   max-width: 1280px;
   margin: 0 auto;
   padding: 0 32px;
+}
+
+/* ───────── CURSOR BLOB ───────── */
+.cursor-blob {
+  display: none;
+  position: fixed;
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(232, 78, 27, 0.18) 0%, transparent 65%);
+  pointer-events: none;
+  z-index: 1;
+  left: 0; top: 0;
+  will-change: transform;
+  filter: blur(8px);
+}
+@media (hover: hover) and (pointer: fine) {
+  .cursor-blob { display: block; }
 }
 
 /* ───────── NAV ───────── */
@@ -70,20 +101,61 @@ body {
   align-items: center;
   gap: 18px;
 }
+.logo-wrap {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
 .logo {
   font-family: var(--font-display);
-  font-size: 22px;
-  font-weight: 600;
-  font-variation-settings: "SOFT" 50, "opsz" 144;
-  letter-spacing: -0.02em;
+  font-size: 26px;
+  font-weight: 700;
+  font-variation-settings: "SOFT" 30, "opsz" 144;
+  letter-spacing: -0.04em;
   white-space: nowrap;
+  position: relative;
 }
-.logo .plus {
+.logo .a {
   color: var(--accent);
   font-style: italic;
-  font-weight: 400;
-  padding: 0 2px;
+  font-variation-settings: "SOFT" 100, "opsz" 144;
 }
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 11px 5px 9px;
+  background: var(--bg-warm);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.06em;
+  color: var(--ink-soft);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.status-pill .dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--green);
+  position: relative;
+}
+.status-pill .dot::after {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  background: var(--green);
+  opacity: 0.4;
+  animation: ping 2s ease-out infinite;
+}
+@keyframes ping {
+  0% { transform: scale(0.8); opacity: 0.6; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+
 .nav-links {
   display: flex;
   gap: 28px;
@@ -177,23 +249,278 @@ body {
   color: var(--paper);
 }
 
+/* ───────── SIDE RAIL (drawer trigger) ───────── */
+.side-rail {
+  position: fixed;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--ink);
+  color: var(--paper);
+  padding: 22px 14px;
+  border: none;
+  border-radius: 14px 0 0 14px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  writing-mode: vertical-rl;
+  cursor: pointer;
+  z-index: 95;
+  transition: padding-right 0.3s ease, background 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  box-shadow: -4px 0 20px -8px rgba(22, 20, 18, 0.2);
+}
+.side-rail:hover {
+  padding-right: 22px;
+  background: var(--accent);
+}
+.side-rail-arrow {
+  display: inline-block;
+  width: 6px; height: 6px;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: rotate(45deg);
+  margin-top: 2px;
+}
+@media (max-width: 560px) {
+  .side-rail { font-size: 10px; padding: 18px 12px; letter-spacing: 0.14em; }
+}
+
+/* ───────── DRAWER ───────── */
+.drawer-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(22, 20, 18, 0.5);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+  z-index: 200;
+}
+.drawer-backdrop.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+.drawer {
+  position: fixed;
+  right: 0; top: 0;
+  height: 100%;
+  width: min(520px, 100vw);
+  background: var(--paper);
+  z-index: 201;
+  transform: translateX(105%);
+  transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+  box-shadow: -20px 0 60px -20px rgba(22, 20, 18, 0.2);
+}
+.drawer.open { transform: translateX(0); }
+.drawer-inner {
+  padding: 72px 48px 48px;
+  overflow-y: auto;
+  flex: 1;
+}
+.drawer-close {
+  position: absolute;
+  top: 22px; right: 24px;
+  background: transparent;
+  border: 1.5px solid var(--line);
+  width: 42px; height: 42px;
+  border-radius: 50%;
+  font-size: 20px;
+  font-weight: 300;
+  color: var(--ink);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  padding-bottom: 3px;
+}
+.drawer-close:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: rotate(90deg);
+}
+.drawer-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+  margin-bottom: 28px;
+}
+.drawer-title {
+  font-family: var(--font-display);
+  font-size: clamp(40px, 7vw, 56px);
+  line-height: 0.95;
+  letter-spacing: -0.025em;
+  margin-bottom: 22px;
+  font-variation-settings: "SOFT" 50, "opsz" 144;
+  font-weight: 400;
+}
+.drawer-title em {
+  font-style: italic;
+  color: var(--accent);
+  font-variation-settings: "SOFT" 100, "opsz" 144;
+}
+.drawer-sub {
+  color: var(--ink-soft);
+  margin-bottom: 44px;
+  font-size: 16px;
+  line-height: 1.55;
+}
+.drawer-form { display: block; }
+.drawer-form label {
+  display: block;
+  margin-bottom: 28px;
+}
+.drawer-form label span {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--ink-soft);
+  margin-bottom: 10px;
+}
+.drawer-form input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1.5px solid var(--line);
+  padding: 8px 0;
+  font-family: var(--font-body);
+  font-size: 18px;
+  color: var(--ink);
+  outline: none;
+  transition: border-color 0.25s ease;
+}
+.drawer-form input::placeholder {
+  color: var(--ink-soft);
+  opacity: 0.45;
+  font-style: italic;
+}
+.drawer-form input:focus {
+  border-bottom-color: var(--accent);
+}
+.drawer-submit {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 28px;
+  background: var(--ink);
+  color: var(--paper);
+  border: none;
+  border-radius: 999px;
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  margin-top: 18px;
+  transition: background 0.25s, transform 0.25s;
+}
+.drawer-submit:hover {
+  background: var(--accent);
+  transform: translateY(-1px);
+}
+.drawer-submit .arrow { transition: transform 0.25s; }
+.drawer-submit:hover .arrow { transform: translateX(4px); }
+.drawer-meta {
+  margin-top: 56px;
+  padding-top: 32px;
+  border-top: 1px dashed var(--line);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+}
+.drawer-meta .meta-label {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--ink-soft);
+  margin-bottom: 6px;
+}
+.drawer-meta .meta-value {
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-variation-settings: "SOFT" 30, "opsz" 60;
+}
+.drawer-meta a {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s;
+}
+.drawer-meta a:hover { border-bottom-color: var(--ink); }
+
+.drawer-success {
+  display: none;
+  text-align: center;
+  padding: 60px 20px;
+}
+.drawer-success.show {
+  display: block;
+  animation: fadeUp 0.5s ease;
+}
+.checkmark {
+  width: 88px; height: 88px;
+  border-radius: 50%;
+  background: var(--green);
+  color: var(--paper);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+  margin-bottom: 28px;
+  animation: scaleIn 0.5s cubic-bezier(0.18, 1.5, 0.4, 1);
+}
+@keyframes scaleIn {
+  from { transform: scale(0) rotate(-45deg); }
+  to { transform: scale(1) rotate(0); }
+}
+.drawer-success h3 {
+  font-family: var(--font-display);
+  font-size: 36px;
+  font-weight: 500;
+  font-variation-settings: "SOFT" 50, "opsz" 96;
+  margin-bottom: 10px;
+}
+.drawer-success p {
+  color: var(--ink-soft);
+  font-size: 16px;
+}
+
+@media (max-width: 560px) {
+  .drawer-inner { padding: 64px 28px 36px; }
+  .drawer-meta { grid-template-columns: 1fr; gap: 20px; }
+}
+
 /* ───────── HERO ───────── */
 .hero {
-  padding: 160px 0 100px;
+  padding: 160px 0 80px;
   position: relative;
 }
 .hero-deco {
   position: absolute;
-  top: 140px;
+  top: 120px;
   right: -120px;
-  width: 480px;
-  height: 480px;
-  background: radial-gradient(circle, var(--accent-soft) 0%, transparent 70%);
+  width: 540px;
+  height: 540px;
+  background: radial-gradient(circle, var(--accent-soft) 0%, transparent 65%);
   border-radius: 50%;
   pointer-events: none;
   z-index: 0;
+  will-change: transform;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.hero .container { position: relative; z-index: 1; }
+.hero .container { position: relative; z-index: 2; }
 
 .label {
   font-family: var(--font-mono);
@@ -237,7 +564,6 @@ body {
   color: var(--accent);
   position: relative;
   vertical-align: baseline;
-  transition: opacity 0.3s, transform 0.3s;
   font-variation-settings: "SOFT" 100, "opsz" 144;
 }
 .rotating-word::after {
@@ -254,7 +580,7 @@ body {
 .hero-sub {
   font-size: 22px;
   color: var(--ink-soft);
-  max-width: 640px;
+  max-width: 680px;
   margin-bottom: 48px;
   line-height: 1.45;
 }
@@ -277,6 +603,41 @@ body {
   to   { opacity: 1; transform: translateY(0); }
 }
 
+/* Scroll hint */
+.scroll-hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 90px;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  opacity: 0;
+  animation: fadeUp 0.9s ease forwards;
+  animation-delay: 0.7s;
+}
+.scroll-hint .line {
+  display: inline-block;
+  width: 50px;
+  height: 1px;
+  background: var(--ink-soft);
+  position: relative;
+  overflow: hidden;
+}
+.scroll-hint .line::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--accent);
+  animation: slideRight 2.2s ease-in-out infinite;
+}
+@keyframes slideRight {
+  0% { transform: translateX(-100%); }
+  60%, 100% { transform: translateX(100%); }
+}
+
 /* ───────── MARQUEE ───────── */
 .marquee {
   border-top: 1px solid var(--line);
@@ -285,6 +646,8 @@ body {
   padding: 22px 0;
   overflow: hidden;
   white-space: nowrap;
+  position: relative;
+  z-index: 2;
 }
 .marquee-track {
   display: inline-flex;
@@ -315,6 +678,7 @@ body {
 .section {
   padding: 120px 0;
   position: relative;
+  z-index: 2;
 }
 .section-label {
   font-family: var(--font-mono);
@@ -689,6 +1053,8 @@ body {
 .footer {
   padding: 40px 32px;
   border-top: 1px solid var(--line);
+  position: relative;
+  z-index: 2;
 }
 .footer-inner {
   max-width: 1280px;
@@ -722,6 +1088,7 @@ body {
 /* ───────── RESPONSIVE ───────── */
 @media (max-width: 900px) {
   .nav-item-link { display: none; }
+  .status-pill { display: none; }
   .pricing { grid-template-columns: 1fr; padding: 40px 28px; gap: 36px; }
   .after-grid, .process-steps, .portfolio-grid, .contact-info { grid-template-columns: 1fr; gap: 28px; }
   .section { padding: 80px 0; }
@@ -731,6 +1098,7 @@ body {
   .section-intro { font-size: 18px; margin-bottom: 48px; }
   .work-card { padding: 32px; min-height: 220px; }
   .work-title { font-size: 32px; }
+  .scroll-hint { margin-top: 60px; }
 }
 @media (max-width: 560px) {
   .container { padding: 0 20px; }
@@ -742,9 +1110,17 @@ body {
 </head>
 <body>
 
+<div class="cursor-blob" id="cursorBlob" aria-hidden="true"></div>
+
 <nav class="nav" id="nav">
   <div class="nav-inner">
-    <div class="logo">Antoine<span class="plus">+</span>Gabi</div>
+    <div class="logo-wrap">
+      <div class="logo"><span class="a">A</span>uwem</div>
+      <div class="status-pill">
+        <span class="dot"></span>
+        <span data-i18n="status">Available · 2 slots this week</span>
+      </div>
+    </div>
     <ul class="nav-links">
       <li class="nav-item-link"><a href="#work" data-i18n="nav.work">Work</a></li>
       <li class="nav-item-link"><a href="#pricing" data-i18n="nav.pricing">Pricing</a></li>
@@ -756,24 +1132,78 @@ body {
           <button class="lang-btn" data-lang="de">DE</button>
         </div>
       </li>
-      <li class="nav-cta"><a href="#contact" class="btn"><span data-i18n="nav.cta">Start a project</span> <span class="arrow">→</span></a></li>
+      <li class="nav-cta"><a href="#" class="btn" data-open-drawer><span data-i18n="nav.cta">Start a project</span> <span class="arrow">→</span></a></li>
     </ul>
   </div>
 </nav>
 
+<!-- Side rail (always visible drawer trigger) -->
+<button class="side-rail" id="openDrawer" aria-label="Open project intake form">
+  <span data-i18n="rail">Start your project</span>
+  <span class="side-rail-arrow" aria-hidden="true"></span>
+</button>
+
+<!-- Drawer + backdrop -->
+<div class="drawer-backdrop" id="drawerBackdrop"></div>
+<aside class="drawer" id="drawer" aria-hidden="true" aria-label="Project intake form">
+  <button class="drawer-close" id="closeDrawer" aria-label="Close form">×</button>
+  <div class="drawer-inner">
+    <div class="drawer-eyebrow" data-i18n="drawer.eyebrow">[ Project intake ]</div>
+    <h2 class="drawer-title" data-i18n="drawer.title">Let's build<br><em>something.</em></h2>
+    <p class="drawer-sub" data-i18n="drawer.sub">Drop your details. We'll be back within 24 hours with next steps and a short brief.</p>
+    <form class="drawer-form" id="drawerForm" novalidate>
+      <label>
+        <span data-i18n="form.name">Your name</span>
+        <input type="text" name="name" required autocomplete="name" placeholder="Jean Dupont">
+      </label>
+      <label>
+        <span data-i18n="form.company">Company</span>
+        <input type="text" name="company" required autocomplete="organization" placeholder="Boulangerie du Lac">
+      </label>
+      <label>
+        <span data-i18n="form.email">Email</span>
+        <input type="email" name="email" required autocomplete="email" placeholder="jean@example.com">
+      </label>
+      <button type="submit" class="drawer-submit">
+        <span data-i18n="form.submit">Send</span>
+        <span class="arrow">→</span>
+      </button>
+    </form>
+    <div class="drawer-success" id="drawerSuccess" aria-live="polite">
+      <div class="checkmark">✓</div>
+      <h3 data-i18n="form.successTitle">Got it.</h3>
+      <p data-i18n="form.successText">We'll be in touch within 24 hours.</p>
+    </div>
+    <div class="drawer-meta">
+      <div>
+        <div class="meta-label" data-i18n="form.metaPhone">Or call</div>
+        <div class="meta-value"><a href="tel:+41799512565">079 951 25 65</a></div>
+      </div>
+      <div>
+        <div class="meta-label" data-i18n="form.metaEmail">Or email</div>
+        <div class="meta-value"><a href="mailto:auwem@gmail.com">auwem@gmail.com</a></div>
+      </div>
+    </div>
+  </div>
+</aside>
+
 <header class="hero">
-  <div class="hero-deco"></div>
+  <div class="hero-deco" id="heroDeco"></div>
   <div class="container">
-    <div class="label" data-i18n="hero.label">Swiss web studio · Established 2026</div>
+    <div class="label" data-i18n="hero.label">Auwem · Automated web maker · est. 2026</div>
     <h1 class="hero-title">
       <span data-i18n="hero.titlePrefix">Beautiful websites<br>for </span><span class="rotating-word" id="rotator">bakers</span><span data-i18n="hero.titleSuffix"><br>too busy to build one.</span>
     </h1>
     <p class="hero-sub" data-i18n="hero.sub">
-      We design, write and ship complete websites for Swiss small businesses in 48 hours. 500 CHF flat. No subscriptions, no surprises.
+      Auwem builds professional websites for Swiss small businesses in 48 hours. 400 CHF flat. Automated where it counts, hand-crafted where it matters.
     </p>
     <div class="hero-ctas">
-      <a href="#pricing" class="btn"><span data-i18n="hero.cta1">See what's included</span> <span class="arrow">→</span></a>
-      <a href="#contact" class="btn btn-outline" data-i18n="hero.cta2">Start your project</a>
+      <a href="#" class="btn" data-open-drawer><span data-i18n="hero.cta1">Start your project</span> <span class="arrow">→</span></a>
+      <a href="#pricing" class="btn btn-outline" data-i18n="hero.cta2">See what's included</a>
+    </div>
+    <div class="scroll-hint">
+      <span class="line"></span>
+      <span data-i18n="hero.scroll">Scroll to explore</span>
     </div>
   </div>
 </header>
@@ -792,8 +1222,8 @@ body {
     <div class="pricing reveal">
       <div>
         <div class="price-tag" data-i18n="s1.tag">All-in flat fee</div>
-        <div class="price-big"><span class="currency">CHF</span>500</div>
-        <p class="price-desc" data-i18n="s1.desc">A complete, mobile-friendly website. Designed for you. Live before the week is out.</p>
+        <div class="price-big"><span class="currency">CHF</span><span id="priceNumber">400</span></div>
+        <p class="price-desc" data-i18n="s1.desc">A complete, mobile-friendly website. Automated builds, hand-crafted polish. Live before the week is out.</p>
       </div>
       <ul class="price-features">
         <li><span class="check">✓</span> <span data-i18n="s1.f1">Custom-designed website, up to 5 pages</span></li>
@@ -852,7 +1282,7 @@ body {
         <div class="step">
           <div class="step-num">02</div>
           <h3 data-i18n="s3.step2.title">We build it</h3>
-          <p data-i18n="s3.step2.desc">Within 48 hours of receiving your content, we design, write and build your site. You get one preview link.</p>
+          <p data-i18n="s3.step2.desc">Our automated pipeline assembles your site in 48 hours. We polish it by hand. You get one preview link.</p>
         </div>
         <div class="step">
           <div class="step-num">03</div>
@@ -923,11 +1353,11 @@ body {
       <div class="contact-info">
         <div>
           <div class="label-small" data-i18n="s5.phone">Phone</div>
-          <div class="value"><a href="tel:+41215550488">+41 21 555 04 88</a></div>
+          <div class="value"><a href="tel:+41799512565">079 951 25 65</a></div>
         </div>
         <div>
           <div class="label-small" data-i18n="s5.email">Email</div>
-          <div class="value"><a href="mailto:hello@antoinegabi.ch">hello@antoinegabi.ch</a></div>
+          <div class="value"><a href="mailto:auwem@gmail.com">auwem@gmail.com</a></div>
         </div>
         <div>
           <div class="label-small" data-i18n="s5.studio">Studio</div>
@@ -940,7 +1370,7 @@ body {
 
 <footer class="footer">
   <div class="footer-inner">
-    <div>© 2026 Antoine <span class="accent">+</span> Gabi · Lausanne, CH</div>
+    <div>© 2026 <span class="accent">Auwem</span> · Lausanne, CH</div>
     <div data-i18n="footer.built">Built (of course) in 48 hours.</div>
   </div>
 </footer>
@@ -949,21 +1379,35 @@ body {
 /* ─── Translations ─── */
 const T = {
   en: {
+    'status': 'Available · 2 slots this week',
+    'rail': 'Start your project',
     'nav.work': 'Work',
     'nav.pricing': 'Pricing',
     'nav.process': 'Process',
     'nav.cta': 'Start a project',
-    'hero.label': 'Swiss web studio · Established 2026',
+    'drawer.eyebrow': '[ Project intake ]',
+    'drawer.title': "Let's build<br><em>something.</em>",
+    'drawer.sub': "Drop your details. We'll be back within 24 hours with next steps and a short brief.",
+    'form.name': 'Your name',
+    'form.company': 'Company',
+    'form.email': 'Email',
+    'form.submit': 'Send',
+    'form.successTitle': 'Got it.',
+    'form.successText': "We'll be in touch within 24 hours.",
+    'form.metaPhone': 'Or call',
+    'form.metaEmail': 'Or email',
+    'hero.label': 'Auwem · Automated web maker · est. 2026',
     'hero.titlePrefix': 'Beautiful websites<br>for ',
     'hero.titleSuffix': '<br>too busy to build one.',
-    'hero.sub': 'We design, write and ship complete websites for Swiss small businesses in 48 hours. 500 CHF flat. No subscriptions, no surprises.',
-    'hero.cta1': "See what's included",
-    'hero.cta2': 'Start your project',
+    'hero.sub': 'Auwem builds professional websites for Swiss small businesses in 48 hours. 400 CHF flat. Automated where it counts, hand-crafted where it matters.',
+    'hero.cta1': 'Start your project',
+    'hero.cta2': "See what's included",
+    'hero.scroll': 'Scroll to explore',
     's1.label': '[01] — The price',
     's1.title': 'One website. <em>One price.</em><br>One invoice.',
     's1.intro': 'Everything you need to look professional online — designed, written, and live in 48 hours.',
     's1.tag': 'All-in flat fee',
-    's1.desc': 'A complete, mobile-friendly website. Designed for you. Live before the week is out.',
+    's1.desc': 'A complete, mobile-friendly website. Automated builds, hand-crafted polish. Live before the week is out.',
     's1.f1': 'Custom-designed website, up to 5 pages',
     's1.f2': 'Mobile-first, lightning-fast loading',
     's1.f3': 'Contact form &amp; Google Maps integration',
@@ -991,7 +1435,7 @@ const T = {
     's3.step1.title': 'Fill the brief',
     's3.step1.desc': "A 5-minute form: your business, your services, the vibe. Send us your photos — or tell us you don't have any, and we handle it.",
     's3.step2.title': 'We build it',
-    's3.step2.desc': 'Within 48 hours of receiving your content, we design, write and build your site. You get one preview link.',
+    's3.step2.desc': 'Our automated pipeline assembles your site in 48 hours. We polish it by hand. You get one preview link.',
     's3.step3.title': 'You go live',
     's3.step3.desc': 'One round of revisions included. Then we publish to your domain. Free hosting kicks in on day one.',
     's4.label': '[04] — Selected work',
@@ -1008,21 +1452,35 @@ const T = {
     'footer.built': 'Built (of course) in 48 hours.'
   },
   fr: {
+    'status': 'Disponible · 2 places cette semaine',
+    'rail': 'Démarrer un projet',
     'nav.work': 'Réalisations',
     'nav.pricing': 'Tarif',
     'nav.process': 'Processus',
     'nav.cta': 'Démarrer un projet',
-    'hero.label': 'Studio web suisse · Fondé en 2026',
+    'drawer.eyebrow': '[ Démarrage projet ]',
+    'drawer.title': 'Construisons<br><em>ensemble.</em>',
+    'drawer.sub': 'Laissez-nous vos coordonnées. Nous revenons vers vous sous 24 heures avec la suite et un bref questionnaire.',
+    'form.name': 'Votre nom',
+    'form.company': 'Entreprise',
+    'form.email': 'E-mail',
+    'form.submit': 'Envoyer',
+    'form.successTitle': 'Reçu.',
+    'form.successText': 'Nous revenons vers vous sous 24 heures.',
+    'form.metaPhone': 'Ou téléphone',
+    'form.metaEmail': 'Ou e-mail',
+    'hero.label': 'Auwem · Créateur web automatisé · 2026',
     'hero.titlePrefix': 'De beaux sites web<br>pour les ',
     'hero.titleSuffix': '<br>trop occupés pour en créer un.',
-    'hero.sub': 'Nous concevons, rédigeons et livrons des sites web complets pour les PME suisses en 48 heures. 500 CHF tout compris. Sans abonnement, sans surprise.',
-    'hero.cta1': 'Voir ce qui est inclus',
-    'hero.cta2': 'Démarrer votre projet',
+    'hero.sub': 'Auwem construit des sites web professionnels pour les PME suisses en 48 heures. 400 CHF tout compris. Automatisé là où ça compte, fait main là où c\'est nécessaire.',
+    'hero.cta1': 'Démarrer votre projet',
+    'hero.cta2': 'Voir ce qui est inclus',
+    'hero.scroll': 'Faites défiler',
     's1.label': '[01] — Le tarif',
     's1.title': 'Un site. <em>Un prix.</em><br>Une facture.',
     's1.intro': "Tout ce qu'il vous faut pour une présence en ligne professionnelle — conçu, rédigé et en ligne en 48 heures.",
     's1.tag': 'Tarif forfaitaire',
-    's1.desc': 'Un site web complet, adapté au mobile. Conçu sur mesure. En ligne avant la fin de la semaine.',
+    's1.desc': "Un site web complet, adapté au mobile. Construction automatisée, finitions à la main. En ligne avant la fin de la semaine.",
     's1.f1': "Site sur mesure, jusqu'à 5 pages",
     's1.f2': "Mobile d'abord, ultra-rapide",
     's1.f3': 'Formulaire de contact &amp; intégration Google Maps',
@@ -1050,7 +1508,7 @@ const T = {
     's3.step1.title': 'Remplir le brief',
     's3.step1.desc': "Un formulaire de 5 minutes : votre activité, vos services, l'ambiance. Envoyez-nous vos photos — ou dites-nous que vous n'en avez pas, on s'en charge.",
     's3.step2.title': 'On le construit',
-    's3.step2.desc': "Dans les 48 heures suivant la réception de votre contenu, nous concevons, rédigeons et construisons votre site. Vous recevez un lien d'aperçu.",
+    's3.step2.desc': "Notre pipeline automatisé assemble votre site en 48 heures. Nous le peaufinons à la main. Vous recevez un lien d'aperçu.",
     's3.step3.title': 'Mise en ligne',
     's3.step3.desc': "Un tour de révisions inclus. Puis nous publions sur votre domaine. L'hébergement gratuit commence dès le jour 1.",
     's4.label': '[04] — Sélection de réalisations',
@@ -1067,21 +1525,35 @@ const T = {
     'footer.built': 'Construit (évidemment) en 48 heures.'
   },
   de: {
+    'status': 'Verfügbar · 2 Plätze diese Woche',
+    'rail': 'Projekt starten',
     'nav.work': 'Arbeiten',
     'nav.pricing': 'Preise',
     'nav.process': 'Ablauf',
     'nav.cta': 'Projekt starten',
-    'hero.label': 'Schweizer Webstudio · Gegründet 2026',
+    'drawer.eyebrow': '[ Projektaufnahme ]',
+    'drawer.title': 'Bauen wir<br><em>etwas.</em>',
+    'drawer.sub': 'Hinterlassen Sie Ihre Daten. Wir melden uns innerhalb von 24 Stunden mit den nächsten Schritten und einem kurzen Briefing.',
+    'form.name': 'Ihr Name',
+    'form.company': 'Unternehmen',
+    'form.email': 'E-Mail',
+    'form.submit': 'Senden',
+    'form.successTitle': 'Erhalten.',
+    'form.successText': 'Wir melden uns innerhalb von 24 Stunden.',
+    'form.metaPhone': 'Oder anrufen',
+    'form.metaEmail': 'Oder E-Mail',
+    'hero.label': 'Auwem · Automatisierter Web-Macher · 2026',
     'hero.titlePrefix': 'Schöne Websites<br>für ',
     'hero.titleSuffix': ',<br>die zu beschäftigt sind, eine zu bauen.',
-    'hero.sub': 'Wir gestalten, schreiben und liefern komplette Websites für Schweizer KMU in 48 Stunden. 500 CHF pauschal. Keine Abos, keine Überraschungen.',
-    'hero.cta1': 'Sehen, was enthalten ist',
-    'hero.cta2': 'Projekt starten',
+    'hero.sub': "Auwem baut professionelle Websites für Schweizer KMU in 48 Stunden. 400 CHF pauschal. Automatisiert wo's zählt, handgemacht wo's drauf ankommt.",
+    'hero.cta1': 'Projekt starten',
+    'hero.cta2': 'Sehen, was enthalten ist',
+    'hero.scroll': 'Weiter scrollen',
     's1.label': '[01] — Der Preis',
     's1.title': 'Eine Website. <em>Ein Preis.</em><br>Eine Rechnung.',
     's1.intro': 'Alles, was Sie für einen professionellen Online-Auftritt brauchen — gestaltet, geschrieben und in 48 Stunden online.',
     's1.tag': 'Pauschalpreis',
-    's1.desc': 'Eine komplette, mobiloptimierte Website. Massgeschneidert. Online vor Wochenende.',
+    's1.desc': 'Eine komplette, mobiloptimierte Website. Automatisierter Bau, handgemachte Politur. Online vor Wochenende.',
     's1.f1': 'Massgeschneiderte Website, bis zu 5 Seiten',
     's1.f2': 'Mobile-First, blitzschnell',
     's1.f3': 'Kontaktformular &amp; Google Maps-Integration',
@@ -1109,7 +1581,7 @@ const T = {
     's3.step1.title': 'Briefing ausfüllen',
     's3.step1.desc': 'Ein 5-Minuten-Formular: Ihr Geschäft, Ihre Dienstleistungen, der Stil. Schicken Sie uns Fotos — oder sagen Sie uns, dass Sie keine haben, wir kümmern uns.',
     's3.step2.title': 'Wir bauen es',
-    's3.step2.desc': 'Innerhalb von 48 Stunden nach Erhalt Ihres Inhalts gestalten, schreiben und bauen wir Ihre Website. Sie erhalten einen Vorschau-Link.',
+    's3.step2.desc': 'Unsere automatisierte Pipeline baut Ihre Website in 48 Stunden. Wir polieren von Hand. Sie erhalten einen Vorschau-Link.',
     's3.step3.title': 'Sie gehen live',
     's3.step3.desc': 'Eine Korrekturrunde inklusive. Dann veröffentlichen wir auf Ihrer Domain. Gratis-Hosting beginnt ab Tag 1.',
     's4.label': '[04] — Ausgewählte Arbeiten',
@@ -1127,23 +1599,22 @@ const T = {
   }
 };
 
-/* Rotating words per language */
 const ROTATING = {
   en: ['bakers', 'fiduciaires', 'restaurants', 'coiffeurs', 'consultants', 'artisans', 'garagistes', 'photographers'],
   fr: ['boulangers', 'fiduciaires', 'restaurants', 'coiffeurs', 'consultants', 'artisans', 'garagistes', 'photographes'],
   de: ['Bäcker', 'Treuhänder', 'Restaurants', 'Coiffeure', 'Berater', 'Handwerker', 'Garagisten', 'Fotografen']
 };
 
-/* Marquee items per language */
 const MARQUEE = {
-  en: ['500 CHF flat', '48-hour delivery', 'Hosting free Year 1', 'Based in Vaud', 'FR · EN · DE', 'Made in Switzerland'],
-  fr: ['500 CHF tout compris', 'Livraison en 48h', 'Hébergement gratuit la 1ère année', 'Basés dans le canton de Vaud', 'FR · EN · DE', 'Fait en Suisse'],
-  de: ['500 CHF pauschal', 'Lieferung in 48 Stunden', 'Hosting im 1. Jahr gratis', 'Aus dem Kanton Waadt', 'FR · EN · DE', 'Made in Switzerland']
+  en: ['400 CHF flat', '48-hour delivery', 'Hosting free Year 1', 'Based in Vaud', 'FR · EN · DE', 'Made in Switzerland'],
+  fr: ['400 CHF tout compris', 'Livraison en 48h', 'Hébergement gratuit la 1ère année', 'Basés dans le canton de Vaud', 'FR · EN · DE', 'Fait en Suisse'],
+  de: ['400 CHF pauschal', 'Lieferung in 48 Stunden', 'Hosting im 1. Jahr gratis', 'Aus dem Kanton Waadt', 'FR · EN · DE', 'Made in Switzerland']
 };
 
 let currentLang = 'en';
 let words = ROTATING.en;
 let wordIdx = 0;
+let isScrambling = false;
 
 const rotator = document.getElementById('rotator');
 const marqueeTrack = document.getElementById('marquee-track');
@@ -1167,7 +1638,6 @@ function setLanguage(lang) {
   words = ROTATING[lang];
   wordIdx = 0;
   rotator.textContent = words[0];
-
   renderMarquee(lang);
 
   document.querySelectorAll('.lang-btn').forEach(btn => {
@@ -1179,27 +1649,44 @@ document.querySelectorAll('.lang-btn').forEach(btn => {
   btn.addEventListener('click', () => setLanguage(btn.dataset.lang));
 });
 
-function rotateWord() {
-  rotator.style.opacity = '0';
-  rotator.style.transform = 'translateY(-12px)';
-  setTimeout(() => {
-    wordIdx = (wordIdx + 1) % words.length;
-    rotator.textContent = words[wordIdx];
-    rotator.style.transform = 'translateY(12px)';
-    requestAnimationFrame(() => {
-      rotator.style.opacity = '1';
-      rotator.style.transform = 'translateY(0)';
-    });
-  }, 300);
+/* ─── Rotating word with scramble effect ─── */
+const SCRAMBLE_CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+function scrambleTo(target) {
+  if (isScrambling) return;
+  isScrambling = true;
+  const len = target.length;
+  let frame = 0;
+  const totalFrames = 14;
+  const interval = setInterval(() => {
+    let out = '';
+    for (let i = 0; i < len; i++) {
+      const progress = frame / totalFrames;
+      const charProgress = i / len;
+      if (progress > charProgress + 0.15) out += target[i];
+      else out += SCRAMBLE_CHARS[Math.floor(Math.random() * SCRAMBLE_CHARS.length)];
+    }
+    rotator.textContent = out;
+    frame++;
+    if (frame > totalFrames + 2) {
+      clearInterval(interval);
+      rotator.textContent = target;
+      isScrambling = false;
+    }
+  }, 32);
 }
-setInterval(rotateWord, 2200);
+setInterval(() => {
+  wordIdx = (wordIdx + 1) % words.length;
+  scrambleTo(words[wordIdx]);
+}, 2400);
 
+/* ─── Nav background on scroll ─── */
 const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => {
   if (window.scrollY > 40) nav.classList.add('scrolled');
   else nav.classList.remove('scrolled');
 }, { passive: true });
 
+/* ─── Reveal on scroll ─── */
 const reveals = document.querySelectorAll('.reveal');
 const obs = new IntersectionObserver((entries) => {
   entries.forEach((e, i) => {
@@ -1211,6 +1698,109 @@ const obs = new IntersectionObserver((entries) => {
 }, { threshold: 0.12, rootMargin: '-40px' });
 reveals.forEach(r => obs.observe(r));
 
+/* ─── Price count-up ─── */
+const priceNumber = document.getElementById('priceNumber');
+const priceObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const target = 400;
+      const duration = 1100;
+      const start = performance.now();
+      function tick(now) {
+        const t = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - t, 3);
+        priceNumber.textContent = Math.floor(eased * target);
+        if (t < 1) requestAnimationFrame(tick);
+        else priceNumber.textContent = target;
+      }
+      requestAnimationFrame(tick);
+      priceObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.5 });
+priceObs.observe(document.querySelector('.price-big'));
+
+/* ─── Cursor blob ─── */
+const blob = document.getElementById('cursorBlob');
+let mouseX = window.innerWidth / 2;
+let mouseY = window.innerHeight / 2;
+let blobX = mouseX, blobY = mouseY;
+window.addEventListener('mousemove', e => {
+  mouseX = e.clientX;
+  mouseY = e.clientY;
+}, { passive: true });
+function animateBlob() {
+  blobX += (mouseX - blobX) * 0.08;
+  blobY += (mouseY - blobY) * 0.08;
+  blob.style.transform = `translate3d(${blobX - 160}px, ${blobY - 160}px, 0)`;
+  requestAnimationFrame(animateBlob);
+}
+animateBlob();
+
+/* ─── Hero deco parallax ─── */
+const heroDeco = document.getElementById('heroDeco');
+window.addEventListener('mousemove', (e) => {
+  const x = (e.clientX / window.innerWidth - 0.5) * 40;
+  const y = (e.clientY / window.innerHeight - 0.5) * 40;
+  heroDeco.style.transform = `translate(${x}px, ${y}px)`;
+}, { passive: true });
+
+/* ─── Drawer ─── */
+const drawer = document.getElementById('drawer');
+const drawerBackdrop = document.getElementById('drawerBackdrop');
+const drawerForm = document.getElementById('drawerForm');
+const drawerSuccess = document.getElementById('drawerSuccess');
+
+function openDrawer() {
+  drawer.classList.add('open');
+  drawerBackdrop.classList.add('open');
+  drawer.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+  setTimeout(() => {
+    const first = drawerForm.querySelector('input');
+    if (first) first.focus();
+  }, 500);
+}
+function closeDrawer() {
+  drawer.classList.remove('open');
+  drawerBackdrop.classList.remove('open');
+  drawer.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+}
+
+document.getElementById('openDrawer').addEventListener('click', openDrawer);
+document.getElementById('closeDrawer').addEventListener('click', closeDrawer);
+drawerBackdrop.addEventListener('click', closeDrawer);
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && drawer.classList.contains('open')) closeDrawer(); });
+
+document.querySelectorAll('[data-open-drawer]').forEach(el => {
+  el.addEventListener('click', (e) => { e.preventDefault(); openDrawer(); });
+});
+
+drawerForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  // Basic validation
+  const inputs = drawerForm.querySelectorAll('input');
+  let valid = true;
+  inputs.forEach(i => { if (!i.value.trim()) { valid = false; i.style.borderBottomColor = 'var(--accent)'; } });
+  if (!valid) return;
+
+  // Show success
+  drawerForm.style.display = 'none';
+  drawerSuccess.classList.add('show');
+  document.querySelector('.drawer-meta').style.display = 'none';
+
+  // Reset after delay
+  setTimeout(() => {
+    drawerForm.reset();
+    drawerForm.style.display = '';
+    drawerSuccess.classList.remove('show');
+    document.querySelector('.drawer-meta').style.display = '';
+    closeDrawer();
+  }, 3500);
+});
+
+/* ─── Initialize ─── */
 renderMarquee('en');
 </script>
 </body>

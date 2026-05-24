@@ -3,1805 +3,1260 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Auwem — Automated web maker</title>
-<meta name="description" content="Auwem builds professional websites for Swiss small businesses in 48 hours. 400 CHF flat.">
+<title>Auwem — Automated web maker · Websites for Swiss businesses in 48h</title>
+<meta name="description" content="Auwem builds professional websites for Swiss small businesses in 48 hours. CHF 400 flat. One website, one price, one invoice.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..900,0..100;1,9..144,300..900,0..100&family=DM+Sans:opsz,wght@9..40,300..700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,400..900,0..100;1,9..144,400..600,0..100&family=Hanken+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-:root {
-  --bg: #F2EDE3;
-  --bg-warm: #EBE4D5;
-  --ink: #161412;
-  --ink-soft: #4A453E;
-  --accent: #E84E1B;
-  --accent-soft: rgba(232, 78, 27, 0.08);
-  --green: #2A4D3A;
-  --line: #C9C0AE;
-  --paper: #FAF6EE;
+:root{
+  --bg:#ECE6D6;
+  --bg-deep:#E3DBC6;
+  --paper:#F7F2E7;
+  --ink:#15120C;
+  --ink-soft:#5B5345;
+  --ink-faint:#8C8472;
+  --accent:#E04A18;
+  --accent-deep:#B33A12;
+  --accent-soft:rgba(224,74,24,.09);
+  --pine:#1E3B2C;
+  --line:#C8BEA4;
+  --line-soft:#D8CFB8;
 
-  --font-display: 'Fraunces', Georgia, serif;
-  --font-body: 'DM Sans', system-ui, sans-serif;
-  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
-}
+  --display:'Fraunces',Georgia,serif;
+  --body:'Hanken Grotesk',system-ui,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,monospace;
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-
-body {
-  background: var(--bg);
-  color: var(--ink);
-  font-family: var(--font-body);
-  font-size: 17px;
-  line-height: 1.5;
-  -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
-  position: relative;
+  --ease:cubic-bezier(.22,.61,.36,1);
 }
 
-::selection { background: var(--accent); color: var(--paper); }
-
-/* Film grain overlay */
-body::after {
-  content: '';
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 9999;
-  opacity: 0.05;
-  mix-blend-mode: multiply;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:var(--body);
+  font-size:17px;
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+  position:relative;
 }
+::selection{background:var(--accent);color:var(--paper)}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+em{font-style:italic}
 
-.container {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 32px;
-}
-
-/* ───────── CURSOR BLOB ───────── */
-.cursor-blob {
-  display: none;
-  position: fixed;
-  width: 320px;
-  height: 320px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(232, 78, 27, 0.18) 0%, transparent 65%);
-  pointer-events: none;
-  z-index: 1;
-  left: 0; top: 0;
-  will-change: transform;
-  filter: blur(8px);
-}
-@media (hover: hover) and (pointer: fine) {
-  .cursor-blob { display: block; }
+/* grain */
+body::after{
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:9998;
+  opacity:.045;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
 }
 
-/* ───────── NAV ───────── */
-.nav {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 100;
-  padding: 18px 32px;
-  background: rgba(242, 237, 227, 0.78);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border-bottom: 1px solid transparent;
-  transition: border-color 0.3s, padding 0.3s;
+.wrap{max-width:1240px;margin:0 auto;padding:0 40px}
+
+/* ───── cursor ───── */
+.blob{
+  position:fixed;width:340px;height:340px;border-radius:50%;
+  background:radial-gradient(circle,rgba(224,74,24,.16) 0%,transparent 62%);
+  pointer-events:none;z-index:1;left:0;top:0;filter:blur(10px);
+  display:none;will-change:transform;
 }
-.nav.scrolled {
-  border-bottom-color: var(--line);
-  padding: 14px 32px;
+@media(hover:hover) and (pointer:fine){.blob{display:block}}
+
+/* ───── nav ───── */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  padding:16px 40px;
+  background:rgba(236,230,214,.72);
+  backdrop-filter:blur(16px) saturate(1.4);
+  -webkit-backdrop-filter:blur(16px) saturate(1.4);
+  border-bottom:1px solid transparent;
+  transition:border-color .35s,padding .35s,background .35s;
 }
-.nav-inner {
-  max-width: 1280px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 18px;
+.nav.scrolled{border-bottom-color:var(--line);padding:11px 40px;background:rgba(236,230,214,.92)}
+.nav-in{max-width:1240px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.brand{display:flex;align-items:center;gap:11px;font-family:var(--display);font-weight:600;font-size:22px;letter-spacing:-.02em}
+.brand .mark{
+  width:30px;height:30px;border-radius:7px;background:var(--ink);color:var(--paper);
+  display:grid;place-items:center;font-family:var(--mono);font-size:14px;font-weight:600;
+  transition:transform .4s var(--ease),background .3s;
 }
-.logo-wrap {
-  display: flex;
-  align-items: center;
-  gap: 16px;
+.brand:hover .mark{transform:rotate(-12deg) scale(1.06);background:var(--accent)}
+.nav-links{display:flex;align-items:center;gap:30px;list-style:none}
+.nav-links a.lnk{
+  font-size:13.5px;font-weight:500;letter-spacing:.01em;position:relative;padding:4px 0;color:var(--ink-soft);
+  transition:color .25s;
 }
-.logo {
-  font-family: var(--font-display);
-  font-size: 26px;
-  font-weight: 700;
-  font-variation-settings: "SOFT" 30, "opsz" 144;
-  letter-spacing: -0.04em;
-  white-space: nowrap;
-  position: relative;
+.nav-links a.lnk::after{
+  content:'';position:absolute;left:0;bottom:0;width:0;height:1.5px;background:var(--accent);transition:width .3s var(--ease);
 }
-.logo .a {
-  color: var(--accent);
-  font-style: italic;
-  font-variation-settings: "SOFT" 100, "opsz" 144;
+.nav-links a.lnk:hover{color:var(--ink)}
+.nav-links a.lnk:hover::after{width:100%}
+
+.langs{display:flex;gap:2px;border:1px solid var(--line);border-radius:99px;padding:3px;background:var(--paper)}
+.lang-btn{
+  font-family:var(--mono);font-size:11px;font-weight:500;border:none;background:transparent;cursor:pointer;
+  padding:5px 9px;border-radius:99px;color:var(--ink-faint);transition:all .25s;letter-spacing:.04em;
 }
-.status-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 5px 11px 5px 9px;
-  background: var(--bg-warm);
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  font-family: var(--font-mono);
-  font-size: 10.5px;
-  letter-spacing: 0.06em;
-  color: var(--ink-soft);
-  text-transform: uppercase;
-  white-space: nowrap;
+.lang-btn.active{background:var(--ink);color:var(--paper)}
+
+.btn{
+  display:inline-flex;align-items:center;gap:9px;
+  font-size:14px;font-weight:600;letter-spacing:.005em;cursor:pointer;
+  padding:13px 22px;border-radius:99px;border:1.5px solid var(--ink);
+  background:var(--ink);color:var(--paper);
+  transition:transform .3s var(--ease),background .3s,color .3s,box-shadow .3s;
+  white-space:nowrap;
 }
-.status-pill .dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--green);
-  position: relative;
+.btn .arw{transition:transform .3s var(--ease);display:inline-block}
+.btn:hover{background:var(--accent);border-color:var(--accent);transform:translateY(-2px);box-shadow:0 10px 24px -10px rgba(224,74,24,.6)}
+.btn:hover .arw{transform:translateX(4px)}
+.btn-ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn-ghost:hover{background:transparent;color:var(--ink);border-color:var(--ink);box-shadow:none;transform:translateY(-2px)}
+.btn-sm{padding:10px 17px;font-size:13px}
+
+/* ───── side rail ───── */
+.rail{
+  position:fixed;right:0;top:50%;transform:translateY(-50%) rotate(180deg);
+  writing-mode:vertical-rl;z-index:150;
+  background:var(--accent);color:var(--paper);
+  font-family:var(--mono);font-size:11.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
+  padding:18px 9px;border:none;cursor:pointer;border-radius:8px 0 0 8px;
+  display:flex;align-items:center;gap:10px;
+  transition:padding-right .3s var(--ease),background .3s;
 }
-.status-pill .dot::after {
-  content: '';
-  position: absolute;
-  inset: -3px;
-  border-radius: 50%;
-  background: var(--green);
-  opacity: 0.4;
-  animation: ping 2s ease-out infinite;
+.rail:hover{padding-right:14px;background:var(--accent-deep)}
+.rail .dot{width:6px;height:6px;border-radius:50%;background:var(--paper);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+@media(max-width:720px){.rail{display:none}}
+
+/* ───── hero ───── */
+.hero{position:relative;padding:188px 0 70px;overflow:hidden}
+.hero-grid{
+  position:absolute;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(var(--line-soft) 1px,transparent 1px);
+  background-size:100% 116px;
+  -webkit-mask-image:linear-gradient(180deg,transparent,#000 14%,#000 72%,transparent);
+          mask-image:linear-gradient(180deg,transparent,#000 14%,#000 72%,transparent);
+  opacity:.55;
 }
-@keyframes ping {
-  0% { transform: scale(0.8); opacity: 0.6; }
-  100% { transform: scale(2.2); opacity: 0; }
+.hero .wrap{position:relative;z-index:2}
+
+.eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:var(--mono);font-size:11.5px;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--ink-soft);
+  border:1px solid var(--line);background:var(--paper);
+  padding:7px 14px;border-radius:99px;margin-bottom:30px;
+}
+.eyebrow .live{width:7px;height:7px;border-radius:50%;background:var(--pine);box-shadow:0 0 0 0 rgba(30,59,44,.5);animation:ring 2.4s infinite}
+@keyframes ring{0%{box-shadow:0 0 0 0 rgba(30,59,44,.45)}70%{box-shadow:0 0 0 8px rgba(30,59,44,0)}100%{box-shadow:0 0 0 0 rgba(30,59,44,0)}}
+
+h1.hero-title{
+  font-family:var(--display);
+  font-weight:430;
+  font-size:clamp(3.05rem,8.3vw,7rem);
+  line-height:.99;
+  letter-spacing:-.032em;
+  font-variation-settings:"SOFT" 28,"opsz" 144;
+  max-width:16ch;
+}
+h1.hero-title em{
+  font-style:italic;font-weight:500;
+}
+.rot-wrap{
+  display:inline-block;position:relative;vertical-align:baseline;
+}
+.rot{
+  display:inline-block;color:var(--accent);font-style:italic;font-weight:500;
+  position:relative;
+}
+.rot::after{
+  content:'';position:absolute;left:-.04em;right:-.04em;bottom:.06em;height:.085em;
+  background:var(--accent);opacity:.22;border-radius:2px;
 }
 
-.nav-links {
-  display: flex;
-  gap: 28px;
-  list-style: none;
-  align-items: center;
+.hero-cols{display:flex;gap:60px;align-items:flex-end;margin-top:42px;flex-wrap:wrap}
+.hero-sub{
+  max-width:46ch;font-size:18px;color:var(--ink-soft);line-height:1.6;
 }
-.nav-links a:not(.btn) {
-  color: var(--ink);
-  text-decoration: none;
-  font-size: 15px;
-  font-weight: 500;
-  transition: color 0.2s;
-  position: relative;
-}
-.nav-links a:not(.btn)::after {
-  content: '';
-  position: absolute;
-  left: 0; bottom: -4px;
-  width: 100%;
-  height: 1.5px;
-  background: var(--accent);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.3s ease;
-}
-.nav-links a:not(.btn):hover::after { transform: scaleX(1); }
+.hero-sub b{color:var(--ink);font-weight:600}
+.hero-ctas{display:flex;gap:13px;margin-top:30px;flex-wrap:wrap}
 
-.btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 12px 22px;
-  background: var(--ink);
-  color: var(--paper);
-  border: none;
-  border-radius: 999px;
-  font-family: var(--font-body);
-  font-size: 15px;
-  font-weight: 500;
-  text-decoration: none;
-  cursor: pointer;
-  transition: transform 0.2s, background 0.2s;
-  white-space: nowrap;
+/* hero stamp / countdown */
+.stamp{
+  flex:0 0 auto;
+  border:1.5px solid var(--ink);background:var(--paper);
+  border-radius:14px;padding:22px 24px;min-width:248px;
+  box-shadow:6px 6px 0 var(--ink);
+  transform:rotate(2.2deg);
 }
-.btn:hover {
-  background: var(--accent);
-  transform: translateY(-1px);
+.stamp .st-top{
+  display:flex;justify-content:space-between;align-items:center;
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);
+  border-bottom:1px dashed var(--line);padding-bottom:9px;margin-bottom:13px;
 }
-.btn-outline {
-  background: transparent;
-  color: var(--ink);
-  border: 1.5px solid var(--ink);
+.stamp .clock{
+  font-family:var(--mono);font-size:34px;font-weight:600;letter-spacing:.01em;color:var(--ink);
+  display:flex;align-items:baseline;gap:3px;
 }
-.btn-outline:hover {
-  background: var(--ink);
-  color: var(--paper);
-  transform: translateY(-1px);
+.stamp .clock .u{font-size:13px;color:var(--ink-faint);font-weight:500}
+.stamp .st-label{
+  margin-top:6px;font-size:13px;color:var(--ink-soft);
 }
-.btn .arrow {
-  display: inline-block;
-  transition: transform 0.25s;
-}
-.btn:hover .arrow { transform: translateX(4px); }
+.stamp .st-label b{color:var(--accent);font-weight:600}
 
-/* ───────── LANGUAGE SWITCHER ───────── */
-.lang-switch {
-  display: inline-flex;
-  gap: 2px;
-  background: var(--bg-warm);
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  padding: 3px;
+.scroll-hint{
+  display:flex;align-items:center;gap:12px;margin-top:64px;
+  font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint);
 }
-.lang-btn {
-  background: transparent;
-  border: none;
-  font-family: var(--font-mono);
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  color: var(--ink-soft);
-  cursor: pointer;
-  padding: 6px 11px;
-  border-radius: 999px;
-  transition: all 0.25s;
-  text-transform: uppercase;
-}
-.lang-btn:hover { color: var(--ink); }
-.lang-btn.active {
-  background: var(--ink);
-  color: var(--paper);
-}
+.scroll-hint .ln{width:46px;height:1px;background:var(--ink-faint);position:relative;overflow:hidden}
+.scroll-hint .ln::after{content:'';position:absolute;inset:0;width:40%;background:var(--accent);animation:slide 2.4s var(--ease) infinite}
+@keyframes slide{0%{transform:translateX(-110%)}100%{transform:translateX(280%)}}
 
-/* ───────── SIDE RAIL (drawer trigger) ───────── */
-.side-rail {
-  position: fixed;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  background: var(--ink);
-  color: var(--paper);
-  padding: 22px 14px;
-  border: none;
-  border-radius: 14px 0 0 14px;
-  font-family: var(--font-mono);
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 0.16em;
-  writing-mode: vertical-rl;
-  cursor: pointer;
-  z-index: 95;
-  transition: padding-right 0.3s ease, background 0.3s ease;
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  box-shadow: -4px 0 20px -8px rgba(22, 20, 18, 0.2);
+/* ───── marquee ───── */
+.marquee{
+  border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);
+  background:var(--ink);color:var(--bg);overflow:hidden;padding:15px 0;margin-top:8px;
 }
-.side-rail:hover {
-  padding-right: 22px;
-  background: var(--accent);
+.mq-track{display:flex;gap:0;width:max-content;animation:mq 34s linear infinite}
+.marquee:hover .mq-track{animation-play-state:paused}
+@keyframes mq{to{transform:translateX(-50%)}}
+.mq-item{
+  display:flex;align-items:center;gap:26px;padding:0 26px;
+  font-family:var(--display);font-size:21px;font-weight:430;font-style:italic;letter-spacing:-.01em;
+  white-space:nowrap;
 }
-.side-rail-arrow {
-  display: inline-block;
-  width: 6px; height: 6px;
-  border-right: 1.5px solid currentColor;
-  border-bottom: 1.5px solid currentColor;
-  transform: rotate(45deg);
-  margin-top: 2px;
-}
-@media (max-width: 560px) {
-  .side-rail { font-size: 10px; padding: 18px 12px; letter-spacing: 0.14em; }
-}
+.mq-item .star{color:var(--accent);font-style:normal;font-size:14px}
 
-/* ───────── DRAWER ───────── */
-.drawer-backdrop {
-  position: fixed;
-  inset: 0;
-  background: rgba(22, 20, 18, 0.5);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.4s ease;
-  z-index: 200;
+/* ───── section frame ───── */
+.section{padding:104px 0;position:relative}
+.sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:40px;margin-bottom:54px;flex-wrap:wrap}
+.sec-num{
+  font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--accent);display:flex;align-items:center;gap:10px;margin-bottom:18px;
 }
-.drawer-backdrop.open {
-  opacity: 1;
-  pointer-events: auto;
+.sec-num::before{content:'';width:26px;height:1.5px;background:var(--accent)}
+.sec-title{
+  font-family:var(--display);font-weight:430;
+  font-size:clamp(2.1rem,4.6vw,3.5rem);line-height:1.04;letter-spacing:-.025em;
+  font-variation-settings:"SOFT" 22,"opsz" 90;
 }
-.drawer {
-  position: fixed;
-  right: 0; top: 0;
-  height: 100%;
-  width: min(520px, 100vw);
-  background: var(--paper);
-  z-index: 201;
-  transform: translateX(105%);
-  transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
-  display: flex;
-  flex-direction: column;
-  box-shadow: -20px 0 60px -20px rgba(22, 20, 18, 0.2);
-}
-.drawer.open { transform: translateX(0); }
-.drawer-inner {
-  padding: 72px 48px 48px;
-  overflow-y: auto;
-  flex: 1;
-}
-.drawer-close {
-  position: absolute;
-  top: 22px; right: 24px;
-  background: transparent;
-  border: 1.5px solid var(--line);
-  width: 42px; height: 42px;
-  border-radius: 50%;
-  font-size: 20px;
-  font-weight: 300;
-  color: var(--ink);
-  cursor: pointer;
-  transition: all 0.3s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  line-height: 1;
-  padding-bottom: 3px;
-}
-.drawer-close:hover {
-  border-color: var(--accent);
-  color: var(--accent);
-  transform: rotate(90deg);
-}
-.drawer-eyebrow {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--accent);
-  margin-bottom: 28px;
-}
-.drawer-title {
-  font-family: var(--font-display);
-  font-size: clamp(40px, 7vw, 56px);
-  line-height: 0.95;
-  letter-spacing: -0.025em;
-  margin-bottom: 22px;
-  font-variation-settings: "SOFT" 50, "opsz" 144;
-  font-weight: 400;
-}
-.drawer-title em {
-  font-style: italic;
-  color: var(--accent);
-  font-variation-settings: "SOFT" 100, "opsz" 144;
-}
-.drawer-sub {
-  color: var(--ink-soft);
-  margin-bottom: 44px;
-  font-size: 16px;
-  line-height: 1.55;
-}
-.drawer-form { display: block; }
-.drawer-form label {
-  display: block;
-  margin-bottom: 28px;
-}
-.drawer-form label span {
-  display: block;
-  font-family: var(--font-mono);
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--ink-soft);
-  margin-bottom: 10px;
-}
-.drawer-form input {
-  width: 100%;
-  background: transparent;
-  border: none;
-  border-bottom: 1.5px solid var(--line);
-  padding: 8px 0;
-  font-family: var(--font-body);
-  font-size: 18px;
-  color: var(--ink);
-  outline: none;
-  transition: border-color 0.25s ease;
-}
-.drawer-form input::placeholder {
-  color: var(--ink-soft);
-  opacity: 0.45;
-  font-style: italic;
-}
-.drawer-form input:focus {
-  border-bottom-color: var(--accent);
-}
-.drawer-submit {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 16px 28px;
-  background: var(--ink);
-  color: var(--paper);
-  border: none;
-  border-radius: 999px;
-  font-family: var(--font-body);
-  font-size: 15px;
-  font-weight: 500;
-  cursor: pointer;
-  margin-top: 18px;
-  transition: background 0.25s, transform 0.25s;
-}
-.drawer-submit:hover {
-  background: var(--accent);
-  transform: translateY(-1px);
-}
-.drawer-submit .arrow { transition: transform 0.25s; }
-.drawer-submit:hover .arrow { transform: translateX(4px); }
-.drawer-meta {
-  margin-top: 56px;
-  padding-top: 32px;
-  border-top: 1px dashed var(--line);
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 28px;
-}
-.drawer-meta .meta-label {
-  font-family: var(--font-mono);
-  font-size: 10.5px;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--ink-soft);
-  margin-bottom: 6px;
-}
-.drawer-meta .meta-value {
-  font-family: var(--font-display);
-  font-size: 17px;
-  font-variation-settings: "SOFT" 30, "opsz" 60;
-}
-.drawer-meta a {
-  color: var(--ink);
-  text-decoration: none;
-  border-bottom: 1px solid transparent;
-  transition: border-color 0.2s;
-}
-.drawer-meta a:hover { border-bottom-color: var(--ink); }
+.sec-title em{font-weight:500}
+.sec-intro{max-width:42ch;color:var(--ink-soft);font-size:17px;padding-bottom:6px}
 
-.drawer-success {
-  display: none;
-  text-align: center;
-  padding: 60px 20px;
-}
-.drawer-success.show {
-  display: block;
-  animation: fadeUp 0.5s ease;
-}
-.checkmark {
-  width: 88px; height: 88px;
-  border-radius: 50%;
-  background: var(--green);
-  color: var(--paper);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 40px;
-  margin-bottom: 28px;
-  animation: scaleIn 0.5s cubic-bezier(0.18, 1.5, 0.4, 1);
-}
-@keyframes scaleIn {
-  from { transform: scale(0) rotate(-45deg); }
-  to { transform: scale(1) rotate(0); }
-}
-.drawer-success h3 {
-  font-family: var(--font-display);
-  font-size: 36px;
-  font-weight: 500;
-  font-variation-settings: "SOFT" 50, "opsz" 96;
-  margin-bottom: 10px;
-}
-.drawer-success p {
-  color: var(--ink-soft);
-  font-size: 16px;
-}
+.rule{height:1px;background:var(--line);width:100%}
 
-@media (max-width: 560px) {
-  .drawer-inner { padding: 64px 28px 36px; }
-  .drawer-meta { grid-template-columns: 1fr; gap: 20px; }
+/* ───── pricing / receipt ───── */
+#pricing{background:var(--bg-deep)}
+.price-layout{display:grid;grid-template-columns:1fr 1.05fr;gap:64px;align-items:start}
+.price-pitch h3{
+  font-family:var(--display);font-weight:430;font-size:clamp(1.7rem,3vw,2.4rem);line-height:1.1;
+  letter-spacing:-.02em;margin-bottom:18px;
 }
+.price-pitch h3 em{font-weight:500;color:var(--accent)}
+.price-pitch p{color:var(--ink-soft);max-width:38ch;margin-bottom:26px}
+.guar{
+  display:flex;gap:13px;align-items:flex-start;border-top:1px dashed var(--line);padding-top:20px;margin-top:6px;
+}
+.guar .ic{
+  flex:0 0 auto;width:34px;height:34px;border-radius:50%;border:1.5px solid var(--pine);color:var(--pine);
+  display:grid;place-items:center;font-size:15px;
+}
+.guar div p{margin:0;font-size:14.5px;color:var(--ink-soft)}
+.guar div .gt{font-weight:600;color:var(--ink);font-size:14.5px;margin-bottom:2px}
 
-/* ───────── HERO ───────── */
-.hero {
-  padding: 160px 0 80px;
-  position: relative;
+/* receipt */
+.receipt{
+  background:var(--paper);position:relative;
+  padding:34px 34px 30px;
+  filter:drop-shadow(0 22px 30px rgba(21,18,12,.13));
 }
-.hero-deco {
-  position: absolute;
-  top: 120px;
-  right: -120px;
-  width: 540px;
-  height: 540px;
-  background: radial-gradient(circle, var(--accent-soft) 0%, transparent 65%);
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 0;
-  will-change: transform;
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+.receipt::before,.receipt::after{
+  content:'';position:absolute;left:0;right:0;height:14px;
+  background:radial-gradient(circle at 7px -2px,transparent 7px,var(--paper) 8px);
+  background-size:16px 16px;background-repeat:repeat-x;
 }
-.hero .container { position: relative; z-index: 2; }
+.receipt::before{top:-13px;transform:rotate(180deg)}
+.receipt::after{bottom:-13px}
+.rc-head{
+  display:flex;justify-content:space-between;align-items:flex-start;
+  border-bottom:2px solid var(--ink);padding-bottom:14px;margin-bottom:8px;
+}
+.rc-head .rc-brand{font-family:var(--display);font-size:23px;font-weight:600;letter-spacing:-.02em}
+.rc-head .rc-meta{font-family:var(--mono);font-size:10.5px;color:var(--ink-faint);text-align:right;line-height:1.7}
+.rc-tag{
+  font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);
+  margin:14px 0 4px;
+}
+.rc-line{
+  display:flex;justify-content:space-between;gap:14px;align-items:baseline;
+  font-family:var(--mono);font-size:13px;padding:9px 0;
+  border-bottom:1px dotted var(--line);
+}
+.rc-line span:first-child{color:var(--ink-soft)}
+.rc-line .incl{color:var(--pine);font-weight:600;font-size:11px;letter-spacing:.04em}
+.rc-total{
+  display:flex;justify-content:space-between;align-items:baseline;
+  margin-top:16px;padding-top:14px;border-top:2px solid var(--ink);
+}
+.rc-total .lab{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase}
+.rc-total .amt{
+  font-family:var(--display);font-weight:500;font-size:clamp(2.6rem,5.5vw,3.7rem);letter-spacing:-.03em;
+  line-height:1;display:flex;align-items:baseline;gap:7px;
+}
+.rc-total .amt .cur{font-family:var(--mono);font-size:15px;font-weight:500;color:var(--ink-soft)}
+.rc-foot{
+  display:flex;justify-content:space-between;align-items:center;margin-top:14px;
+  font-family:var(--mono);font-size:10.5px;color:var(--ink-faint);text-transform:uppercase;letter-spacing:.06em;
+}
+.rc-barcode{display:flex;gap:2px;height:26px;align-items:stretch}
+.rc-barcode i{display:block;width:2px;background:var(--ink)}
 
-.label {
-  font-family: var(--font-mono);
-  font-size: 13px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
-  margin-bottom: 36px;
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  opacity: 0;
-  animation: fadeUp 0.7s ease forwards;
+/* ───── after launch ───── */
+.after-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--line)}
+.after-card{
+  padding:36px 30px 38px;border-bottom:1px solid var(--line);
+  position:relative;transition:background .3s;
 }
-.label::before {
-  content: '';
-  display: inline-block;
-  width: 8px; height: 8px;
-  border-radius: 50%;
-  background: var(--accent);
-  animation: pulse 2s ease-in-out infinite;
+.after-card:not(:last-child){border-right:1px solid var(--line)}
+.after-card:hover{background:var(--paper)}
+.after-card .ac-num{
+  font-family:var(--mono);font-size:11.5px;color:var(--accent);letter-spacing:.04em;margin-bottom:auto;
 }
-@keyframes pulse {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.5; transform: scale(1.4); }
+.after-card h3{
+  font-family:var(--display);font-size:1.5rem;font-weight:500;margin:14px 0 16px;letter-spacing:-.02em;
 }
+.after-card .ac-price{
+  font-family:var(--display);font-weight:430;font-size:clamp(2.4rem,4.5vw,3rem);
+  letter-spacing:-.03em;line-height:1;margin-bottom:14px;
+}
+.after-card .ac-price.free{color:var(--pine)}
+.after-card .ac-price .u{font-family:var(--mono);font-size:13px;font-weight:500;color:var(--ink-faint)}
+.after-card p{color:var(--ink-soft);font-size:14.5px}
 
-.hero-title {
-  font-family: var(--font-display);
-  font-size: clamp(48px, 8.5vw, 124px);
-  font-weight: 400;
-  line-height: 0.95;
-  letter-spacing: -0.03em;
-  font-variation-settings: "SOFT" 50, "opsz" 144;
-  margin-bottom: 40px;
-  max-width: 1100px;
+/* ───── process ───── */
+.steps{position:relative;display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-top:14px}
+.steps::before{
+  content:'';position:absolute;top:34px;left:5%;right:5%;height:2px;
+  background:repeating-linear-gradient(90deg,var(--line) 0 9px,transparent 9px 17px);
+  z-index:0;
 }
-.rotating-word {
-  display: inline-block;
-  font-style: italic;
-  color: var(--accent);
-  position: relative;
-  vertical-align: baseline;
-  font-variation-settings: "SOFT" 100, "opsz" 144;
+.step{position:relative;z-index:1}
+.step-dot{
+  width:68px;height:68px;border-radius:50%;background:var(--bg);
+  border:1.5px solid var(--ink);display:grid;place-items:center;
+  font-family:var(--mono);font-size:20px;font-weight:600;margin-bottom:24px;
+  transition:transform .35s var(--ease),background .3s,color .3s;
 }
-.rotating-word::after {
-  content: '';
-  position: absolute;
-  left: 4%; right: 4%;
-  bottom: 0.12em;
-  height: 0.05em;
-  background: var(--accent);
-  opacity: 0.25;
-  border-radius: 2px;
+.step:hover .step-dot{background:var(--accent);color:var(--paper);border-color:var(--accent);transform:translateY(-4px) rotate(-8deg)}
+.step .day{
+  font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:9px;
 }
+.step h3{font-family:var(--display);font-size:1.5rem;font-weight:500;letter-spacing:-.02em;margin-bottom:10px}
+.step p{color:var(--ink-soft);font-size:14.5px;max-width:30ch}
 
-.hero-sub {
-  font-size: 22px;
-  color: var(--ink-soft);
-  max-width: 680px;
-  margin-bottom: 48px;
-  line-height: 1.45;
+/* ───── work / portfolio ───── */
+#work{background:var(--bg-deep)}
+.work-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:30px}
+.work-card{
+  background:var(--paper);border:1px solid var(--line);border-radius:14px;overflow:hidden;
+  transition:transform .4s var(--ease),box-shadow .4s var(--ease);
+  cursor:pointer;
 }
-.hero-ctas {
-  display: flex;
-  gap: 14px;
-  flex-wrap: wrap;
-}
+.work-card:hover{transform:translateY(-7px);box-shadow:0 26px 40px -22px rgba(21,18,12,.42)}
 
-.hero-title, .hero-sub, .hero-ctas {
-  opacity: 0;
-  animation: fadeUp 0.9s ease forwards;
+/* browser frame */
+.browser{margin:14px 14px 0;border-radius:9px;overflow:hidden;border:1px solid var(--line);background:#fff}
+.bw-bar{
+  display:flex;align-items:center;gap:6px;padding:8px 11px;background:var(--bg-deep);
+  border-bottom:1px solid var(--line);
 }
-.hero-title { animation-delay: 0.15s; }
-.hero-sub   { animation-delay: 0.35s; }
-.hero-ctas  { animation-delay: 0.5s; }
+.bw-bar .d{width:8px;height:8px;border-radius:50%;background:var(--line)}
+.bw-url{
+  flex:1;margin-left:8px;background:var(--paper);border-radius:5px;
+  font-family:var(--mono);font-size:9.5px;color:var(--ink-faint);padding:4px 9px;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.mock{height:188px;overflow:hidden;position:relative}
+.mock-inner{transition:transform .8s var(--ease)}
+.work-card:hover .mock-inner{transform:translateY(-46px)}
 
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(24px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
+/* mock 1 — bakery */
+.m-bake{background:#F4E9D6;font-family:var(--display);color:#3A2A18}
+.m-bake .mb-nav{display:flex;justify-content:space-between;padding:9px 14px;font-size:9px;align-items:center}
+.m-bake .mb-logo{font-weight:600;font-size:11px}
+.m-bake .mb-links{display:flex;gap:9px;color:#8A7355;font-family:var(--body);font-size:7.5px}
+.m-bake .mb-hero{padding:18px 14px 14px;text-align:center}
+.m-bake .mb-hero h4{font-size:21px;font-style:italic;line-height:1;font-weight:430}
+.m-bake .mb-hero p{font-family:var(--body);font-size:7.5px;color:#8A7355;margin-top:6px}
+.m-bake .mb-row{display:flex;gap:7px;padding:6px 14px 14px}
+.m-bake .mb-row i{flex:1;height:54px;border-radius:5px;background:linear-gradient(160deg,#D8A45C,#B57A35)}
+.m-bake .mb-row i:nth-child(2){background:linear-gradient(160deg,#C98B4A,#9C5F28)}
+.m-bake .mb-row i:nth-child(3){background:linear-gradient(160deg,#E0B574,#C28A45)}
+.m-bake .mb-strip{background:#3A2A18;color:#F4E9D6;font-family:var(--body);font-size:7px;padding:8px 14px;text-align:center;letter-spacing:.1em}
 
-/* Scroll hint */
-.scroll-hint {
-  display: inline-flex;
-  align-items: center;
-  gap: 14px;
-  margin-top: 90px;
-  font-family: var(--font-mono);
-  font-size: 11.5px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
-  opacity: 0;
-  animation: fadeUp 0.9s ease forwards;
-  animation-delay: 0.7s;
-}
-.scroll-hint .line {
-  display: inline-block;
-  width: 50px;
-  height: 1px;
-  background: var(--ink-soft);
-  position: relative;
-  overflow: hidden;
-}
-.scroll-hint .line::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: var(--accent);
-  animation: slideRight 2.2s ease-in-out infinite;
-}
-@keyframes slideRight {
-  0% { transform: translateX(-100%); }
-  60%, 100% { transform: translateX(100%); }
-}
+/* mock 2 — accounting */
+.m-acc{background:#10243A;color:#E8EEF4;font-family:var(--body)}
+.m-acc .ma-nav{display:flex;justify-content:space-between;padding:10px 14px;font-size:9px;align-items:center}
+.m-acc .ma-logo{font-family:var(--display);font-weight:600;font-size:12px}
+.m-acc .ma-links{display:flex;gap:9px;color:#7E94A8;font-size:7.5px}
+.m-acc .ma-hero{padding:16px 14px}
+.m-acc .ma-hero h4{font-family:var(--display);font-size:18px;line-height:1.1;font-weight:430;max-width:18ch}
+.m-acc .ma-hero h4 em{color:#5FA8D4}
+.m-acc .ma-btn{display:inline-block;margin-top:9px;background:#5FA8D4;color:#10243A;font-size:7px;font-weight:600;padding:4px 9px;border-radius:3px}
+.m-acc .ma-cards{display:flex;gap:7px;padding:4px 14px 14px}
+.m-acc .ma-cards i{flex:1;height:40px;border-radius:5px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12)}
+.m-acc .ma-strip{background:#0A1726;font-size:6.5px;color:#7E94A8;padding:8px 14px;text-align:center;letter-spacing:.08em}
 
-/* ───────── MARQUEE ───────── */
-.marquee {
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-  background: var(--bg-warm);
-  padding: 22px 0;
-  overflow: hidden;
-  white-space: nowrap;
-  position: relative;
-  z-index: 2;
-}
-.marquee-track {
-  display: inline-flex;
-  gap: 64px;
-  animation: marquee 34s linear infinite;
-  font-family: var(--font-mono);
-  font-size: 14px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--ink);
-  padding-left: 64px;
-}
-.marquee-track span {
-  display: inline-flex;
-  align-items: center;
-  gap: 64px;
-}
-.marquee-track span::after {
-  content: '✦';
-  color: var(--accent);
-}
-@keyframes marquee {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
-}
+/* mock 3 — photography */
+.m-photo{background:#161412;color:#EDE7DC;font-family:var(--body)}
+.m-photo .mp-nav{display:flex;justify-content:space-between;padding:11px 14px;font-size:9px;align-items:center}
+.m-photo .mp-logo{font-family:var(--display);font-style:italic;font-size:12px}
+.m-photo .mp-links{display:flex;gap:9px;color:#8A8378;font-size:7.5px}
+.m-photo .mp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;padding:5px 14px}
+.m-photo .mp-grid i{height:42px;border-radius:3px}
+.m-photo .mp-grid i:nth-child(1){background:linear-gradient(150deg,#6E6256,#3A332C)}
+.m-photo .mp-grid i:nth-child(2){background:linear-gradient(150deg,#9A8B6E,#574B38)}
+.m-photo .mp-grid i:nth-child(3){background:linear-gradient(150deg,#4A4640,#22201D)}
+.m-photo .mp-grid i:nth-child(4){background:linear-gradient(150deg,#857157,#4C3F30)}
+.m-photo .mp-grid i:nth-child(5){background:linear-gradient(150deg,#B7A98C,#6B5F45)}
+.m-photo .mp-grid i:nth-child(6){background:linear-gradient(150deg,#5C534A,#2E2A25)}
+.m-photo .mp-cap{padding:9px 14px;font-family:var(--display);font-style:italic;font-size:13px}
+.m-photo .mp-strip{font-size:6.5px;color:#8A8378;padding:6px 14px;letter-spacing:.14em;text-transform:uppercase}
 
-/* ───────── SECTION BASE ───────── */
-.section {
-  padding: 120px 0;
-  position: relative;
-  z-index: 2;
-}
-.section-label {
-  font-family: var(--font-mono);
-  font-size: 13px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 24px;
-}
-.section-title {
-  font-family: var(--font-display);
-  font-size: clamp(40px, 5.5vw, 76px);
-  font-weight: 400;
-  line-height: 1.0;
-  letter-spacing: -0.02em;
-  margin-bottom: 24px;
-  max-width: 900px;
-  font-variation-settings: "SOFT" 50, "opsz" 144;
-}
-.section-title em {
-  font-style: italic;
-  color: var(--accent);
-  font-variation-settings: "SOFT" 100, "opsz" 144;
-}
-.section-intro {
-  font-size: 20px;
-  color: var(--ink-soft);
-  max-width: 620px;
-  margin-bottom: 64px;
-  line-height: 1.5;
-}
+/* mock 4 — salon */
+.m-salon{background:#F3E4E2;color:#3D1F22;font-family:var(--body)}
+.m-salon .ms-nav{display:flex;justify-content:space-between;padding:10px 14px;font-size:9px;align-items:center}
+.m-salon .ms-logo{font-family:var(--display);font-weight:600;font-size:12px;letter-spacing:.02em}
+.m-salon .ms-links{display:flex;gap:9px;color:#A36B6F;font-size:7.5px}
+.m-salon .ms-hero{padding:14px 14px 8px}
+.m-salon .ms-hero h4{font-family:var(--display);font-size:20px;font-weight:430;line-height:1.05}
+.m-salon .ms-hero h4 em{color:#C0455A}
+.m-salon .ms-list{padding:6px 14px}
+.m-salon .ms-list div{display:flex;justify-content:space-between;font-size:7.5px;padding:4px 0;border-bottom:1px solid #E0C7C5;color:#7A5256}
+.m-salon .ms-list div b{font-family:var(--mono);color:#C0455A}
+.m-salon .ms-strip{background:#C0455A;color:#F3E4E2;font-size:7px;padding:8px 14px;text-align:center;letter-spacing:.1em}
 
-/* ───────── PRICING CARD ───────── */
-.pricing {
-  background: var(--paper);
-  border-radius: 24px;
-  padding: 56px;
-  border: 1px solid var(--line);
-  display: grid;
-  grid-template-columns: 1.1fr 1fr;
-  gap: 64px;
-  align-items: center;
-  position: relative;
-  overflow: hidden;
+.work-info{display:flex;justify-content:space-between;align-items:center;padding:18px 20px}
+.work-info .wi-meta{font-family:var(--mono);font-size:11px;color:var(--ink-faint);letter-spacing:.04em;margin-bottom:5px}
+.work-info .wi-title{font-family:var(--display);font-size:1.32rem;font-weight:500;letter-spacing:-.02em}
+.work-info .wi-title em{color:var(--accent)}
+.work-info .wi-city{font-family:var(--mono);font-size:10.5px;color:var(--ink-faint);margin-top:3px;letter-spacing:.04em}
+.work-go{
+  display:flex;align-items:center;gap:7px;font-size:12px;font-weight:600;color:var(--ink-soft);
+  white-space:nowrap;transition:color .25s,gap .25s;
 }
-.pricing::before {
-  content: '';
-  position: absolute;
-  top: -120px; right: -120px;
-  width: 340px; height: 340px;
-  background: radial-gradient(circle, var(--accent-soft) 0%, transparent 70%);
-  border-radius: 50%;
-  pointer-events: none;
-}
-.price-tag {
-  font-family: var(--font-mono);
-  font-size: 13px;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--accent);
-  margin-bottom: 18px;
-}
-.price-big {
-  font-family: var(--font-display);
-  font-size: clamp(96px, 14vw, 200px);
-  font-weight: 400;
-  line-height: 0.88;
-  letter-spacing: -0.05em;
-  color: var(--ink);
-  font-variation-settings: "SOFT" 30, "opsz" 144;
-}
-.price-big .currency {
-  font-size: 0.32em;
-  vertical-align: 1.6em;
-  color: var(--ink-soft);
-  font-style: italic;
-  margin-right: 6px;
-  letter-spacing: 0;
-}
-.price-desc {
-  font-size: 17px;
-  color: var(--ink-soft);
-  margin-top: 28px;
-  max-width: 380px;
-  line-height: 1.5;
-}
+.work-card:hover .work-go{color:var(--accent);gap:11px}
 
-.price-features {
-  list-style: none;
+/* ───── faq ───── */
+.faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 56px;margin-top:8px;border-top:1px solid var(--line)}
+.faq-item{border-bottom:1px solid var(--line);padding:6px 0}
+.faq-q{
+  width:100%;text-align:left;background:none;border:none;cursor:pointer;
+  display:flex;justify-content:space-between;align-items:center;gap:20px;
+  padding:22px 4px;font-family:var(--display);font-size:1.18rem;font-weight:500;color:var(--ink);
+  letter-spacing:-.015em;
 }
-.price-features li {
-  display: flex;
-  gap: 14px;
-  padding: 15px 0;
-  border-bottom: 1px dashed var(--line);
-  font-size: 16px;
-  align-items: flex-start;
+.faq-q .pm{
+  flex:0 0 auto;width:26px;height:26px;border:1.5px solid var(--line);border-radius:50%;
+  display:grid;place-items:center;font-family:var(--mono);font-size:15px;color:var(--accent);
+  transition:transform .3s var(--ease),background .3s,border-color .3s;
 }
-.price-features li:last-child { border-bottom: none; }
-.check {
-  flex-shrink: 0;
-  width: 22px; height: 22px;
-  border-radius: 50%;
-  background: var(--ink);
-  color: var(--paper);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 11px;
-  margin-top: 2px;
-}
+.faq-item.open .pm{transform:rotate(135deg);background:var(--accent);color:var(--paper);border-color:var(--accent)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .4s var(--ease)}
+.faq-a p{padding:0 4px 24px;color:var(--ink-soft);font-size:15px;max-width:46ch}
 
-/* ───────── AFTER-LAUNCH CARDS ───────── */
-.after-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 22px;
+/* ───── contact ───── */
+#contact{background:var(--ink);color:var(--bg)}
+#contact .sec-num{color:var(--accent)}
+#contact .sec-num::before{background:var(--accent)}
+.contact-title{
+  font-family:var(--display);font-weight:430;
+  font-size:clamp(2.3rem,5.4vw,4.4rem);line-height:1.02;letter-spacing:-.03em;
+  max-width:18ch;margin-bottom:42px;
 }
-.after-card {
-  background: var(--paper);
-  border: 1px solid var(--line);
-  border-radius: 20px;
-  padding: 40px 32px;
-  position: relative;
-  overflow: hidden;
-  transition: transform 0.35s ease, border-color 0.35s, box-shadow 0.35s;
+.contact-title em{font-weight:500;color:var(--accent)}
+.contact-row{display:flex;gap:18px;flex-wrap:wrap;align-items:center}
+.contact-info{
+  display:grid;grid-template-columns:repeat(3,auto);gap:46px;
+  margin-top:58px;padding-top:34px;border-top:1px solid rgba(247,242,231,.18);
 }
-.after-card:hover {
-  transform: translateY(-6px);
-  border-color: var(--accent);
-  box-shadow: 0 20px 40px -20px rgba(22, 20, 18, 0.15);
-}
-.after-card .num {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  letter-spacing: 0.08em;
-  color: var(--ink-soft);
-  margin-bottom: 18px;
-  text-transform: uppercase;
-}
-.after-card h3 {
-  font-family: var(--font-display);
-  font-size: 28px;
-  font-weight: 500;
-  margin-bottom: 16px;
-  letter-spacing: -0.01em;
-  font-variation-settings: "SOFT" 30, "opsz" 80;
-}
-.after-card .big-price {
-  font-family: var(--font-display);
-  font-size: 52px;
-  font-weight: 400;
-  color: var(--accent);
-  margin-bottom: 14px;
-  letter-spacing: -0.02em;
-  font-variation-settings: "SOFT" 40, "opsz" 96;
-  line-height: 1;
-}
-.after-card .big-price .unit {
-  font-size: 0.42em;
-  color: var(--ink-soft);
-  font-style: italic;
-  margin-left: 2px;
-}
-.after-card .big-price.free {
-  color: var(--green);
-  font-style: italic;
-  font-variation-settings: "SOFT" 100, "opsz" 96;
-}
-.after-card p {
-  color: var(--ink-soft);
-  font-size: 15px;
-  line-height: 1.55;
-}
+.ci-label{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:8px}
+.ci-value{font-family:var(--display);font-size:1.3rem;font-weight:430}
+.ci-value a:hover{color:var(--accent)}
 
-/* ───────── PROCESS ───────── */
-.process {
-  background: var(--ink);
-  color: var(--paper);
-  border-radius: 32px;
-  padding: 96px 64px;
-  position: relative;
-  overflow: hidden;
+/* ───── footer ───── */
+.footer{background:var(--ink);color:var(--ink-faint);border-top:1px solid rgba(247,242,231,.14)}
+.footer .wrap{
+  display:flex;justify-content:space-between;align-items:center;gap:20px;
+  padding:30px 40px;font-family:var(--mono);font-size:11.5px;letter-spacing:.04em;flex-wrap:wrap;
 }
-.process::before {
-  content: '';
-  position: absolute;
-  top: -150px; left: -150px;
-  width: 400px; height: 400px;
-  background: radial-gradient(circle, rgba(232, 78, 27, 0.15) 0%, transparent 70%);
-  border-radius: 50%;
-}
-.process > * { position: relative; z-index: 1; }
-.process .section-label { color: var(--accent); }
-.process .section-title { color: var(--paper); }
-.process .section-title em { color: var(--accent); }
+.footer .accent{color:var(--accent)}
 
-.process-steps {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 48px;
-  margin-top: 72px;
+/* ───── drawer ───── */
+.backdrop{
+  position:fixed;inset:0;background:rgba(21,18,12,.55);backdrop-filter:blur(3px);
+  z-index:300;opacity:0;pointer-events:none;transition:opacity .4s;
 }
-.step-num {
-  font-family: var(--font-display);
-  font-size: 96px;
-  font-weight: 300;
-  line-height: 1;
-  color: var(--accent);
-  margin-bottom: 28px;
-  font-variation-settings: "SOFT" 100, "opsz" 144;
-  font-style: italic;
+.backdrop.on{opacity:1;pointer-events:auto}
+.drawer{
+  position:fixed;top:0;right:0;bottom:0;width:min(460px,100vw);z-index:310;
+  background:var(--paper);
+  transform:translateX(105%);transition:transform .55s var(--ease);
+  overflow-y:auto;box-shadow:-30px 0 60px -30px rgba(21,18,12,.5);
 }
-.step h3 {
-  font-family: var(--font-display);
-  font-size: 30px;
-  font-weight: 500;
-  margin-bottom: 14px;
-  letter-spacing: -0.01em;
-  font-variation-settings: "SOFT" 30, "opsz" 80;
+.drawer.on{transform:translateX(0)}
+.drawer-in{padding:64px 44px 44px;min-height:100%;display:flex;flex-direction:column}
+.drawer-close{
+  position:absolute;top:22px;right:22px;width:38px;height:38px;border-radius:50%;
+  border:1.5px solid var(--line);background:transparent;cursor:pointer;font-size:20px;color:var(--ink-soft);
+  display:grid;place-items:center;transition:all .25s;
 }
-.step p {
-  color: rgba(250, 246, 238, 0.65);
-  font-size: 16px;
-  line-height: 1.6;
+.drawer-close:hover{background:var(--ink);color:var(--paper);border-color:var(--ink);transform:rotate(90deg)}
+.dr-eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+.dr-title{font-family:var(--display);font-weight:430;font-size:2.5rem;line-height:1.02;letter-spacing:-.03em;margin-bottom:14px}
+.dr-title em{font-weight:500;color:var(--accent)}
+.dr-sub{color:var(--ink-soft);font-size:15px;margin-bottom:30px}
+.dr-form label{display:block;margin-bottom:18px}
+.dr-form label span{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:7px}
+.dr-form input{
+  width:100%;font-family:var(--body);font-size:15px;color:var(--ink);
+  background:var(--bg);border:1.5px solid var(--line);border-radius:9px;padding:13px 14px;
+  transition:border-color .25s,background .25s;
 }
+.dr-form input:focus{outline:none;border-color:var(--accent);background:var(--paper)}
+.dr-form input.err{border-color:var(--accent);background:var(--accent-soft)}
+.dr-submit{
+  width:100%;justify-content:center;margin-top:8px;
+}
+.dr-success{display:none;text-align:center;padding:40px 0}
+.dr-success.on{display:block;animation:pop .5s var(--ease)}
+@keyframes pop{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:scale(1)}}
+.dr-success .ck{
+  width:62px;height:62px;border-radius:50%;background:var(--pine);color:var(--paper);
+  display:grid;place-items:center;font-size:30px;margin:0 auto 18px;
+}
+.dr-success h3{font-family:var(--display);font-size:1.8rem;font-weight:500;margin-bottom:8px}
+.dr-success p{color:var(--ink-soft)}
+.dr-meta{
+  margin-top:auto;padding-top:30px;border-top:1px dashed var(--line);
+  display:flex;gap:36px;
+}
+.dr-meta .dm-label{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:4px}
+.dr-meta .dm-value a{font-weight:600;font-size:14.5px}
+.dr-meta .dm-value a:hover{color:var(--accent)}
 
-/* ───────── PORTFOLIO ───────── */
-.portfolio-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 22px;
-}
-.work-card {
-  background: var(--paper);
-  border: 1px solid var(--line);
-  border-radius: 20px;
-  padding: 40px;
-  position: relative;
-  overflow: hidden;
-  transition: all 0.45s ease;
-  cursor: pointer;
-  min-height: 280px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-.work-card:hover {
-  background: var(--ink);
-  color: var(--paper);
-  transform: translateY(-6px);
-  border-color: var(--ink);
-}
-.work-card:hover .work-meta { color: var(--accent); }
-.work-card:hover .work-arrow {
-  background: var(--accent);
-  color: var(--paper);
-  border-color: var(--accent);
-  transform: rotate(-45deg);
-}
-.work-meta {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--ink-soft);
-  transition: color 0.3s;
-}
-.work-title {
-  font-family: var(--font-display);
-  font-size: 40px;
-  font-weight: 500;
-  letter-spacing: -0.02em;
-  line-height: 1.05;
-  margin-top: 14px;
-  font-variation-settings: "SOFT" 30, "opsz" 96;
-}
-.work-title em {
-  font-style: italic;
-  font-variation-settings: "SOFT" 100, "opsz" 96;
-}
-.work-bottom {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  margin-top: 40px;
-}
-.work-city {
-  font-family: var(--font-mono);
-  font-size: 13px;
-  letter-spacing: 0.05em;
-}
-.work-arrow {
-  width: 46px; height: 46px;
-  border-radius: 50%;
-  background: transparent;
-  border: 1.5px solid currentColor;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.4s ease;
-  font-size: 18px;
-}
+/* ───── reveal ───── */
+.rv{opacity:0;transform:translateY(26px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.rv.in{opacity:1;transform:none}
+.rv-d1{transition-delay:.09s}.rv-d2{transition-delay:.18s}.rv-d3{transition-delay:.27s}
 
-/* ───────── CONTACT ───────── */
-.contact {
-  background: var(--accent);
-  color: var(--paper);
-  border-radius: 32px;
-  padding: 96px 64px;
-  position: relative;
-  overflow: hidden;
+/* ───── responsive ───── */
+@media(max-width:920px){
+  .price-layout{grid-template-columns:1fr;gap:40px}
+  .after-grid{grid-template-columns:1fr}
+  .after-card{border-right:none!important}
+  .steps{grid-template-columns:1fr;gap:38px}
+  .steps::before{display:none}
+  .work-grid{grid-template-columns:1fr}
+  .faq-grid{grid-template-columns:1fr}
+  .contact-info{grid-template-columns:1fr;gap:24px}
 }
-.contact::before {
-  content: '';
-  position: absolute;
-  bottom: -200px; right: -200px;
-  width: 500px; height: 500px;
-  background: radial-gradient(circle, rgba(250, 246, 238, 0.1) 0%, transparent 70%);
-  border-radius: 50%;
-}
-.contact > * { position: relative; z-index: 1; }
-.contact .section-label { color: rgba(250, 246, 238, 0.7); }
-
-.contact-title {
-  font-family: var(--font-display);
-  font-size: clamp(48px, 7vw, 96px);
-  font-weight: 400;
-  line-height: 0.95;
-  letter-spacing: -0.03em;
-  margin-bottom: 56px;
-  max-width: 900px;
-  font-variation-settings: "SOFT" 50, "opsz" 144;
-}
-.contact-title em {
-  font-style: italic;
-  font-variation-settings: "SOFT" 100, "opsz" 144;
-}
-
-.contact-info {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 48px;
-  align-items: end;
-  padding-top: 48px;
-  border-top: 1px solid rgba(250, 246, 238, 0.3);
-}
-.contact-info .label-small {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: rgba(250, 246, 238, 0.7);
-  margin-bottom: 12px;
-}
-.contact-info .value {
-  font-family: var(--font-display);
-  font-size: 26px;
-  font-weight: 400;
-  letter-spacing: -0.01em;
-  font-variation-settings: "SOFT" 30, "opsz" 80;
-}
-.contact-info a {
-  color: var(--paper);
-  text-decoration: none;
-  border-bottom: 1px solid transparent;
-  transition: border-color 0.2s;
-}
-.contact-info a:hover { border-bottom-color: var(--paper); }
-
-/* ───────── FOOTER ───────── */
-.footer {
-  padding: 40px 32px;
-  border-top: 1px solid var(--line);
-  position: relative;
-  z-index: 2;
-}
-.footer-inner {
-  max-width: 1280px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-family: var(--font-mono);
-  font-size: 13px;
-  color: var(--ink-soft);
-  letter-spacing: 0.03em;
-}
-.footer .accent {
-  color: var(--accent);
-  font-style: italic;
-  padding: 0 2px;
-}
-
-/* ───────── REVEAL ───────── */
-.reveal {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.85s cubic-bezier(0.2, 0.7, 0.2, 1),
-              transform 0.85s cubic-bezier(0.2, 0.7, 0.2, 1);
-}
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* ───────── RESPONSIVE ───────── */
-@media (max-width: 900px) {
-  .nav-item-link { display: none; }
-  .status-pill { display: none; }
-  .pricing { grid-template-columns: 1fr; padding: 40px 28px; gap: 36px; }
-  .after-grid, .process-steps, .portfolio-grid, .contact-info { grid-template-columns: 1fr; gap: 28px; }
-  .section { padding: 80px 0; }
-  .hero { padding: 130px 0 60px; }
-  .process, .contact { padding: 64px 32px; }
-  .hero-sub { font-size: 19px; }
-  .section-intro { font-size: 18px; margin-bottom: 48px; }
-  .work-card { padding: 32px; min-height: 220px; }
-  .work-title { font-size: 32px; }
-  .scroll-hint { margin-top: 60px; }
-}
-@media (max-width: 560px) {
-  .container { padding: 0 20px; }
-  .nav, .nav.scrolled { padding: 14px 18px; }
-  .nav-cta { display: none; }
-  .footer-inner { flex-direction: column; gap: 12px; text-align: center; }
+@media(max-width:680px){
+  .wrap{padding:0 22px}
+  .nav,.nav.scrolled{padding:12px 22px}
+  .nav-links li.nav-only{display:none}
+  .hero{padding:148px 0 50px}
+  .section{padding:74px 0}
+  .stamp{transform:rotate(1.6deg);min-width:0;width:100%}
+  .hero-cols{gap:36px}
+  .footer .wrap{padding:26px 22px}
+  .drawer-in{padding:60px 26px 32px}
 }
 </style>
 </head>
 <body>
 
-<div class="cursor-blob" id="cursorBlob" aria-hidden="true"></div>
+<div class="blob" id="blob"></div>
 
+<!-- NAV -->
 <nav class="nav" id="nav">
-  <div class="nav-inner">
-    <div class="logo-wrap">
-      <div class="logo"><span class="a">A</span>uwem</div>
-      <div class="status-pill">
-        <span class="dot"></span>
-        <span data-i18n="status">Available · 2 slots this week</span>
-      </div>
-    </div>
+  <div class="nav-in">
+    <a href="#top" class="brand"><span class="mark">A</span>Auwem</a>
     <ul class="nav-links">
-      <li class="nav-item-link"><a href="#work" data-i18n="nav.work">Work</a></li>
-      <li class="nav-item-link"><a href="#pricing" data-i18n="nav.pricing">Pricing</a></li>
-      <li class="nav-item-link"><a href="#process" data-i18n="nav.process">Process</a></li>
+      <li class="nav-only"><a href="#pricing" class="lnk" data-i18n="nav.pricing">Pricing</a></li>
+      <li class="nav-only"><a href="#process" class="lnk" data-i18n="nav.process">Process</a></li>
+      <li class="nav-only"><a href="#work" class="lnk" data-i18n="nav.work">Work</a></li>
+      <li class="nav-only"><a href="#faq" class="lnk" data-i18n="nav.faq">FAQ</a></li>
       <li>
-        <div class="lang-switch" role="group" aria-label="Language">
+        <div class="langs">
           <button class="lang-btn active" data-lang="en">EN</button>
           <button class="lang-btn" data-lang="fr">FR</button>
           <button class="lang-btn" data-lang="de">DE</button>
         </div>
       </li>
-      <li class="nav-cta"><a href="#" class="btn" data-open-drawer><span data-i18n="nav.cta">Start a project</span> <span class="arrow">→</span></a></li>
+      <li><a href="#" class="btn btn-sm" data-open><span data-i18n="nav.cta">Start a project</span> <span class="arw">→</span></a></li>
     </ul>
   </div>
 </nav>
 
-<!-- Side rail (always visible drawer trigger) -->
-<button class="side-rail" id="openDrawer" aria-label="Open project intake form">
+<!-- SIDE RAIL -->
+<button class="rail" data-open aria-label="Open project intake form">
+  <span class="dot"></span>
   <span data-i18n="rail">Start your project</span>
-  <span class="side-rail-arrow" aria-hidden="true"></span>
 </button>
 
-<!-- Drawer + backdrop -->
-<div class="drawer-backdrop" id="drawerBackdrop"></div>
-<aside class="drawer" id="drawer" aria-hidden="true" aria-label="Project intake form">
-  <button class="drawer-close" id="closeDrawer" aria-label="Close form">×</button>
-  <div class="drawer-inner">
-    <div class="drawer-eyebrow" data-i18n="drawer.eyebrow">[ Project intake ]</div>
-    <h2 class="drawer-title" data-i18n="drawer.title">Let's build<br><em>something.</em></h2>
-    <p class="drawer-sub" data-i18n="drawer.sub">Drop your details. We'll be back within 24 hours with next steps and a short brief.</p>
-    <form class="drawer-form" id="drawerForm" novalidate>
-      <label>
-        <span data-i18n="form.name">Your name</span>
-        <input type="text" name="name" required autocomplete="name" placeholder="Jean Dupont">
-      </label>
-      <label>
-        <span data-i18n="form.company">Company</span>
-        <input type="text" name="company" required autocomplete="organization" placeholder="Boulangerie du Lac">
-      </label>
-      <label>
-        <span data-i18n="form.email">Email</span>
-        <input type="email" name="email" required autocomplete="email" placeholder="jean@example.com">
-      </label>
-      <button type="submit" class="drawer-submit">
-        <span data-i18n="form.submit">Send</span>
-        <span class="arrow">→</span>
-      </button>
-    </form>
-    <div class="drawer-success" id="drawerSuccess" aria-live="polite">
-      <div class="checkmark">✓</div>
-      <h3 data-i18n="form.successTitle">Got it.</h3>
-      <p data-i18n="form.successText">We'll be in touch within 24 hours.</p>
-    </div>
-    <div class="drawer-meta">
-      <div>
-        <div class="meta-label" data-i18n="form.metaPhone">Or call</div>
-        <div class="meta-value"><a href="tel:+41799512565">079 951 25 65</a></div>
-      </div>
-      <div>
-        <div class="meta-label" data-i18n="form.metaEmail">Or email</div>
-        <div class="meta-value"><a href="mailto:auwem@gmail.com">auwem@gmail.com</a></div>
-      </div>
-    </div>
-  </div>
-</aside>
-
-<header class="hero">
-  <div class="hero-deco" id="heroDeco"></div>
-  <div class="container">
-    <div class="label" data-i18n="hero.label">Auwem · Automated web maker · est. 2026</div>
+<!-- HERO -->
+<header class="hero" id="top">
+  <div class="hero-grid"></div>
+  <div class="wrap">
+    <div class="eyebrow"><span class="live"></span><span data-i18n="status">Available · 2 slots this week</span></div>
     <h1 class="hero-title">
-      <span data-i18n="hero.titlePrefix">Beautiful websites<br>for </span><span class="rotating-word" id="rotator">bakers</span><span data-i18n="hero.titleSuffix"><br>too busy to build one.</span>
+      <span data-i18n="hero.p1">Beautiful websites for </span><span class="rot-wrap"><span class="rot" id="rot">bakers</span></span><span data-i18n="hero.p2"> too busy to build one.</span>
     </h1>
-    <p class="hero-sub" data-i18n="hero.sub">
-      Auwem builds professional websites for Swiss small businesses in 48 hours. 400 CHF flat. Automated where it counts, hand-crafted where it matters.
-    </p>
-    <div class="hero-ctas">
-      <a href="#" class="btn" data-open-drawer><span data-i18n="hero.cta1">Start your project</span> <span class="arrow">→</span></a>
-      <a href="#pricing" class="btn btn-outline" data-i18n="hero.cta2">See what's included</a>
+    <div class="hero-cols">
+      <div>
+        <p class="hero-sub" data-i18n="hero.sub">Auwem builds professional websites for Swiss small businesses in 48 hours. <b>CHF 400 flat.</b> Automated where it counts, hand-crafted where it matters.</p>
+        <div class="hero-ctas">
+          <a href="#" class="btn" data-open><span data-i18n="hero.cta1">Start your project</span> <span class="arw">→</span></a>
+          <a href="#pricing" class="btn btn-ghost" data-i18n="hero.cta2">See what's included</a>
+        </div>
+      </div>
+      <div class="stamp">
+        <div class="st-top">
+          <span data-i18n="stamp.top">This week's slots</span>
+          <span>●●○</span>
+        </div>
+        <div class="clock" id="clock">00<span class="u">d</span> 00<span class="u">h</span> 00<span class="u">m</span></div>
+        <div class="st-label" data-i18n="stamp.label">Booking closes <b>Sunday 23:59</b></div>
+      </div>
     </div>
-    <div class="scroll-hint">
-      <span class="line"></span>
-      <span data-i18n="hero.scroll">Scroll to explore</span>
-    </div>
+    <div class="scroll-hint"><span class="ln"></span><span data-i18n="hero.scroll">Scroll to explore</span></div>
   </div>
 </header>
 
-<div class="marquee" aria-hidden="true">
-  <div class="marquee-track" id="marquee-track"></div>
-</div>
+<!-- MARQUEE -->
+<div class="marquee" aria-hidden="true"><div class="mq-track" id="mq"></div></div>
 
+<!-- PRICING -->
 <section class="section" id="pricing">
-  <div class="container">
-    <div class="reveal">
-      <div class="section-label" data-i18n="s1.label">[01] — The price</div>
-      <h2 class="section-title" data-i18n="s1.title">One website. <em>One price.</em><br>One invoice.</h2>
-      <p class="section-intro" data-i18n="s1.intro">Everything you need to look professional online — designed, written, and live in 48 hours.</p>
-    </div>
-    <div class="pricing reveal">
+  <div class="wrap">
+    <div class="sec-head rv">
       <div>
-        <div class="price-tag" data-i18n="s1.tag">All-in flat fee</div>
-        <div class="price-big"><span class="currency">CHF</span><span id="priceNumber">400</span></div>
-        <p class="price-desc" data-i18n="s1.desc">A complete, mobile-friendly website. Automated builds, hand-crafted polish. Live before the week is out.</p>
+        <div class="sec-num" data-i18n="s1.label">[01] — The price</div>
+        <h2 class="sec-title" data-i18n="s1.title">One website. <em>One price.</em><br>One invoice.</h2>
       </div>
-      <ul class="price-features">
-        <li><span class="check">✓</span> <span data-i18n="s1.f1">Custom-designed website, up to 5 pages</span></li>
-        <li><span class="check">✓</span> <span data-i18n="s1.f2">Mobile-first, lightning-fast loading</span></li>
-        <li><span class="check">✓</span> <span data-i18n="s1.f3">Contact form &amp; Google Maps integration</span></li>
-        <li><span class="check">✓</span> <span data-i18n="s1.f4">Basic SEO setup (titles, meta, sitemap)</span></li>
-        <li><span class="check">✓</span> <span data-i18n="s1.f5">Bilingual French / English (or +DE on request)</span></li>
-        <li><span class="check">✓</span> <span data-i18n="s1.f6">Copywriting — we write your pages for you</span></li>
-        <li><span class="check">✓</span> <span data-i18n="s1.f7">Live in 48h after content received</span></li>
-      </ul>
+      <p class="sec-intro" data-i18n="s1.intro">Everything you need to look professional online — designed, written, and live in 48 hours.</p>
+    </div>
+    <div class="price-layout">
+      <div class="price-pitch rv rv-d1">
+        <h3 data-i18n="s1.pitchTitle">No quotes. No hourly billing. <em>No second invoice.</em></h3>
+        <p data-i18n="s1.desc">A complete, mobile-friendly website. Automated builds, hand-crafted polish — live before the week is out.</p>
+        <div class="guar">
+          <div class="ic">✓</div>
+          <div>
+            <div class="gt" data-i18n="s1.guarTitle">Live in 48h, or you don't pay.</div>
+            <p data-i18n="s1.guarText">If your site isn't ready 48 hours after we receive your content, the build is on us.</p>
+          </div>
+        </div>
+      </div>
+      <div class="receipt rv rv-d2">
+        <div class="rc-head">
+          <div class="rc-brand">Auwem</div>
+          <div class="rc-meta">N° 2026-0042<br>Lausanne · VD<br><span data-i18n="rc.oneTime">One-time</span></div>
+        </div>
+        <div class="rc-tag" data-i18n="s1.tag">All-in flat fee</div>
+        <div class="rc-line"><span data-i18n="s1.f1">Custom-designed website, up to 5 pages</span><span class="incl" data-i18n="rc.incl">INCL</span></div>
+        <div class="rc-line"><span data-i18n="s1.f2">Mobile-first, lightning-fast loading</span><span class="incl" data-i18n="rc.incl">INCL</span></div>
+        <div class="rc-line"><span data-i18n="s1.f6">Copywriting — we write your pages for you</span><span class="incl" data-i18n="rc.incl">INCL</span></div>
+        <div class="rc-line"><span data-i18n="s1.f4">Basic SEO setup (titles, meta, sitemap)</span><span class="incl" data-i18n="rc.incl">INCL</span></div>
+        <div class="rc-line"><span data-i18n="s1.f3">Contact form & Google Maps</span><span class="incl" data-i18n="rc.incl">INCL</span></div>
+        <div class="rc-line"><span data-i18n="s1.f5">Bilingual FR / EN (or +DE on request)</span><span class="incl" data-i18n="rc.incl">INCL</span></div>
+        <div class="rc-line"><span data-i18n="rc.hosting">Hosting — Year 1</span><span class="incl" data-i18n="rc.free">FREE</span></div>
+        <div class="rc-total">
+          <span class="lab" data-i18n="rc.total">Total due</span>
+          <span class="amt"><span class="cur">CHF</span>400</span>
+        </div>
+        <div class="rc-foot">
+          <span data-i18n="rc.delivery">Delivery · 48h</span>
+          <span class="rc-barcode" id="barcode"></span>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<section class="section" style="padding-top:0;">
-  <div class="container">
-    <div class="reveal">
-      <div class="section-label" data-i18n="s2.label">[02] — After launch</div>
-      <h2 class="section-title" data-i18n="s2.title">No nasty <em>surprises.</em></h2>
-      <p class="section-intro" data-i18n="s2.intro">You pay once for the website. After that, you only pay when you actually need something.</p>
+<!-- AFTER LAUNCH -->
+<section class="section">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div>
+        <div class="sec-num" data-i18n="s2.label">[02] — After launch</div>
+        <h2 class="sec-title" data-i18n="s2.title">No nasty <em>surprises.</em></h2>
+      </div>
+      <p class="sec-intro" data-i18n="s2.intro">You pay once for the website. After that, you only pay when you actually need something.</p>
     </div>
     <div class="after-grid">
-      <div class="after-card reveal">
-        <div class="num" data-i18n="s2.c1.num">// Year 1</div>
+      <div class="after-card rv">
+        <div class="ac-num" data-i18n="s2.c1.num">// Year 1</div>
         <h3 data-i18n="s2.c1.title">Hosting</h3>
-        <div class="big-price free" data-i18n="s2.c1.price">Free.</div>
+        <div class="ac-price free" data-i18n="s2.c1.price">Free.</div>
         <p data-i18n="s2.c1.desc">We cover hosting, custom domain setup, SSL and backups for your first full year. Focus on your business, not your invoices.</p>
       </div>
-      <div class="after-card reveal">
-        <div class="num" data-i18n="s2.c2.num">// Year 2 onward</div>
+      <div class="after-card rv rv-d1">
+        <div class="ac-num" data-i18n="s2.c2.num">// Year 2 onward</div>
         <h3 data-i18n="s2.c2.title">Hosting</h3>
-        <div class="big-price">20 <span class="unit" data-i18n="s2.c2.unit">CHF/mo</span></div>
+        <div class="ac-price">20 <span class="u" data-i18n="s2.c2.unit">CHF/mo</span></div>
         <p data-i18n="s2.c2.desc">Fast Swiss hosting, daily backups, SSL, uptime monitoring and minor security updates. Cancel anytime — we hand over your site.</p>
       </div>
-      <div class="after-card reveal">
-        <div class="num" data-i18n="s2.c3.num">// On-demand</div>
+      <div class="after-card rv rv-d2">
+        <div class="ac-num" data-i18n="s2.c3.num">// On-demand</div>
         <h3 data-i18n="s2.c3.title">Changes</h3>
-        <div class="big-price">20 <span class="unit" data-i18n="s2.c3.unit">CHF/change</span></div>
+        <div class="ac-price">20 <span class="u" data-i18n="s2.c3.unit">CHF/change</span></div>
         <p data-i18n="s2.c3.desc">New opening hours, a price, a photo, an extra service? Send us a message — we update it within 24 hours.</p>
       </div>
     </div>
   </div>
 </section>
 
+<!-- PROCESS -->
 <section class="section" id="process">
-  <div class="container">
-    <div class="process reveal">
-      <div class="section-label" data-i18n="s3.label">[03] — How it works</div>
-      <h2 class="section-title" data-i18n="s3.title">From <em>"we should really build one"</em><br>to live, in 3 days.</h2>
-      <div class="process-steps">
-        <div class="step">
-          <div class="step-num">01</div>
-          <h3 data-i18n="s3.step1.title">Fill the brief</h3>
-          <p data-i18n="s3.step1.desc">A 5-minute form: your business, your services, the vibe. Send us your photos — or tell us you don't have any, and we handle it.</p>
-        </div>
-        <div class="step">
-          <div class="step-num">02</div>
-          <h3 data-i18n="s3.step2.title">We build it</h3>
-          <p data-i18n="s3.step2.desc">Our automated pipeline assembles your site in 48 hours. We polish it by hand. You get one preview link.</p>
-        </div>
-        <div class="step">
-          <div class="step-num">03</div>
-          <h3 data-i18n="s3.step3.title">You go live</h3>
-          <p data-i18n="s3.step3.desc">One round of revisions included. Then we publish to your domain. Free hosting kicks in on day one.</p>
-        </div>
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div>
+        <div class="sec-num" data-i18n="s3.label">[03] — How it works</div>
+        <h2 class="sec-title" data-i18n="s3.title">From <em>"we should really build one"</em><br>to live, in 3 days.</h2>
+      </div>
+    </div>
+    <div class="steps">
+      <div class="step rv">
+        <div class="step-dot">01</div>
+        <div class="day" data-i18n="s3.step1.day">Day 1 · Morning</div>
+        <h3 data-i18n="s3.step1.title">Fill the brief</h3>
+        <p data-i18n="s3.step1.desc">A 5-minute form: your business, your services, the vibe. Send us your photos — or tell us you don't have any, and we handle it.</p>
+      </div>
+      <div class="step rv rv-d1">
+        <div class="step-dot">02</div>
+        <div class="day" data-i18n="s3.step2.day">Day 1–2</div>
+        <h3 data-i18n="s3.step2.title">We build it</h3>
+        <p data-i18n="s3.step2.desc">Our automated pipeline assembles your site in 48 hours. We polish it by hand. You get one preview link.</p>
+      </div>
+      <div class="step rv rv-d2">
+        <div class="step-dot">03</div>
+        <div class="day" data-i18n="s3.step3.day">Day 3</div>
+        <h3 data-i18n="s3.step3.title">You go live</h3>
+        <p data-i18n="s3.step3.desc">One round of revisions included. Then we publish to your domain. Free hosting kicks in on day one.</p>
       </div>
     </div>
   </div>
 </section>
 
+<!-- WORK -->
 <section class="section" id="work">
-  <div class="container">
-    <div class="reveal">
-      <div class="section-label" data-i18n="s4.label">[04] — Selected work</div>
-      <h2 class="section-title" data-i18n="s4.title">Small businesses, <em>online,</em><br>in 48 hours.</h2>
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div>
+        <div class="sec-num" data-i18n="s4.label">[04] — Selected work</div>
+        <h2 class="sec-title" data-i18n="s4.title">Small businesses, <em>online,</em><br>in 48 hours.</h2>
+      </div>
+      <p class="sec-intro" data-i18n="s4.intro">A glimpse of what your site could look like. Every one of these went live within a single week.</p>
     </div>
-    <div class="portfolio-grid">
-      <div class="work-card reveal">
-        <div>
-          <div class="work-meta" data-i18n="s4.w1.meta">Bakery · Pastry</div>
-          <div class="work-title">Boulangerie <em>du Lac</em></div>
+    <div class="work-grid">
+
+      <!-- bakery -->
+      <article class="work-card rv" data-open>
+        <div class="browser">
+          <div class="bw-bar"><span class="d"></span><span class="d"></span><span class="d"></span><span class="bw-url">boulangerie-du-lac.ch</span></div>
+          <div class="mock">
+            <div class="mock-inner m-bake">
+              <div class="mb-nav"><span class="mb-logo">du Lac</span><span class="mb-links"><span data-i18n="mock.bake.n1">Breads</span><span data-i18n="mock.bake.n2">Hours</span><span data-i18n="mock.bake.n3">Visit</span></span></div>
+              <div class="mb-hero"><h4 data-i18n="mock.bake.h">Fresh from<br>the oven</h4><p data-i18n="mock.bake.p">Artisan bakery on the lakefront since 1974</p></div>
+              <div class="mb-row"><i></i><i></i><i></i></div>
+              <div class="mb-strip" data-i18n="mock.bake.s">OPEN TUE–SUN · 6:30–18:30</div>
+            </div>
+          </div>
         </div>
-        <div class="work-bottom">
-          <span class="work-city">Lausanne, VD</span>
-          <span class="work-arrow">→</span>
+        <div class="work-info">
+          <div>
+            <div class="wi-meta" data-i18n="s4.w1.meta">Bakery · Pastry</div>
+            <div class="wi-title">Boulangerie <em>du Lac</em></div>
+            <div class="wi-city">Lausanne, VD</div>
+          </div>
+          <span class="work-go"><span data-i18n="work.view">View site</span> →</span>
         </div>
+      </article>
+
+      <!-- accounting -->
+      <article class="work-card rv rv-d1" data-open>
+        <div class="browser">
+          <div class="bw-bar"><span class="d"></span><span class="d"></span><span class="d"></span><span class="bw-url">cabinet-morel.ch</span></div>
+          <div class="mock">
+            <div class="mock-inner m-acc">
+              <div class="ma-nav"><span class="ma-logo">Morel</span><span class="ma-links"><span data-i18n="mock.acc.n1">Services</span><span data-i18n="mock.acc.n2">Team</span><span data-i18n="mock.acc.n3">Contact</span></span></div>
+              <div class="ma-hero"><h4 data-i18n="mock.acc.h">Accounting, <em>without the jargon.</em></h4><span class="ma-btn" data-i18n="mock.acc.b">Book a call</span></div>
+              <div class="ma-cards"><i></i><i></i><i></i></div>
+              <div class="ma-strip" data-i18n="mock.acc.s">CERTIFIED FIDUCIARY · NYON</div>
+            </div>
+          </div>
+        </div>
+        <div class="work-info">
+          <div>
+            <div class="wi-meta" data-i18n="s4.w2.meta">Accounting firm</div>
+            <div class="wi-title">Cabinet <em>Morel</em></div>
+            <div class="wi-city">Nyon, VD</div>
+          </div>
+          <span class="work-go"><span data-i18n="work.view">View site</span> →</span>
+        </div>
+      </article>
+
+      <!-- photography -->
+      <article class="work-card rv rv-d1" data-open>
+        <div class="browser">
+          <div class="bw-bar"><span class="d"></span><span class="d"></span><span class="d"></span><span class="bw-url">studio-linnea.ch</span></div>
+          <div class="mock">
+            <div class="mock-inner m-photo">
+              <div class="mp-nav"><span class="mp-logo">Linnea</span><span class="mp-links"><span data-i18n="mock.photo.n1">Portfolio</span><span data-i18n="mock.photo.n2">About</span><span data-i18n="mock.photo.n3">Book</span></span></div>
+              <div class="mp-grid"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+              <div class="mp-cap" data-i18n="mock.photo.c">Light, captured.</div>
+              <div class="mp-strip" data-i18n="mock.photo.s">Weddings · Portraits · Vevey</div>
+            </div>
+          </div>
+        </div>
+        <div class="work-info">
+          <div>
+            <div class="wi-meta" data-i18n="s4.w3.meta">Photography</div>
+            <div class="wi-title">Studio <em>Linnea</em></div>
+            <div class="wi-city">Vevey, VD</div>
+          </div>
+          <span class="work-go"><span data-i18n="work.view">View site</span> →</span>
+        </div>
+      </article>
+
+      <!-- salon -->
+      <article class="work-card rv rv-d2" data-open>
+        <div class="browser">
+          <div class="bw-bar"><span class="d"></span><span class="d"></span><span class="d"></span><span class="bw-url">atelier-rouge.ch</span></div>
+          <div class="mock">
+            <div class="mock-inner m-salon">
+              <div class="ms-nav"><span class="ms-logo">Rouge</span><span class="ms-links"><span data-i18n="mock.salon.n1">Salon</span><span data-i18n="mock.salon.n2">Prices</span><span data-i18n="mock.salon.n3">Book</span></span></div>
+              <div class="ms-hero"><h4 data-i18n="mock.salon.h">Your chair is <em>waiting.</em></h4></div>
+              <div class="ms-list">
+                <div><span data-i18n="mock.salon.l1">Cut & style</span><b>65.—</b></div>
+                <div><span data-i18n="mock.salon.l2">Colour</span><b>120.—</b></div>
+                <div><span data-i18n="mock.salon.l3">Treatment</span><b>45.—</b></div>
+              </div>
+              <div class="ms-strip" data-i18n="mock.salon.s">BOOK ONLINE · MONTREUX</div>
+            </div>
+          </div>
+        </div>
+        <div class="work-info">
+          <div>
+            <div class="wi-meta" data-i18n="s4.w4.meta">Hair salon</div>
+            <div class="wi-title">Atelier <em>Rouge</em></div>
+            <div class="wi-city">Montreux, VD</div>
+          </div>
+          <span class="work-go"><span data-i18n="work.view">View site</span> →</span>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section" id="faq">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div>
+        <div class="sec-num" data-i18n="faq.label">[05] — Good questions</div>
+        <h2 class="sec-title" data-i18n="faq.title">The things <em>everyone asks.</em></h2>
       </div>
-      <div class="work-card reveal">
-        <div>
-          <div class="work-meta" data-i18n="s4.w2.meta">Accounting firm</div>
-          <div class="work-title">Cabinet <em>Morel</em></div>
-        </div>
-        <div class="work-bottom">
-          <span class="work-city">Nyon, VD</span>
-          <span class="work-arrow">→</span>
-        </div>
+    </div>
+    <div class="faq-grid">
+      <div class="faq-item rv">
+        <button class="faq-q"><span data-i18n="faq.q1">What if I don't have any photos?</span><span class="pm">+</span></button>
+        <div class="faq-a"><p data-i18n="faq.a1">No problem. We use high-quality, licensed imagery that fits your business, and you can swap in your own photos anytime later.</p></div>
       </div>
-      <div class="work-card reveal">
-        <div>
-          <div class="work-meta" data-i18n="s4.w3.meta">Photography</div>
-          <div class="work-title">Studio <em>Linnea</em></div>
-        </div>
-        <div class="work-bottom">
-          <span class="work-city">Vevey, VD</span>
-          <span class="work-arrow">→</span>
-        </div>
+      <div class="faq-item rv rv-d1">
+        <button class="faq-q"><span data-i18n="faq.q2">Do I really own the website?</span><span class="pm">+</span></button>
+        <div class="faq-a"><p data-i18n="faq.a2">Yes. The site is yours from day one. If you ever leave, we hand over all files and your domain — no lock-in, no hostage fees.</p></div>
       </div>
-      <div class="work-card reveal">
-        <div>
-          <div class="work-meta" data-i18n="s4.w4.meta">Hair salon</div>
-          <div class="work-title">Atelier <em>Rouge</em></div>
-        </div>
-        <div class="work-bottom">
-          <span class="work-city">Montreux, VD</span>
-          <span class="work-arrow">→</span>
-        </div>
+      <div class="faq-item rv">
+        <button class="faq-q"><span data-i18n="faq.q3">Can you write the content for me?</span><span class="pm">+</span></button>
+        <div class="faq-a"><p data-i18n="faq.a3">That's included. Tell us about your business in the brief and we write clear, professional copy for every page — in FR, EN, or both.</p></div>
+      </div>
+      <div class="faq-item rv rv-d1">
+        <button class="faq-q"><span data-i18n="faq.q4">What's the catch with CHF 400?</span><span class="pm">+</span></button>
+        <div class="faq-a"><p data-i18n="faq.a4">None. Automation handles the heavy lifting, so we keep prices low and delivery fast. One flat fee, one invoice — that's the whole model.</p></div>
       </div>
     </div>
   </div>
 </section>
 
+<!-- CONTACT -->
 <section class="section" id="contact">
-  <div class="container">
-    <div class="contact reveal">
-      <div class="section-label" data-i18n="s5.label">[05] — Start your project</div>
-      <h2 class="contact-title" data-i18n="s5.title">Let's get your business <em>online</em><br>this week.</h2>
-      <div class="contact-info">
-        <div>
-          <div class="label-small" data-i18n="s5.phone">Phone</div>
-          <div class="value"><a href="tel:+41799512565">079 951 25 65</a></div>
-        </div>
-        <div>
-          <div class="label-small" data-i18n="s5.email">Email</div>
-          <div class="value"><a href="mailto:auwem@gmail.com">auwem@gmail.com</a></div>
-        </div>
-        <div>
-          <div class="label-small" data-i18n="s5.studio">Studio</div>
-          <div class="value">Lausanne, Vaud</div>
-        </div>
+  <div class="wrap rv">
+    <div class="sec-num" data-i18n="s5.label">[06] — Start your project</div>
+    <h2 class="contact-title" data-i18n="s5.title">Let's get your business <em>online</em> this week.</h2>
+    <div class="contact-row">
+      <a href="#" class="btn" data-open style="background:var(--accent);border-color:var(--accent)"><span data-i18n="s5.cta">Start your project</span> <span class="arw">→</span></a>
+      <a href="tel:+41799512565" class="btn btn-ghost" style="color:var(--bg);border-color:rgba(247,242,231,.3)" data-i18n="s5.call">Or call 079 951 25 65</a>
+    </div>
+    <div class="contact-info">
+      <div>
+        <div class="ci-label" data-i18n="s5.phone">Phone</div>
+        <div class="ci-value"><a href="tel:+41799512565">079 951 25 65</a></div>
+      </div>
+      <div>
+        <div class="ci-label" data-i18n="s5.email">Email</div>
+        <div class="ci-value"><a href="mailto:auwem@gmail.com">auwem@gmail.com</a></div>
+      </div>
+      <div>
+        <div class="ci-label" data-i18n="s5.studio">Studio</div>
+        <div class="ci-value">Lausanne, Vaud</div>
       </div>
     </div>
   </div>
 </section>
 
+<!-- FOOTER -->
 <footer class="footer">
-  <div class="footer-inner">
+  <div class="wrap">
     <div>© 2026 <span class="accent">Auwem</span> · Lausanne, CH</div>
     <div data-i18n="footer.built">Built (of course) in 48 hours.</div>
   </div>
 </footer>
 
+<!-- DRAWER -->
+<div class="backdrop" id="backdrop"></div>
+<aside class="drawer" id="drawer" aria-hidden="true" aria-label="Project intake form">
+  <button class="drawer-close" id="closeDrawer" aria-label="Close form">×</button>
+  <div class="drawer-in">
+    <div class="dr-eyebrow" data-i18n="drawer.eyebrow">[ Project intake ]</div>
+    <h2 class="dr-title" data-i18n="drawer.title">Let's build <em>something.</em></h2>
+    <p class="dr-sub" data-i18n="drawer.sub">Drop your details. We'll be back within 24 hours with next steps and a short brief.</p>
+    <form class="dr-form" id="form" novalidate>
+      <label><span data-i18n="form.name">Your name</span><input type="text" name="name" required autocomplete="name" placeholder="Jean Dupont"></label>
+      <label><span data-i18n="form.company">Company</span><input type="text" name="company" required autocomplete="organization" placeholder="Boulangerie du Lac"></label>
+      <label><span data-i18n="form.email">Email</span><input type="email" name="email" required autocomplete="email" placeholder="jean@example.com"></label>
+      <button type="submit" class="btn dr-submit"><span data-i18n="form.submit">Send</span> <span class="arw">→</span></button>
+    </form>
+    <div class="dr-success" id="success">
+      <div class="ck">✓</div>
+      <h3 data-i18n="form.successTitle">Got it.</h3>
+      <p data-i18n="form.successText">We'll be in touch within 24 hours.</p>
+    </div>
+    <div class="dr-meta">
+      <div>
+        <div class="dm-label" data-i18n="form.metaPhone">Or call</div>
+        <div class="dm-value"><a href="tel:+41799512565">079 951 25 65</a></div>
+      </div>
+      <div>
+        <div class="dm-label" data-i18n="form.metaEmail">Or email</div>
+        <div class="dm-value"><a href="mailto:auwem@gmail.com">auwem@gmail.com</a></div>
+      </div>
+    </div>
+  </div>
+</aside>
+
 <script>
-/* ─── Translations ─── */
-const T = {
-  en: {
-    'status': 'Available · 2 slots this week',
-    'rail': 'Start your project',
-    'nav.work': 'Work',
-    'nav.pricing': 'Pricing',
-    'nav.process': 'Process',
-    'nav.cta': 'Start a project',
-    'drawer.eyebrow': '[ Project intake ]',
-    'drawer.title': "Let's build<br><em>something.</em>",
-    'drawer.sub': "Drop your details. We'll be back within 24 hours with next steps and a short brief.",
-    'form.name': 'Your name',
-    'form.company': 'Company',
-    'form.email': 'Email',
-    'form.submit': 'Send',
-    'form.successTitle': 'Got it.',
-    'form.successText': "We'll be in touch within 24 hours.",
-    'form.metaPhone': 'Or call',
-    'form.metaEmail': 'Or email',
-    'hero.label': 'Auwem · Automated web maker · est. 2026',
-    'hero.titlePrefix': 'Beautiful websites<br>for ',
-    'hero.titleSuffix': '<br>too busy to build one.',
-    'hero.sub': 'Auwem builds professional websites for Swiss small businesses in 48 hours. 400 CHF flat. Automated where it counts, hand-crafted where it matters.',
-    'hero.cta1': 'Start your project',
-    'hero.cta2': "See what's included",
-    'hero.scroll': 'Scroll to explore',
-    's1.label': '[01] — The price',
-    's1.title': 'One website. <em>One price.</em><br>One invoice.',
-    's1.intro': 'Everything you need to look professional online — designed, written, and live in 48 hours.',
-    's1.tag': 'All-in flat fee',
-    's1.desc': 'A complete, mobile-friendly website. Automated builds, hand-crafted polish. Live before the week is out.',
-    's1.f1': 'Custom-designed website, up to 5 pages',
-    's1.f2': 'Mobile-first, lightning-fast loading',
-    's1.f3': 'Contact form &amp; Google Maps integration',
-    's1.f4': 'Basic SEO setup (titles, meta, sitemap)',
-    's1.f5': 'Bilingual French / English (or +DE on request)',
-    's1.f6': 'Copywriting — we write your pages for you',
-    's1.f7': 'Live in 48h after content received',
-    's2.label': '[02] — After launch',
-    's2.title': 'No nasty <em>surprises.</em>',
-    's2.intro': 'You pay once for the website. After that, you only pay when you actually need something.',
-    's2.c1.num': '// Year 1',
-    's2.c1.title': 'Hosting',
-    's2.c1.price': 'Free.',
-    's2.c1.desc': 'We cover hosting, custom domain setup, SSL and backups for your first full year. Focus on your business, not your invoices.',
-    's2.c2.num': '// Year 2 onward',
-    's2.c2.title': 'Hosting',
-    's2.c2.unit': 'CHF/mo',
-    's2.c2.desc': 'Fast Swiss hosting, daily backups, SSL, uptime monitoring and minor security updates. Cancel anytime — we hand over your site.',
-    's2.c3.num': '// On-demand',
-    's2.c3.title': 'Changes',
-    's2.c3.unit': 'CHF/change',
-    's2.c3.desc': 'New opening hours, a price, a photo, an extra service? Send us a message — we update it within 24 hours.',
-    's3.label': '[03] — How it works',
-    's3.title': 'From <em>"we should really build one"</em><br>to live, in 3 days.',
-    's3.step1.title': 'Fill the brief',
-    's3.step1.desc': "A 5-minute form: your business, your services, the vibe. Send us your photos — or tell us you don't have any, and we handle it.",
-    's3.step2.title': 'We build it',
-    's3.step2.desc': 'Our automated pipeline assembles your site in 48 hours. We polish it by hand. You get one preview link.',
-    's3.step3.title': 'You go live',
-    's3.step3.desc': 'One round of revisions included. Then we publish to your domain. Free hosting kicks in on day one.',
-    's4.label': '[04] — Selected work',
-    's4.title': 'Small businesses, <em>online,</em><br>in 48 hours.',
-    's4.w1.meta': 'Bakery · Pastry',
-    's4.w2.meta': 'Accounting firm',
-    's4.w3.meta': 'Photography',
-    's4.w4.meta': 'Hair salon',
-    's5.label': '[05] — Start your project',
-    's5.title': "Let's get your business <em>online</em><br>this week.",
-    's5.phone': 'Phone',
-    's5.email': 'Email',
-    's5.studio': 'Studio',
-    'footer.built': 'Built (of course) in 48 hours.'
-  },
-  fr: {
-    'status': 'Disponible · 2 places cette semaine',
-    'rail': 'Démarrer un projet',
-    'nav.work': 'Réalisations',
-    'nav.pricing': 'Tarif',
-    'nav.process': 'Processus',
-    'nav.cta': 'Démarrer un projet',
-    'drawer.eyebrow': '[ Démarrage projet ]',
-    'drawer.title': 'Construisons<br><em>ensemble.</em>',
-    'drawer.sub': 'Laissez-nous vos coordonnées. Nous revenons vers vous sous 24 heures avec la suite et un bref questionnaire.',
-    'form.name': 'Votre nom',
-    'form.company': 'Entreprise',
-    'form.email': 'E-mail',
-    'form.submit': 'Envoyer',
-    'form.successTitle': 'Reçu.',
-    'form.successText': 'Nous revenons vers vous sous 24 heures.',
-    'form.metaPhone': 'Ou téléphone',
-    'form.metaEmail': 'Ou e-mail',
-    'hero.label': 'Auwem · Créateur web automatisé · 2026',
-    'hero.titlePrefix': 'De beaux sites web<br>pour les ',
-    'hero.titleSuffix': '<br>trop occupés pour en créer un.',
-    'hero.sub': 'Auwem construit des sites web professionnels pour les PME suisses en 48 heures. 400 CHF tout compris. Automatisé là où ça compte, fait main là où c\'est nécessaire.',
-    'hero.cta1': 'Démarrer votre projet',
-    'hero.cta2': 'Voir ce qui est inclus',
-    'hero.scroll': 'Faites défiler',
-    's1.label': '[01] — Le tarif',
-    's1.title': 'Un site. <em>Un prix.</em><br>Une facture.',
-    's1.intro': "Tout ce qu'il vous faut pour une présence en ligne professionnelle — conçu, rédigé et en ligne en 48 heures.",
-    's1.tag': 'Tarif forfaitaire',
-    's1.desc': "Un site web complet, adapté au mobile. Construction automatisée, finitions à la main. En ligne avant la fin de la semaine.",
-    's1.f1': "Site sur mesure, jusqu'à 5 pages",
-    's1.f2': "Mobile d'abord, ultra-rapide",
-    's1.f3': 'Formulaire de contact &amp; intégration Google Maps',
-    's1.f4': 'SEO de base (titres, méta, sitemap)',
-    's1.f5': 'Bilingue français / anglais (ou +DE sur demande)',
-    's1.f6': 'Rédaction incluse — nous écrivons vos pages',
-    's1.f7': 'En ligne 48h après réception du contenu',
-    's2.label': '[02] — Après la mise en ligne',
-    's2.title': 'Pas de mauvaises <em>surprises.</em>',
-    's2.intro': "Vous payez une fois pour le site. Ensuite, vous ne payez que lorsque vous en avez réellement besoin.",
-    's2.c1.num': '// 1ère année',
-    's2.c1.title': 'Hébergement',
-    's2.c1.price': 'Gratuit.',
-    's2.c1.desc': "Nous prenons en charge l'hébergement, le nom de domaine, le SSL et les sauvegardes pendant toute la première année. Concentrez-vous sur votre activité, pas sur vos factures.",
-    's2.c2.num': '// Dès la 2e année',
-    's2.c2.title': 'Hébergement',
-    's2.c2.unit': 'CHF/mois',
-    's2.c2.desc': "Hébergement suisse rapide, sauvegardes quotidiennes, SSL, surveillance et mises à jour de sécurité. Résiliable à tout moment — nous vous remettons votre site.",
-    's2.c3.num': '// À la demande',
-    's2.c3.title': 'Modifications',
-    's2.c3.unit': 'CHF/modif.',
-    's2.c3.desc': 'De nouveaux horaires, un prix, une photo, un service en plus ? Envoyez-nous un message — modification effectuée sous 24 heures.',
-    's3.label': '[03] — Comment ça marche',
-    's3.title': "De <em>« il faudrait vraiment qu'on en fasse un »</em><br>à en ligne, en 3 jours.",
-    's3.step1.title': 'Remplir le brief',
-    's3.step1.desc': "Un formulaire de 5 minutes : votre activité, vos services, l'ambiance. Envoyez-nous vos photos — ou dites-nous que vous n'en avez pas, on s'en charge.",
-    's3.step2.title': 'On le construit',
-    's3.step2.desc': "Notre pipeline automatisé assemble votre site en 48 heures. Nous le peaufinons à la main. Vous recevez un lien d'aperçu.",
-    's3.step3.title': 'Mise en ligne',
-    's3.step3.desc': "Un tour de révisions inclus. Puis nous publions sur votre domaine. L'hébergement gratuit commence dès le jour 1.",
-    's4.label': '[04] — Sélection de réalisations',
-    's4.title': 'Des PME, <em>en ligne,</em><br>en 48 heures.',
-    's4.w1.meta': 'Boulangerie · Pâtisserie',
-    's4.w2.meta': 'Fiduciaire',
-    's4.w3.meta': 'Photographie',
-    's4.w4.meta': 'Coiffure · Salon',
-    's5.label': '[05] — Démarrer votre projet',
-    's5.title': 'Mettons votre entreprise <em>en ligne</em><br>cette semaine.',
-    's5.phone': 'Téléphone',
-    's5.email': 'E-mail',
-    's5.studio': 'Studio',
-    'footer.built': 'Construit (évidemment) en 48 heures.'
-  },
-  de: {
-    'status': 'Verfügbar · 2 Plätze diese Woche',
-    'rail': 'Projekt starten',
-    'nav.work': 'Arbeiten',
-    'nav.pricing': 'Preise',
-    'nav.process': 'Ablauf',
-    'nav.cta': 'Projekt starten',
-    'drawer.eyebrow': '[ Projektaufnahme ]',
-    'drawer.title': 'Bauen wir<br><em>etwas.</em>',
-    'drawer.sub': 'Hinterlassen Sie Ihre Daten. Wir melden uns innerhalb von 24 Stunden mit den nächsten Schritten und einem kurzen Briefing.',
-    'form.name': 'Ihr Name',
-    'form.company': 'Unternehmen',
-    'form.email': 'E-Mail',
-    'form.submit': 'Senden',
-    'form.successTitle': 'Erhalten.',
-    'form.successText': 'Wir melden uns innerhalb von 24 Stunden.',
-    'form.metaPhone': 'Oder anrufen',
-    'form.metaEmail': 'Oder E-Mail',
-    'hero.label': 'Auwem · Automatisierter Web-Macher · 2026',
-    'hero.titlePrefix': 'Schöne Websites<br>für ',
-    'hero.titleSuffix': ',<br>die zu beschäftigt sind, eine zu bauen.',
-    'hero.sub': "Auwem baut professionelle Websites für Schweizer KMU in 48 Stunden. 400 CHF pauschal. Automatisiert wo's zählt, handgemacht wo's drauf ankommt.",
-    'hero.cta1': 'Projekt starten',
-    'hero.cta2': 'Sehen, was enthalten ist',
-    'hero.scroll': 'Weiter scrollen',
-    's1.label': '[01] — Der Preis',
-    's1.title': 'Eine Website. <em>Ein Preis.</em><br>Eine Rechnung.',
-    's1.intro': 'Alles, was Sie für einen professionellen Online-Auftritt brauchen — gestaltet, geschrieben und in 48 Stunden online.',
-    's1.tag': 'Pauschalpreis',
-    's1.desc': 'Eine komplette, mobiloptimierte Website. Automatisierter Bau, handgemachte Politur. Online vor Wochenende.',
-    's1.f1': 'Massgeschneiderte Website, bis zu 5 Seiten',
-    's1.f2': 'Mobile-First, blitzschnell',
-    's1.f3': 'Kontaktformular &amp; Google Maps-Integration',
-    's1.f4': 'Basis-SEO (Titel, Meta, Sitemap)',
-    's1.f5': 'Zweisprachig Französisch / Englisch (oder +DE auf Anfrage)',
-    's1.f6': 'Texterstellung inklusive — wir schreiben Ihre Seiten',
-    's1.f7': 'Online 48h nach Erhalt des Inhalts',
-    's2.label': '[02] — Nach dem Launch',
-    's2.title': 'Keine bösen <em>Überraschungen.</em>',
-    's2.intro': 'Sie zahlen einmal für die Website. Danach nur, wenn Sie wirklich etwas brauchen.',
-    's2.c1.num': '// Jahr 1',
-    's2.c1.title': 'Hosting',
-    's2.c1.price': 'Gratis.',
-    's2.c1.desc': 'Wir übernehmen Hosting, Domain-Setup, SSL und Backups für Ihr ganzes erstes Jahr. Konzentrieren Sie sich auf Ihr Geschäft, nicht auf Rechnungen.',
-    's2.c2.num': '// Ab Jahr 2',
-    's2.c2.title': 'Hosting',
-    's2.c2.unit': 'CHF/Mt.',
-    's2.c2.desc': 'Schnelles Schweizer Hosting, tägliche Backups, SSL, Uptime-Monitoring und kleinere Sicherheitsupdates. Jederzeit kündbar — wir übergeben Ihre Website.',
-    's2.c3.num': '// Auf Anfrage',
-    's2.c3.title': 'Änderungen',
-    's2.c3.unit': 'CHF/Änd.',
-    's2.c3.desc': 'Neue Öffnungszeiten, ein Preis, ein Foto, eine zusätzliche Dienstleistung? Schreiben Sie uns — wir aktualisieren innerhalb von 24 Stunden.',
-    's3.label': "[03] — So funktioniert's",
-    's3.title': 'Von <em>„wir sollten wirklich eine machen"</em><br>zu online — in 3 Tagen.',
-    's3.step1.title': 'Briefing ausfüllen',
-    's3.step1.desc': 'Ein 5-Minuten-Formular: Ihr Geschäft, Ihre Dienstleistungen, der Stil. Schicken Sie uns Fotos — oder sagen Sie uns, dass Sie keine haben, wir kümmern uns.',
-    's3.step2.title': 'Wir bauen es',
-    's3.step2.desc': 'Unsere automatisierte Pipeline baut Ihre Website in 48 Stunden. Wir polieren von Hand. Sie erhalten einen Vorschau-Link.',
-    's3.step3.title': 'Sie gehen live',
-    's3.step3.desc': 'Eine Korrekturrunde inklusive. Dann veröffentlichen wir auf Ihrer Domain. Gratis-Hosting beginnt ab Tag 1.',
-    's4.label': '[04] — Ausgewählte Arbeiten',
-    's4.title': 'KMU, <em>online,</em><br>in 48 Stunden.',
-    's4.w1.meta': 'Bäckerei · Konditorei',
-    's4.w2.meta': 'Treuhand',
-    's4.w3.meta': 'Fotografie',
-    's4.w4.meta': 'Coiffeur · Salon',
-    's5.label': '[05] — Projekt starten',
-    's5.title': 'Bringen wir Ihr Geschäft <em>online</em><br>diese Woche.',
-    's5.phone': 'Telefon',
-    's5.email': 'E-Mail',
-    's5.studio': 'Studio',
-    'footer.built': 'Erstellt (natürlich) in 48 Stunden.'
-  }
+/* ───── translations ───── */
+const T={
+en:{
+  'status':'Available · 2 slots this week','rail':'Start your project',
+  'nav.work':'Work','nav.pricing':'Pricing','nav.process':'Process','nav.faq':'FAQ','nav.cta':'Start a project',
+  'hero.p1':'Beautiful websites for ','hero.p2':' too busy to build one.',
+  'hero.sub':'Auwem builds professional websites for Swiss small businesses in 48 hours. <b>CHF 400 flat.</b> Automated where it counts, hand-crafted where it matters.',
+  'hero.cta1':'Start your project','hero.cta2':"See what's included",'hero.scroll':'Scroll to explore',
+  'stamp.top':"This week's slots",'stamp.label':'Booking closes <b>Sunday 23:59</b>',
+  's1.label':'[01] — The price','s1.title':'One website. <em>One price.</em><br>One invoice.',
+  's1.intro':'Everything you need to look professional online — designed, written, and live in 48 hours.',
+  's1.pitchTitle':'No quotes. No hourly billing. <em>No second invoice.</em>',
+  's1.desc':'A complete, mobile-friendly website. Automated builds, hand-crafted polish — live before the week is out.',
+  's1.guarTitle':"Live in 48h, or you don't pay.",
+  's1.guarText':"If your site isn't ready 48 hours after we receive your content, the build is on us.",
+  's1.tag':'All-in flat fee',
+  's1.f1':'Custom-designed website, up to 5 pages','s1.f2':'Mobile-first, lightning-fast loading',
+  's1.f3':'Contact form & Google Maps','s1.f4':'Basic SEO setup (titles, meta, sitemap)',
+  's1.f5':'Bilingual FR / EN (or +DE on request)','s1.f6':'Copywriting — we write your pages for you',
+  'rc.oneTime':'One-time','rc.incl':'INCL','rc.free':'FREE','rc.hosting':'Hosting — Year 1','rc.total':'Total due','rc.delivery':'Delivery · 48h',
+  's2.label':'[02] — After launch','s2.title':'No nasty <em>surprises.</em>',
+  's2.intro':'You pay once for the website. After that, you only pay when you actually need something.',
+  's2.c1.num':'// Year 1','s2.c1.title':'Hosting','s2.c1.price':'Free.',
+  's2.c1.desc':'We cover hosting, custom domain setup, SSL and backups for your first full year. Focus on your business, not your invoices.',
+  's2.c2.num':'// Year 2 onward','s2.c2.title':'Hosting','s2.c2.unit':'CHF/mo',
+  's2.c2.desc':'Fast Swiss hosting, daily backups, SSL, uptime monitoring and minor security updates. Cancel anytime — we hand over your site.',
+  's2.c3.num':'// On-demand','s2.c3.title':'Changes','s2.c3.unit':'CHF/change',
+  's2.c3.desc':'New opening hours, a price, a photo, an extra service? Send us a message — we update it within 24 hours.',
+  's3.label':'[03] — How it works','s3.title':'From <em>"we should really build one"</em><br>to live, in 3 days.',
+  's3.step1.day':'Day 1 · Morning','s3.step1.title':'Fill the brief',
+  's3.step1.desc':"A 5-minute form: your business, your services, the vibe. Send us your photos — or tell us you don't have any, and we handle it.",
+  's3.step2.day':'Day 1–2','s3.step2.title':'We build it',
+  's3.step2.desc':'Our automated pipeline assembles your site in 48 hours. We polish it by hand. You get one preview link.',
+  's3.step3.day':'Day 3','s3.step3.title':'You go live',
+  's3.step3.desc':'One round of revisions included. Then we publish to your domain. Free hosting kicks in on day one.',
+  's4.label':'[04] — Selected work','s4.title':'Small businesses, <em>online,</em><br>in 48 hours.',
+  's4.intro':'A glimpse of what your site could look like. Every one of these went live within a single week.',
+  's4.w1.meta':'Bakery · Pastry','s4.w2.meta':'Accounting firm','s4.w3.meta':'Photography','s4.w4.meta':'Hair salon',
+  'work.view':'View site',
+  'mock.bake.n1':'Breads','mock.bake.n2':'Hours','mock.bake.n3':'Visit','mock.bake.h':'Fresh from<br>the oven','mock.bake.p':'Artisan bakery on the lakefront since 1974','mock.bake.s':'OPEN TUE–SUN · 6:30–18:30',
+  'mock.acc.n1':'Services','mock.acc.n2':'Team','mock.acc.n3':'Contact','mock.acc.h':'Accounting, <em>without the jargon.</em>','mock.acc.b':'Book a call','mock.acc.s':'CERTIFIED FIDUCIARY · NYON',
+  'mock.photo.n1':'Portfolio','mock.photo.n2':'About','mock.photo.n3':'Book','mock.photo.c':'Light, captured.','mock.photo.s':'Weddings · Portraits · Vevey',
+  'mock.salon.n1':'Salon','mock.salon.n2':'Prices','mock.salon.n3':'Book','mock.salon.h':'Your chair is <em>waiting.</em>','mock.salon.l1':'Cut & style','mock.salon.l2':'Colour','mock.salon.l3':'Treatment','mock.salon.s':'BOOK ONLINE · MONTREUX',
+  'faq.label':'[05] — Good questions','faq.title':'The things <em>everyone asks.</em>',
+  'faq.q1':"What if I don't have any photos?",
+  'faq.a1':'No problem. We use high-quality, licensed imagery that fits your business, and you can swap in your own photos anytime later.',
+  'faq.q2':'Do I really own the website?',
+  'faq.a2':'Yes. The site is yours from day one. If you ever leave, we hand over all files and your domain — no lock-in, no hostage fees.',
+  'faq.q3':'Can you write the content for me?',
+  'faq.a3':"That's included. Tell us about your business in the brief and we write clear, professional copy for every page — in FR, EN, or both.",
+  'faq.q4':"What's the catch with CHF 400?",
+  'faq.a4':'None. Automation handles the heavy lifting, so we keep prices low and delivery fast. One flat fee, one invoice — that\'s the whole model.',
+  's5.label':'[06] — Start your project','s5.title':"Let's get your business <em>online</em> this week.",
+  's5.cta':'Start your project','s5.call':'Or call 079 951 25 65',
+  's5.phone':'Phone','s5.email':'Email','s5.studio':'Studio',
+  'footer.built':'Built (of course) in 48 hours.',
+  'drawer.eyebrow':'[ Project intake ]','drawer.title':"Let's build <em>something.</em>",
+  'drawer.sub':"Drop your details. We'll be back within 24 hours with next steps and a short brief.",
+  'form.name':'Your name','form.company':'Company','form.email':'Email','form.submit':'Send',
+  'form.successTitle':'Got it.','form.successText':"We'll be in touch within 24 hours.",
+  'form.metaPhone':'Or call','form.metaEmail':'Or email'
+},
+fr:{
+  'status':'Disponible · 2 places cette semaine','rail':'Démarrer un projet',
+  'nav.work':'Réalisations','nav.pricing':'Tarif','nav.process':'Processus','nav.faq':'FAQ','nav.cta':'Démarrer un projet',
+  'hero.p1':'De beaux sites web pour les ','hero.p2':' trop occupés pour en créer un.',
+  'hero.sub':"Auwem construit des sites web professionnels pour les PME suisses en 48 heures. <b>400 CHF tout compris.</b> Automatisé là où ça compte, fait main là où c'est nécessaire.",
+  'hero.cta1':'Démarrer votre projet','hero.cta2':'Voir ce qui est inclus','hero.scroll':'Faites défiler',
+  'stamp.top':'Places cette semaine','stamp.label':'Clôture <b>dimanche 23h59</b>',
+  's1.label':'[01] — Le tarif','s1.title':'Un site. <em>Un prix.</em><br>Une facture.',
+  's1.intro':"Tout ce qu'il vous faut pour une présence en ligne professionnelle — conçu, rédigé et en ligne en 48 heures.",
+  's1.pitchTitle':"Pas de devis. Pas de facturation à l'heure. <em>Pas de deuxième facture.</em>",
+  's1.desc':'Un site web complet, adapté au mobile. Construction automatisée, finitions à la main — en ligne avant la fin de la semaine.',
+  's1.guarTitle':'En ligne en 48h, ou vous ne payez pas.',
+  's1.guarText':"Si votre site n'est pas prêt 48 heures après réception de votre contenu, la construction est offerte.",
+  's1.tag':'Tarif forfaitaire',
+  's1.f1':"Site sur mesure, jusqu'à 5 pages",'s1.f2':"Mobile d'abord, ultra-rapide",
+  's1.f3':'Formulaire de contact & Google Maps','s1.f4':'SEO de base (titres, méta, sitemap)',
+  's1.f5':'Bilingue français / anglais (ou +DE sur demande)','s1.f6':'Rédaction incluse — nous écrivons vos pages',
+  'rc.oneTime':'Paiement unique','rc.incl':'INCL','rc.free':'OFFERT','rc.hosting':'Hébergement — 1ère année','rc.total':'Total à payer','rc.delivery':'Livraison · 48h',
+  's2.label':'[02] — Après la mise en ligne','s2.title':'Pas de mauvaises <em>surprises.</em>',
+  's2.intro':'Vous payez une fois pour le site. Ensuite, vous ne payez que lorsque vous en avez réellement besoin.',
+  's2.c1.num':'// 1ère année','s2.c1.title':'Hébergement','s2.c1.price':'Gratuit.',
+  's2.c1.desc':"Nous prenons en charge l'hébergement, le nom de domaine, le SSL et les sauvegardes pendant toute la première année. Concentrez-vous sur votre activité, pas sur vos factures.",
+  's2.c2.num':'// Dès la 2e année','s2.c2.title':'Hébergement','s2.c2.unit':'CHF/mois',
+  's2.c2.desc':'Hébergement suisse rapide, sauvegardes quotidiennes, SSL, surveillance et mises à jour de sécurité. Résiliable à tout moment — nous vous remettons votre site.',
+  's2.c3.num':'// À la demande','s2.c3.title':'Modifications','s2.c3.unit':'CHF/modif.',
+  's2.c3.desc':'De nouveaux horaires, un prix, une photo, un service en plus ? Envoyez-nous un message — modification effectuée sous 24 heures.',
+  's3.label':'[03] — Comment ça marche','s3.title':"De <em>« il faudrait vraiment qu'on en fasse un »</em><br>à en ligne, en 3 jours.",
+  's3.step1.day':'Jour 1 · Matin','s3.step1.title':'Remplir le brief',
+  's3.step1.desc':"Un formulaire de 5 minutes : votre activité, vos services, l'ambiance. Envoyez-nous vos photos — ou dites-nous que vous n'en avez pas, on s'en charge.",
+  's3.step2.day':'Jour 1–2','s3.step2.title':'On le construit',
+  's3.step2.desc':"Notre pipeline automatisé assemble votre site en 48 heures. Nous le peaufinons à la main. Vous recevez un lien d'aperçu.",
+  's3.step3.day':'Jour 3','s3.step3.title':'Mise en ligne',
+  's3.step3.desc':"Un tour de révisions inclus. Puis nous publions sur votre domaine. L'hébergement gratuit commence dès le jour 1.",
+  's4.label':'[04] — Sélection de réalisations','s4.title':'Des PME, <em>en ligne,</em><br>en 48 heures.',
+  's4.intro':'Un aperçu de ce à quoi votre site pourrait ressembler. Chacun de ceux-ci a été mis en ligne en une semaine.',
+  's4.w1.meta':'Boulangerie · Pâtisserie','s4.w2.meta':'Fiduciaire','s4.w3.meta':'Photographie','s4.w4.meta':'Coiffure · Salon',
+  'work.view':'Voir le site',
+  'mock.bake.n1':'Pains','mock.bake.n2':'Horaires','mock.bake.n3':'Visiter','mock.bake.h':'Tout chaud<br>du four','mock.bake.p':'Boulangerie artisanale au bord du lac depuis 1974','mock.bake.s':'OUVERT MAR–DIM · 6h30–18h30',
+  'mock.acc.n1':'Services','mock.acc.n2':'Équipe','mock.acc.n3':'Contact','mock.acc.h':'La comptabilité, <em>sans le jargon.</em>','mock.acc.b':'Prendre RDV','mock.acc.s':'FIDUCIAIRE AGRÉÉE · NYON',
+  'mock.photo.n1':'Portfolio','mock.photo.n2':'À propos','mock.photo.n3':'Réserver','mock.photo.c':'La lumière, capturée.','mock.photo.s':'Mariages · Portraits · Vevey',
+  'mock.salon.n1':'Salon','mock.salon.n2':'Tarifs','mock.salon.n3':'Réserver','mock.salon.h':'Votre fauteuil vous <em>attend.</em>','mock.salon.l1':'Coupe & coiffage','mock.salon.l2':'Couleur','mock.salon.l3':'Soin','mock.salon.s':'RÉSERVEZ EN LIGNE · MONTREUX',
+  'faq.label':'[05] — Bonnes questions','faq.title':'Ce que <em>tout le monde demande.</em>',
+  'faq.q1':"Et si je n'ai pas de photos ?",
+  'faq.a1':"Aucun problème. Nous utilisons des images sous licence de haute qualité adaptées à votre activité, et vous pourrez ajouter les vôtres à tout moment.",
+  'faq.q2':'Suis-je vraiment propriétaire du site ?',
+  'faq.a2':"Oui. Le site est le vôtre dès le premier jour. Si vous partez, nous vous remettons tous les fichiers et votre domaine — aucun verrouillage.",
+  'faq.q3':'Pouvez-vous rédiger le contenu pour moi ?',
+  'faq.a3':"C'est inclus. Parlez-nous de votre activité dans le brief et nous rédigeons des textes clairs et professionnels pour chaque page — en FR, EN, ou les deux.",
+  'faq.q4':'Où est le piège à 400 CHF ?',
+  'faq.a4':"Il n'y en a pas. L'automatisation fait le gros du travail, donc les prix restent bas et la livraison rapide. Un tarif fixe, une facture — c'est tout le modèle.",
+  's5.label':'[06] — Démarrer votre projet','s5.title':'Mettons votre entreprise <em>en ligne</em> cette semaine.',
+  's5.cta':'Démarrer votre projet','s5.call':'Ou appelez le 079 951 25 65',
+  's5.phone':'Téléphone','s5.email':'E-mail','s5.studio':'Studio',
+  'footer.built':'Construit (évidemment) en 48 heures.',
+  'drawer.eyebrow':'[ Démarrage projet ]','drawer.title':'Construisons <em>ensemble.</em>',
+  'drawer.sub':'Laissez-nous vos coordonnées. Nous revenons vers vous sous 24 heures avec la suite et un bref questionnaire.',
+  'form.name':'Votre nom','form.company':'Entreprise','form.email':'E-mail','form.submit':'Envoyer',
+  'form.successTitle':'Reçu.','form.successText':'Nous revenons vers vous sous 24 heures.',
+  'form.metaPhone':'Ou téléphone','form.metaEmail':'Ou e-mail'
+},
+de:{
+  'status':'Verfügbar · 2 Plätze diese Woche','rail':'Projekt starten',
+  'nav.work':'Arbeiten','nav.pricing':'Preise','nav.process':'Ablauf','nav.faq':'FAQ','nav.cta':'Projekt starten',
+  'hero.p1':'Schöne Websites für ','hero.p2':', die zu beschäftigt sind, eine zu bauen.',
+  'hero.sub':"Auwem baut professionelle Websites für Schweizer KMU in 48 Stunden. <b>400 CHF pauschal.</b> Automatisiert wo's zählt, handgemacht wo's drauf ankommt.",
+  'hero.cta1':'Projekt starten','hero.cta2':'Sehen, was enthalten ist','hero.scroll':'Weiter scrollen',
+  'stamp.top':'Plätze diese Woche','stamp.label':'Buchung schliesst <b>Sonntag 23:59</b>',
+  's1.label':'[01] — Der Preis','s1.title':'Eine Website. <em>Ein Preis.</em><br>Eine Rechnung.',
+  's1.intro':'Alles, was Sie für einen professionellen Online-Auftritt brauchen — gestaltet, geschrieben und in 48 Stunden online.',
+  's1.pitchTitle':'Keine Offerten. Keine Stundenabrechnung. <em>Keine zweite Rechnung.</em>',
+  's1.desc':'Eine komplette, mobiloptimierte Website. Automatisierter Bau, handgemachte Politur — online vor dem Wochenende.',
+  's1.guarTitle':'In 48h online, oder Sie zahlen nicht.',
+  's1.guarText':'Ist Ihre Website 48 Stunden nach Erhalt Ihrer Inhalte nicht fertig, geht der Bau auf uns.',
+  's1.tag':'Pauschalpreis',
+  's1.f1':'Massgeschneiderte Website, bis zu 5 Seiten','s1.f2':'Mobile-First, blitzschnell',
+  's1.f3':'Kontaktformular & Google Maps','s1.f4':'Basis-SEO (Titel, Meta, Sitemap)',
+  's1.f5':'Zweisprachig FR / EN (oder +DE auf Anfrage)','s1.f6':'Texterstellung inklusive — wir schreiben Ihre Seiten',
+  'rc.oneTime':'Einmalig','rc.incl':'INKL','rc.free':'GRATIS','rc.hosting':'Hosting — Jahr 1','rc.total':'Zu zahlen','rc.delivery':'Lieferung · 48h',
+  's2.label':'[02] — Nach dem Launch','s2.title':'Keine bösen <em>Überraschungen.</em>',
+  's2.intro':'Sie zahlen einmal für die Website. Danach nur, wenn Sie wirklich etwas brauchen.',
+  's2.c1.num':'// Jahr 1','s2.c1.title':'Hosting','s2.c1.price':'Gratis.',
+  's2.c1.desc':'Wir übernehmen Hosting, Domain-Setup, SSL und Backups für Ihr ganzes erstes Jahr. Konzentrieren Sie sich auf Ihr Geschäft, nicht auf Rechnungen.',
+  's2.c2.num':'// Ab Jahr 2','s2.c2.title':'Hosting','s2.c2.unit':'CHF/Mt.',
+  's2.c2.desc':'Schnelles Schweizer Hosting, tägliche Backups, SSL, Uptime-Monitoring und kleinere Sicherheitsupdates. Jederzeit kündbar — wir übergeben Ihre Website.',
+  's2.c3.num':'// Auf Anfrage','s2.c3.title':'Änderungen','s2.c3.unit':'CHF/Änd.',
+  's2.c3.desc':'Neue Öffnungszeiten, ein Preis, ein Foto, eine zusätzliche Dienstleistung? Schreiben Sie uns — wir aktualisieren innerhalb von 24 Stunden.',
+  's3.label':"[03] — So funktioniert's",'s3.title':'Von <em>„wir sollten wirklich eine machen"</em><br>zu online — in 3 Tagen.',
+  's3.step1.day':'Tag 1 · Morgen','s3.step1.title':'Briefing ausfüllen',
+  's3.step1.desc':'Ein 5-Minuten-Formular: Ihr Geschäft, Ihre Dienstleistungen, der Stil. Schicken Sie uns Fotos — oder sagen Sie uns, dass Sie keine haben, wir kümmern uns.',
+  's3.step2.day':'Tag 1–2','s3.step2.title':'Wir bauen es',
+  's3.step2.desc':'Unsere automatisierte Pipeline baut Ihre Website in 48 Stunden. Wir polieren von Hand. Sie erhalten einen Vorschau-Link.',
+  's3.step3.day':'Tag 3','s3.step3.title':'Sie gehen live',
+  's3.step3.desc':'Eine Korrekturrunde inklusive. Dann veröffentlichen wir auf Ihrer Domain. Gratis-Hosting beginnt ab Tag 1.',
+  's4.label':'[04] — Ausgewählte Arbeiten','s4.title':'KMU, <em>online,</em><br>in 48 Stunden.',
+  's4.intro':'Ein Blick darauf, wie Ihre Website aussehen könnte. Jede davon ging innerhalb einer Woche live.',
+  's4.w1.meta':'Bäckerei · Konditorei','s4.w2.meta':'Treuhand','s4.w3.meta':'Fotografie','s4.w4.meta':'Coiffeur · Salon',
+  'work.view':'Website ansehen',
+  'mock.bake.n1':'Brote','mock.bake.n2':'Zeiten','mock.bake.n3':'Besuch','mock.bake.h':'Frisch aus<br>dem Ofen','mock.bake.p':'Handwerksbäckerei am See seit 1974','mock.bake.s':'OFFEN DI–SO · 6:30–18:30',
+  'mock.acc.n1':'Leistungen','mock.acc.n2':'Team','mock.acc.n3':'Kontakt','mock.acc.h':'Buchhaltung, <em>ohne Fachchinesisch.</em>','mock.acc.b':'Termin buchen','mock.acc.s':'ZERTIFIZIERTE TREUHAND · NYON',
+  'mock.photo.n1':'Portfolio','mock.photo.n2':'Über uns','mock.photo.n3':'Buchen','mock.photo.c':'Licht, eingefangen.','mock.photo.s':'Hochzeiten · Porträts · Vevey',
+  'mock.salon.n1':'Salon','mock.salon.n2':'Preise','mock.salon.n3':'Buchen','mock.salon.h':'Ihr Stuhl <em>wartet.</em>','mock.salon.l1':'Schnitt & Styling','mock.salon.l2':'Farbe','mock.salon.l3':'Pflege','mock.salon.s':'ONLINE BUCHEN · MONTREUX',
+  'faq.label':'[05] — Gute Fragen','faq.title':'Was <em>alle fragen.</em>',
+  'faq.q1':'Was, wenn ich keine Fotos habe?',
+  'faq.a1':'Kein Problem. Wir verwenden hochwertige, lizenzierte Bilder, die zu Ihrem Geschäft passen — Ihre eigenen Fotos können Sie jederzeit später einfügen.',
+  'faq.q2':'Gehört die Website wirklich mir?',
+  'faq.a2':'Ja. Die Website gehört Ihnen ab Tag 1. Wenn Sie gehen, übergeben wir alle Dateien und Ihre Domain — keine Bindung, keine Gebühren.',
+  'faq.q3':'Können Sie die Inhalte für mich schreiben?',
+  'faq.a3':'Das ist inklusive. Erzählen Sie uns im Briefing von Ihrem Geschäft, und wir schreiben klare, professionelle Texte für jede Seite — auf FR, EN oder beidem.',
+  'faq.q4':'Wo ist der Haken bei 400 CHF?',
+  'faq.a4':'Es gibt keinen. Automatisierung übernimmt die Hauptarbeit, daher bleiben Preise tief und Lieferung schnell. Ein Pauschalpreis, eine Rechnung — das ist das ganze Modell.',
+  's5.label':'[06] — Projekt starten','s5.title':'Bringen wir Ihr Geschäft <em>online</em> diese Woche.',
+  's5.cta':'Projekt starten','s5.call':'Oder anrufen 079 951 25 65',
+  's5.phone':'Telefon','s5.email':'E-Mail','s5.studio':'Studio',
+  'footer.built':'Erstellt (natürlich) in 48 Stunden.',
+  'drawer.eyebrow':'[ Projektaufnahme ]','drawer.title':'Bauen wir <em>etwas.</em>',
+  'drawer.sub':'Hinterlassen Sie Ihre Daten. Wir melden uns innerhalb von 24 Stunden mit den nächsten Schritten und einem kurzen Briefing.',
+  'form.name':'Ihr Name','form.company':'Unternehmen','form.email':'E-Mail','form.submit':'Senden',
+  'form.successTitle':'Erhalten.','form.successText':'Wir melden uns innerhalb von 24 Stunden.',
+  'form.metaPhone':'Oder anrufen','form.metaEmail':'Oder E-Mail'
+}};
+
+const ROT={
+  en:['bakers','accountants','restaurants','hairdressers','consultants','craftsmen','mechanics','photographers'],
+  fr:['boulangers','fiduciaires','restaurants','coiffeurs','consultants','artisans','garagistes','photographes'],
+  de:['Bäcker','Treuhänder','Restaurants','Coiffeure','Berater','Handwerker','Garagisten','Fotografen']
+};
+const MQ={
+  en:['CHF 400 flat','48-hour delivery','Hosting free · Year 1','Based in Vaud','FR · EN · DE','Made in Switzerland'],
+  fr:['400 CHF tout compris','Livraison en 48h','Hébergement gratuit · 1ère année','Basés dans le canton de Vaud','FR · EN · DE','Fait en Suisse'],
+  de:['400 CHF pauschal','Lieferung in 48 Stunden','Hosting gratis · Jahr 1','Aus dem Kanton Waadt','FR · EN · DE','Made in Switzerland']
 };
 
-const ROTATING = {
-  en: ['bakers', 'fiduciaires', 'restaurants', 'coiffeurs', 'consultants', 'artisans', 'garagistes', 'photographers'],
-  fr: ['boulangers', 'fiduciaires', 'restaurants', 'coiffeurs', 'consultants', 'artisans', 'garagistes', 'photographes'],
-  de: ['Bäcker', 'Treuhänder', 'Restaurants', 'Coiffeure', 'Berater', 'Handwerker', 'Garagisten', 'Fotografen']
-};
+let lang='en', words=ROT.en, wi=0;
+const $=s=>document.querySelector(s), $$=s=>document.querySelectorAll(s);
+const rot=$('#rot'), mq=$('#mq');
 
-const MARQUEE = {
-  en: ['400 CHF flat', '48-hour delivery', 'Hosting free Year 1', 'Based in Vaud', 'FR · EN · DE', 'Made in Switzerland'],
-  fr: ['400 CHF tout compris', 'Livraison en 48h', 'Hébergement gratuit la 1ère année', 'Basés dans le canton de Vaud', 'FR · EN · DE', 'Fait en Suisse'],
-  de: ['400 CHF pauschal', 'Lieferung in 48 Stunden', 'Hosting im 1. Jahr gratis', 'Aus dem Kanton Waadt', 'FR · EN · DE', 'Made in Switzerland']
-};
+/* apply translations */
+function apply(l){
+  lang=l; words=ROT[l]; document.documentElement.lang=l;
+  $$('[data-i18n]').forEach(el=>{ const k=el.dataset.i18n; if(T[l][k]!=null) el.innerHTML=T[l][k]; });
+  $$('.lang-btn').forEach(b=>b.classList.toggle('active',b.dataset.lang===l));
+  buildMarquee();
+  wi=wi%words.length; rot.textContent=words[wi];
+}
+$$('.lang-btn').forEach(b=>b.addEventListener('click',()=>apply(b.dataset.lang)));
 
-let currentLang = 'en';
-let words = ROTATING.en;
-let wordIdx = 0;
-let isScrambling = false;
-
-const rotator = document.getElementById('rotator');
-const marqueeTrack = document.getElementById('marquee-track');
-
-function renderMarquee(lang) {
-  const items = MARQUEE[lang];
-  marqueeTrack.innerHTML = [...items, ...items].map(it => `<span>${it}</span>`).join('');
+/* marquee */
+function buildMarquee(){
+  const set=MQ[lang].map(t=>`<span class="mq-item"><span class="star">✦</span>${t}</span>`).join('');
+  mq.innerHTML=set+set;
 }
 
-function setLanguage(lang) {
-  if (!T[lang]) return;
-  currentLang = lang;
-  document.documentElement.lang = lang;
-
-  document.querySelectorAll('[data-i18n]').forEach(el => {
-    const key = el.getAttribute('data-i18n');
-    const val = T[lang][key];
-    if (val !== undefined) el.innerHTML = val;
-  });
-
-  words = ROTATING[lang];
-  wordIdx = 0;
-  rotator.textContent = words[0];
-  renderMarquee(lang);
-
-  document.querySelectorAll('.lang-btn').forEach(btn => {
-    btn.classList.toggle('active', btn.dataset.lang === lang);
-  });
+/* rotating word */
+function rotate(){
+  wi=(wi+1)%words.length;
+  rot.style.transition='transform .32s var(--ease),opacity .32s var(--ease)';
+  rot.style.transform='translateY(-12px)'; rot.style.opacity='0';
+  setTimeout(()=>{
+    rot.textContent=words[wi];
+    rot.style.transition='none'; rot.style.transform='translateY(12px)';
+    requestAnimationFrame(()=>{
+      rot.style.transition='transform .42s var(--ease),opacity .42s var(--ease)';
+      rot.style.transform='translateY(0)'; rot.style.opacity='1';
+    });
+  },330);
 }
+setInterval(rotate,2600);
 
-document.querySelectorAll('.lang-btn').forEach(btn => {
-  btn.addEventListener('click', () => setLanguage(btn.dataset.lang));
-});
-
-/* ─── Rotating word with scramble effect ─── */
-const SCRAMBLE_CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
-function scrambleTo(target) {
-  if (isScrambling) return;
-  isScrambling = true;
-  const len = target.length;
-  let frame = 0;
-  const totalFrames = 14;
-  const interval = setInterval(() => {
-    let out = '';
-    for (let i = 0; i < len; i++) {
-      const progress = frame / totalFrames;
-      const charProgress = i / len;
-      if (progress > charProgress + 0.15) out += target[i];
-      else out += SCRAMBLE_CHARS[Math.floor(Math.random() * SCRAMBLE_CHARS.length)];
-    }
-    rotator.textContent = out;
-    frame++;
-    if (frame > totalFrames + 2) {
-      clearInterval(interval);
-      rotator.textContent = target;
-      isScrambling = false;
-    }
-  }, 32);
+/* countdown to Sunday 23:59 */
+const clock=$('#clock');
+function tick(){
+  const now=new Date();
+  const end=new Date(now);
+  const dToSun=(7-now.getDay())%7;
+  end.setDate(now.getDate()+dToSun); end.setHours(23,59,59,0);
+  if(end<now) end.setDate(end.getDate()+7);
+  let s=Math.floor((end-now)/1000);
+  const d=Math.floor(s/86400); s-=d*86400;
+  const h=Math.floor(s/3600); s-=h*3600;
+  const m=Math.floor(s/60);
+  const p=n=>String(n).padStart(2,'0');
+  clock.innerHTML=`${p(d)}<span class="u">d</span> ${p(h)}<span class="u">h</span> ${p(m)}<span class="u">m</span>`;
 }
-setInterval(() => {
-  wordIdx = (wordIdx + 1) % words.length;
-  scrambleTo(words[wordIdx]);
-}, 2400);
+tick(); setInterval(tick,1000*30);
 
-/* ─── Nav background on scroll ─── */
-const nav = document.getElementById('nav');
-window.addEventListener('scroll', () => {
-  if (window.scrollY > 40) nav.classList.add('scrolled');
-  else nav.classList.remove('scrolled');
-}, { passive: true });
+/* barcode */
+$('#barcode').innerHTML=Array.from({length:34},()=>`<i style="width:${1+Math.round(Math.random()*2)}px;opacity:${Math.random()>.78?.25:1}"></i>`).join('');
 
-/* ─── Reveal on scroll ─── */
-const reveals = document.querySelectorAll('.reveal');
-const obs = new IntersectionObserver((entries) => {
-  entries.forEach((e, i) => {
-    if (e.isIntersecting) {
-      setTimeout(() => e.target.classList.add('visible'), i * 70);
-      obs.unobserve(e.target);
-    }
-  });
-}, { threshold: 0.12, rootMargin: '-40px' });
-reveals.forEach(r => obs.observe(r));
+/* nav scroll */
+const nav=$('#nav');
+addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>30),{passive:true});
 
-/* ─── Price count-up ─── */
-const priceNumber = document.getElementById('priceNumber');
-const priceObs = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      const target = 400;
-      const duration = 1100;
-      const start = performance.now();
-      function tick(now) {
-        const t = Math.min((now - start) / duration, 1);
-        const eased = 1 - Math.pow(1 - t, 3);
-        priceNumber.textContent = Math.floor(eased * target);
-        if (t < 1) requestAnimationFrame(tick);
-        else priceNumber.textContent = target;
-      }
-      requestAnimationFrame(tick);
-      priceObs.unobserve(e.target);
-    }
-  });
-}, { threshold: 0.5 });
-priceObs.observe(document.querySelector('.price-big'));
+/* reveal */
+const io=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);} }),{threshold:.12});
+$$('.rv').forEach(el=>io.observe(el));
 
-/* ─── Cursor blob ─── */
-const blob = document.getElementById('cursorBlob');
-let mouseX = window.innerWidth / 2;
-let mouseY = window.innerHeight / 2;
-let blobX = mouseX, blobY = mouseY;
-window.addEventListener('mousemove', e => {
-  mouseX = e.clientX;
-  mouseY = e.clientY;
-}, { passive: true });
-function animateBlob() {
-  blobX += (mouseX - blobX) * 0.08;
-  blobY += (mouseY - blobY) * 0.08;
-  blob.style.transform = `translate3d(${blobX - 160}px, ${blobY - 160}px, 0)`;
-  requestAnimationFrame(animateBlob);
-}
-animateBlob();
+/* drawer */
+const drawer=$('#drawer'), backdrop=$('#backdrop');
+function openD(){ drawer.classList.add('on'); backdrop.classList.add('on'); drawer.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden'; }
+function closeD(){ drawer.classList.remove('on'); backdrop.classList.remove('on'); drawer.setAttribute('aria-hidden','true'); document.body.style.overflow=''; }
+$$('[data-open]').forEach(el=>el.addEventListener('click',e=>{e.preventDefault();openD();}));
+$('#closeDrawer').addEventListener('click',closeD);
+backdrop.addEventListener('click',closeD);
+addEventListener('keydown',e=>{ if(e.key==='Escape') closeD(); });
 
-/* ─── Hero deco parallax ─── */
-const heroDeco = document.getElementById('heroDeco');
-window.addEventListener('mousemove', (e) => {
-  const x = (e.clientX / window.innerWidth - 0.5) * 40;
-  const y = (e.clientY / window.innerHeight - 0.5) * 40;
-  heroDeco.style.transform = `translate(${x}px, ${y}px)`;
-}, { passive: true });
-
-/* ─── Drawer ─── */
-const drawer = document.getElementById('drawer');
-const drawerBackdrop = document.getElementById('drawerBackdrop');
-const drawerForm = document.getElementById('drawerForm');
-const drawerSuccess = document.getElementById('drawerSuccess');
-
-function openDrawer() {
-  drawer.classList.add('open');
-  drawerBackdrop.classList.add('open');
-  drawer.setAttribute('aria-hidden', 'false');
-  document.body.style.overflow = 'hidden';
-  setTimeout(() => {
-    const first = drawerForm.querySelector('input');
-    if (first) first.focus();
-  }, 500);
-}
-function closeDrawer() {
-  drawer.classList.remove('open');
-  drawerBackdrop.classList.remove('open');
-  drawer.setAttribute('aria-hidden', 'true');
-  document.body.style.overflow = '';
-}
-
-document.getElementById('openDrawer').addEventListener('click', openDrawer);
-document.getElementById('closeDrawer').addEventListener('click', closeDrawer);
-drawerBackdrop.addEventListener('click', closeDrawer);
-document.addEventListener('keydown', e => { if (e.key === 'Escape' && drawer.classList.contains('open')) closeDrawer(); });
-
-document.querySelectorAll('[data-open-drawer]').forEach(el => {
-  el.addEventListener('click', (e) => { e.preventDefault(); openDrawer(); });
-});
-
-drawerForm.addEventListener('submit', (e) => {
+/* form */
+$('#form').addEventListener('submit',e=>{
   e.preventDefault();
-  // Basic validation
-  const inputs = drawerForm.querySelectorAll('input');
-  let valid = true;
-  inputs.forEach(i => { if (!i.value.trim()) { valid = false; i.style.borderBottomColor = 'var(--accent)'; } });
-  if (!valid) return;
-
-  // Show success
-  drawerForm.style.display = 'none';
-  drawerSuccess.classList.add('show');
-  document.querySelector('.drawer-meta').style.display = 'none';
-
-  // Reset after delay
-  setTimeout(() => {
-    drawerForm.reset();
-    drawerForm.style.display = '';
-    drawerSuccess.classList.remove('show');
-    document.querySelector('.drawer-meta').style.display = '';
-    closeDrawer();
-  }, 3500);
+  const f=e.target; let ok=true;
+  f.querySelectorAll('input').forEach(i=>{
+    const bad=!i.value.trim()||(i.type==='email'&&!/^[^@]+@[^@]+\.[^@]+$/.test(i.value));
+    i.classList.toggle('err',bad); if(bad) ok=false;
+  });
+  if(!ok) return;
+  f.style.display='none'; $('#success').classList.add('on');
 });
+$$('#form input').forEach(i=>i.addEventListener('input',()=>i.classList.remove('err')));
 
-/* ─── Initialize ─── */
-renderMarquee('en');
+/* cursor blob */
+const blob=$('#blob'); let bx=innerWidth/2,by=innerHeight/2,tx=bx,ty=by;
+addEventListener('mousemove',e=>{tx=e.clientX;ty=e.clientY;},{passive:true});
+(function loop(){ bx+=(tx-bx)*.12; by+=(ty-by)*.12; blob.style.transform=`translate(${bx-170}px,${by-170}px)`; requestAnimationFrame(loop); })();
+
+/* faq */
+$$('.faq-q').forEach(q=>q.addEventListener('click',()=>{
+  const item=q.parentElement, a=item.querySelector('.faq-a');
+  const open=item.classList.contains('open');
+  $$('.faq-item').forEach(i=>{ i.classList.remove('open'); i.querySelector('.faq-a').style.maxHeight=null; });
+  if(!open){ item.classList.add('open'); a.style.maxHeight=a.scrollHeight+'px'; }
+}));
+
+apply('en');
 </script>
 </body>
 </html>

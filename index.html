@@ -527,13 +527,14 @@ h1.hero-title em{
 .dr-sub{color:var(--ink-soft);font-size:15px;margin-bottom:30px}
 .dr-form label{display:block;margin-bottom:18px}
 .dr-form label span{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:7px}
-.dr-form input{
+.dr-form input,.dr-form textarea{
   width:100%;font-family:var(--body);font-size:15px;color:var(--ink);
   background:var(--bg);border:1.5px solid var(--line);border-radius:9px;padding:13px 14px;
   transition:border-color .25s,background .25s;
 }
-.dr-form input:focus{outline:none;border-color:var(--accent);background:var(--paper)}
-.dr-form input.err{border-color:var(--accent);background:var(--accent-soft)}
+.dr-form textarea{min-height:150px;resize:vertical;line-height:1.5}
+.dr-form input:focus,.dr-form textarea:focus{outline:none;border-color:var(--accent);background:var(--paper)}
+.dr-form input.err,.dr-form textarea.err{border-color:var(--accent);background:var(--accent-soft)}
 .form-tabs{display:flex;gap:6px;margin-bottom:22px;background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:5px}
 .form-tab{
   flex:1;border:none;background:transparent;border-radius:10px;padding:10px 8px;
@@ -1052,6 +1053,7 @@ h1.hero-title em{
         <button type="button" class="form-tab active" data-tab="company" data-i18n="form.tabCompany">Business information</button>
         <button type="button" class="form-tab" data-tab="style" data-i18n="form.tabStyle">Website personalization</button>
         <button type="button" class="form-tab" data-tab="photos" data-i18n="form.tabPhotos">Desired photos</button>
+        <button type="button" class="form-tab" data-tab="extra" data-i18n="form.tabExtra">Additional information</button>
       </div>
 
       <div class="form-panel active" data-panel="company">
@@ -1113,7 +1115,18 @@ h1.hero-title em{
           <span data-i18n="form.dropText">or click to select files</span>
         </label>
         <div class="file-list" id="fileList" data-i18n="form.noFiles">No file selected yet.</div>
-        <div class="form-nav"><button type="button" class="btn btn-ghost prev-tab" data-prev="style"><span data-i18n="form.back">Back</span></button></div>
+        <div class="form-nav">
+          <button type="button" class="btn btn-ghost prev-tab" data-prev="style"><span data-i18n="form.back">Back</span></button>
+          <button type="button" class="btn next-tab" data-next="extra"><span data-i18n="form.next">Next</span> <span class="arw">→</span></button>
+        </div>
+      </div>
+
+      <div class="form-panel" data-panel="extra">
+        <label>
+          <span data-i18n="form.additionalInfoLabel">Tell us what you want</span>
+          <textarea name="additionalInformation" maxlength="1200" data-i18n-placeholder="form.additionalInfoPlaceholder" placeholder="• What should visitors understand first?&#10;• Which services should be highlighted?&#10;• What style or examples do you like?&#10;• Any specific requests?"></textarea>
+        </label>
+        <div class="form-nav"><button type="button" class="btn btn-ghost prev-tab" data-prev="photos"><span data-i18n="form.back">Back</span></button></div>
         <button type="submit" class="btn dr-submit"><span data-i18n="form.submit">Send</span> <span class="arw">→</span></button>
       </div>
     </form>
@@ -1195,9 +1208,9 @@ en:{
   'drawer.eyebrow':'[ Project intake ]','drawer.title':'Tell us what your website should <em>feel like.</em>',
   'drawer.sub':'A few details are enough for us to understand your business, your style and what customers need to see first.',
   'form.name':'Your name','form.company':'Company','form.email':'Email','form.submit':'Send',
-  'form.tabCompany':'Business information','form.tabStyle':'Website personalization','form.tabPhotos':'Desired photos',
+  'form.tabCompany':'Business information','form.tabStyle':'Website personalization','form.tabPhotos':'Desired photos','form.tabExtra':'Additional information',
   'form.businessType':'Type of business','form.chooseType':'Choose a type','form.companyName':'Business name','form.companyEmail':'Business email','form.companyPhone':'Business phone',
-  'form.palette':'Choose a color palette','form.paletteNote':'Notes about the desired style','form.dropTitle':'Drag your photos or PDFs here','form.dropText':'or click to select files','form.noFiles':'No file selected yet.','form.next':'Next','form.back':'Back',
+  'form.palette':'Choose a color palette','form.paletteNote':'Notes about the desired style','form.dropTitle':'Drag your photos or PDFs here','form.dropText':'or click to select files','form.noFiles':'No file selected yet.','form.additionalInfoLabel':'Tell us what you want','form.additionalInfoPlaceholder':'• What should visitors understand first?\n• Which services should be highlighted?\n• What style or examples do you like?\n• Any specific requests?','form.next':'Next','form.back':'Back',
   'form.successTitle':'Got it.','form.successText':"We'll be in touch within 24 hours.",
   'form.metaPhone':'Or call','form.metaEmail':'Or email'
 },
@@ -1258,9 +1271,9 @@ fr:{
   'drawer.eyebrow':'[ Démarrage projet ]','drawer.title':'Construisons <em>ensemble.</em>',
   'drawer.sub':'Laissez-nous vos coordonnées. Nous revenons vers vous sous 24 heures avec la suite et un bref questionnaire.',
   'form.name':'Votre nom','form.company':'Entreprise','form.email':'E-mail','form.submit':'Envoyer',
-  'form.tabCompany':'Information sur votre entreprise','form.tabStyle':'Personnalisation de votre site','form.tabPhotos':'Photos souhaitées',
+  'form.tabCompany':'Information sur votre entreprise','form.tabStyle':'Personnalisation de votre site','form.tabPhotos':'Photos souhaitées','form.tabExtra':'Informations supplémentaires',
   'form.businessType':"Type d'entreprise",'form.chooseType':'Choisir un type','form.companyName':'Nom de votre entreprise','form.companyEmail':'Mail de votre entreprise','form.companyPhone':'Téléphone de votre entreprise',
-  'form.palette':'Choisissez une palette de couleurs','form.paletteNote':'Notes sur le style souhaité','form.dropTitle':'Glissez vos photos ou PDF ici','form.dropText':'ou cliquez pour sélectionner des fichiers','form.noFiles':'Aucun fichier sélectionné pour le moment.','form.next':'Suivant','form.back':'Retour',
+  'form.palette':'Choisissez une palette de couleurs','form.paletteNote':'Notes sur le style souhaité','form.dropTitle':'Glissez vos photos ou PDF ici','form.dropText':'ou cliquez pour sélectionner des fichiers','form.noFiles':'Aucun fichier sélectionné pour le moment.','form.additionalInfoLabel':'Expliquez-nous ce que vous souhaitez','form.additionalInfoPlaceholder':'• Que doivent comprendre vos visiteurs en premier ?\n• Quels services voulez-vous mettre en avant ?\n• Quel style ou quels exemples aimez-vous ?\n• Avez-vous des demandes spécifiques ?','form.next':'Suivant','form.back':'Retour',
   'form.successTitle':'Reçu.','form.successText':'Nous revenons vers vous sous 24 heures.',
   'form.metaPhone':'Ou téléphone','form.metaEmail':'Ou e-mail'
 },
@@ -1321,9 +1334,9 @@ de:{
   'drawer.eyebrow':'[ Projektaufnahme ]','drawer.title':'Bauen wir <em>etwas.</em>',
   'drawer.sub':'Hinterlassen Sie Ihre Daten. Wir melden uns innerhalb von 24 Stunden mit den nächsten Schritten und einem kurzen Briefing.',
   'form.name':'Ihr Name','form.company':'Unternehmen','form.email':'E-Mail','form.submit':'Senden',
-  'form.tabCompany':'Informationen zu Ihrem Unternehmen','form.tabStyle':'Personalisierung Ihrer Website','form.tabPhotos':'Gewünschte Fotos',
+  'form.tabCompany':'Informationen zu Ihrem Unternehmen','form.tabStyle':'Personalisierung Ihrer Website','form.tabPhotos':'Gewünschte Fotos','form.tabExtra':'Zusätzliche Informationen',
   'form.businessType':'Unternehmenstyp','form.chooseType':'Typ auswählen','form.companyName':'Name Ihres Unternehmens','form.companyEmail':'E-Mail Ihres Unternehmens','form.companyPhone':'Telefon Ihres Unternehmens',
-  'form.palette':'Farbpalette wählen','form.paletteNote':'Notizen zum gewünschten Stil','form.dropTitle':'Fotos oder PDFs hierher ziehen','form.dropText':'oder klicken, um Dateien auszuwählen','form.noFiles':'Noch keine Datei ausgewählt.','form.next':'Weiter','form.back':'Zurück',
+  'form.palette':'Farbpalette wählen','form.paletteNote':'Notizen zum gewünschten Stil','form.dropTitle':'Fotos oder PDFs hierher ziehen','form.dropText':'oder klicken, um Dateien auszuwählen','form.noFiles':'Noch keine Datei ausgewählt.','form.additionalInfoLabel':'Beschreiben Sie, was Sie möchten','form.additionalInfoPlaceholder':'• Was sollen Besucher zuerst verstehen?\n• Welche Dienstleistungen sollen hervorgehoben werden?\n• Welchen Stil oder welche Beispiele mögen Sie?\n• Gibt es besondere Wünsche?','form.next':'Weiter','form.back':'Zurück',
   'form.successTitle':'Erhalten.','form.successText':'Wir melden uns innerhalb von 24 Stunden.',
   'form.metaPhone':'Oder anrufen','form.metaEmail':'Oder E-Mail'
 }};
@@ -1435,7 +1448,7 @@ dropzone.addEventListener('drop',e=>{photos.files=e.dataTransfer.files;renderFil
 /* safe text validation: prevents emojis / unsupported symbols from reaching the form handler */
 const emojiRE = /[\p{Extended_Pictographic}\u{1F1E6}-\u{1F1FF}\u{1F300}-\u{1FAFF}\uFE0F\u200D]/gu;
 const controlRE = /[\u0000-\u001F\u007F]/g;
-const safeTextInputs = $$('#form input[type="text"], #form input[type="email"], #form input[type="tel"]');
+const safeTextInputs = $$('#form input[type="text"], #form input[type="email"], #form input[type="tel"], #form textarea');
 
 function sanitizeText(value){
   return value.replace(emojiRE,'').replace(controlRE,'').trimStart();

@@ -3,25 +3,27 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Auwem — Automated web maker · Websites for Swiss businesses in 48h</title>
-<meta name="description" content="Auwem builds professional websites for Swiss small businesses in 48 hours. CHF 400 flat. One website, one price, one invoice.">
+<title>Auwem — Premium websites for Swiss small businesses</title>
+<meta name="description" content="Auwem designs sharp, trustworthy websites for Swiss local businesses — delivered quickly, priced clearly, and built to win customers.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,400..900,0..100;1,9..144,400..600,0..100&family=Hanken+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#ECE6D6;
-  --bg-deep:#E3DBC6;
-  --paper:#F7F2E7;
-  --ink:#15120C;
-  --ink-soft:#5B5345;
-  --ink-faint:#8C8472;
-  --accent:#E04A18;
-  --accent-deep:#B33A12;
-  --accent-soft:rgba(224,74,24,.09);
-  --pine:#1E3B2C;
-  --line:#C8BEA4;
-  --line-soft:#D8CFB8;
+  --bg:#F4EFE6;
+  --bg-deep:#E8DDCB;
+  --paper:#FFF9EF;
+  --ink:#121A17;
+  --ink-soft:#566159;
+  --ink-faint:#8A9188;
+  --accent:#C85C3A;
+  --accent-deep:#963F29;
+  --accent-soft:rgba(200,92,58,.11);
+  --pine:#173D32;
+  --sage:#78917F;
+  --sun:#D9A441;
+  --line:#D4C7B3;
+  --line-soft:#E2D8C8;
 
   --display:'Fraunces',Georgia,serif;
   --body:'Hanken Grotesk',system-ui,sans-serif;
@@ -33,7 +35,10 @@
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 body{
-  background:var(--bg);
+  background:
+    radial-gradient(circle at 12% 6%,rgba(200,92,58,.10),transparent 30%),
+    radial-gradient(circle at 86% 12%,rgba(23,61,50,.11),transparent 34%),
+    var(--bg);
   color:var(--ink);
   font-family:var(--body);
   font-size:17px;
@@ -529,6 +534,42 @@ h1.hero-title em{
 }
 .dr-form input:focus{outline:none;border-color:var(--accent);background:var(--paper)}
 .dr-form input.err{border-color:var(--accent);background:var(--accent-soft)}
+.form-tabs{display:flex;gap:6px;margin-bottom:22px;background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:5px}
+.form-tab{
+  flex:1;border:none;background:transparent;border-radius:10px;padding:10px 8px;
+  font-family:var(--mono);font-size:10px;line-height:1.25;letter-spacing:.04em;text-transform:uppercase;
+  color:var(--ink-soft);cursor:pointer;transition:background .25s,color .25s;
+}
+.form-tab.active{background:var(--ink);color:var(--paper)}
+.form-panel{display:none}
+.form-panel.active{display:block;animation:panelIn .28s var(--ease)}
+@keyframes panelIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.dr-form select{
+  width:100%;font-family:var(--body);font-size:15px;color:var(--ink);
+  background:var(--bg);border:1.5px solid var(--line);border-radius:9px;padding:13px 14px;
+  transition:border-color .25s,background .25s;
+}
+.dr-form select:focus{outline:none;border-color:var(--accent);background:var(--paper)}
+.dr-form select.err{border-color:var(--accent);background:var(--accent-soft)}
+.form-nav{display:flex;gap:10px;margin-top:6px}
+.form-nav .btn{flex:1;justify-content:center}
+.color-palette{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin:9px 0 20px}
+.color-choice{position:relative;cursor:pointer}
+.color-choice input{position:absolute;opacity:0;pointer-events:none}
+.color-swatch{
+  display:block;height:44px;border-radius:12px;border:2px solid var(--line);
+  box-shadow:inset 0 0 0 3px var(--paper);transition:transform .25s,border-color .25s;
+}
+.color-choice input:checked + .color-swatch{border-color:var(--ink);transform:translateY(-2px)}
+.dropzone{
+  display:block;border:1.5px dashed var(--line);border-radius:14px;background:var(--bg);
+  padding:24px 18px;text-align:center;cursor:pointer;transition:border-color .25s,background .25s;
+}
+.dropzone:hover,.dropzone.drag{border-color:var(--accent);background:var(--accent-soft)}
+.dropzone input{display:none}
+.dropzone strong{display:block;font-family:var(--display);font-size:1.25rem;font-weight:500;margin-bottom:6px}
+.dropzone span{display:block;color:var(--ink-soft);font-size:14px}
+.file-list{margin:12px 0 20px;color:var(--ink-soft);font-size:13px;line-height:1.45}
 .dr-submit{
   width:100%;justify-content:center;margin-top:8px;
 }
@@ -553,6 +594,57 @@ h1.hero-title em{
 .rv{opacity:0;transform:translateY(26px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
 .rv.in{opacity:1;transform:none}
 .rv-d1{transition-delay:.09s}.rv-d2{transition-delay:.18s}.rv-d3{transition-delay:.27s}
+
+
+/* ───── refined modern layer ───── */
+.nav{box-shadow:0 10px 30px rgba(18,26,23,.04)}
+.brand .mark{border-radius:11px;background:linear-gradient(135deg,var(--ink),var(--pine))}
+.hero{padding-top:176px}
+.hero::before{
+  content:'';position:absolute;right:-140px;top:120px;width:470px;height:470px;border-radius:50%;
+  background:radial-gradient(circle,rgba(23,61,50,.13),transparent 66%);z-index:0;
+}
+.hero-cols{display:grid;grid-template-columns:minmax(0,1.02fr) minmax(330px,.78fr);align-items:center;gap:72px}
+.hero-sub{font-size:19px;max-width:52ch;color:#48534C}
+.proof-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+.proof-pill{
+  display:inline-flex;align-items:center;gap:8px;padding:9px 12px;border:1px solid var(--line);
+  background:rgba(255,249,239,.64);border-radius:999px;font-family:var(--mono);font-size:11px;color:var(--ink-soft);
+}
+.proof-pill b{color:var(--ink);font-weight:600}
+.hero-showcase{position:relative;min-height:430px}
+.site-preview{
+  position:relative;z-index:2;background:var(--paper);border:1px solid var(--line);border-radius:28px;
+  padding:16px;box-shadow:0 34px 80px -48px rgba(18,26,23,.75);transform:rotate(1deg);
+}
+.preview-top{display:flex;align-items:center;gap:7px;padding:6px 6px 14px;color:var(--ink-faint)}
+.preview-dot{width:9px;height:9px;border-radius:50%;background:var(--line)}
+.preview-url{margin-left:auto;font-family:var(--mono);font-size:10px;color:var(--ink-faint)}
+.preview-screen{border-radius:20px;overflow:hidden;background:linear-gradient(145deg,#173D32,#101815);color:var(--paper);min-height:288px;padding:24px;position:relative}
+.preview-screen::after{content:'';position:absolute;right:-46px;bottom:-46px;width:160px;height:160px;border-radius:50%;background:rgba(217,164,65,.18)}
+.preview-label{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#D9C9B8;margin-bottom:48px}
+.preview-heading{font-family:var(--display);font-size:38px;line-height:.96;letter-spacing:-.035em;max-width:8ch}
+.preview-card{margin-top:30px;background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.18);border-radius:18px;padding:14px;display:flex;justify-content:space-between;gap:12px;font-size:13px;color:#EFE6D8}
+.preview-card span:last-child{color:var(--sun);font-family:var(--mono)}
+.float-note{
+  position:absolute;left:-24px;bottom:58px;z-index:3;background:var(--paper);border:1px solid var(--line);border-radius:18px;
+  padding:14px 16px;box-shadow:0 18px 42px -30px rgba(18,26,23,.7);max-width:190px;
+  font-family:var(--mono);font-size:11px;color:var(--ink-soft);transform:rotate(-3deg);
+}
+.float-note b{display:block;font-family:var(--display);font-size:20px;color:var(--ink);font-weight:500;margin-bottom:2px}
+.hero-showcase .stamp{position:absolute;right:-8px;bottom:-18px;z-index:4;min-width:220px;transform:rotate(-3deg);box-shadow:5px 5px 0 var(--pine)}
+.receipt{border-radius:22px}
+.after-card,.work-card,.drawer{border-radius:22px}
+.work-card{background:rgba(255,249,239,.72);backdrop-filter:blur(10px)}
+.faq-q{font-family:var(--body);font-weight:650;font-size:1.02rem}
+.drawer{background:linear-gradient(180deg,var(--paper),#F6EFE4)}
+.form-tabs{background:rgba(23,61,50,.06);border-radius:18px;padding:6px;gap:5px}
+.form-tab.active{background:var(--pine);box-shadow:0 10px 22px -16px rgba(23,61,50,.7)}
+.dr-form input,.dr-form select{background:#FBF5EA;border-radius:14px;padding:14px 15px}
+.dropzone{background:#FBF5EA;border-radius:18px;padding:30px 18px}
+.color-swatch{height:54px;border-radius:16px}
+@media(max-width:920px){.hero-cols{grid-template-columns:1fr}.hero-showcase{min-height:380px;max-width:520px}.hero-showcase .stamp{right:8px}.float-note{left:4px}}
+@media(max-width:680px){.proof-row{gap:8px}.proof-pill{font-size:10px}.hero-showcase{min-height:auto}.site-preview{transform:none}.hero-showcase .stamp{position:relative;right:auto;bottom:auto;margin-top:18px;width:100%;transform:rotate(1deg)}.float-note{display:none}}
 
 /* ───── responsive ───── */
 @media(max-width:920px){
@@ -619,19 +711,35 @@ h1.hero-title em{
     </h1>
     <div class="hero-cols">
       <div>
-        <p class="hero-sub" data-i18n="hero.sub">Auwem builds professional websites for Swiss small businesses in 48 hours. <b>CHF 400 flat.</b> Automated where it counts, hand-crafted where it matters.</p>
+        <p class="hero-sub" data-i18n="hero.sub">Auwem creates sharp, credible websites for Swiss small businesses that need to look established from day one. <b>CHF 400 flat.</b> Clear process, strong copy, polished design.</p>
         <div class="hero-ctas">
           <a href="#" class="btn" data-open><span data-i18n="hero.cta1">Start your project</span> <span class="arw">→</span></a>
-          <a href="#pricing" class="btn btn-ghost" data-i18n="hero.cta2">See what's included</a>
+          <a href="#work" class="btn btn-ghost" data-i18n="hero.cta2">View example styles</a>
+        </div>
+        <div class="proof-row">
+          <span class="proof-pill"><b>CHF 400</b> flat fee</span>
+          <span class="proof-pill"><b>48h</b> first version</span>
+          <span class="proof-pill"><b>Swiss</b> hosting setup</span>
         </div>
       </div>
-      <div class="stamp">
-        <div class="st-top">
-          <span data-i18n="stamp.top">This week's slots</span>
-          <span>●●○</span>
+      <div class="hero-showcase">
+        <div class="site-preview" aria-hidden="true">
+          <div class="preview-top"><span class="preview-dot"></span><span class="preview-dot"></span><span class="preview-dot"></span><span class="preview-url">your-business.ch</span></div>
+          <div class="preview-screen">
+            <div class="preview-label">Local business website</div>
+            <div class="preview-heading">Built to feel real — not templated.</div>
+            <div class="preview-card"><span>Opening hours, services, booking, map</span><span>Live</span></div>
+          </div>
         </div>
-        <div class="clock" id="clock">00<span class="u">d</span> 00<span class="u">h</span> 00<span class="u">m</span></div>
-        <div class="st-label" data-i18n="stamp.label">Booking closes <b>Sunday 23:59</b></div>
+        <div class="float-note"><b>Looks premium.</b> Works simply on phone, tablet and desktop.</div>
+        <div class="stamp">
+          <div class="st-top">
+            <span data-i18n="stamp.top">This week's slots</span>
+            <span>●●○</span>
+          </div>
+          <div class="clock" id="clock">00<span class="u">d</span> 00<span class="u">h</span> 00<span class="u">m</span></div>
+          <div class="st-label" data-i18n="stamp.label">Booking closes <b>Sunday 23:59</b></div>
+        </div>
       </div>
     </div>
     <div class="scroll-hint"><span class="ln"></span><span data-i18n="hero.scroll">Scroll to explore</span></div>
@@ -912,7 +1020,7 @@ h1.hero-title em{
       </div>
       <div>
         <div class="ci-label" data-i18n="s5.email">Email</div>
-        <div class="ci-value"><a href="mailto:auwem@gmail.com">auwem@gmail.com</a></div>
+        <div class="ci-value"><a href="mailto:info@auwem.ch">info@auwem.ch</a></div>
       </div>
       <div>
         <div class="ci-label" data-i18n="s5.studio">Studio</div>
@@ -938,11 +1046,76 @@ h1.hero-title em{
     <div class="dr-eyebrow" data-i18n="drawer.eyebrow">[ Project intake ]</div>
     <h2 class="dr-title" data-i18n="drawer.title">Let's build <em>something.</em></h2>
     <p class="dr-sub" data-i18n="drawer.sub">Drop your details. We'll be back within 24 hours with next steps and a short brief.</p>
-    <form class="dr-form" id="form" novalidate>
-      <label><span data-i18n="form.name">Your name</span><input type="text" name="name" required autocomplete="name" placeholder="Jean Dupont"></label>
-      <label><span data-i18n="form.company">Company</span><input type="text" name="company" required autocomplete="organization" placeholder="Boulangerie du Lac"></label>
-      <label><span data-i18n="form.email">Email</span><input type="email" name="email" required autocomplete="email" placeholder="jean@example.com"></label>
-      <button type="submit" class="btn dr-submit"><span data-i18n="form.submit">Send</span> <span class="arw">→</span></button>
+    <form class="dr-form" id="form" action="https://formspree.io/f/xjgzdezd" method="POST" enctype="multipart/form-data" novalidate>
+      <input type="hidden" name="_subject" value="Nouvelle demande client Auwem">
+      <div class="form-tabs" role="tablist" aria-label="Project form sections">
+        <button type="button" class="form-tab active" data-tab="company" data-i18n="form.tabCompany">Business information</button>
+        <button type="button" class="form-tab" data-tab="style" data-i18n="form.tabStyle">Website personalization</button>
+        <button type="button" class="form-tab" data-tab="photos" data-i18n="form.tabPhotos">Desired photos</button>
+      </div>
+
+      <div class="form-panel active" data-panel="company">
+        <label>
+          <span data-i18n="form.businessType">Type of business</span>
+          <select name="businessType" required>
+            <option value="" data-i18n="form.chooseType">Choose a type</option>
+            <option>Coiffeur / Salon de coiffure</option>
+            <option>Garagiste / Garage automobile</option>
+            <option>Fiduciaire / Comptabilité</option>
+            <option>Boulangerie / Pâtisserie</option>
+            <option>Restaurant</option>
+            <option>Café / Tea-room</option>
+            <option>Bar</option>
+            <option>Photographe</option>
+            <option>Artisan / Menuisier</option>
+            <option>Électricien</option>
+            <option>Plombier / Chauffagiste</option>
+            <option>Peintre en bâtiment</option>
+            <option>Architecte / Bureau d'étude</option>
+            <option>Coach / Consultant</option>
+            <option>Avocat / Étude juridique</option>
+            <option>Médecin / Cabinet médical</option>
+            <option>Dentiste</option>
+            <option>Physiothérapeute</option>
+            <option>Institut de beauté</option>
+            <option>Fitness / Coach sportif</option>
+            <option>Agence immobilière</option>
+            <option>Commerce / Boutique</option>
+            <option>Autre</option>
+          </select>
+        </label>
+        <label><span data-i18n="form.companyName">Business name</span><input type="text" name="company" required autocomplete="organization" maxlength="80" placeholder="Boulangerie du Lac"></label>
+        <label><span data-i18n="form.companyEmail">Business email</span><input type="email" name="companyEmail" required autocomplete="email" maxlength="120" placeholder="contact@entreprise.ch"></label>
+        <label><span data-i18n="form.companyPhone">Business phone</span><input type="tel" name="companyPhone" required autocomplete="tel" maxlength="30" placeholder="079 123 45 67"></label>
+        <div class="form-nav"><button type="button" class="btn next-tab" data-next="style"><span data-i18n="form.next">Next</span> <span class="arw">→</span></button></div>
+      </div>
+
+      <div class="form-panel" data-panel="style">
+        <label><span data-i18n="form.palette">Choose a color palette</span></label>
+        <div class="color-palette" aria-label="Color palette">
+          <label class="color-choice"><input type="radio" name="palette" value="earth" checked><span class="color-swatch" style="background:linear-gradient(135deg,#ECE6D6,#E04A18,#1E3B2C)"></span></label>
+          <label class="color-choice"><input type="radio" name="palette" value="blue"><span class="color-swatch" style="background:linear-gradient(135deg,#E8EEF4,#5FA8D4,#10243A)"></span></label>
+          <label class="color-choice"><input type="radio" name="palette" value="pink"><span class="color-swatch" style="background:linear-gradient(135deg,#F3E4E2,#C0455A,#3D1F22)"></span></label>
+          <label class="color-choice"><input type="radio" name="palette" value="green"><span class="color-swatch" style="background:linear-gradient(135deg,#EDF3E8,#6D8C54,#1E3B2C)"></span></label>
+          <label class="color-choice"><input type="radio" name="palette" value="black"><span class="color-swatch" style="background:linear-gradient(135deg,#F7F2E7,#8C8472,#15120C)"></span></label>
+        </div>
+        <label><span data-i18n="form.paletteNote">Notes about the desired style</span><input type="text" name="styleNote" maxlength="160" placeholder="Minimaliste, premium, chaleureux..."></label>
+        <div class="form-nav">
+          <button type="button" class="btn btn-ghost prev-tab" data-prev="company"><span data-i18n="form.back">Back</span></button>
+          <button type="button" class="btn next-tab" data-next="photos"><span data-i18n="form.next">Next</span> <span class="arw">→</span></button>
+        </div>
+      </div>
+
+      <div class="form-panel" data-panel="photos">
+        <label class="dropzone" id="dropzone">
+          <input type="file" name="photos" id="photos" accept=".pdf,image/*" multiple>
+          <strong data-i18n="form.dropTitle">Drag your photos or PDFs here</strong>
+          <span data-i18n="form.dropText">or click to select files</span>
+        </label>
+        <div class="file-list" id="fileList" data-i18n="form.noFiles">No file selected yet.</div>
+        <div class="form-nav"><button type="button" class="btn btn-ghost prev-tab" data-prev="style"><span data-i18n="form.back">Back</span></button></div>
+        <button type="submit" class="btn dr-submit"><span data-i18n="form.submit">Send</span> <span class="arw">→</span></button>
+      </div>
     </form>
     <div class="dr-success" id="success">
       <div class="ck">✓</div>
@@ -956,7 +1129,7 @@ h1.hero-title em{
       </div>
       <div>
         <div class="dm-label" data-i18n="form.metaEmail">Or email</div>
-        <div class="dm-value"><a href="mailto:auwem@gmail.com">auwem@gmail.com</a></div>
+        <div class="dm-value"><a href="mailto:info@auwem.ch">info@auwem.ch</a></div>
       </div>
     </div>
   </div>
@@ -966,22 +1139,22 @@ h1.hero-title em{
 /* ───── translations ───── */
 const T={
 en:{
-  'status':'Available · 2 slots this week','rail':'Start your project',
+  'status':'Now booking · 2 builds this week','rail':'Start your project',
   'nav.work':'Work','nav.pricing':'Pricing','nav.process':'Process','nav.faq':'FAQ','nav.cta':'Start a project',
-  'hero.p1':'Beautiful websites for ','hero.p2':' too busy to build one.',
-  'hero.sub':'Auwem builds professional websites for Swiss small businesses in 48 hours. <b>CHF 400 flat.</b> Automated where it counts, hand-crafted where it matters.',
-  'hero.cta1':'Start your project','hero.cta2':"See what's included",'hero.scroll':'Scroll to explore',
+  'hero.p1':'Websites that make ','hero.p2':' look instantly established.',
+  'hero.sub':'Auwem creates sharp, credible websites for Swiss small businesses that need to look established from day one. <b>CHF 400 flat.</b> Clear process, strong copy, polished design.',
+  'hero.cta1':'Start your project','hero.cta2':'View example styles','hero.scroll':'Scroll to explore',
   'stamp.top':"This week's slots",'stamp.label':'Booking closes <b>Sunday 23:59</b>',
-  's1.label':'[01] — The price','s1.title':'One website. <em>One price.</em><br>One invoice.',
-  's1.intro':'Everything you need to look professional online — designed, written, and live in 48 hours.',
-  's1.pitchTitle':'No quotes. No hourly billing. <em>No second invoice.</em>',
-  's1.desc':'A complete, mobile-friendly website. Automated builds, hand-crafted polish — live before the week is out.',
+  's1.label':'[01] — The price','s1.title':'A polished site without the <em>agency drama.</em>',
+  's1.intro':'A focused, elegant website that explains what you do, builds trust, and helps customers contact you.',
+  's1.pitchTitle':'Clear price, fast delivery, <em>proper finish.</em>',
+  's1.desc':'We combine a streamlined build process with human design decisions, so your site feels specific to your business — not like a generic template.',
   's1.guarTitle':"Live in 48h, or you don't pay.",
   's1.guarText':"If your site isn't ready 48 hours after we receive your content, the build is on us.",
   's1.tag':'All-in flat fee',
-  's1.f1':'Custom-designed website, up to 5 pages','s1.f2':'Mobile-first, lightning-fast loading',
+  's1.f1':'Tailored website structure, up to 5 pages','s1.f2':'Mobile-first, lightning-fast loading',
   's1.f3':'Contact form & Google Maps','s1.f4':'Basic SEO setup (titles, meta, sitemap)',
-  's1.f5':'Bilingual FR / EN (or +DE on request)','s1.f6':'Copywriting — we write your pages for you',
+  's1.f5':'Bilingual FR / EN (or +DE on request)','s1.f6':'Customer-focused copywriting included',
   'rc.oneTime':'One-time','rc.incl':'INCL','rc.free':'FREE','rc.hosting':'Hosting — Year 1','rc.total':'Total due','rc.delivery':'Delivery · 48h',
   's2.label':'[02] — After launch','s2.title':'No nasty <em>surprises.</em>',
   's2.intro':'You pay once for the website. After that, you only pay when you actually need something.',
@@ -991,22 +1164,22 @@ en:{
   's2.c2.desc':'Fast Swiss hosting, daily backups, SSL, uptime monitoring and minor security updates. Cancel anytime — we hand over your site.',
   's2.c3.num':'// On-demand','s2.c3.title':'Changes','s2.c3.unit':'CHF/change',
   's2.c3.desc':'New opening hours, a price, a photo, an extra service? Send us a message — we update it within 24 hours.',
-  's3.label':'[03] — How it works','s3.title':'From <em>"we should really build one"</em><br>to live, in 3 days.',
-  's3.step1.day':'Day 1 · Morning','s3.step1.title':'Fill the brief',
+  's3.label':'[03] — How it works','s3.title':'From a few details to a site that feels <em>ready for customers.</em>',
+  's3.step1.day':'Day 1 · Morning','s3.step1.title':'Tell us the essentials',
   's3.step1.desc':"A 5-minute form: your business, your services, the vibe. Send us your photos — or tell us you don't have any, and we handle it.",
   's3.step2.day':'Day 1–2','s3.step2.title':'We build it',
-  's3.step2.desc':'Our automated pipeline assembles your site in 48 hours. We polish it by hand. You get one preview link.',
+  's3.step2.desc':'We turn your answers into a clean structure, write the copy, shape the visual direction and send you one focused preview.',
   's3.step3.day':'Day 3','s3.step3.title':'You go live',
   's3.step3.desc':'One round of revisions included. Then we publish to your domain. Free hosting kicks in on day one.',
-  's4.label':'[04] — Selected work','s4.title':'Small businesses, <em>online,</em><br>in 48 hours.',
-  's4.intro':'A glimpse of what your site could look like. Every one of these went live within a single week.',
+  's4.label':'[04] — Selected work','s4.title':'Different businesses, different <em>visual character.</em>',
+  's4.intro':'The goal is not to look flashy. It is to look credible, current and easy to contact.',
   's4.w1.meta':'Bakery · Pastry','s4.w2.meta':'Accounting firm','s4.w3.meta':'Photography','s4.w4.meta':'Hair salon',
   'work.view':'View site',
   'mock.bake.n1':'Breads','mock.bake.n2':'Hours','mock.bake.n3':'Visit','mock.bake.h':'Fresh from<br>the oven','mock.bake.p':'Artisan bakery on the lakefront since 1974','mock.bake.s':'OPEN TUE–SUN · 6:30–18:30',
   'mock.acc.n1':'Services','mock.acc.n2':'Team','mock.acc.n3':'Contact','mock.acc.h':'Accounting, <em>without the jargon.</em>','mock.acc.b':'Book a call','mock.acc.s':'CERTIFIED FIDUCIARY · NYON',
   'mock.photo.n1':'Portfolio','mock.photo.n2':'About','mock.photo.n3':'Book','mock.photo.c':'Light, captured.','mock.photo.s':'Weddings · Portraits · Vevey',
   'mock.salon.n1':'Salon','mock.salon.n2':'Prices','mock.salon.n3':'Book','mock.salon.h':'Your chair is <em>waiting.</em>','mock.salon.l1':'Cut & style','mock.salon.l2':'Colour','mock.salon.l3':'Treatment','mock.salon.s':'BOOK ONLINE · MONTREUX',
-  'faq.label':'[05] — Good questions','faq.title':'The things <em>everyone asks.</em>',
+  'faq.label':'[05] — Good questions','faq.title':'Clear answers before we <em>start.</em>',
   'faq.q1':"What if I don't have any photos?",
   'faq.a1':'No problem. We use high-quality, licensed imagery that fits your business, and you can swap in your own photos anytime later.',
   'faq.q2':'Do I really own the website?',
@@ -1015,27 +1188,30 @@ en:{
   'faq.a3':"That's included. Tell us about your business in the brief and we write clear, professional copy for every page — in FR, EN, or both.",
   'faq.q4':"What's the catch with CHF 400?",
   'faq.a4':'None. Automation handles the heavy lifting, so we keep prices low and delivery fast. One flat fee, one invoice — that\'s the whole model.',
-  's5.label':'[06] — Start your project','s5.title':"Let's get your business <em>online</em> this week.",
+  's5.label':'[06] — Start your project','s5.title':'Give your business a website customers can <em>trust.</em>',
   's5.cta':'Start your project','s5.call':'Or call 079 951 25 65',
   's5.phone':'Phone','s5.email':'Email','s5.studio':'Studio',
-  'footer.built':'Built (of course) in 48 hours.',
-  'drawer.eyebrow':'[ Project intake ]','drawer.title':"Let's build <em>something.</em>",
-  'drawer.sub':"Drop your details. We'll be back within 24 hours with next steps and a short brief.",
+  'footer.built':'Designed in Vaud. Built for Swiss local businesses.',
+  'drawer.eyebrow':'[ Project intake ]','drawer.title':'Tell us what your website should <em>feel like.</em>',
+  'drawer.sub':'A few details are enough for us to understand your business, your style and what customers need to see first.',
   'form.name':'Your name','form.company':'Company','form.email':'Email','form.submit':'Send',
+  'form.tabCompany':'Business information','form.tabStyle':'Website personalization','form.tabPhotos':'Desired photos',
+  'form.businessType':'Type of business','form.chooseType':'Choose a type','form.companyName':'Business name','form.companyEmail':'Business email','form.companyPhone':'Business phone',
+  'form.palette':'Choose a color palette','form.paletteNote':'Notes about the desired style','form.dropTitle':'Drag your photos or PDFs here','form.dropText':'or click to select files','form.noFiles':'No file selected yet.','form.next':'Next','form.back':'Back',
   'form.successTitle':'Got it.','form.successText':"We'll be in touch within 24 hours.",
   'form.metaPhone':'Or call','form.metaEmail':'Or email'
 },
 fr:{
-  'status':'Disponible · 2 places cette semaine','rail':'Démarrer un projet',
+  'status':'Nouvelles commandes · 2 créations cette semaine','rail':'Démarrer un projet',
   'nav.work':'Réalisations','nav.pricing':'Tarif','nav.process':'Processus','nav.faq':'FAQ','nav.cta':'Démarrer un projet',
-  'hero.p1':'De beaux sites web pour les ','hero.p2':' trop occupés pour en créer un.',
-  'hero.sub':"Auwem construit des sites web professionnels pour les PME suisses en 48 heures. <b>400 CHF tout compris.</b> Automatisé là où ça compte, fait main là où c'est nécessaire.",
-  'hero.cta1':'Démarrer votre projet','hero.cta2':'Voir ce qui est inclus','hero.scroll':'Faites défiler',
+  'hero.p1':'Des sites qui donnent aux ','hero.p2':' une image sérieuse dès le premier clic.',
+  'hero.sub':'Auwem crée des sites crédibles et élégants pour les petites entreprises suisses qui veulent inspirer confiance dès le premier jour. <b>400 CHF tout compris.</b> Processus clair, rédaction solide, design soigné.',
+  'hero.cta1':'Démarrer votre projet','hero.cta2':'Voir les styles possibles','hero.scroll':'Faites défiler',
   'stamp.top':'Places cette semaine','stamp.label':'Clôture <b>dimanche 23h59</b>',
-  's1.label':'[01] — Le tarif','s1.title':'Un site. <em>Un prix.</em><br>Une facture.',
-  's1.intro':"Tout ce qu'il vous faut pour une présence en ligne professionnelle — conçu, rédigé et en ligne en 48 heures.",
-  's1.pitchTitle':"Pas de devis. Pas de facturation à l'heure. <em>Pas de deuxième facture.</em>",
-  's1.desc':'Un site web complet, adapté au mobile. Construction automatisée, finitions à la main — en ligne avant la fin de la semaine.',
+  's1.label':'[01] — Le tarif','s1.title':'Un site soigné, sans <em>complication d’agence.</em>',
+  's1.intro':'Un site clair et élégant qui explique votre activité, inspire confiance et facilite le contact.',
+  's1.pitchTitle':'Prix clair, livraison rapide, <em>finition propre.</em>',
+  's1.desc':'Nous combinons un processus rapide avec de vraies décisions de design, pour éviter l’effet modèle générique.',
   's1.guarTitle':'En ligne en 48h, ou vous ne payez pas.',
   's1.guarText':"Si votre site n'est pas prêt 48 heures après réception de votre contenu, la construction est offerte.",
   's1.tag':'Tarif forfaitaire',
@@ -1051,7 +1227,7 @@ fr:{
   's2.c2.desc':'Hébergement suisse rapide, sauvegardes quotidiennes, SSL, surveillance et mises à jour de sécurité. Résiliable à tout moment — nous vous remettons votre site.',
   's2.c3.num':'// À la demande','s2.c3.title':'Modifications','s2.c3.unit':'CHF/modif.',
   's2.c3.desc':'De nouveaux horaires, un prix, une photo, un service en plus ? Envoyez-nous un message — modification effectuée sous 24 heures.',
-  's3.label':'[03] — Comment ça marche','s3.title':"De <em>« il faudrait vraiment qu'on en fasse un »</em><br>à en ligne, en 3 jours.",
+  's3.label':'[03] — Comment ça marche','s3.title':'De quelques informations à un site qui paraît <em>prêt pour vos clients.</em>',
   's3.step1.day':'Jour 1 · Matin','s3.step1.title':'Remplir le brief',
   's3.step1.desc':"Un formulaire de 5 minutes : votre activité, vos services, l'ambiance. Envoyez-nous vos photos — ou dites-nous que vous n'en avez pas, on s'en charge.",
   's3.step2.day':'Jour 1–2','s3.step2.title':'On le construit',
@@ -1078,10 +1254,13 @@ fr:{
   's5.label':'[06] — Démarrer votre projet','s5.title':'Mettons votre entreprise <em>en ligne</em> cette semaine.',
   's5.cta':'Démarrer votre projet','s5.call':'Ou appelez le 079 951 25 65',
   's5.phone':'Téléphone','s5.email':'E-mail','s5.studio':'Studio',
-  'footer.built':'Construit (évidemment) en 48 heures.',
+  'footer.built':'Designé dans le canton de Vaud. Pensé pour les entreprises locales suisses.',
   'drawer.eyebrow':'[ Démarrage projet ]','drawer.title':'Construisons <em>ensemble.</em>',
   'drawer.sub':'Laissez-nous vos coordonnées. Nous revenons vers vous sous 24 heures avec la suite et un bref questionnaire.',
   'form.name':'Votre nom','form.company':'Entreprise','form.email':'E-mail','form.submit':'Envoyer',
+  'form.tabCompany':'Information sur votre entreprise','form.tabStyle':'Personnalisation de votre site','form.tabPhotos':'Photos souhaitées',
+  'form.businessType':"Type d'entreprise",'form.chooseType':'Choisir un type','form.companyName':'Nom de votre entreprise','form.companyEmail':'Mail de votre entreprise','form.companyPhone':'Téléphone de votre entreprise',
+  'form.palette':'Choisissez une palette de couleurs','form.paletteNote':'Notes sur le style souhaité','form.dropTitle':'Glissez vos photos ou PDF ici','form.dropText':'ou cliquez pour sélectionner des fichiers','form.noFiles':'Aucun fichier sélectionné pour le moment.','form.next':'Suivant','form.back':'Retour',
   'form.successTitle':'Reçu.','form.successText':'Nous revenons vers vous sous 24 heures.',
   'form.metaPhone':'Ou téléphone','form.metaEmail':'Ou e-mail'
 },
@@ -1090,7 +1269,7 @@ de:{
   'nav.work':'Arbeiten','nav.pricing':'Preise','nav.process':'Ablauf','nav.faq':'FAQ','nav.cta':'Projekt starten',
   'hero.p1':'Schöne Websites für ','hero.p2':', die zu beschäftigt sind, eine zu bauen.',
   'hero.sub':"Auwem baut professionelle Websites für Schweizer KMU in 48 Stunden. <b>400 CHF pauschal.</b> Automatisiert wo's zählt, handgemacht wo's drauf ankommt.",
-  'hero.cta1':'Projekt starten','hero.cta2':'Sehen, was enthalten ist','hero.scroll':'Weiter scrollen',
+  'hero.cta1':'Projekt starten','hero.cta2':'Beispielstile ansehen','hero.scroll':'Weiter scrollen',
   'stamp.top':'Plätze diese Woche','stamp.label':'Buchung schliesst <b>Sonntag 23:59</b>',
   's1.label':'[01] — Der Preis','s1.title':'Eine Website. <em>Ein Preis.</em><br>Eine Rechnung.',
   's1.intro':'Alles, was Sie für einen professionellen Online-Auftritt brauchen — gestaltet, geschrieben und in 48 Stunden online.',
@@ -1138,10 +1317,13 @@ de:{
   's5.label':'[06] — Projekt starten','s5.title':'Bringen wir Ihr Geschäft <em>online</em> diese Woche.',
   's5.cta':'Projekt starten','s5.call':'Oder anrufen 079 951 25 65',
   's5.phone':'Telefon','s5.email':'E-Mail','s5.studio':'Studio',
-  'footer.built':'Erstellt (natürlich) in 48 Stunden.',
+  'footer.built':'Gestaltet in der Waadt. Gebaut für Schweizer lokale Unternehmen.',
   'drawer.eyebrow':'[ Projektaufnahme ]','drawer.title':'Bauen wir <em>etwas.</em>',
   'drawer.sub':'Hinterlassen Sie Ihre Daten. Wir melden uns innerhalb von 24 Stunden mit den nächsten Schritten und einem kurzen Briefing.',
   'form.name':'Ihr Name','form.company':'Unternehmen','form.email':'E-Mail','form.submit':'Senden',
+  'form.tabCompany':'Informationen zu Ihrem Unternehmen','form.tabStyle':'Personalisierung Ihrer Website','form.tabPhotos':'Gewünschte Fotos',
+  'form.businessType':'Unternehmenstyp','form.chooseType':'Typ auswählen','form.companyName':'Name Ihres Unternehmens','form.companyEmail':'E-Mail Ihres Unternehmens','form.companyPhone':'Telefon Ihres Unternehmens',
+  'form.palette':'Farbpalette wählen','form.paletteNote':'Notizen zum gewünschten Stil','form.dropTitle':'Fotos oder PDFs hierher ziehen','form.dropText':'oder klicken, um Dateien auszuwählen','form.noFiles':'Noch keine Datei ausgewählt.','form.next':'Weiter','form.back':'Zurück',
   'form.successTitle':'Erhalten.','form.successText':'Wir melden uns innerhalb von 24 Stunden.',
   'form.metaPhone':'Oder anrufen','form.metaEmail':'Oder E-Mail'
 }};
@@ -1167,6 +1349,7 @@ function apply(l){
   $$('[data-i18n]').forEach(el=>{ const k=el.dataset.i18n; if(T[l][k]!=null) el.innerHTML=T[l][k]; });
   $$('.lang-btn').forEach(b=>b.classList.toggle('active',b.dataset.lang===l));
   buildMarquee();
+  const fl=$('#fileList'); if(fl && !$('#photos')?.files?.length) fl.textContent=T[l]['form.noFiles'];
   wi=wi%words.length; rot.textContent=words[wi];
 }
 $$('.lang-btn').forEach(b=>b.addEventListener('click',()=>apply(b.dataset.lang)));
@@ -1230,18 +1413,122 @@ $('#closeDrawer').addEventListener('click',closeD);
 backdrop.addEventListener('click',closeD);
 addEventListener('keydown',e=>{ if(e.key==='Escape') closeD(); });
 
+/* form tabs */
+function showTab(name){
+  $$('.form-tab').forEach(t=>t.classList.toggle('active',t.dataset.tab===name));
+  $$('.form-panel').forEach(p=>p.classList.toggle('active',p.dataset.panel===name));
+}
+$$('.form-tab').forEach(t=>t.addEventListener('click',()=>showTab(t.dataset.tab)));
+$$('.next-tab').forEach(b=>b.addEventListener('click',()=>showTab(b.dataset.next)));
+$$('.prev-tab').forEach(b=>b.addEventListener('click',()=>showTab(b.dataset.prev)));
+
+const photos=$('#photos'), fileList=$('#fileList'), dropzone=$('#dropzone');
+function renderFiles(){
+  const files=[...photos.files];
+  fileList.textContent=files.length ? files.map(f=>`• ${f.name}`).join('\n') : (T[lang]['form.noFiles'] || 'No file selected yet.');
+}
+photos.addEventListener('change',renderFiles);
+['dragenter','dragover'].forEach(ev=>dropzone.addEventListener(ev,e=>{e.preventDefault();dropzone.classList.add('drag');}));
+['dragleave','drop'].forEach(ev=>dropzone.addEventListener(ev,e=>{e.preventDefault();dropzone.classList.remove('drag');}));
+dropzone.addEventListener('drop',e=>{photos.files=e.dataTransfer.files;renderFiles();});
+
+/* safe text validation: prevents emojis / unsupported symbols from reaching the form handler */
+const emojiRE = /[\p{Extended_Pictographic}\u{1F1E6}-\u{1F1FF}\u{1F300}-\u{1FAFF}\uFE0F\u200D]/gu;
+const controlRE = /[\u0000-\u001F\u007F]/g;
+const safeTextInputs = $$('#form input[type="text"], #form input[type="email"], #form input[type="tel"]');
+
+function sanitizeText(value){
+  return value.replace(emojiRE,'').replace(controlRE,'').trimStart();
+}
+function hasEmoji(value){
+  emojiRE.lastIndex = 0;
+  return emojiRE.test(value);
+}
+function setFieldError(input, message){
+  input.classList.add('err');
+  input.setAttribute('aria-invalid','true');
+  input.title = message;
+}
+function clearFieldError(input){
+  input.classList.remove('err');
+  input.removeAttribute('aria-invalid');
+  input.removeAttribute('title');
+}
+
+safeTextInputs.forEach(input=>{
+  input.addEventListener('input',()=>{
+    const clean = sanitizeText(input.value);
+    if(input.value !== clean) input.value = clean;
+    clearFieldError(input);
+  });
+  input.addEventListener('paste',()=>setTimeout(()=>{
+    input.value = sanitizeText(input.value);
+  },0));
+});
+
 /* form */
 $('#form').addEventListener('submit',e=>{
   e.preventDefault();
-  const f=e.target; let ok=true;
-  f.querySelectorAll('input').forEach(i=>{
-    const bad=!i.value.trim()||(i.type==='email'&&!/^[^@]+@[^@]+\.[^@]+$/.test(i.value));
-    i.classList.toggle('err',bad); if(bad) ok=false;
+  const f=e.target; let ok=true; let firstBadPanel=null;
+
+  safeTextInputs.forEach(i=>{
+    const clean=sanitizeText(i.value);
+    if(i.value!==clean) i.value=clean;
+    if(hasEmoji(i.value)){
+      setFieldError(i,'Please remove emojis from this field.');
+      ok=false;
+      firstBadPanel ||= i.closest('.form-panel');
+    }
   });
+
+  f.querySelectorAll('input[required],select[required]').forEach(i=>{
+    const value=(i.value || '').trim();
+    const bad=!value || (i.type==='email'&&!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(value));
+    if(bad){
+      setFieldError(i, i.type==='email' ? 'Please enter a valid email address.' : 'Please complete this field.');
+      ok=false;
+      firstBadPanel ||= i.closest('.form-panel');
+    }else if(!hasEmoji(value)){
+      clearFieldError(i);
+    }
+  });
+
+  if(firstBadPanel) showTab(firstBadPanel.dataset.panel);
   if(!ok) return;
-  f.style.display='none'; $('#success').classList.add('on');
+
+  const submitBtn = f.querySelector('button[type="submit"]');
+  const originalText = submitBtn ? submitBtn.innerHTML : '';
+  if(submitBtn){
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<span>Sending...</span>';
+  }
+
+  fetch(f.action, {
+    method: f.method,
+    body: new FormData(f),
+    headers: { 'Accept': 'application/json' }
+  })
+  .then(response=>{
+    if(response.ok){
+      f.reset();
+      renderFiles();
+      f.style.display='none';
+      $('#success').classList.add('on');
+      return;
+    }
+    throw new Error('Form submission failed');
+  })
+  .catch(()=>{
+    alert('Sorry, the form could not be sent. Please email us directly at info@auwem.ch.');
+  })
+  .finally(()=>{
+    if(submitBtn){
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = originalText;
+    }
+  });
 });
-$$('#form input').forEach(i=>i.addEventListener('input',()=>i.classList.remove('err')));
+$$('#form input,#form select').forEach(i=>i.addEventListener('input',()=>clearFieldError(i)));
 
 /* cursor blob */
 const blob=$('#blob'); let bx=innerWidth/2,by=innerHeight/2,tx=bx,ty=by;

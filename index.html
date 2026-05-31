@@ -1047,7 +1047,7 @@ h1.hero-title em{
     <div class="dr-eyebrow" data-i18n="drawer.eyebrow">[ Project intake ]</div>
     <h2 class="dr-title" data-i18n="drawer.title">Let's build <em>something.</em></h2>
     <p class="dr-sub" data-i18n="drawer.sub">Drop your details. We'll be back within 24 hours with next steps and a short brief.</p>
-    <form class="dr-form" id="form" action="https://formspree.io/f/xjgzdezd" method="POST" enctype="multipart/form-data" novalidate>
+    <form class="dr-form" id="form" action="https://formspree.io/f/xjgzdezd" method="POST" enctype="multipart/form-data" accept-charset="UTF-8" novalidate>
       <input type="hidden" name="_subject" value="Nouvelle demande client Auwem">
       <div class="form-tabs" role="tablist" aria-label="Project form sections">
         <button type="button" class="form-tab active" data-tab="company" data-i18n="form.tabCompany">Business information</button>
@@ -1087,7 +1087,7 @@ h1.hero-title em{
           </select>
         </label>
         <label><span data-i18n="form.companyName">Business name</span><input type="text" name="company" required autocomplete="organization" maxlength="80" placeholder="Boulangerie du Lac"></label>
-        <label><span data-i18n="form.companyEmail">Business email</span><input type="email" name="companyEmail" required autocomplete="email" maxlength="120" placeholder="contact@entreprise.ch"></label>
+        <label><span data-i18n="form.companyEmail">Business email</span><input type="email" name="email" required autocomplete="email" maxlength="120" placeholder="contact@entreprise.ch"></label>
         <label><span data-i18n="form.companyPhone">Business phone</span><input type="tel" name="companyPhone" required autocomplete="tel" maxlength="30" placeholder="079 123 45 67"></label>
         <div class="form-nav"><button type="button" class="btn next-tab" data-next="style"><span data-i18n="form.next">Next</span> <span class="arw">→</span></button></div>
       </div>
@@ -1481,7 +1481,6 @@ safeTextInputs.forEach(input=>{
 
 /* form */
 $('#form').addEventListener('submit',e=>{
-  e.preventDefault();
   const f=e.target; let ok=true; let firstBadPanel=null;
 
   safeTextInputs.forEach(i=>{
@@ -1494,7 +1493,7 @@ $('#form').addEventListener('submit',e=>{
     }
   });
 
-  f.querySelectorAll('input[required],select[required]').forEach(i=>{
+  f.querySelectorAll('input[required],select[required],textarea[required]').forEach(i=>{
     const value=(i.value || '').trim();
     const bad=!value || (i.type==='email'&&!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(value));
     if(bad){
@@ -1507,39 +1506,24 @@ $('#form').addEventListener('submit',e=>{
   });
 
   if(firstBadPanel) showTab(firstBadPanel.dataset.panel);
-  if(!ok) return;
+
+  if(!ok){
+    e.preventDefault();
+    return;
+  }
 
   const submitBtn = f.querySelector('button[type="submit"]');
-  const originalText = submitBtn ? submitBtn.innerHTML : '';
   if(submitBtn){
     submitBtn.disabled = true;
     submitBtn.innerHTML = '<span>Sending...</span>';
   }
 
-  fetch(f.action, {
-    method: f.method,
-    body: new FormData(f),
-    headers: { 'Accept': 'application/json' }
-  })
-  .then(response=>{
-    if(response.ok){
-      f.reset();
-      renderFiles();
-      f.style.display='none';
-      $('#success').classList.add('on');
-      return;
-    }
-    throw new Error('Form submission failed');
-  })
-  .catch(()=>{
-    alert('Sorry, the form could not be sent. Please email us directly at info@auwem.ch.');
-  })
-  .finally(()=>{
-    if(submitBtn){
-      submitBtn.disabled = false;
-      submitBtn.innerHTML = originalText;
-    }
-  });
+  /*
+    Important: we let the browser submit the form normally to Formspree.
+    This is more reliable for multipart/form-data and file uploads than AJAX/fetch,
+    and avoids the false error alert some browsers show when uploads are blocked by CORS,
+    file size limits, or local testing.
+  */
 });
 $$('#form input,#form select').forEach(i=>i.addEventListener('input',()=>clearFieldError(i)));
 

@@ -507,6 +507,67 @@ h1.hero-title em{
   z-index:300;opacity:0;pointer-events:none;transition:opacity .4s;
 }
 .backdrop.on{opacity:1;pointer-events:auto}
+
+/* ── login ── */
+.login-link{
+  background:transparent;border:none;cursor:pointer;font-family:var(--body);
+  font-size:14px;font-weight:500;color:var(--ink-soft);padding:8px 4px;
+  display:inline-flex;align-items:center;gap:7px;transition:color .2s;
+}
+.login-link:hover{color:var(--ink)}
+.login-link .lg-ic{width:16px;height:16px;display:inline-block;opacity:.8}
+.login-link.is-user{color:var(--ink);font-weight:600}
+.login-link .avatar{
+  width:26px;height:26px;border-radius:50%;background:var(--accent);color:#fff;
+  display:grid;place-items:center;font-size:12px;font-weight:700;font-family:var(--mono);
+  text-transform:uppercase;
+}
+.login-modal{
+  position:fixed;z-index:320;top:50%;left:50%;transform:translate(-50%,-46%) scale(.97);
+  width:min(420px,calc(100vw - 36px));background:var(--paper);border-radius:22px;
+  box-shadow:0 40px 90px -30px rgba(21,18,12,.55);padding:40px 36px 32px;
+  opacity:0;pointer-events:none;transition:opacity .35s,transform .35s var(--ease);
+  max-height:calc(100vh - 36px);overflow-y:auto;
+}
+.login-modal.on{opacity:1;pointer-events:auto;transform:translate(-50%,-50%) scale(1)}
+.login-close{
+  position:absolute;top:18px;right:18px;width:34px;height:34px;border-radius:50%;
+  border:1.5px solid var(--line);background:transparent;cursor:pointer;font-size:18px;color:var(--ink-soft);
+  display:grid;place-items:center;transition:all .25s;
+}
+.login-close:hover{background:var(--ink);color:var(--paper);border-color:var(--ink);transform:rotate(90deg)}
+.login-eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
+.login-title{font-family:var(--display);font-weight:430;font-size:2rem;line-height:1.05;letter-spacing:-.02em;margin-bottom:8px}
+.login-title em{font-weight:500;color:var(--accent)}
+.login-sub{color:var(--ink-soft);font-size:14px;margin-bottom:24px;line-height:1.5}
+.login-form label{display:block;margin-bottom:16px}
+.login-form label span{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:7px}
+.login-form input{
+  width:100%;background:var(--bg);border:1.5px solid var(--line);border-radius:11px;
+  padding:13px 14px;font-family:var(--body);font-size:15px;color:var(--ink);
+  transition:border-color .25s,background .25s;
+}
+.login-form input:focus{outline:none;border-color:var(--accent);background:var(--paper)}
+.login-form input.err{border-color:var(--accent);background:var(--accent-soft)}
+.login-msg{font-size:13px;margin:-6px 0 14px;min-height:18px}
+.login-msg.error{color:var(--accent-deep)}
+.login-msg.ok{color:#2A4D3A}
+.login-submit{width:100%;justify-content:center;margin-top:6px}
+.login-switch{margin-top:18px;text-align:center;font-size:13px;color:var(--ink-soft)}
+.login-switch button{background:none;border:none;color:var(--accent);cursor:pointer;font-family:var(--body);font-size:13px;font-weight:600;text-decoration:underline;padding:0}
+.login-note{
+  margin-top:22px;padding:12px 14px;background:var(--accent-soft);border-radius:11px;
+  font-size:12px;line-height:1.5;color:var(--ink-soft);
+}
+.login-note strong{color:var(--accent-deep)}
+.login-account{display:none}
+.login-account.on{display:block}
+.login-account .acc-email{font-family:var(--mono);font-size:13px;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:11px 13px;margin-bottom:14px;word-break:break-all}
+.login-account .acc-draft{font-size:13px;color:var(--ink-soft);line-height:1.55;margin-bottom:18px}
+.login-account .acc-draft b{color:var(--ink)}
+.btn-ghost-full{width:100%;justify-content:center;background:transparent;color:var(--ink);border:1.5px solid var(--line)}
+.btn-ghost-full:hover{border-color:var(--accent);color:var(--accent);background:transparent}
+@media(max-width:560px){.login-modal{padding:36px 24px 26px}}
 .drawer{
   position:fixed;top:0;right:0;bottom:0;width:min(460px,100vw);z-index:310;
   background:var(--paper);
@@ -537,9 +598,10 @@ h1.hero-title em{
 .dr-form input.err,.dr-form textarea.err{border-color:var(--accent);background:var(--accent-soft)}
 .form-tabs{display:flex;gap:6px;margin-bottom:22px;background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:5px}
 .form-tab{
-  flex:1;border:none;background:transparent;border-radius:10px;padding:10px 8px;
+  flex:1 1 0;min-width:0;border:none;background:transparent;border-radius:10px;padding:10px 6px;
   font-family:var(--mono);font-size:10px;line-height:1.25;letter-spacing:.04em;text-transform:uppercase;
   color:var(--ink-soft);cursor:pointer;transition:background .25s,color .25s;
+  overflow-wrap:break-word;word-break:break-word;hyphens:auto;-webkit-hyphens:auto;text-align:center;
 }
 .form-tab.active{background:var(--ink);color:var(--paper)}
 .form-panel{display:none}
@@ -554,14 +616,85 @@ h1.hero-title em{
 .dr-form select.err{border-color:var(--accent);background:var(--accent-soft)}
 .form-nav{display:flex;gap:10px;margin-top:6px}
 .form-nav .btn{flex:1;justify-content:center}
-.color-palette{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin:9px 0 20px}
-.color-choice{position:relative;cursor:pointer}
+.color-palette{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin:10px 0 22px}
+.color-choice{position:relative;cursor:pointer;display:block}
 .color-choice input{position:absolute;opacity:0;pointer-events:none}
-.color-swatch{
-  display:block;height:44px;border-radius:12px;border:2px solid var(--line);
-  box-shadow:inset 0 0 0 3px var(--paper);transition:transform .25s,border-color .25s;
+.dr-form .color-choice .color-swatch{
+  display:flex;align-items:stretch;height:62px;border-radius:14px;overflow:hidden;
+  border:2px solid var(--line);box-shadow:0 1px 3px rgba(18,26,23,.06);
+  transition:transform .25s var(--ease),border-color .25s,box-shadow .25s;
+  margin-bottom:0;
 }
-.color-choice input:checked + .color-swatch{border-color:var(--ink);transform:translateY(-2px)}
+.dr-form .color-swatch i{flex:1 1 0;display:block;height:100%;min-width:0;font-style:normal;margin:0}
+.color-choice:hover .color-swatch{transform:translateY(-2px);box-shadow:0 8px 20px -10px rgba(18,26,23,.3)}
+.color-choice input:checked + .color-swatch{
+  border-color:var(--ink);transform:translateY(-3px);
+  box-shadow:0 10px 24px -10px rgba(18,26,23,.38);
+}
+.dr-form .color-choice .pal-name{
+  display:flex;align-items:center;gap:7px;margin-top:8px;margin-bottom:0;
+  font-family:var(--mono);font-size:11px;letter-spacing:.04em;
+  text-transform:uppercase;color:var(--ink-faint);transition:color .25s;
+}
+.color-choice .pal-name::before{
+  content:'';width:13px;height:13px;border-radius:50%;
+  border:1.5px solid var(--line);transition:all .25s;flex-shrink:0;
+}
+.color-choice input:checked ~ .pal-name{color:var(--ink)}
+.color-choice input:checked ~ .pal-name::before{
+  border-color:var(--accent);background:radial-gradient(circle,var(--accent) 42%,transparent 46%);
+}
+@media(max-width:560px){.color-palette{grid-template-columns:1fr}}
+
+/* ── more colors / custom wheel ── */
+.more-colors-btn{
+  display:flex;align-items:center;justify-content:center;gap:9px;width:100%;
+  background:var(--bg);border:1.5px dashed var(--line);border-radius:12px;
+  padding:13px 16px;margin:0 0 20px;cursor:pointer;
+  font-family:var(--mono);font-size:11px;letter-spacing:.05em;text-transform:uppercase;
+  color:var(--ink-soft);transition:border-color .25s,background .25s,color .25s;
+}
+.more-colors-btn:hover{border-color:var(--accent);color:var(--ink);background:var(--accent-soft)}
+.more-colors-btn.on{border-style:solid;border-color:var(--ink);color:var(--ink);background:var(--paper)}
+.mc-icon{
+  width:18px;height:18px;border-radius:50%;flex-shrink:0;
+  background:conic-gradient(#E55C4E,#F0A55E,#E9C46A,#6D8C54,#2FA39A,#2E8FB5,#C9B6E4,#E27D7A,#E55C4E);
+}
+.custom-colors{
+  background:var(--bg);border:1px solid var(--line);border-radius:16px;
+  padding:18px 18px 20px;margin:0 0 22px;animation:panelIn .3s var(--ease);
+}
+.cc-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.cc-title{font-family:var(--mono);font-size:11px;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-soft)}
+.cc-count{font-family:var(--mono);font-size:12px;color:var(--accent);font-weight:600}
+.cc-wheel{
+  display:grid;grid-template-columns:repeat(10,1fr);gap:6px;
+}
+.cc-dot{
+  aspect-ratio:1;border-radius:50%;cursor:pointer;border:2px solid transparent;
+  position:relative;transition:transform .18s var(--ease),border-color .18s;
+  box-shadow:inset 0 0 0 1px rgba(18,26,23,.08);
+}
+.cc-dot:hover{transform:scale(1.18);z-index:2}
+.cc-dot.sel{border-color:var(--ink);transform:scale(1.12);z-index:1}
+.cc-dot.sel::after{
+  content:'✓';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  font-size:11px;font-weight:700;color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.5);
+}
+.cc-dot.dim{opacity:.32;pointer-events:none}
+.cc-selected{
+  margin-top:15px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;
+  font-size:13px;color:var(--ink-faint);min-height:30px;
+}
+.cc-chip{
+  display:inline-flex;align-items:center;gap:7px;background:var(--paper);
+  border:1px solid var(--line);border-radius:30px;padding:5px 10px 5px 6px;
+  font-family:var(--mono);font-size:11px;color:var(--ink);
+}
+.cc-chip .sw{width:15px;height:15px;border-radius:50%;border:1px solid rgba(18,26,23,.15)}
+.cc-chip .rm{cursor:pointer;border:none;background:none;color:var(--ink-faint);font-size:15px;line-height:1;padding:0;transition:color .2s}
+.cc-chip .rm:hover{color:var(--accent)}
+@media(max-width:560px){.cc-wheel{grid-template-columns:repeat(8,1fr)}}
 .dropzone{
   display:block;border:1.5px dashed var(--line);border-radius:14px;background:var(--bg);
   padding:24px 18px;text-align:center;cursor:pointer;transition:border-color .25s,background .25s;
@@ -570,7 +703,14 @@ h1.hero-title em{
 .dropzone input{display:none}
 .dropzone strong{display:block;font-family:var(--display);font-size:1.25rem;font-weight:500;margin-bottom:6px}
 .dropzone span{display:block;color:var(--ink-soft);font-size:14px}
-.file-list{margin:12px 0 20px;color:var(--ink-soft);font-size:13px;line-height:1.45}
+.file-list{margin:12px 0 6px;color:var(--ink-soft);font-size:13px;line-height:1.45}
+.file-list .fitem{display:flex;align-items:center;gap:9px;padding:7px 11px;background:var(--bg);border:1px solid var(--line-soft);border-radius:9px;margin-bottom:7px}
+.file-list .fitem .fmeta{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--ink)}
+.file-list .fitem .fsize{font-family:var(--mono);font-size:11px;color:var(--ink-faint);flex-shrink:0}
+.file-list .fitem .fx{cursor:pointer;border:none;background:none;color:var(--ink-faint);font-size:17px;line-height:1;padding:0 2px;transition:color .2s;flex-shrink:0}
+.file-list .fitem .fx:hover{color:var(--accent)}
+.file-list .ferr{color:var(--accent-deep);font-size:12px;margin-top:2px}
+.file-hint{font-size:12px;color:var(--ink-faint);line-height:1.45;margin:0 0 20px}
 .dr-submit{
   width:100%;justify-content:center;margin-top:8px;
 }
@@ -691,6 +831,7 @@ h1.hero-title em{
           <button class="lang-btn" data-lang="de">DE</button>
         </div>
       </li>
+      <li><button type="button" class="login-link" id="loginLink" data-i18n="nav.login">Log in</button></li>
       <li><a href="#" class="btn btn-sm" data-open><span data-i18n="nav.cta">Start a project</span> <span class="arw">→</span></a></li>
     </ul>
   </div>
@@ -1041,6 +1182,42 @@ h1.hero-title em{
 
 <!-- DRAWER -->
 <div class="backdrop" id="backdrop"></div>
+
+<!-- LOGIN MODAL (demo — local only) -->
+<div class="login-modal" id="loginModal" role="dialog" aria-modal="true" aria-label="Account">
+  <button class="login-close" id="loginClose" aria-label="Close">×</button>
+
+  <!-- auth view (login / signup) -->
+  <div class="login-auth" id="loginAuth">
+    <div class="login-eyebrow" id="loginEyebrow" data-i18n="login.eyebrowLogin">[ Your account ]</div>
+    <h2 class="login-title" id="loginTitle"><span data-i18n="login.titleLogin">Welcome</span> <em data-i18n="login.titleLoginEm">back.</em></h2>
+    <p class="login-sub" id="loginSub" data-i18n="login.subLogin">Log in to save your project and pick up where you left off.</p>
+    <form class="login-form" id="loginForm" novalidate>
+      <label><span data-i18n="login.email">Email</span><input type="email" id="loginEmail" autocomplete="email" placeholder="vous@entreprise.ch"></label>
+      <label><span data-i18n="login.password">Password</span><input type="password" id="loginPassword" autocomplete="current-password" placeholder="••••••••"></label>
+      <div class="login-msg" id="loginMsg"></div>
+      <button type="submit" class="btn login-submit"><span id="loginBtnText" data-i18n="login.btnLogin">Log in</span> <span class="arw">→</span></button>
+    </form>
+    <div class="login-switch">
+      <span id="switchPrompt" data-i18n="login.noAccount">No account yet?</span>
+      <button type="button" id="loginSwitch" data-i18n="login.createOne">Create one</button>
+    </div>
+    <div class="login-note">
+      <strong data-i18n="login.demoLabel">Demo:</strong> <span data-i18n="login.demoText">accounts are saved only in this browser, on this device. This is a preview of the account feature — not yet a real secure login.</span>
+    </div>
+  </div>
+
+  <!-- logged-in view -->
+  <div class="login-account" id="loginAccount">
+    <div class="login-eyebrow" data-i18n="login.eyebrowAccount">[ Signed in ]</div>
+    <h2 class="login-title"><span data-i18n="login.hello">Hello</span> <em>👋</em></h2>
+    <p class="login-sub" data-i18n="login.accountSub">You're signed in. Your project draft is saved on this device.</p>
+    <div class="acc-email" id="accEmail">—</div>
+    <div class="acc-draft" id="accDraft"></div>
+    <button type="button" class="btn login-submit" id="loadDraftBtn" style="margin-bottom:10px"><span data-i18n="login.loadDraft">Open my saved project</span> <span class="arw">→</span></button>
+    <button type="button" class="btn btn-ghost-full" id="logoutBtn" data-i18n="login.logout">Log out</button>
+  </div>
+</div>
 <aside class="drawer" id="drawer" aria-hidden="true" aria-label="Project intake form">
   <button class="drawer-close" id="closeDrawer" aria-label="Close form">×</button>
   <div class="drawer-in">
@@ -1095,12 +1272,55 @@ h1.hero-title em{
       <div class="form-panel" data-panel="style">
         <label><span data-i18n="form.palette">Choose a color palette</span></label>
         <div class="color-palette" aria-label="Color palette">
-          <label class="color-choice"><input type="radio" name="palette" value="earth" checked><span class="color-swatch" style="background:linear-gradient(135deg,#ECE6D6,#E04A18,#1E3B2C)"></span></label>
-          <label class="color-choice"><input type="radio" name="palette" value="blue"><span class="color-swatch" style="background:linear-gradient(135deg,#E8EEF4,#5FA8D4,#10243A)"></span></label>
-          <label class="color-choice"><input type="radio" name="palette" value="pink"><span class="color-swatch" style="background:linear-gradient(135deg,#F3E4E2,#C0455A,#3D1F22)"></span></label>
-          <label class="color-choice"><input type="radio" name="palette" value="green"><span class="color-swatch" style="background:linear-gradient(135deg,#EDF3E8,#6D8C54,#1E3B2C)"></span></label>
-          <label class="color-choice"><input type="radio" name="palette" value="black"><span class="color-swatch" style="background:linear-gradient(135deg,#F7F2E7,#8C8472,#15120C)"></span></label>
+          <label class="color-choice">
+            <input type="radio" name="palette" value="earth" checked>
+            <span class="color-swatch"><i style="background:#6D8C54"></i><i style="background:#2C3D1E"></i><i style="background:#F4EEDD"></i><i style="background:#C8975A"></i><i style="background:#9E5A2E"></i></span>
+            <span class="pal-name" data-i18n="pal.earth">Earth &amp; olive</span>
+          </label>
+          <label class="color-choice">
+            <input type="radio" name="palette" value="ocean">
+            <span class="color-swatch"><i style="background:#8FCDEA"></i><i style="background:#2E8FB5"></i><i style="background:#0A2E44"></i><i style="background:#F5B229"></i><i style="background:#EE7A1E"></i></span>
+            <span class="pal-name" data-i18n="pal.ocean">Ocean &amp; amber</span>
+          </label>
+          <label class="color-choice">
+            <input type="radio" name="palette" value="sunset">
+            <span class="color-swatch"><i style="background:#274A57"></i><i style="background:#2FA39A"></i><i style="background:#E9C46A"></i><i style="background:#F0A55E"></i><i style="background:#E55C4E"></i></span>
+            <span class="pal-name" data-i18n="pal.sunset">Teal &amp; sunset</span>
+          </label>
+          <label class="color-choice">
+            <input type="radio" name="palette" value="blush">
+            <span class="color-swatch"><i style="background:#F6D8C4"></i><i style="background:#F0A48F"></i><i style="background:#E27D7A"></i><i style="background:#9C6B7C"></i><i style="background:#6A5A6E"></i></span>
+            <span class="pal-name" data-i18n="pal.blush">Blush &amp; mauve</span>
+          </label>
+          <label class="color-choice">
+            <input type="radio" name="palette" value="pastel">
+            <span class="color-swatch"><i style="background:#C9B6E4"></i><i style="background:#E3A9D6"></i><i style="background:#F5B9D4"></i><i style="background:#AED4F2"></i><i style="background:#8FC0EE"></i></span>
+            <span class="pal-name" data-i18n="pal.pastel">Soft pastel</span>
+          </label>
+          <label class="color-choice">
+            <input type="radio" name="palette" value="mono">
+            <span class="color-swatch"><i style="background:#F7F2E7"></i><i style="background:#C9C0AE"></i><i style="background:#8C8472"></i><i style="background:#3A352C"></i><i style="background:#15120C"></i></span>
+            <span class="pal-name" data-i18n="pal.mono">Warm neutral</span>
+          </label>
         </div>
+
+        <button type="button" class="more-colors-btn" id="moreColorsBtn">
+          <span class="mc-icon" aria-hidden="true"></span>
+          <span data-i18n="form.moreColors">More colors — pick your own</span>
+        </button>
+
+        <div class="custom-colors" id="customColors" hidden>
+          <div class="cc-head">
+            <span class="cc-title" data-i18n="form.customTitle">Choose up to 5 colors</span>
+            <span class="cc-count"><span id="ccCount">0</span>/5</span>
+          </div>
+          <div class="cc-wheel" id="ccWheel" aria-label="Color wheel"></div>
+          <div class="cc-selected" id="ccSelected" data-i18n="form.customNone">No color selected yet.</div>
+          <input type="hidden" name="customColors" id="customColorsField">
+        </div>
+
+        <input type="hidden" name="paletteMode" id="paletteMode" value="preset">
+
         <label><span data-i18n="form.paletteNote">Notes about the desired style</span><input type="text" name="styleNote" maxlength="160" placeholder="Minimaliste, premium, chaleureux..."></label>
         <div class="form-nav">
           <button type="button" class="btn btn-ghost prev-tab" data-prev="company"><span data-i18n="form.back">Back</span></button>
@@ -1110,11 +1330,13 @@ h1.hero-title em{
 
       <div class="form-panel" data-panel="photos">
         <label class="dropzone" id="dropzone">
-          <input type="file" name="photos" id="photos" accept=".pdf,image/*" multiple>
+          <input type="file" name="photos" id="photos" accept=".pdf,image/png,image/jpeg,image/webp" multiple>
           <strong data-i18n="form.dropTitle">Drag your photos or PDFs here</strong>
           <span data-i18n="form.dropText">or click to select files</span>
         </label>
         <div class="file-list" id="fileList" data-i18n="form.noFiles">No file selected yet.</div>
+        <div class="file-hint" id="fileHint" data-i18n="form.fileHint">PDF, JPG, PNG or WebP · up to 10 MB each. Your files will be attached to an email that opens when you send.</div>
+        <input type="hidden" name="attachedFiles" id="attachedFiles">
         <div class="form-nav">
           <button type="button" class="btn btn-ghost prev-tab" data-prev="style"><span data-i18n="form.back">Back</span></button>
           <button type="button" class="btn next-tab" data-next="extra"><span data-i18n="form.next">Next</span> <span class="arw">→</span></button>
@@ -1154,6 +1376,15 @@ const T={
 en:{
   'status':'Now booking · 2 builds this week','rail':'Start your project',
   'nav.work':'Work','nav.pricing':'Pricing','nav.process':'Process','nav.faq':'FAQ','nav.cta':'Start a project',
+  'nav.login':'Log in','login.account':'My account',
+  'login.eyebrowLogin':'[ Your account ]','login.eyebrowSignup':'[ Create account ]','login.eyebrowAccount':'[ Signed in ]',
+  'login.titleLogin':'Welcome','login.titleLoginEm':'back.','login.titleSignup':'Create your','login.titleSignupEm':'account.','login.hello':'Hello',
+  'login.subLogin':'Log in to save your project and pick up where you left off.','login.subSignup':'Sign up to save your project and come back to it later.','login.accountSub':"You're signed in. Your project draft is saved on this device.",
+  'login.email':'Email','login.password':'Password','login.btnLogin':'Log in','login.btnSignup':'Create account',
+  'login.noAccount':'No account yet?','login.createOne':'Create one','login.haveAccount':'Already have an account?','login.logInstead':'Log in',
+  'login.demoLabel':'Demo:','login.demoText':'accounts are saved only in this browser, on this device. This is a preview of the account feature — not yet a real secure login.',
+  'login.errEmail':'Please enter a valid email address.','login.errPw':'Password must be at least 6 characters.','login.errExists':'An account with this email already exists.','login.errWrong':'Incorrect email or password.',
+  'login.draftFound':'Saved draft:','login.noDraft':'No saved project draft yet. Start a project and it will be kept here.','login.loadDraft':'Open my saved project','login.logout':'Log out',
   'hero.p1':'Websites that make ','hero.p2':' look instantly established.',
   'hero.sub':'Auwem creates sharp, credible websites for Swiss small businesses that need to look established from day one. <b>CHF 400 flat.</b> Clear process, strong copy, polished design.',
   'hero.cta1':'Start your project','hero.cta2':'View example styles','hero.scroll':'Scroll to explore',
@@ -1210,13 +1441,24 @@ en:{
   'form.name':'Your name','form.company':'Company','form.email':'Email','form.submit':'Send',
   'form.tabCompany':'Business information','form.tabStyle':'Website personalization','form.tabPhotos':'Desired photos','form.tabExtra':'Additional information',
   'form.businessType':'Type of business','form.chooseType':'Choose a type','form.companyName':'Business name','form.companyEmail':'Business email','form.companyPhone':'Business phone',
-  'form.palette':'Choose a color palette','form.paletteNote':'Notes about the desired style','form.dropTitle':'Drag your photos or PDFs here','form.dropText':'or click to select files','form.noFiles':'No file selected yet.','form.additionalInfoLabel':'Tell us what you want','form.additionalInfoPlaceholder':'• What should visitors understand first?\n• Which services should be highlighted?\n• What style or examples do you like?\n• Any specific requests?','form.next':'Next','form.back':'Back',
+  'form.palette':'Choose a color palette','form.paletteNote':'Notes about the desired style',
+  'form.moreColors':'More colors — pick your own','form.customTitle':'Choose up to 5 colors','form.customNone':'No color selected yet.',
+  'pal.earth':'Earth & olive','pal.ocean':'Ocean & amber','pal.sunset':'Teal & sunset','pal.blush':'Blush & mauve','pal.pastel':'Soft pastel','pal.mono':'Warm neutral','form.dropTitle':'Drag your photos or PDFs here','form.dropText':'or click to select files','form.noFiles':'No file selected yet.','form.fileHint':'PDF, JPG, PNG or WebP · up to 10 MB each. Your files will be attached to an email that opens when you send.','form.fileRejected':'Skipped: ','form.sending':'Sending...','form.mailIntro':'Hello Auwem, here are my files for my website:','form.mailHint':'(Please attach the files listed above before sending this email.)','form.additionalInfoLabel':'Tell us what you want','form.additionalInfoPlaceholder':'• What should visitors understand first?\n• Which services should be highlighted?\n• What style or examples do you like?\n• Any specific requests?','form.next':'Next','form.back':'Back',
   'form.successTitle':'Got it.','form.successText':"We'll be in touch within 24 hours.",
   'form.metaPhone':'Or call','form.metaEmail':'Or email'
 },
 fr:{
   'status':'Nouvelles commandes · 2 créations cette semaine','rail':'Démarrer un projet',
   'nav.work':'Réalisations','nav.pricing':'Tarif','nav.process':'Processus','nav.faq':'FAQ','nav.cta':'Démarrer un projet',
+  'nav.login':'Connexion','login.account':'Mon compte',
+  'login.eyebrowLogin':'[ Votre compte ]','login.eyebrowSignup':'[ Créer un compte ]','login.eyebrowAccount':'[ Connecté ]',
+  'login.titleLogin':'Bon','login.titleLoginEm':'retour.','login.titleSignup':'Créez votre','login.titleSignupEm':'compte.','login.hello':'Bonjour',
+  'login.subLogin':'Connectez-vous pour enregistrer votre projet et le reprendre plus tard.','login.subSignup':'Inscrivez-vous pour enregistrer votre projet et y revenir plus tard.','login.accountSub':'Vous êtes connecté. Le brouillon de votre projet est enregistré sur cet appareil.',
+  'login.email':'E-mail','login.password':'Mot de passe','login.btnLogin':'Se connecter','login.btnSignup':'Créer le compte',
+  'login.noAccount':'Pas encore de compte ?','login.createOne':'Créez-en un','login.haveAccount':'Vous avez déjà un compte ?','login.logInstead':'Se connecter',
+  'login.demoLabel':'Démo :','login.demoText':'les comptes sont enregistrés uniquement dans ce navigateur, sur cet appareil. Ceci est un aperçu de la fonction compte — pas encore une vraie connexion sécurisée.',
+  'login.errEmail':'Veuillez entrer une adresse e-mail valide.','login.errPw':'Le mot de passe doit comporter au moins 6 caractères.','login.errExists':'Un compte avec cet e-mail existe déjà.','login.errWrong':'E-mail ou mot de passe incorrect.',
+  'login.draftFound':'Brouillon enregistré :','login.noDraft':'Aucun brouillon de projet pour le moment. Démarrez un projet et il sera conservé ici.','login.loadDraft':'Ouvrir mon projet enregistré','login.logout':'Se déconnecter',
   'hero.p1':'Des sites qui donnent aux ','hero.p2':' une image sérieuse dès le premier clic.',
   'hero.sub':'Auwem crée des sites crédibles et élégants pour les petites entreprises suisses qui veulent inspirer confiance dès le premier jour. <b>400 CHF tout compris.</b> Processus clair, rédaction solide, design soigné.',
   'hero.cta1':'Démarrer votre projet','hero.cta2':'Voir les styles possibles','hero.scroll':'Faites défiler',
@@ -1273,13 +1515,24 @@ fr:{
   'form.name':'Votre nom','form.company':'Entreprise','form.email':'E-mail','form.submit':'Envoyer',
   'form.tabCompany':'Information sur votre entreprise','form.tabStyle':'Personnalisation de votre site','form.tabPhotos':'Photos souhaitées','form.tabExtra':'Informations supplémentaires',
   'form.businessType':"Type d'entreprise",'form.chooseType':'Choisir un type','form.companyName':'Nom de votre entreprise','form.companyEmail':'Mail de votre entreprise','form.companyPhone':'Téléphone de votre entreprise',
-  'form.palette':'Choisissez une palette de couleurs','form.paletteNote':'Notes sur le style souhaité','form.dropTitle':'Glissez vos photos ou PDF ici','form.dropText':'ou cliquez pour sélectionner des fichiers','form.noFiles':'Aucun fichier sélectionné pour le moment.','form.additionalInfoLabel':'Expliquez-nous ce que vous souhaitez','form.additionalInfoPlaceholder':'• Que doivent comprendre vos visiteurs en premier ?\n• Quels services voulez-vous mettre en avant ?\n• Quel style ou quels exemples aimez-vous ?\n• Avez-vous des demandes spécifiques ?','form.next':'Suivant','form.back':'Retour',
+  'form.palette':'Choisissez une palette de couleurs','form.paletteNote':'Notes sur le style souhaité',
+  'form.moreColors':'Plus de couleurs — choisissez les vôtres','form.customTitle':'Choisissez jusqu’à 5 couleurs','form.customNone':'Aucune couleur sélectionnée.',
+  'pal.earth':'Terre & olive','pal.ocean':'Océan & ambre','pal.sunset':'Turquoise & coucher','pal.blush':'Rosé & mauve','pal.pastel':'Pastel doux','pal.mono':'Neutre chaleureux','form.dropTitle':'Glissez vos photos ou PDF ici','form.dropText':'ou cliquez pour sélectionner des fichiers','form.noFiles':'Aucun fichier sélectionné pour le moment.','form.fileHint':'PDF, JPG, PNG ou WebP · jusqu’à 10 Mo par fichier. Vos fichiers seront joints à un e-mail qui s’ouvrira à l’envoi.','form.fileRejected':'Ignoré : ','form.sending':'Envoi...','form.mailIntro':'Bonjour Auwem, voici mes fichiers pour mon site web :','form.mailHint':'(Merci de joindre les fichiers listés ci-dessus avant d’envoyer cet e-mail.)','form.additionalInfoLabel':'Expliquez-nous ce que vous souhaitez','form.additionalInfoPlaceholder':'• Que doivent comprendre vos visiteurs en premier ?\n• Quels services voulez-vous mettre en avant ?\n• Quel style ou quels exemples aimez-vous ?\n• Avez-vous des demandes spécifiques ?','form.next':'Suivant','form.back':'Retour',
   'form.successTitle':'Reçu.','form.successText':'Nous revenons vers vous sous 24 heures.',
   'form.metaPhone':'Ou téléphone','form.metaEmail':'Ou e-mail'
 },
 de:{
   'status':'Verfügbar · 2 Plätze diese Woche','rail':'Projekt starten',
   'nav.work':'Arbeiten','nav.pricing':'Preise','nav.process':'Ablauf','nav.faq':'FAQ','nav.cta':'Projekt starten',
+  'nav.login':'Anmelden','login.account':'Mein Konto',
+  'login.eyebrowLogin':'[ Ihr Konto ]','login.eyebrowSignup':'[ Konto erstellen ]','login.eyebrowAccount':'[ Angemeldet ]',
+  'login.titleLogin':'Willkommen','login.titleLoginEm':'zurück.','login.titleSignup':'Erstellen Sie Ihr','login.titleSignupEm':'Konto.','login.hello':'Hallo',
+  'login.subLogin':'Melden Sie sich an, um Ihr Projekt zu speichern und später fortzusetzen.','login.subSignup':'Registrieren Sie sich, um Ihr Projekt zu speichern und später darauf zurückzukommen.','login.accountSub':'Sie sind angemeldet. Der Entwurf Ihres Projekts ist auf diesem Gerät gespeichert.',
+  'login.email':'E-Mail','login.password':'Passwort','login.btnLogin':'Anmelden','login.btnSignup':'Konto erstellen',
+  'login.noAccount':'Noch kein Konto?','login.createOne':'Erstellen','login.haveAccount':'Bereits ein Konto?','login.logInstead':'Anmelden',
+  'login.demoLabel':'Demo:','login.demoText':'Konten werden nur in diesem Browser auf diesem Gerät gespeichert. Dies ist eine Vorschau der Konto-Funktion — noch keine echte sichere Anmeldung.',
+  'login.errEmail':'Bitte geben Sie eine gültige E-Mail-Adresse ein.','login.errPw':'Das Passwort muss mindestens 6 Zeichen lang sein.','login.errExists':'Ein Konto mit dieser E-Mail existiert bereits.','login.errWrong':'E-Mail oder Passwort falsch.',
+  'login.draftFound':'Gespeicherter Entwurf:','login.noDraft':'Noch kein gespeicherter Projektentwurf. Starten Sie ein Projekt und es wird hier aufbewahrt.','login.loadDraft':'Mein gespeichertes Projekt öffnen','login.logout':'Abmelden',
   'hero.p1':'Schöne Websites für ','hero.p2':', die zu beschäftigt sind, eine zu bauen.',
   'hero.sub':"Auwem baut professionelle Websites für Schweizer KMU in 48 Stunden. <b>400 CHF pauschal.</b> Automatisiert wo's zählt, handgemacht wo's drauf ankommt.",
   'hero.cta1':'Projekt starten','hero.cta2':'Beispielstile ansehen','hero.scroll':'Weiter scrollen',
@@ -1336,7 +1589,9 @@ de:{
   'form.name':'Ihr Name','form.company':'Unternehmen','form.email':'E-Mail','form.submit':'Senden',
   'form.tabCompany':'Informationen zu Ihrem Unternehmen','form.tabStyle':'Personalisierung Ihrer Website','form.tabPhotos':'Gewünschte Fotos','form.tabExtra':'Zusätzliche Informationen',
   'form.businessType':'Unternehmenstyp','form.chooseType':'Typ auswählen','form.companyName':'Name Ihres Unternehmens','form.companyEmail':'E-Mail Ihres Unternehmens','form.companyPhone':'Telefon Ihres Unternehmens',
-  'form.palette':'Farbpalette wählen','form.paletteNote':'Notizen zum gewünschten Stil','form.dropTitle':'Fotos oder PDFs hierher ziehen','form.dropText':'oder klicken, um Dateien auszuwählen','form.noFiles':'Noch keine Datei ausgewählt.','form.additionalInfoLabel':'Beschreiben Sie, was Sie möchten','form.additionalInfoPlaceholder':'• Was sollen Besucher zuerst verstehen?\n• Welche Dienstleistungen sollen hervorgehoben werden?\n• Welchen Stil oder welche Beispiele mögen Sie?\n• Gibt es besondere Wünsche?','form.next':'Weiter','form.back':'Zurück',
+  'form.palette':'Farbpalette wählen','form.paletteNote':'Notizen zum gewünschten Stil',
+  'form.moreColors':'Mehr Farben — eigene wählen','form.customTitle':'Bis zu 5 Farben wählen','form.customNone':'Noch keine Farbe gewählt.',
+  'pal.earth':'Erde & Olive','pal.ocean':'Ozean & Bernstein','pal.sunset':'Türkis & Sonnenuntergang','pal.blush':'Rosé & Mauve','pal.pastel':'Sanftes Pastell','pal.mono':'Warmes Neutral','form.dropTitle':'Fotos oder PDFs hierher ziehen','form.dropText':'oder klicken, um Dateien auszuwählen','form.noFiles':'Noch keine Datei ausgewählt.','form.fileHint':'PDF, JPG, PNG oder WebP · bis zu 10 MB pro Datei. Ihre Dateien werden an eine E-Mail angehängt, die sich beim Senden öffnet.','form.fileRejected':'Übersprungen: ','form.sending':'Senden...','form.mailIntro':'Hallo Auwem, hier sind meine Dateien für meine Website:','form.mailHint':'(Bitte hängen Sie die oben aufgeführten Dateien an, bevor Sie diese E-Mail senden.)','form.additionalInfoLabel':'Beschreiben Sie, was Sie möchten','form.additionalInfoPlaceholder':'• Was sollen Besucher zuerst verstehen?\n• Welche Dienstleistungen sollen hervorgehoben werden?\n• Welchen Stil oder welche Beispiele mögen Sie?\n• Gibt es besondere Wünsche?','form.next':'Weiter','form.back':'Zurück',
   'form.successTitle':'Erhalten.','form.successText':'Wir melden uns innerhalb von 24 Stunden.',
   'form.metaPhone':'Oder anrufen','form.metaEmail':'Oder E-Mail'
 }};
@@ -1362,7 +1617,10 @@ function apply(l){
   $$('[data-i18n]').forEach(el=>{ const k=el.dataset.i18n; if(T[l][k]!=null) el.innerHTML=T[l][k]; });
   $$('.lang-btn').forEach(b=>b.classList.toggle('active',b.dataset.lang===l));
   buildMarquee();
-  const fl=$('#fileList'); if(fl && !$('#photos')?.files?.length) fl.textContent=T[l]['form.noFiles'];
+  const fl=$('#fileList'); if(fl){ if(typeof chosenFiles!=='undefined' && chosenFiles.length){ if(typeof renderFiles==='function') renderFiles(); } else { fl.textContent=T[l]['form.noFiles']; } }
+  if(typeof window.__renderCustomColors==='function') window.__renderCustomColors();
+  if(typeof updateLoginButton==='function') updateLoginButton();
+  if(typeof loginModal!=='undefined' && loginModal.classList.contains('on')){ if(typeof refreshLoginView==='function') refreshLoginView(); }
   wi=wi%words.length; rot.textContent=words[wi];
 }
 $$('.lang-btn').forEach(b=>b.addEventListener('click',()=>apply(b.dataset.lang)));
@@ -1423,8 +1681,156 @@ function openD(){ drawer.classList.add('on'); backdrop.classList.add('on'); draw
 function closeD(){ drawer.classList.remove('on'); backdrop.classList.remove('on'); drawer.setAttribute('aria-hidden','true'); document.body.style.overflow=''; }
 $$('[data-open]').forEach(el=>el.addEventListener('click',e=>{e.preventDefault();openD();}));
 $('#closeDrawer').addEventListener('click',closeD);
-backdrop.addEventListener('click',closeD);
-addEventListener('keydown',e=>{ if(e.key==='Escape') closeD(); });
+backdrop.addEventListener('click',()=>{ closeD(); closeLogin(); });
+addEventListener('keydown',e=>{ if(e.key==='Escape'){ closeD(); closeLogin(); } });
+
+/* ───── login (Option A: local-only demo) ───── */
+const loginModal=$('#loginModal'), loginAuth=$('#loginAuth'), loginAccount=$('#loginAccount');
+const LS_USERS='auwem_users', LS_SESSION='auwem_session', LS_DRAFT='auwem_draft';
+
+function lsGet(k,def){ try{ return JSON.parse(localStorage.getItem(k)) ?? def; }catch(e){ return def; } }
+function lsSet(k,v){ try{ localStorage.setItem(k,JSON.stringify(v)); }catch(e){} }
+
+/* very light obfuscation — NOT real security. Clearly a demo. */
+function weakHash(s){ let h=0; for(let i=0;i<s.length;i++){ h=(h<<5)-h+s.charCodeAt(i); h|=0; } return 'h'+(h>>>0).toString(16); }
+
+let isSignup=false;
+
+function openLogin(){
+  refreshLoginView();
+  loginModal.classList.add('on'); backdrop.classList.add('on');
+  document.body.style.overflow='hidden';
+  setTimeout(()=>{ const f=$('#loginEmail'); if(f && !currentUser()) f.focus(); },300);
+}
+function closeLogin(){
+  loginModal.classList.remove('on');
+  if(!drawer.classList.contains('on')) backdrop.classList.remove('on');
+  document.body.style.overflow = drawer.classList.contains('on') ? 'hidden' : '';
+  $('#loginMsg').textContent=''; $('#loginMsg').className='login-msg';
+}
+function currentUser(){ return lsGet(LS_SESSION,null); }
+
+function refreshLoginView(){
+  const u=currentUser();
+  if(u){
+    loginAuth.style.display='none';
+    loginAccount.classList.add('on');
+    $('#accEmail').textContent=u;
+    const draft=lsGet(LS_DRAFT,null);
+    const t=T[lang];
+    if(draft && draft.company){
+      $('#accDraft').innerHTML=(t['login.draftFound']||'Saved draft:')+' <b>'+
+        draft.company+'</b>';
+      $('#loadDraftBtn').style.display='';
+    }else{
+      $('#accDraft').textContent=t['login.noDraft']||'No saved project draft yet. Start a project and it will be kept here.';
+      $('#loadDraftBtn').style.display='none';
+    }
+  }else{
+    loginAuth.style.display='';
+    loginAccount.classList.remove('on');
+    applyAuthMode();
+  }
+}
+
+function applyAuthMode(){
+  const t=T[lang];
+  $('#loginEyebrow').textContent = isSignup ? (t['login.eyebrowSignup']||'[ Create account ]') : (t['login.eyebrowLogin']||'[ Your account ]');
+  $('#loginTitle').innerHTML = isSignup
+    ? '<span>'+(t['login.titleSignup']||'Create your')+'</span> <em>'+(t['login.titleSignupEm']||'account.')+'</em>'
+    : '<span>'+(t['login.titleLogin']||'Welcome')+'</span> <em>'+(t['login.titleLoginEm']||'back.')+'</em>';
+  $('#loginSub').textContent = isSignup ? (t['login.subSignup']||'Sign up to save your project and come back to it later.') : (t['login.subLogin']||'Log in to save your project and pick up where you left off.');
+  $('#loginBtnText').textContent = isSignup ? (t['login.btnSignup']||'Create account') : (t['login.btnLogin']||'Log in');
+  $('#switchPrompt').textContent = isSignup ? (t['login.haveAccount']||'Already have an account?') : (t['login.noAccount']||'No account yet?');
+  $('#loginSwitch').textContent = isSignup ? (t['login.logInstead']||'Log in') : (t['login.createOne']||'Create one');
+  $('#loginPassword').setAttribute('autocomplete', isSignup ? 'new-password' : 'current-password');
+}
+
+$('#loginLink').addEventListener('click',openLogin);
+$('#loginClose').addEventListener('click',closeLogin);
+$('#loginSwitch').addEventListener('click',()=>{ isSignup=!isSignup; applyAuthMode(); $('#loginMsg').textContent=''; $('#loginMsg').className='login-msg'; });
+
+$('#loginForm').addEventListener('submit',e=>{
+  e.preventDefault();
+  const t=T[lang];
+  const email=$('#loginEmail').value.trim().toLowerCase();
+  const pw=$('#loginPassword').value;
+  const msg=$('#loginMsg');
+  const emailOk=/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email);
+  $('#loginEmail').classList.toggle('err',!emailOk);
+  $('#loginPassword').classList.toggle('err',pw.length<6);
+  if(!emailOk){ msg.className='login-msg error'; msg.textContent=t['login.errEmail']||'Please enter a valid email address.'; return; }
+  if(pw.length<6){ msg.className='login-msg error'; msg.textContent=t['login.errPw']||'Password must be at least 6 characters.'; return; }
+
+  const users=lsGet(LS_USERS,{});
+  if(isSignup){
+    if(users[email]){ msg.className='login-msg error'; msg.textContent=t['login.errExists']||'An account with this email already exists.'; return; }
+    users[email]=weakHash(pw); lsSet(LS_USERS,users);
+    lsSet(LS_SESSION,email);
+    finishAuth();
+  }else{
+    if(!users[email] || users[email]!==weakHash(pw)){ msg.className='login-msg error'; msg.textContent=t['login.errWrong']||'Incorrect email or password.'; return; }
+    lsSet(LS_SESSION,email);
+    finishAuth();
+  }
+});
+
+function finishAuth(){
+  $('#loginEmail').classList.remove('err'); $('#loginPassword').classList.remove('err');
+  $('#loginForm').reset();
+  updateLoginButton();
+  refreshLoginView();
+}
+
+$('#logoutBtn').addEventListener('click',()=>{
+  localStorage.removeItem(LS_SESSION);
+  isSignup=false;
+  updateLoginButton();
+  refreshLoginView();
+});
+
+$('#loadDraftBtn').addEventListener('click',()=>{
+  const draft=lsGet(LS_DRAFT,null);
+  if(!draft) return;
+  ['businessType','company','email','companyPhone','description','styleNote','additionalInformation'].forEach(k=>{
+    const el=document.querySelector('[name="'+k+'"]');
+    if(el && draft[k]!=null) el.value=draft[k];
+  });
+  if(draft.palette){ const r=document.querySelector('input[name="palette"][value="'+draft.palette+'"]'); if(r) r.checked=true; }
+  closeLogin();
+  openD();
+});
+
+function updateLoginButton(){
+  const u=currentUser();
+  const link=$('#loginLink');
+  const t=T[lang];
+  if(u){
+    link.classList.add('is-user');
+    link.innerHTML='<span class="avatar">'+u.charAt(0)+'</span><span>'+(t['login.account']||'My account')+'</span>';
+  }else{
+    link.classList.remove('is-user');
+    link.innerHTML='<span data-i18n="nav.login">'+(t['nav.login']||'Log in')+'</span>';
+  }
+}
+
+/* Save draft whenever the project form changes (only if logged in, to respect privacy) */
+function saveDraftFromForm(){
+  if(!currentUser()) return;
+  const f=$('#form'); if(!f) return;
+  const d={};
+  ['businessType','company','email','companyPhone','description','styleNote','additionalInformation'].forEach(k=>{
+    const el=f.querySelector('[name="'+k+'"]'); if(el) d[k]=el.value;
+  });
+  const pal=f.querySelector('input[name="palette"]:checked'); if(pal) d.palette=pal.value;
+  d.savedAt=Date.now();
+  lsSet(LS_DRAFT,d);
+}
+document.addEventListener('input',e=>{ if(e.target.closest && e.target.closest('#form')) saveDraftFromForm(); });
+document.addEventListener('change',e=>{ if(e.target.closest && e.target.closest('#form')) saveDraftFromForm(); });
+
+updateLoginButton();
+
 
 /* form tabs */
 function showTab(name){
@@ -1435,15 +1841,155 @@ $$('.form-tab').forEach(t=>t.addEventListener('click',()=>showTab(t.dataset.tab)
 $$('.next-tab').forEach(b=>b.addEventListener('click',()=>showTab(b.dataset.next)));
 $$('.prev-tab').forEach(b=>b.addEventListener('click',()=>showTab(b.dataset.prev)));
 
-const photos=$('#photos'), fileList=$('#fileList'), dropzone=$('#dropzone');
-function renderFiles(){
-  const files=[...photos.files];
-  fileList.textContent=files.length ? files.map(f=>`• ${f.name}`).join('\n') : (T[lang]['form.noFiles'] || 'No file selected yet.');
+/* ── custom color wheel (50 colors, pick up to 5) ── */
+(function(){
+  const WHEEL=[
+    '#E8453B','#F0613A','#F58634','#F7A325','#F9C513','#EBD834','#C7D63E','#9CC74B',
+    '#6FB85C','#46A86B','#2FA38A','#1F9FA8','#2E8FB5','#3B79C0','#4A63C4','#5E4FC0',
+    '#7A45BA','#9A43AE','#B8439A','#C94688','#D74C6E','#7A4E3A','#9E6B43','#C18A52',
+    '#1E3B2C','#244A38','#173D32','#0A2E44','#13243A','#2C2640','#3D1F22','#15120C',
+    '#F4EEDD','#E9DCC2','#D9C6A1','#C9B6E4','#E3A9D6','#F5B9D4','#F6D8C4','#F0A48F',
+    '#E27D7A','#AED4F2','#8FCDEA','#8FC0EE','#9CB89A','#78917F','#A9A892','#8C8472',
+    '#566159','#C85C3A'
+  ];
+  const wheel=$('#ccWheel'), out=$('#ccSelected'), countEl=$('#ccCount'),
+        field=$('#customColorsField'), btn=$('#moreColorsBtn'), box=$('#customColors'),
+        modeField=$('#paletteMode');
+  if(!wheel) return;
+  const MAX=5; let selected=[];
+
+  // build dots
+  WHEEL.forEach(hex=>{
+    const d=document.createElement('button');
+    d.type='button'; d.className='cc-dot'; d.style.background=hex;
+    d.dataset.hex=hex; d.setAttribute('aria-label',hex);
+    d.addEventListener('click',()=>toggle(hex,d));
+    wheel.appendChild(d);
+  });
+
+  function toggle(hex,dot){
+    const i=selected.indexOf(hex);
+    if(i>-1){ selected.splice(i,1); dot.classList.remove('sel'); }
+    else{
+      if(selected.length>=MAX) return;
+      selected.push(hex); dot.classList.add('sel');
+    }
+    render();
+  }
+
+  function render(){
+    countEl.textContent=selected.length;
+    // dim the rest when 5 reached
+    $$('.cc-dot').forEach(d=>{
+      const isSel=selected.includes(d.dataset.hex);
+      d.classList.toggle('dim', selected.length>=MAX && !isSel);
+    });
+    // chips
+    if(!selected.length){
+      out.textContent=T[lang]['form.customNone']||'No color selected yet.';
+    }else{
+      out.innerHTML='';
+      selected.forEach(hex=>{
+        const chip=document.createElement('span'); chip.className='cc-chip';
+        const sw=document.createElement('span'); sw.className='sw'; sw.style.background=hex;
+        const tx=document.createElement('span'); tx.textContent=hex.toUpperCase();
+        const rm=document.createElement('button'); rm.type='button'; rm.className='rm'; rm.textContent='×';
+        rm.addEventListener('click',()=>{
+          selected=selected.filter(h=>h!==hex);
+          const dot=[...$$('.cc-dot')].find(d=>d.dataset.hex===hex);
+          if(dot) dot.classList.remove('sel');
+          render();
+        });
+        chip.append(sw,tx,rm); out.appendChild(chip);
+      });
+    }
+    field.value=selected.join(', ');
+  }
+
+  // toggle visibility + switch mode preset/custom
+  btn.addEventListener('click',()=>{
+    const open=box.hasAttribute('hidden');
+    if(open){
+      box.removeAttribute('hidden'); btn.classList.add('on');
+      modeField.value='custom';
+      // uncheck preset palettes so the choice is unambiguous
+      $$('input[name="palette"]').forEach(r=>r.checked=false);
+    }else{
+      box.setAttribute('hidden',''); btn.classList.remove('on');
+      modeField.value='preset';
+      if(!$$('input[name="palette"]:checked').length){
+        const first=$('input[name="palette"]'); if(first) first.checked=true;
+      }
+    }
+  });
+
+  // if user re-selects a preset palette, switch mode back to preset
+  $$('input[name="palette"]').forEach(r=>r.addEventListener('change',()=>{
+    if(r.checked){ modeField.value='preset'; }
+  }));
+
+  // expose for language refresh
+  window.__renderCustomColors=render;
+})();
+
+const photos=$('#photos'), fileList=$('#fileList'), dropzone=$('#dropzone'), attachedFiles=$('#attachedFiles');
+const MAX_BYTES=10*1024*1024; // 10 MB per file
+const OK_TYPES=['application/pdf','image/png','image/jpeg','image/webp'];
+let chosenFiles=[]; // our own managed array
+
+function fmtSize(b){ return b<1024?b+' B':b<1048576?(b/1024).toFixed(0)+' KB':(b/1048576).toFixed(1)+' MB'; }
+
+function syncInput(){
+  // rebuild the real <input> file list from our managed array via DataTransfer
+  const dt=new DataTransfer();
+  chosenFiles.forEach(f=>dt.items.add(f));
+  photos.files=dt.files;
+  attachedFiles.value=chosenFiles.map(f=>f.name).join(', ');
 }
-photos.addEventListener('change',renderFiles);
+
+function renderFiles(){
+  if(!chosenFiles.length){
+    fileList.textContent = T[lang]['form.noFiles'] || 'No file selected yet.';
+    return;
+  }
+  fileList.innerHTML='';
+  chosenFiles.forEach((f,idx)=>{
+    const row=document.createElement('div');
+    row.className='fitem';
+    const meta=document.createElement('span');
+    meta.className='fmeta'; meta.textContent=f.name;
+    const size=document.createElement('span');
+    size.className='fsize'; size.textContent=fmtSize(f.size);
+    const x=document.createElement('button');
+    x.type='button'; x.className='fx'; x.setAttribute('aria-label','Remove'); x.textContent='×';
+    x.addEventListener('click',()=>{ chosenFiles.splice(idx,1); syncInput(); renderFiles(); });
+    row.append(meta,size,x);
+    fileList.appendChild(row);
+  });
+}
+
+function addFiles(list){
+  let rejected=[];
+  [...list].forEach(f=>{
+    const typeOk = OK_TYPES.includes(f.type) || /\.(pdf|png|jpe?g|webp)$/i.test(f.name);
+    if(!typeOk){ rejected.push(f.name+' (type)'); return; }
+    if(f.size>MAX_BYTES){ rejected.push(f.name+' (>10MB)'); return; }
+    if(chosenFiles.some(x=>x.name===f.name && x.size===f.size)) return; // dedupe
+    chosenFiles.push(f);
+  });
+  syncInput(); renderFiles();
+  if(rejected.length){
+    const err=document.createElement('div');
+    err.className='ferr';
+    err.textContent=(T[lang]['form.fileRejected']||'Skipped: ')+rejected.join(', ');
+    fileList.appendChild(err);
+  }
+}
+
+photos.addEventListener('change',()=>addFiles(photos.files));
 ['dragenter','dragover'].forEach(ev=>dropzone.addEventListener(ev,e=>{e.preventDefault();dropzone.classList.add('drag');}));
 ['dragleave','drop'].forEach(ev=>dropzone.addEventListener(ev,e=>{e.preventDefault();dropzone.classList.remove('drag');}));
-dropzone.addEventListener('drop',e=>{photos.files=e.dataTransfer.files;renderFiles();});
+dropzone.addEventListener('drop',e=>{ if(e.dataTransfer?.files?.length) addFiles(e.dataTransfer.files); });
 
 /* safe text validation: prevents emojis / unsupported symbols from reaching the form handler */
 const emojiRE = /[\p{Extended_Pictographic}\u{1F1E6}-\u{1F1FF}\u{1F300}-\u{1FAFF}\uFE0F\u200D]/gu;
@@ -1481,6 +2027,7 @@ safeTextInputs.forEach(input=>{
 
 /* form */
 $('#form').addEventListener('submit',e=>{
+  e.preventDefault();
   const f=e.target; let ok=true; let firstBadPanel=null;
 
   safeTextInputs.forEach(i=>{
@@ -1506,24 +2053,60 @@ $('#form').addEventListener('submit',e=>{
   });
 
   if(firstBadPanel) showTab(firstBadPanel.dataset.panel);
-
-  if(!ok){
-    e.preventDefault();
-    return;
-  }
+  if(!ok) return;
 
   const submitBtn = f.querySelector('button[type="submit"]');
-  if(submitBtn){
-    submitBtn.disabled = true;
-    submitBtn.innerHTML = '<span>Sending...</span>';
-  }
+  if(submitBtn){ submitBtn.disabled=true; submitBtn.innerHTML='<span>'+(T[lang]['form.sending']||'Sending...')+'</span>'; }
 
-  /*
-    Important: we let the browser submit the form normally to Formspree.
-    This is more reliable for multipart/form-data and file uploads than AJAX/fetch,
-    and avoids the false error alert some browsers show when uploads are blocked by CORS,
-    file size limits, or local testing.
-  */
+  // Build a plain object of the text fields (NO files — the free Formspree plan rejects file uploads).
+  const data=new FormData(f);
+  data.delete('photos'); // never send the binary; we handle files via email below
+  const payload={};
+  data.forEach((v,k)=>{ payload[k]=v; });
+
+  // Submit the text data via AJAX (reliable on the free plan, no page reload, no file-rejection error).
+  fetch(f.action,{
+    method:'POST',
+    headers:{'Accept':'application/json'},
+    body:JSON.stringify(payload)
+  })
+  .then(r=>{
+    if(!r.ok) throw new Error('Formspree '+r.status);
+    // Text submission succeeded → show success, then handle files if any.
+    f.style.display='none';
+    $('#success').classList.add('on');
+
+    if(chosenFiles.length){
+      // Files can't ride along on the free plan, so open a pre-filled email
+      // for the client to attach their already-selected files.
+      const subject=encodeURIComponent('Fichiers — '+(payload.company||'Nouveau client Auwem'));
+      const names=chosenFiles.map(f=>'• '+f.name).join('%0D%0A');
+      const body=encodeURIComponent(
+        (T[lang]['form.mailIntro']||'Hello Auwem, here are my files for my website:')+
+        '\r\n\r\n'+chosenFiles.map(x=>'• '+x.name).join('\r\n')+
+        '\r\n\r\n'+(T[lang]['form.mailHint']||'(Please attach the files listed above before sending.)')+
+        '\r\n\r\n'+(payload.name||'')+' — '+(payload.company||'')
+      );
+      // Give the success message a moment to render, then open the mail client.
+      setTimeout(()=>{ window.location.href='mailto:auwem@gmail.com?subject='+subject+'&body='+body; },900);
+    }
+  })
+  .catch(()=>{
+    // Fallback: if AJAX fails (e.g. offline), let the user email everything directly.
+    if(submitBtn){ submitBtn.disabled=false; submitBtn.innerHTML='<span>'+(T[lang]['form.submit']||'Send')+'</span> <span class="arw">→</span>'; }
+    const subject=encodeURIComponent('Nouvelle demande client Auwem');
+    const body=encodeURIComponent(
+      'Nom: '+(payload.name||'')+'\r\n'+
+      'Entreprise: '+(payload.company||'')+'\r\n'+
+      'Email: '+(payload.email||'')+'\r\n'+
+      'Téléphone: '+(payload.companyPhone||'')+'\r\n'+
+      'Palette: '+(payload.paletteMode==='custom' ? ('Couleurs personnalisées — '+(payload.customColors||'')) : (payload.palette||''))+'\r\n'+
+      'Notes style: '+(payload.styleNote||'')+'\r\n'+
+      'Infos: '+(payload.additionalInformation||'')+'\r\n'+
+      (chosenFiles.length?('Fichiers à joindre:\r\n'+chosenFiles.map(x=>'• '+x.name).join('\r\n')):'')
+    );
+    window.location.href='mailto:auwem@gmail.com?subject='+subject+'&body='+body;
+  });
 });
 $$('#form input,#form select').forEach(i=>i.addEventListener('input',()=>clearFieldError(i)));
 

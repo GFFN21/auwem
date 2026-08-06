@@ -1,4 +1,4 @@
-# auwem
+# Auwem.ch
 Un site suisse. Pour faire des sites suisses. Avec des serveurs en Suisse.
 
 Simple. Rapide. Efficace.

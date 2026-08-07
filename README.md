@@ -1,5 +1,5 @@
 # Auwem.ch
-Un site suisse. Pour faire des sites de qualité. Principalement pour les petites entreprises.
+Ce n'est pas qu'un site suisse. C'est une entreprise formée par deux étudiants pour créer, styliser, et déployer des sites de qualité.
 
 Simple. Rapide. Efficace.
 

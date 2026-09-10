@@ -1,50 +1,54 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Auwem — Premium websites for Swiss small businesses</title>
-<meta name="description" content="Auwem designs sharp, trustworthy websites for Swiss local businesses — delivered quickly, priced clearly, and built to win customers.">
+<title>Auwem.ch — Sites web professionnels pour PME suisses</title>
+<meta name="description" content="Auwem crée des sites web crédibles et élégants pour les petites entreprises suisses — livrés rapidement, tarif clair, conçus pour inspirer confiance.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,400..900,0..100;1,9..144,400..600,0..100&family=Hanken+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&family=Lexend:wght@700&family=Plus+Jakarta+Sans:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#F4EFE6;
-  --bg-deep:#E8DDCB;
-  --paper:#FFF9EF;
-  --ink:#121A17;
-  --ink-soft:#566159;
-  --ink-faint:#8A9188;
+  --bg:#FFFFFF;
+  --bg-deep:#F8F9FA;
+  --paper:#FFFFFF;
+  --ink:#000000;
+  --ink-soft:#555555;
+  --ink-faint:#999999;
   --accent:#C85C3A;
   --accent-deep:#963F29;
   --accent-soft:rgba(200,92,58,.11);
-  --pine:#173D32;
-  --sage:#78917F;
-  --sun:#D9A441;
-  --line:#D4C7B3;
-  --line-soft:#E2D8C8;
+  --sun:#F5A623;
+  --line:#E5E5E5;
+  --line-soft:#F2F2F2;
 
-  --display:'Fraunces',Georgia,serif;
-  --body:'Hanken Grotesk',system-ui,sans-serif;
+  --brand:'Lexend', sans-serif;
+  --display:'Plus Jakarta Sans', system-ui, sans-serif;
+  --body:'Inter', system-ui, sans-serif;
   --mono:'JetBrains Mono',ui-monospace,monospace;
 
   --ease:cubic-bezier(.22,.61,.36,1);
 }
 
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+/* ───── Viewport & Overflow Locking Fixes ───── */
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+}
+html{
+  scroll-behavior:smooth;
+  -webkit-text-size-adjust:100%;
+}
 body{
   background:
-    radial-gradient(circle at 12% 6%,rgba(200,92,58,.10),transparent 30%),
-    radial-gradient(circle at 86% 12%,rgba(23,61,50,.11),transparent 34%),
+    radial-gradient(circle at 12% 6%,rgba(200,92,58,.08),transparent 30%),
     var(--bg);
   color:var(--ink);
   font-family:var(--body);
   font-size:17px;
   line-height:1.55;
   -webkit-font-smoothing:antialiased;
-  overflow-x:hidden;
   position:relative;
 }
 ::selection{background:var(--accent);color:var(--paper)}
@@ -55,37 +59,29 @@ em{font-style:italic}
 /* grain */
 body::after{
   content:'';position:fixed;inset:0;pointer-events:none;z-index:9998;
-  opacity:.045;mix-blend-mode:multiply;
+  opacity:.035;mix-blend-mode:multiply;
   background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
 }
 
 .wrap{max-width:1240px;margin:0 auto;padding:0 40px}
 
-/* ───── cursor ───── */
-.blob{
-  position:fixed;width:340px;height:340px;border-radius:50%;
-  background:radial-gradient(circle,rgba(224,74,24,.16) 0%,transparent 62%);
-  pointer-events:none;z-index:1;left:0;top:0;filter:blur(10px);
-  display:none;will-change:transform;
-}
-@media(hover:hover) and (pointer:fine){.blob{display:block}}
-
 /* ───── nav ───── */
 .nav{
   position:fixed;top:0;left:0;right:0;z-index:200;
   padding:16px 40px;
-  background:rgba(236,230,214,.72);
+  background:rgba(255,255,255,.75);
   backdrop-filter:blur(16px) saturate(1.4);
   -webkit-backdrop-filter:blur(16px) saturate(1.4);
   border-bottom:1px solid transparent;
   transition:border-color .35s,padding .35s,background .35s;
+  box-shadow:0 10px 30px rgba(0,0,0,.02);
 }
-.nav.scrolled{border-bottom-color:var(--line);padding:11px 40px;background:rgba(236,230,214,.92)}
+.nav.scrolled{border-bottom-color:var(--line);padding:11px 40px;background:rgba(255,255,255,.95)}
 .nav-in{max-width:1240px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:24px}
-.brand{display:flex;align-items:center;gap:11px;font-family:var(--display);font-weight:600;font-size:22px;letter-spacing:-.02em}
+.brand{display:flex;align-items:center;gap:11px;font-family:var(--brand);font-weight:700;font-size:24px;letter-spacing:-.02em}
 .brand .mark{
-  width:30px;height:30px;border-radius:7px;background:var(--ink);color:var(--paper);
-  display:grid;place-items:center;font-family:var(--mono);font-size:14px;font-weight:600;
+  width:30px;height:30px;border-radius:11px;background:linear-gradient(135deg,var(--ink),#333);color:var(--paper);
+  display:grid;place-items:center;font-family:var(--brand);font-size:16px;
   transition:transform .4s var(--ease),background .3s;
 }
 .brand:hover .mark{transform:rotate(-12deg) scale(1.06);background:var(--accent)}
@@ -116,7 +112,7 @@ body::after{
   white-space:nowrap;
 }
 .btn .arw{transition:transform .3s var(--ease);display:inline-block}
-.btn:hover{background:var(--accent);border-color:var(--accent);transform:translateY(-2px);box-shadow:0 10px 24px -10px rgba(224,74,24,.6)}
+.btn:hover{background:var(--accent);border-color:var(--accent);transform:translateY(-2px);box-shadow:0 10px 24px -10px rgba(200,92,58,.6)}
 .btn:hover .arw{transform:translateX(4px)}
 .btn-ghost{background:transparent;color:var(--ink);border-color:var(--line)}
 .btn-ghost:hover{background:transparent;color:var(--ink);border-color:var(--ink);box-shadow:none;transform:translateY(-2px)}
@@ -138,14 +134,18 @@ body::after{
 @media(max-width:720px){.rail{display:none}}
 
 /* ───── hero ───── */
-.hero{position:relative;padding:188px 0 70px;overflow:hidden}
+.hero{position:relative;padding:176px 0 70px;overflow:hidden}
+.hero::before{
+  content:'';position:absolute;right:-140px;top:120px;width:470px;height:470px;border-radius:50%;
+  background:radial-gradient(circle,rgba(200,92,58,.06),transparent 66%);z-index:0;
+}
 .hero-grid{
   position:absolute;inset:0;z-index:0;pointer-events:none;
   background-image:linear-gradient(var(--line-soft) 1px,transparent 1px);
   background-size:100% 116px;
   -webkit-mask-image:linear-gradient(180deg,transparent,#000 14%,#000 72%,transparent);
           mask-image:linear-gradient(180deg,transparent,#000 14%,#000 72%,transparent);
-  opacity:.55;
+  opacity:.75;
 }
 .hero .wrap{position:relative;z-index:2}
 
@@ -156,26 +156,25 @@ body::after{
   border:1px solid var(--line);background:var(--paper);
   padding:7px 14px;border-radius:99px;margin-bottom:30px;
 }
-.eyebrow .live{width:7px;height:7px;border-radius:50%;background:var(--pine);box-shadow:0 0 0 0 rgba(30,59,44,.5);animation:ring 2.4s infinite}
-@keyframes ring{0%{box-shadow:0 0 0 0 rgba(30,59,44,.45)}70%{box-shadow:0 0 0 8px rgba(30,59,44,0)}100%{box-shadow:0 0 0 0 rgba(30,59,44,0)}}
+.eyebrow .live{width:7px;height:7px;border-radius:50%;background:var(--ink);box-shadow:0 0 0 0 rgba(0,0,0,.3);animation:ring 2.4s infinite}
+@keyframes ring{0%{box-shadow:0 0 0 0 rgba(0,0,0,.25)}70%{box-shadow:0 0 0 8px rgba(0,0,0,0)}100%{box-shadow:0 0 0 0 rgba(0,0,0,0)}}
 
 h1.hero-title{
   font-family:var(--display);
-  font-weight:430;
-  font-size:clamp(3.05rem,8.3vw,7rem);
-  line-height:.99;
+  font-weight:600;
+  font-size:clamp(2.3rem,7.5vw,6.5rem);
+  line-height:1.05;
   letter-spacing:-.032em;
-  font-variation-settings:"SOFT" 28,"opsz" 144;
   max-width:16ch;
 }
 h1.hero-title em{
-  font-style:italic;font-weight:500;
+  font-style:italic;font-weight:600;
 }
 .rot-wrap{
   display:inline-block;position:relative;vertical-align:baseline;
 }
 .rot{
-  display:inline-block;color:var(--accent);font-style:italic;font-weight:500;
+  display:inline-block;color:var(--accent);font-style:italic;font-weight:600;
   position:relative;
 }
 .rot::after{
@@ -183,14 +182,43 @@ h1.hero-title em{
   background:var(--accent);opacity:.22;border-radius:2px;
 }
 
-.hero-cols{display:flex;gap:60px;align-items:flex-end;margin-top:42px;flex-wrap:wrap}
+.hero-cols{display:grid;grid-template-columns:minmax(0,1.02fr) minmax(330px,.78fr);align-items:center;gap:72px;margin-top:42px}
 .hero-sub{
-  max-width:46ch;font-size:18px;color:var(--ink-soft);line-height:1.6;
+  max-width:52ch;font-size:19px;color:#555;line-height:1.6;
 }
 .hero-sub b{color:var(--ink);font-weight:600}
 .hero-ctas{display:flex;gap:13px;margin-top:30px;flex-wrap:wrap}
 
-/* hero stamp / countdown */
+.proof-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+.proof-pill{
+  display:inline-flex;align-items:center;gap:8px;padding:9px 12px;border:1px solid var(--line);
+  background:rgba(255,255,255,.64);border-radius:999px;font-family:var(--mono);font-size:11px;color:var(--ink-soft);
+}
+.proof-pill b{color:var(--ink);font-weight:600}
+
+/* hero stamp / countdown / showcase */
+.hero-showcase{position:relative;min-height:430px}
+.site-preview{
+  position:relative;z-index:2;background:var(--paper);border:1px solid var(--line);border-radius:28px;
+  padding:16px;box-shadow:0 34px 80px -48px rgba(0,0,0,.45);transform:rotate(1deg);
+}
+.preview-top{display:flex;align-items:center;gap:7px;padding:6px 6px 14px;color:var(--ink-faint)}
+.preview-dot{width:9px;height:9px;border-radius:50%;background:var(--line)}
+.preview-url{margin-left:auto;font-family:var(--mono);font-size:10px;color:var(--ink-faint)}
+.preview-screen{border-radius:20px;overflow:hidden;background:linear-gradient(145deg,#222,#111);color:var(--paper);min-height:288px;padding:24px;position:relative}
+.preview-screen::after{content:'';position:absolute;right:-46px;bottom:-46px;width:160px;height:160px;border-radius:50%;background:rgba(200,92,58,.18)}
+.preview-label{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#AAA;margin-bottom:48px}
+.preview-heading{font-family:var(--display);font-size:38px;line-height:.96;letter-spacing:-.035em;max-width:8ch}
+.preview-card{margin-top:30px;background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.18);border-radius:18px;padding:14px;display:flex;justify-content:space-between;gap:12px;font-size:13px;color:#EEE}
+.preview-card span:last-child{color:var(--sun);font-family:var(--mono)}
+
+.float-note{
+  position:absolute;left:-24px;bottom:58px;z-index:3;background:var(--paper);border:1px solid var(--line);border-radius:18px;
+  padding:14px 16px;box-shadow:0 18px 42px -30px rgba(0,0,0,.3);max-width:190px;
+  font-family:var(--mono);font-size:11px;color:var(--ink-soft);transform:rotate(-3deg);
+}
+.float-note b{display:block;font-family:var(--display);font-size:20px;color:var(--ink);font-weight:600;margin-bottom:2px}
+
 .stamp{
   flex:0 0 auto;
   border:1.5px solid var(--ink);background:var(--paper);
@@ -198,6 +226,8 @@ h1.hero-title em{
   box-shadow:6px 6px 0 var(--ink);
   transform:rotate(2.2deg);
 }
+.hero-showcase .stamp{position:absolute;right:-8px;bottom:-18px;z-index:4;min-width:220px;transform:rotate(-3deg);box-shadow:5px 5px 0 var(--ink)}
+
 .stamp .st-top{
   display:flex;justify-content:space-between;align-items:center;
   font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);
@@ -231,7 +261,7 @@ h1.hero-title em{
 @keyframes mq{to{transform:translateX(-50%)}}
 .mq-item{
   display:flex;align-items:center;gap:26px;padding:0 26px;
-  font-family:var(--display);font-size:21px;font-weight:430;font-style:italic;letter-spacing:-.01em;
+  font-family:var(--display);font-size:21px;font-weight:500;font-style:italic;letter-spacing:-.01em;
   white-space:nowrap;
 }
 .mq-item .star{color:var(--accent);font-style:normal;font-size:14px}
@@ -245,11 +275,10 @@ h1.hero-title em{
 }
 .sec-num::before{content:'';width:26px;height:1.5px;background:var(--accent)}
 .sec-title{
-  font-family:var(--display);font-weight:430;
+  font-family:var(--display);font-weight:600;
   font-size:clamp(2.1rem,4.6vw,3.5rem);line-height:1.04;letter-spacing:-.025em;
-  font-variation-settings:"SOFT" 22,"opsz" 90;
 }
-.sec-title em{font-weight:500}
+.sec-title em{font-weight:600;font-style:italic}
 .sec-intro{max-width:42ch;color:var(--ink-soft);font-size:17px;padding-bottom:6px}
 
 .rule{height:1px;background:var(--line);width:100%}
@@ -258,16 +287,16 @@ h1.hero-title em{
 #pricing{background:var(--bg-deep)}
 .price-layout{display:grid;grid-template-columns:1fr 1.05fr;gap:64px;align-items:start}
 .price-pitch h3{
-  font-family:var(--display);font-weight:430;font-size:clamp(1.7rem,3vw,2.4rem);line-height:1.1;
+  font-family:var(--display);font-weight:600;font-size:clamp(1.7rem,3vw,2.4rem);line-height:1.1;
   letter-spacing:-.02em;margin-bottom:18px;
 }
-.price-pitch h3 em{font-weight:500;color:var(--accent)}
+.price-pitch h3 em{font-weight:600;color:var(--accent);font-style:italic}
 .price-pitch p{color:var(--ink-soft);max-width:38ch;margin-bottom:26px}
 .guar{
   display:flex;gap:13px;align-items:flex-start;border-top:1px dashed var(--line);padding-top:20px;margin-top:6px;
 }
 .guar .ic{
-  flex:0 0 auto;width:34px;height:34px;border-radius:50%;border:1.5px solid var(--pine);color:var(--pine);
+  flex:0 0 auto;width:34px;height:34px;border-radius:50%;border:1.5px solid var(--ink);color:var(--ink);
   display:grid;place-items:center;font-size:15px;
 }
 .guar div p{margin:0;font-size:14.5px;color:var(--ink-soft)}
@@ -276,8 +305,8 @@ h1.hero-title em{
 /* receipt */
 .receipt{
   background:var(--paper);position:relative;
-  padding:34px 34px 30px;
-  filter:drop-shadow(0 22px 30px rgba(21,18,12,.13));
+  padding:34px 34px 30px; border-radius:22px;
+  filter:drop-shadow(0 22px 30px rgba(0,0,0,.08));
 }
 .receipt::before,.receipt::after{
   content:'';position:absolute;left:0;right:0;height:14px;
@@ -290,7 +319,7 @@ h1.hero-title em{
   display:flex;justify-content:space-between;align-items:flex-start;
   border-bottom:2px solid var(--ink);padding-bottom:14px;margin-bottom:8px;
 }
-.rc-head .rc-brand{font-family:var(--display);font-size:23px;font-weight:600;letter-spacing:-.02em}
+.rc-head .rc-brand{font-family:var(--brand);font-size:23px;font-weight:700;letter-spacing:-.02em}
 .rc-head .rc-meta{font-family:var(--mono);font-size:10.5px;color:var(--ink-faint);text-align:right;line-height:1.7}
 .rc-tag{
   font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);
@@ -302,14 +331,14 @@ h1.hero-title em{
   border-bottom:1px dotted var(--line);
 }
 .rc-line span:first-child{color:var(--ink-soft)}
-.rc-line .incl{color:var(--pine);font-weight:600;font-size:11px;letter-spacing:.04em}
+.rc-line .incl{color:var(--ink);font-weight:600;font-size:11px;letter-spacing:.04em}
 .rc-total{
   display:flex;justify-content:space-between;align-items:baseline;
   margin-top:16px;padding-top:14px;border-top:2px solid var(--ink);
 }
 .rc-total .lab{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase}
 .rc-total .amt{
-  font-family:var(--display);font-weight:500;font-size:clamp(2.6rem,5.5vw,3.7rem);letter-spacing:-.03em;
+  font-family:var(--display);font-weight:600;font-size:clamp(2.6rem,5.5vw,3.7rem);letter-spacing:-.03em;
   line-height:1;display:flex;align-items:baseline;gap:7px;
 }
 .rc-total .amt .cur{font-family:var(--mono);font-size:15px;font-weight:500;color:var(--ink-soft)}
@@ -324,7 +353,7 @@ h1.hero-title em{
 .after-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--line)}
 .after-card{
   padding:36px 30px 38px;border-bottom:1px solid var(--line);
-  position:relative;transition:background .3s;
+  position:relative;transition:background .3s; border-radius:22px;
 }
 .after-card:not(:last-child){border-right:1px solid var(--line)}
 .after-card:hover{background:var(--paper)}
@@ -332,13 +361,13 @@ h1.hero-title em{
   font-family:var(--mono);font-size:11.5px;color:var(--accent);letter-spacing:.04em;margin-bottom:auto;
 }
 .after-card h3{
-  font-family:var(--display);font-size:1.5rem;font-weight:500;margin:14px 0 16px;letter-spacing:-.02em;
+  font-family:var(--display);font-size:1.5rem;font-weight:600;margin:14px 0 16px;letter-spacing:-.02em;
 }
 .after-card .ac-price{
-  font-family:var(--display);font-weight:430;font-size:clamp(2.4rem,4.5vw,3rem);
+  font-family:var(--display);font-weight:600;font-size:clamp(2.4rem,4.5vw,3rem);
   letter-spacing:-.03em;line-height:1;margin-bottom:14px;
 }
-.after-card .ac-price.free{color:var(--pine)}
+.after-card .ac-price.free{color:var(--ink)}
 .after-card .ac-price .u{font-family:var(--mono);font-size:13px;font-weight:500;color:var(--ink-faint)}
 .after-card p{color:var(--ink-soft);font-size:14.5px}
 
@@ -360,18 +389,19 @@ h1.hero-title em{
 .step .day{
   font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:9px;
 }
-.step h3{font-family:var(--display);font-size:1.5rem;font-weight:500;letter-spacing:-.02em;margin-bottom:10px}
+.step h3{font-family:var(--display);font-size:1.5rem;font-weight:600;letter-spacing:-.02em;margin-bottom:10px}
 .step p{color:var(--ink-soft);font-size:14.5px;max-width:30ch}
 
 /* ───── work / portfolio ───── */
 #work{background:var(--bg-deep)}
 .work-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:30px}
 .work-card{
-  background:var(--paper);border:1px solid var(--line);border-radius:14px;overflow:hidden;
+  background:rgba(255,255,255,.72);backdrop-filter:blur(10px);
+  border:1px solid var(--line);border-radius:22px;overflow:hidden;
   transition:transform .4s var(--ease),box-shadow .4s var(--ease);
   cursor:pointer;
 }
-.work-card:hover{transform:translateY(-7px);box-shadow:0 26px 40px -22px rgba(21,18,12,.42)}
+.work-card:hover{transform:translateY(-7px);box-shadow:0 26px 40px -22px rgba(0,0,0,.15)}
 
 /* browser frame */
 .browser{margin:14px 14px 0;border-radius:9px;overflow:hidden;border:1px solid var(--line);background:#fff}
@@ -395,7 +425,7 @@ h1.hero-title em{
 .m-bake .mb-logo{font-weight:600;font-size:11px}
 .m-bake .mb-links{display:flex;gap:9px;color:#8A7355;font-family:var(--body);font-size:7.5px}
 .m-bake .mb-hero{padding:18px 14px 14px;text-align:center}
-.m-bake .mb-hero h4{font-size:21px;font-style:italic;line-height:1;font-weight:430}
+.m-bake .mb-hero h4{font-size:21px;font-style:italic;line-height:1;font-weight:500}
 .m-bake .mb-hero p{font-family:var(--body);font-size:7.5px;color:#8A7355;margin-top:6px}
 .m-bake .mb-row{display:flex;gap:7px;padding:6px 14px 14px}
 .m-bake .mb-row i{flex:1;height:54px;border-radius:5px;background:linear-gradient(160deg,#D8A45C,#B57A35)}
@@ -409,8 +439,8 @@ h1.hero-title em{
 .m-acc .ma-logo{font-family:var(--display);font-weight:600;font-size:12px}
 .m-acc .ma-links{display:flex;gap:9px;color:#7E94A8;font-size:7.5px}
 .m-acc .ma-hero{padding:16px 14px}
-.m-acc .ma-hero h4{font-family:var(--display);font-size:18px;line-height:1.1;font-weight:430;max-width:18ch}
-.m-acc .ma-hero h4 em{color:#5FA8D4}
+.m-acc .ma-hero h4{font-family:var(--display);font-size:18px;line-height:1.1;font-weight:500;max-width:18ch}
+.m-acc .ma-hero h4 em{color:#5FA8D4;font-style:italic}
 .m-acc .ma-btn{display:inline-block;margin-top:9px;background:#5FA8D4;color:#10243A;font-size:7px;font-weight:600;padding:4px 9px;border-radius:3px}
 .m-acc .ma-cards{display:flex;gap:7px;padding:4px 14px 14px}
 .m-acc .ma-cards i{flex:1;height:40px;border-radius:5px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12)}
@@ -438,8 +468,8 @@ h1.hero-title em{
 .m-salon .ms-logo{font-family:var(--display);font-weight:600;font-size:12px;letter-spacing:.02em}
 .m-salon .ms-links{display:flex;gap:9px;color:#A36B6F;font-size:7.5px}
 .m-salon .ms-hero{padding:14px 14px 8px}
-.m-salon .ms-hero h4{font-family:var(--display);font-size:20px;font-weight:430;line-height:1.05}
-.m-salon .ms-hero h4 em{color:#C0455A}
+.m-salon .ms-hero h4{font-family:var(--display);font-size:20px;font-weight:500;line-height:1.05}
+.m-salon .ms-hero h4 em{color:#C0455A;font-style:italic}
 .m-salon .ms-list{padding:6px 14px}
 .m-salon .ms-list div{display:flex;justify-content:space-between;font-size:7.5px;padding:4px 0;border-bottom:1px solid #E0C7C5;color:#7A5256}
 .m-salon .ms-list div b{font-family:var(--mono);color:#C0455A}
@@ -447,8 +477,8 @@ h1.hero-title em{
 
 .work-info{display:flex;justify-content:space-between;align-items:center;padding:18px 20px}
 .work-info .wi-meta{font-family:var(--mono);font-size:11px;color:var(--ink-faint);letter-spacing:.04em;margin-bottom:5px}
-.work-info .wi-title{font-family:var(--display);font-size:1.32rem;font-weight:500;letter-spacing:-.02em}
-.work-info .wi-title em{color:var(--accent)}
+.work-info .wi-title{font-family:var(--display);font-size:1.32rem;font-weight:600;letter-spacing:-.02em}
+.work-info .wi-title em{color:var(--accent);font-style:italic}
 .work-info .wi-city{font-family:var(--mono);font-size:10.5px;color:var(--ink-faint);margin-top:3px;letter-spacing:.04em}
 .work-go{
   display:flex;align-items:center;gap:7px;font-size:12px;font-weight:600;color:var(--ink-soft);
@@ -462,7 +492,7 @@ h1.hero-title em{
 .faq-q{
   width:100%;text-align:left;background:none;border:none;cursor:pointer;
   display:flex;justify-content:space-between;align-items:center;gap:20px;
-  padding:22px 4px;font-family:var(--display);font-size:1.18rem;font-weight:500;color:var(--ink);
+  padding:22px 4px;font-family:var(--body);font-size:1.02rem;font-weight:600;color:var(--ink);
   letter-spacing:-.015em;
 }
 .faq-q .pm{
@@ -479,31 +509,31 @@ h1.hero-title em{
 #contact .sec-num{color:var(--accent)}
 #contact .sec-num::before{background:var(--accent)}
 .contact-title{
-  font-family:var(--display);font-weight:430;
+  font-family:var(--display);font-weight:600;
   font-size:clamp(2.3rem,5.4vw,4.4rem);line-height:1.02;letter-spacing:-.03em;
   max-width:18ch;margin-bottom:42px;
 }
-.contact-title em{font-weight:500;color:var(--accent)}
+.contact-title em{font-weight:600;color:var(--accent);font-style:italic}
 .contact-row{display:flex;gap:18px;flex-wrap:wrap;align-items:center}
 .contact-info{
   display:grid;grid-template-columns:repeat(3,auto);gap:46px;
-  margin-top:58px;padding-top:34px;border-top:1px solid rgba(247,242,231,.18);
+  margin-top:58px;padding-top:34px;border-top:1px solid rgba(255,255,255,.15);
 }
 .ci-label{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:8px}
-.ci-value{font-family:var(--display);font-size:1.3rem;font-weight:430}
+.ci-value{font-family:var(--display);font-size:1.3rem;font-weight:500}
 .ci-value a:hover{color:var(--accent)}
 
 /* ───── footer ───── */
-.footer{background:var(--ink);color:var(--ink-faint);border-top:1px solid rgba(247,242,231,.14)}
+.footer{background:var(--ink);color:var(--ink-faint);border-top:1px solid rgba(255,255,255,.1)}
 .footer .wrap{
   display:flex;justify-content:space-between;align-items:center;gap:20px;
   padding:30px 40px;font-family:var(--mono);font-size:11.5px;letter-spacing:.04em;flex-wrap:wrap;
 }
 .footer .accent{color:var(--accent)}
 
-/* ───── drawer ───── */
+/* ───── drawer & forms ───── */
 .backdrop{
-  position:fixed;inset:0;background:rgba(21,18,12,.55);backdrop-filter:blur(3px);
+  position:fixed;inset:0;background:rgba(0,0,0,.45);backdrop-filter:blur(3px);
   z-index:300;opacity:0;pointer-events:none;transition:opacity .4s;
 }
 .backdrop.on{opacity:1;pointer-events:auto}
@@ -515,7 +545,6 @@ h1.hero-title em{
   display:inline-flex;align-items:center;gap:7px;transition:color .2s;
 }
 .login-link:hover{color:var(--ink)}
-.login-link .lg-ic{width:16px;height:16px;display:inline-block;opacity:.8}
 .login-link.is-user{color:var(--ink);font-weight:600}
 .login-link .avatar{
   width:26px;height:26px;border-radius:50%;background:var(--accent);color:#fff;
@@ -525,7 +554,7 @@ h1.hero-title em{
 .login-modal{
   position:fixed;z-index:320;top:50%;left:50%;transform:translate(-50%,-46%) scale(.97);
   width:min(420px,calc(100vw - 36px));background:var(--paper);border-radius:22px;
-  box-shadow:0 40px 90px -30px rgba(21,18,12,.55);padding:40px 36px 32px;
+  box-shadow:0 40px 90px -30px rgba(0,0,0,.35);padding:40px 36px 32px;
   opacity:0;pointer-events:none;transition:opacity .35s,transform .35s var(--ease);
   max-height:calc(100vh - 36px);overflow-y:auto;
 }
@@ -537,8 +566,8 @@ h1.hero-title em{
 }
 .login-close:hover{background:var(--ink);color:var(--paper);border-color:var(--ink);transform:rotate(90deg)}
 .login-eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
-.login-title{font-family:var(--display);font-weight:430;font-size:2rem;line-height:1.05;letter-spacing:-.02em;margin-bottom:8px}
-.login-title em{font-weight:500;color:var(--accent)}
+.login-title{font-family:var(--display);font-weight:600;font-size:2rem;line-height:1.05;letter-spacing:-.02em;margin-bottom:8px}
+.login-title em{font-weight:600;color:var(--accent);font-style:italic}
 .login-sub{color:var(--ink-soft);font-size:14px;margin-bottom:24px;line-height:1.5}
 .login-form label{display:block;margin-bottom:16px}
 .login-form label span{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:7px}
@@ -567,12 +596,13 @@ h1.hero-title em{
 .login-account .acc-draft b{color:var(--ink)}
 .btn-ghost-full{width:100%;justify-content:center;background:transparent;color:var(--ink);border:1.5px solid var(--line)}
 .btn-ghost-full:hover{border-color:var(--accent);color:var(--accent);background:transparent}
-@media(max-width:560px){.login-modal{padding:36px 24px 26px}}
+
+/* drawer */
 .drawer{
   position:fixed;top:0;right:0;bottom:0;width:min(460px,100vw);z-index:310;
-  background:var(--paper);
+  background:linear-gradient(180deg,var(--paper),#F9F9F9); border-radius:22px 0 0 22px;
   transform:translateX(105%);transition:transform .55s var(--ease);
-  overflow-y:auto;box-shadow:-30px 0 60px -30px rgba(21,18,12,.5);
+  overflow-y:auto;box-shadow:-30px 0 60px -30px rgba(0,0,0,.3);
 }
 .drawer.on{transform:translateX(0)}
 .drawer-in{padding:64px 44px 44px;min-height:100%;display:flex;flex-direction:column}
@@ -583,54 +613,46 @@ h1.hero-title em{
 }
 .drawer-close:hover{background:var(--ink);color:var(--paper);border-color:var(--ink);transform:rotate(90deg)}
 .dr-eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
-.dr-title{font-family:var(--display);font-weight:430;font-size:2.5rem;line-height:1.02;letter-spacing:-.03em;margin-bottom:14px}
-.dr-title em{font-weight:500;color:var(--accent)}
+.dr-title{font-family:var(--display);font-weight:600;font-size:2.5rem;line-height:1.02;letter-spacing:-.03em;margin-bottom:14px}
+.dr-title em{font-weight:600;color:var(--accent);font-style:italic}
 .dr-sub{color:var(--ink-soft);font-size:15px;margin-bottom:30px}
 .dr-form label{display:block;margin-bottom:18px}
 .dr-form label span{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:7px}
-.dr-form input,.dr-form textarea{
+.dr-form input,.dr-form textarea,.dr-form select{
   width:100%;font-family:var(--body);font-size:15px;color:var(--ink);
-  background:var(--bg);border:1.5px solid var(--line);border-radius:9px;padding:13px 14px;
+  background:#F5F5F5;border:1.5px solid var(--line);border-radius:14px;padding:14px 15px;
   transition:border-color .25s,background .25s;
 }
 .dr-form textarea{min-height:150px;resize:vertical;line-height:1.5}
-.dr-form input:focus,.dr-form textarea:focus{outline:none;border-color:var(--accent);background:var(--paper)}
-.dr-form input.err,.dr-form textarea.err{border-color:var(--accent);background:var(--accent-soft)}
-.form-tabs{display:flex;gap:6px;margin-bottom:22px;background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:5px}
+.dr-form input:focus,.dr-form textarea:focus,.dr-form select:focus{outline:none;border-color:var(--accent);background:var(--paper)}
+.dr-form input.err,.dr-form textarea.err,.dr-form select.err{border-color:var(--accent);background:var(--accent-soft)}
+
+.form-tabs{display:flex;gap:5px;margin-bottom:22px;background:rgba(0,0,0,.04);border-radius:18px;padding:6px}
 .form-tab{
   flex:1 1 0;min-width:0;border:none;background:transparent;border-radius:10px;padding:10px 6px;
   font-family:var(--mono);font-size:10px;line-height:1.25;letter-spacing:.04em;text-transform:uppercase;
-  color:var(--ink-soft);cursor:pointer;transition:background .25s,color .25s;
-  overflow-wrap:break-word;word-break:break-word;hyphens:auto;-webkit-hyphens:auto;text-align:center;
+  color:var(--ink-soft);cursor:pointer;transition:background .25s,color .25s,box-shadow .25s;
+  text-align:center;
 }
-.form-tab.active{background:var(--ink);color:var(--paper)}
+.form-tab.active{background:var(--ink);color:var(--paper);box-shadow:0 10px 22px -16px rgba(0,0,0,.7)}
 .form-panel{display:none}
 .form-panel.active{display:block;animation:panelIn .28s var(--ease)}
 @keyframes panelIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-.dr-form select{
-  width:100%;font-family:var(--body);font-size:15px;color:var(--ink);
-  background:var(--bg);border:1.5px solid var(--line);border-radius:9px;padding:13px 14px;
-  transition:border-color .25s,background .25s;
-}
-.dr-form select:focus{outline:none;border-color:var(--accent);background:var(--paper)}
-.dr-form select.err{border-color:var(--accent);background:var(--accent-soft)}
 .form-nav{display:flex;gap:10px;margin-top:6px}
 .form-nav .btn{flex:1;justify-content:center}
+
 .color-palette{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin:10px 0 22px}
 .color-choice{position:relative;cursor:pointer;display:block}
 .color-choice input{position:absolute;opacity:0;pointer-events:none}
-.dr-form .color-choice .color-swatch{
-  display:flex;align-items:stretch;height:62px;border-radius:14px;overflow:hidden;
-  border:2px solid var(--line);box-shadow:0 1px 3px rgba(18,26,23,.06);
+.dr-form .color-swatch{
+  display:flex;align-items:stretch;height:54px;border-radius:16px;overflow:hidden;
+  border:2px solid var(--line);box-shadow:0 1px 3px rgba(0,0,0,.06);
   transition:transform .25s var(--ease),border-color .25s,box-shadow .25s;
   margin-bottom:0;
 }
-.dr-form .color-swatch i{flex:1 1 0;display:block;height:100%;min-width:0;font-style:normal;margin:0}
-.color-choice:hover .color-swatch{transform:translateY(-2px);box-shadow:0 8px 20px -10px rgba(18,26,23,.3)}
-.color-choice input:checked + .color-swatch{
-  border-color:var(--ink);transform:translateY(-3px);
-  box-shadow:0 10px 24px -10px rgba(18,26,23,.38);
-}
+.dr-form .color-swatch i{flex:1 1 0;display:block;height:100%;font-style:normal;margin:0}
+.color-choice:hover .color-swatch{transform:translateY(-2px);box-shadow:0 8px 20px -10px rgba(0,0,0,.15)}
+.color-choice input:checked + .color-swatch{border-color:var(--ink);transform:translateY(-3px);box-shadow:0 10px 24px -10px rgba(0,0,0,.25);}
 .dr-form .color-choice .pal-name{
   display:flex;align-items:center;gap:7px;margin-top:8px;margin-bottom:0;
   font-family:var(--mono);font-size:11px;letter-spacing:.04em;
@@ -644,9 +666,7 @@ h1.hero-title em{
 .color-choice input:checked ~ .pal-name::before{
   border-color:var(--accent);background:radial-gradient(circle,var(--accent) 42%,transparent 46%);
 }
-@media(max-width:560px){.color-palette{grid-template-columns:1fr}}
 
-/* ── more colors / custom wheel ── */
 .more-colors-btn{
   display:flex;align-items:center;justify-content:center;gap:9px;width:100%;
   background:var(--bg);border:1.5px dashed var(--line);border-radius:12px;
@@ -667,13 +687,11 @@ h1.hero-title em{
 .cc-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
 .cc-title{font-family:var(--mono);font-size:11px;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-soft)}
 .cc-count{font-family:var(--mono);font-size:12px;color:var(--accent);font-weight:600}
-.cc-wheel{
-  display:grid;grid-template-columns:repeat(10,1fr);gap:6px;
-}
+.cc-wheel{display:grid;grid-template-columns:repeat(10,1fr);gap:6px}
 .cc-dot{
   aspect-ratio:1;border-radius:50%;cursor:pointer;border:2px solid transparent;
   position:relative;transition:transform .18s var(--ease),border-color .18s;
-  box-shadow:inset 0 0 0 1px rgba(18,26,23,.08);
+  box-shadow:inset 0 0 0 1px rgba(0,0,0,.08);
 }
 .cc-dot:hover{transform:scale(1.18);z-index:2}
 .cc-dot.sel{border-color:var(--ink);transform:scale(1.12);z-index:1}
@@ -691,17 +709,17 @@ h1.hero-title em{
   border:1px solid var(--line);border-radius:30px;padding:5px 10px 5px 6px;
   font-family:var(--mono);font-size:11px;color:var(--ink);
 }
-.cc-chip .sw{width:15px;height:15px;border-radius:50%;border:1px solid rgba(18,26,23,.15)}
+.cc-chip .sw{width:15px;height:15px;border-radius:50%;border:1px solid rgba(0,0,0,.15)}
 .cc-chip .rm{cursor:pointer;border:none;background:none;color:var(--ink-faint);font-size:15px;line-height:1;padding:0;transition:color .2s}
 .cc-chip .rm:hover{color:var(--accent)}
-@media(max-width:560px){.cc-wheel{grid-template-columns:repeat(8,1fr)}}
+
 .dropzone{
-  display:block;border:1.5px dashed var(--line);border-radius:14px;background:var(--bg);
-  padding:24px 18px;text-align:center;cursor:pointer;transition:border-color .25s,background .25s;
+  display:block;border:1.5px dashed var(--line);border-radius:18px;background:#F5F5F5;
+  padding:30px 18px;text-align:center;cursor:pointer;transition:border-color .25s,background .25s;
 }
 .dropzone:hover,.dropzone.drag{border-color:var(--accent);background:var(--accent-soft)}
 .dropzone input{display:none}
-.dropzone strong{display:block;font-family:var(--display);font-size:1.25rem;font-weight:500;margin-bottom:6px}
+.dropzone strong{display:block;font-family:var(--display);font-size:1.25rem;font-weight:600;margin-bottom:6px}
 .dropzone span{display:block;color:var(--ink-soft);font-size:14px}
 .file-list{margin:12px 0 6px;color:var(--ink-soft);font-size:13px;line-height:1.45}
 .file-list .fitem{display:flex;align-items:center;gap:9px;padding:7px 11px;background:var(--bg);border:1px solid var(--line-soft);border-radius:9px;margin-bottom:7px}
@@ -711,22 +729,17 @@ h1.hero-title em{
 .file-list .fitem .fx:hover{color:var(--accent)}
 .file-list .ferr{color:var(--accent-deep);font-size:12px;margin-top:2px}
 .file-hint{font-size:12px;color:var(--ink-faint);line-height:1.45;margin:0 0 20px}
-.dr-submit{
-  width:100%;justify-content:center;margin-top:8px;
-}
+.dr-submit{width:100%;justify-content:center;margin-top:8px}
 .dr-success{display:none;text-align:center;padding:40px 0}
 .dr-success.on{display:block;animation:pop .5s var(--ease)}
 @keyframes pop{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:scale(1)}}
 .dr-success .ck{
-  width:62px;height:62px;border-radius:50%;background:var(--pine);color:var(--paper);
+  width:62px;height:62px;border-radius:50%;background:var(--ink);color:var(--paper);
   display:grid;place-items:center;font-size:30px;margin:0 auto 18px;
 }
-.dr-success h3{font-family:var(--display);font-size:1.8rem;font-weight:500;margin-bottom:8px}
+.dr-success h3{font-family:var(--display);font-size:1.8rem;font-weight:600;margin-bottom:8px}
 .dr-success p{color:var(--ink-soft)}
-.dr-meta{
-  margin-top:auto;padding-top:30px;border-top:1px dashed var(--line);
-  display:flex;gap:36px;
-}
+.dr-meta{margin-top:auto;padding-top:30px;border-top:1px dashed var(--line);display:flex;gap:36px}
 .dr-meta .dm-label{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:4px}
 .dr-meta .dm-value a{font-weight:600;font-size:14.5px}
 .dr-meta .dm-value a:hover{color:var(--accent)}
@@ -736,59 +749,12 @@ h1.hero-title em{
 .rv.in{opacity:1;transform:none}
 .rv-d1{transition-delay:.09s}.rv-d2{transition-delay:.18s}.rv-d3{transition-delay:.27s}
 
-
-/* ───── refined modern layer ───── */
-.nav{box-shadow:0 10px 30px rgba(18,26,23,.04)}
-.brand .mark{border-radius:11px;background:linear-gradient(135deg,var(--ink),var(--pine))}
-.hero{padding-top:176px}
-.hero::before{
-  content:'';position:absolute;right:-140px;top:120px;width:470px;height:470px;border-radius:50%;
-  background:radial-gradient(circle,rgba(23,61,50,.13),transparent 66%);z-index:0;
-}
-.hero-cols{display:grid;grid-template-columns:minmax(0,1.02fr) minmax(330px,.78fr);align-items:center;gap:72px}
-.hero-sub{font-size:19px;max-width:52ch;color:#48534C}
-.proof-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
-.proof-pill{
-  display:inline-flex;align-items:center;gap:8px;padding:9px 12px;border:1px solid var(--line);
-  background:rgba(255,249,239,.64);border-radius:999px;font-family:var(--mono);font-size:11px;color:var(--ink-soft);
-}
-.proof-pill b{color:var(--ink);font-weight:600}
-.hero-showcase{position:relative;min-height:430px}
-.site-preview{
-  position:relative;z-index:2;background:var(--paper);border:1px solid var(--line);border-radius:28px;
-  padding:16px;box-shadow:0 34px 80px -48px rgba(18,26,23,.75);transform:rotate(1deg);
-}
-.preview-top{display:flex;align-items:center;gap:7px;padding:6px 6px 14px;color:var(--ink-faint)}
-.preview-dot{width:9px;height:9px;border-radius:50%;background:var(--line)}
-.preview-url{margin-left:auto;font-family:var(--mono);font-size:10px;color:var(--ink-faint)}
-.preview-screen{border-radius:20px;overflow:hidden;background:linear-gradient(145deg,#173D32,#101815);color:var(--paper);min-height:288px;padding:24px;position:relative}
-.preview-screen::after{content:'';position:absolute;right:-46px;bottom:-46px;width:160px;height:160px;border-radius:50%;background:rgba(217,164,65,.18)}
-.preview-label{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#D9C9B8;margin-bottom:48px}
-.preview-heading{font-family:var(--display);font-size:38px;line-height:.96;letter-spacing:-.035em;max-width:8ch}
-.preview-card{margin-top:30px;background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.18);border-radius:18px;padding:14px;display:flex;justify-content:space-between;gap:12px;font-size:13px;color:#EFE6D8}
-.preview-card span:last-child{color:var(--sun);font-family:var(--mono)}
-.float-note{
-  position:absolute;left:-24px;bottom:58px;z-index:3;background:var(--paper);border:1px solid var(--line);border-radius:18px;
-  padding:14px 16px;box-shadow:0 18px 42px -30px rgba(18,26,23,.7);max-width:190px;
-  font-family:var(--mono);font-size:11px;color:var(--ink-soft);transform:rotate(-3deg);
-}
-.float-note b{display:block;font-family:var(--display);font-size:20px;color:var(--ink);font-weight:500;margin-bottom:2px}
-.hero-showcase .stamp{position:absolute;right:-8px;bottom:-18px;z-index:4;min-width:220px;transform:rotate(-3deg);box-shadow:5px 5px 0 var(--pine)}
-.receipt{border-radius:22px}
-.after-card,.work-card,.drawer{border-radius:22px}
-.work-card{background:rgba(255,249,239,.72);backdrop-filter:blur(10px)}
-.faq-q{font-family:var(--body);font-weight:650;font-size:1.02rem}
-.drawer{background:linear-gradient(180deg,var(--paper),#F6EFE4)}
-.form-tabs{background:rgba(23,61,50,.06);border-radius:18px;padding:6px;gap:5px}
-.form-tab.active{background:var(--pine);box-shadow:0 10px 22px -16px rgba(23,61,50,.7)}
-.dr-form input,.dr-form select{background:#FBF5EA;border-radius:14px;padding:14px 15px}
-.dropzone{background:#FBF5EA;border-radius:18px;padding:30px 18px}
-.color-swatch{height:54px;border-radius:16px}
-@media(max-width:920px){.hero-cols{grid-template-columns:1fr}.hero-showcase{min-height:380px;max-width:520px}.hero-showcase .stamp{right:8px}.float-note{left:4px}}
-@media(max-width:680px){.proof-row{gap:8px}.proof-pill{font-size:10px}.hero-showcase{min-height:auto}.site-preview{transform:none}.hero-showcase .stamp{position:relative;right:auto;bottom:auto;margin-top:18px;width:100%;transform:rotate(1deg)}.float-note{display:none}}
-
 /* ───── responsive ───── */
 @media(max-width:920px){
+  .hero-cols{grid-template-columns:1fr;gap:40px}
+  .hero-showcase{min-height:380px;max-width:520px}
+  .hero-showcase .stamp{right:8px}
+  .float-note{left:4px}
   .price-layout{grid-template-columns:1fr;gap:40px}
   .after-grid{grid-template-columns:1fr}
   .after-card{border-right:none!important}
@@ -798,93 +764,109 @@ h1.hero-title em{
   .faq-grid{grid-template-columns:1fr}
   .contact-info{grid-template-columns:1fr;gap:24px}
 }
+
 @media(max-width:680px){
-  .wrap{padding:0 22px}
-  .nav,.nav.scrolled{padding:12px 22px}
-  .nav-links li.nav-only{display:none}
-  .hero{padding:148px 0 50px}
+  .wrap{padding:0 20px}
+  .nav, .nav.scrolled{padding:12px 20px}
+  
+  /* Mobile Navigation Space Fixes */
+  .nav-in {gap: 10px; justify-content: flex-start;}
+  .nav-links {gap: 12px; margin-left: auto;}
+  .lang-btn {padding: 4px 6px; font-size: 10px;}
+  .nav-links li.nav-only {display: none;}
+  .nav-links li:last-child {display: none;} 
+
+  .brand{font-size:20px}
+  .hero{padding:130px 0 50px}
+  h1.hero-title {line-height:1.15; font-size:clamp(2.3rem, 9vw, 3rem);}
+  .hero-sub {font-size:16px;}
   .section{padding:74px 0}
-  .stamp{transform:rotate(1.6deg);min-width:0;width:100%}
-  .hero-cols{gap:36px}
-  .footer .wrap{padding:26px 22px}
-  .drawer-in{padding:60px 26px 32px}
+  .stamp {transform:rotate(0deg); width:100%; margin-top:24px;}
+  .footer .wrap{padding:26px 20px}
+  .drawer-in{padding:60px 20px 32px}
+  .site-preview {padding:12px; border-radius:18px; transform:none;}
+  .preview-screen {min-height:200px; padding:16px;}
+  .preview-heading {font-size:26px;}
+  .hero-showcase .stamp {transform:rotate(0deg); position:relative; right:auto; bottom:auto; margin-top:18px; width:100%;}
+  .float-note{display:none}
+  .login-modal{padding:36px 24px 26px}
+  .color-palette{grid-template-columns:1fr}
+  .cc-wheel{grid-template-columns:repeat(8,1fr)}
 }
 </style>
 </head>
 <body>
 
-<div class="blob" id="blob"></div>
-
 <!-- NAV -->
 <nav class="nav" id="nav">
   <div class="nav-in">
-    <a href="#top" class="brand"><span class="mark">A</span>Auwem</a>
+    <a href="#top" class="brand"><span class="mark">A</span>Auwem.ch</a>
     <ul class="nav-links">
-      <li class="nav-only"><a href="#pricing" class="lnk" data-i18n="nav.pricing">Pricing</a></li>
-      <li class="nav-only"><a href="#process" class="lnk" data-i18n="nav.process">Process</a></li>
-      <li class="nav-only"><a href="#work" class="lnk" data-i18n="nav.work">Work</a></li>
+      <li class="nav-only"><a href="#pricing" class="lnk" data-i18n="nav.pricing">Tarif</a></li>
+      <li class="nav-only"><a href="#process" class="lnk" data-i18n="nav.process">Processus</a></li>
+      <li class="nav-only"><a href="#work" class="lnk" data-i18n="nav.work">Réalisations</a></li>
       <li class="nav-only"><a href="#faq" class="lnk" data-i18n="nav.faq">FAQ</a></li>
       <li>
         <div class="langs">
-          <button class="lang-btn active" data-lang="en">EN</button>
-          <button class="lang-btn" data-lang="fr">FR</button>
+          <button class="lang-btn" data-lang="en">EN</button>
+          <button class="lang-btn active" data-lang="fr">FR</button>
           <button class="lang-btn" data-lang="de">DE</button>
         </div>
       </li>
-      <li><button type="button" class="login-link" id="loginLink" data-i18n="nav.login">Log in</button></li>
-      <li><a href="#" class="btn btn-sm" data-open><span data-i18n="nav.cta">Start a project</span> <span class="arw">→</span></a></li>
+      <li><button type="button" class="login-link" id="loginLink" data-i18n="nav.login">Connexion</button></li>
+      <li><a href="#" class="btn btn-sm" data-open><span data-i18n="nav.cta">Démarrer un projet</span> <span class="arw">→</span></a></li>
     </ul>
   </div>
 </nav>
 
 <!-- SIDE RAIL -->
-<button class="rail" data-open aria-label="Open project intake form">
+<button class="rail" data-open aria-label="Démarrer un projet">
   <span class="dot"></span>
-  <span data-i18n="rail">Start your project</span>
+  <span data-i18n="rail">Démarrer un projet</span>
 </button>
 
 <!-- HERO -->
 <header class="hero" id="top">
   <div class="hero-grid"></div>
   <div class="wrap">
-    <div class="eyebrow"><span class="live"></span><span data-i18n="status">Available · 2 slots this week</span></div>
+    <div class="eyebrow"><span class="live"></span><span data-i18n="status">Nouvelles commandes · 2 créations cette semaine</span></div>
     <h1 class="hero-title">
-      <span data-i18n="hero.p1">Beautiful websites for </span><span class="rot-wrap"><span class="rot" id="rot">bakers</span></span><span data-i18n="hero.p2"> too busy to build one.</span>
+      <span data-i18n="hero.p1">Des sites qui donnent aux </span><span class="rot-wrap"><span class="rot" id="rot">boulangers</span></span><span data-i18n="hero.p2"> une image sérieuse dès le premier clic.</span>
     </h1>
     <div class="hero-cols">
       <div>
-        <p class="hero-sub" data-i18n="hero.sub">Auwem creates sharp, credible websites for Swiss small businesses that need to look established from day one. <b>CHF 400 flat.</b> Clear process, strong copy, polished design.</p>
+        <p class="hero-sub" data-i18n="hero.sub">Auwem crée des sites crédibles et élégants pour les petites entreprises suisses qui veulent inspirer confiance dès le premier jour. <b>400 CHF tout compris.</b> Processus clair, rédaction solide, design soigné.</p>
         <div class="hero-ctas">
-          <a href="#" class="btn" data-open><span data-i18n="hero.cta1">Start your project</span> <span class="arw">→</span></a>
-          <a href="#work" class="btn btn-ghost" data-i18n="hero.cta2">View example styles</a>
+          <a href="#" class="btn" data-open><span data-i18n="hero.cta1">Démarrer votre projet</span> <span class="arw">→</span></a>
+          <a href="#work" class="btn btn-ghost" data-i18n="hero.cta2">Voir les styles possibles</a>
         </div>
         <div class="proof-row">
-          <span class="proof-pill"><b>CHF 400</b> flat fee</span>
-          <span class="proof-pill"><b>48h</b> first version</span>
-          <span class="proof-pill"><b>Swiss</b> hosting setup</span>
+          <span class="proof-pill"><b>400 CHF</b> <span data-i18n="hero.pill1">tout compris</span></span>
+          <span class="proof-pill"><b>48h</b> <span data-i18n="hero.pill2">première version</span></span>
+          <span class="proof-pill"><b>Swiss</b> <span data-i18n="hero.pill3">hébergement inclus</span></span>
         </div>
       </div>
       <div class="hero-showcase">
         <div class="site-preview" aria-hidden="true">
-          <div class="preview-top"><span class="preview-dot"></span><span class="preview-dot"></span><span class="preview-dot"></span><span class="preview-url">your-business.ch</span></div>
+          <div class="preview-top"><span class="preview-dot"></span><span class="preview-dot"></span><span class="preview-dot"></span><span class="preview-url">votre-entreprise.ch</span></div>
           <div class="preview-screen">
-            <div class="preview-label">Local business website</div>
-            <div class="preview-heading">Built to feel real — not templated.</div>
-            <div class="preview-card"><span>Opening hours, services, booking, map</span><span>Live</span></div>
+            <div class="preview-label" data-i18n="preview.label">Site PME locale</div>
+            <div class="preview-heading" data-i18n="preview.heading">Conçu pour faire vrai, pas modèle générique.</div>
+            <div class="preview-card"><span data-i18n="preview.features">Horaires, services, réservation, carte</span><span>Live</span></div>
           </div>
         </div>
-        <div class="float-note"><b>Looks premium.</b> Works simply on phone, tablet and desktop.</div>
+        <div class="float-note"><b data-i18n="preview.floatB">Look premium.</b> <span data-i18n="preview.floatP">Fonctionne simplement sur téléphone, tablette et ordinateur.</span></div>
         <div class="stamp">
           <div class="st-top">
-            <span data-i18n="stamp.top">This week's slots</span>
+            <span data-i18n="stamp.top">Places cette semaine</span>
             <span>●●○</span>
           </div>
           <div class="clock" id="clock">00<span class="u">d</span> 00<span class="u">h</span> 00<span class="u">m</span></div>
-          <div class="st-label" data-i18n="stamp.label">Booking closes <b>Sunday 23:59</b></div>
+          <div class="st-label" data-i18n="stamp.label">Clôture <b>dimanche 23h59</b></div>
         </div>
       </div>
     </div>
-    <div class="scroll-hint"><span class="ln"></span><span data-i18n="hero.scroll">Scroll to explore</span></div>
+    <div class="scroll-hint"><span class="ln"></span><span data-i18n="hero.scroll">Faites défiler</span></div>
   </div>
 </header>
 
@@ -896,42 +878,42 @@ h1.hero-title em{
   <div class="wrap">
     <div class="sec-head rv">
       <div>
-        <div class="sec-num" data-i18n="s1.label">[01] — The price</div>
-        <h2 class="sec-title" data-i18n="s1.title">One website. <em>One price.</em><br>One invoice.</h2>
+        <div class="sec-num" data-i18n="s1.label">[01] — Le tarif</div>
+        <h2 class="sec-title" data-i18n="s1.title">Un site soigné, sans <em>complication d’agence.</em></h2>
       </div>
-      <p class="sec-intro" data-i18n="s1.intro">Everything you need to look professional online — designed, written, and live in 48 hours.</p>
+      <p class="sec-intro" data-i18n="s1.intro">Un site clair et élégant qui explique votre activité, inspire confiance et facilite le contact.</p>
     </div>
     <div class="price-layout">
       <div class="price-pitch rv rv-d1">
-        <h3 data-i18n="s1.pitchTitle">No quotes. No hourly billing. <em>No second invoice.</em></h3>
-        <p data-i18n="s1.desc">A complete, mobile-friendly website. Automated builds, hand-crafted polish — live before the week is out.</p>
+        <h3 data-i18n="s1.pitchTitle">Prix clair, livraison rapide, <em>finition propre.</em></h3>
+        <p data-i18n="s1.desc">Nous combinons un processus rapide avec de vraies décisions de design, pour éviter l’effet modèle générique.</p>
         <div class="guar">
           <div class="ic">✓</div>
           <div>
-            <div class="gt" data-i18n="s1.guarTitle">Live in 48h, or you don't pay.</div>
-            <p data-i18n="s1.guarText">If your site isn't ready 48 hours after we receive your content, the build is on us.</p>
+            <div class="gt" data-i18n="s1.guarTitle">En ligne en 48h, ou vous ne payez pas.</div>
+            <p data-i18n="s1.guarText">Si votre site n'est pas prêt 48 heures après réception de votre contenu, la construction est offerte.</p>
           </div>
         </div>
       </div>
       <div class="receipt rv rv-d2">
         <div class="rc-head">
-          <div class="rc-brand">Auwem</div>
-          <div class="rc-meta">N° 2026-0042<br>Lausanne · VD<br><span data-i18n="rc.oneTime">One-time</span></div>
+          <div class="rc-brand">Auwem.ch</div>
+          <div class="rc-meta">N° 2026-0042<br>Lausanne · VD<br><span data-i18n="rc.oneTime">Paiement unique</span></div>
         </div>
-        <div class="rc-tag" data-i18n="s1.tag">All-in flat fee</div>
-        <div class="rc-line"><span data-i18n="s1.f1">Custom-designed website, up to 5 pages</span><span class="incl" data-i18n="rc.incl">INCL</span></div>
-        <div class="rc-line"><span data-i18n="s1.f2">Mobile-first, lightning-fast loading</span><span class="incl" data-i18n="rc.incl">INCL</span></div>
-        <div class="rc-line"><span data-i18n="s1.f6">Copywriting — we write your pages for you</span><span class="incl" data-i18n="rc.incl">INCL</span></div>
-        <div class="rc-line"><span data-i18n="s1.f4">Basic SEO setup (titles, meta, sitemap)</span><span class="incl" data-i18n="rc.incl">INCL</span></div>
-        <div class="rc-line"><span data-i18n="s1.f3">Contact form & Google Maps</span><span class="incl" data-i18n="rc.incl">INCL</span></div>
-        <div class="rc-line"><span data-i18n="s1.f5">Bilingual FR / EN (or +DE on request)</span><span class="incl" data-i18n="rc.incl">INCL</span></div>
-        <div class="rc-line"><span data-i18n="rc.hosting">Hosting — Year 1</span><span class="incl" data-i18n="rc.free">FREE</span></div>
+        <div class="rc-tag" data-i18n="s1.tag">Tarif forfaitaire</div>
+        <div class="rc-line"><span data-i18n="s1.f1">Site sur mesure, jusqu'à 5 pages</span><span class="incl" data-i18n="rc.incl">INCL</span></div>
+        <div class="rc-line"><span data-i18n="s1.f2">Mobile d'abord, ultra-rapide</span><span class="incl" data-i18n="rc.incl">INCL</span></div>
+        <div class="rc-line"><span data-i18n="s1.f6">Rédaction incluse — nous écrivons vos pages</span><span class="incl" data-i18n="rc.incl">INCL</span></div>
+        <div class="rc-line"><span data-i18n="s1.f4">SEO de base (titres, méta, sitemap)</span><span class="incl" data-i18n="rc.incl">INCL</span></div>
+        <div class="rc-line"><span data-i18n="s1.f3">Formulaire de contact & Google Maps</span><span class="incl" data-i18n="rc.incl">INCL</span></div>
+        <div class="rc-line"><span data-i18n="s1.f5">Bilingue français / anglais (ou +DE sur demande)</span><span class="incl" data-i18n="rc.incl">INCL</span></div>
+        <div class="rc-line"><span data-i18n="rc.hosting">Hébergement — 1ère année</span><span class="incl" data-i18n="rc.free">OFFERT</span></div>
         <div class="rc-total">
-          <span class="lab" data-i18n="rc.total">Total due</span>
+          <span class="lab" data-i18n="rc.total">Total à payer</span>
           <span class="amt"><span class="cur">CHF</span>400</span>
         </div>
         <div class="rc-foot">
-          <span data-i18n="rc.delivery">Delivery · 48h</span>
+          <span data-i18n="rc.delivery">Livraison · 48h</span>
           <span class="rc-barcode" id="barcode"></span>
         </div>
       </div>
@@ -944,29 +926,29 @@ h1.hero-title em{
   <div class="wrap">
     <div class="sec-head rv">
       <div>
-        <div class="sec-num" data-i18n="s2.label">[02] — After launch</div>
-        <h2 class="sec-title" data-i18n="s2.title">No nasty <em>surprises.</em></h2>
+        <div class="sec-num" data-i18n="s2.label">[02] — Après la mise en ligne</div>
+        <h2 class="sec-title" data-i18n="s2.title">Pas de mauvaises <em>surprises.</em></h2>
       </div>
-      <p class="sec-intro" data-i18n="s2.intro">You pay once for the website. After that, you only pay when you actually need something.</p>
+      <p class="sec-intro" data-i18n="s2.intro">Vous payez une fois pour le site. Ensuite, vous ne payez que lorsque vous en avez réellement besoin.</p>
     </div>
     <div class="after-grid">
       <div class="after-card rv">
-        <div class="ac-num" data-i18n="s2.c1.num">// Year 1</div>
-        <h3 data-i18n="s2.c1.title">Hosting</h3>
-        <div class="ac-price free" data-i18n="s2.c1.price">Free.</div>
-        <p data-i18n="s2.c1.desc">We cover hosting, custom domain setup, SSL and backups for your first full year. Focus on your business, not your invoices.</p>
+        <div class="ac-num" data-i18n="s2.c1.num">// 1ère année</div>
+        <h3 data-i18n="s2.c1.title">Hébergement</h3>
+        <div class="ac-price free" data-i18n="s2.c1.price">Gratuit.</div>
+        <p data-i18n="s2.c1.desc">Nous prenons en charge l'hébergement, le nom de domaine, le SSL et les sauvegardes pendant toute la première année. Concentrez-vous sur votre activité, pas sur vos factures.</p>
       </div>
       <div class="after-card rv rv-d1">
-        <div class="ac-num" data-i18n="s2.c2.num">// Year 2 onward</div>
-        <h3 data-i18n="s2.c2.title">Hosting</h3>
-        <div class="ac-price">20 <span class="u" data-i18n="s2.c2.unit">CHF/mo</span></div>
-        <p data-i18n="s2.c2.desc">Fast Swiss hosting, daily backups, SSL, uptime monitoring and minor security updates. Cancel anytime — we hand over your site.</p>
+        <div class="ac-num" data-i18n="s2.c2.num">// Dès la 2e année</div>
+        <h3 data-i18n="s2.c2.title">Hébergement</h3>
+        <div class="ac-price">20 <span class="u" data-i18n="s2.c2.unit">CHF/mois</span></div>
+        <p data-i18n="s2.c2.desc">Hébergement suisse rapide, sauvegardes quotidiennes, SSL, surveillance et mises à jour de sécurité. Résiliable à tout moment — nous vous remettons votre site.</p>
       </div>
       <div class="after-card rv rv-d2">
-        <div class="ac-num" data-i18n="s2.c3.num">// On-demand</div>
-        <h3 data-i18n="s2.c3.title">Changes</h3>
-        <div class="ac-price">20 <span class="u" data-i18n="s2.c3.unit">CHF/change</span></div>
-        <p data-i18n="s2.c3.desc">New opening hours, a price, a photo, an extra service? Send us a message — we update it within 24 hours.</p>
+        <div class="ac-num" data-i18n="s2.c3.num">// À la demande</div>
+        <h3 data-i18n="s2.c3.title">Modifications</h3>
+        <div class="ac-price">20 <span class="u" data-i18n="s2.c3.unit">CHF/modif.</span></div>
+        <p data-i18n="s2.c3.desc">De nouveaux horaires, un prix, une photo, un service en plus ? Envoyez-nous un message — modification effectuée sous 24 heures.</p>
       </div>
     </div>
   </div>
@@ -977,28 +959,28 @@ h1.hero-title em{
   <div class="wrap">
     <div class="sec-head rv">
       <div>
-        <div class="sec-num" data-i18n="s3.label">[03] — How it works</div>
-        <h2 class="sec-title" data-i18n="s3.title">From <em>"we should really build one"</em><br>to live, in 3 days.</h2>
+        <div class="sec-num" data-i18n="s3.label">[03] — Comment ça marche</div>
+        <h2 class="sec-title" data-i18n="s3.title">De quelques informations à un site qui paraît <em>prêt pour vos clients.</em></h2>
       </div>
     </div>
     <div class="steps">
       <div class="step rv">
         <div class="step-dot">01</div>
-        <div class="day" data-i18n="s3.step1.day">Day 1 · Morning</div>
-        <h3 data-i18n="s3.step1.title">Fill the brief</h3>
-        <p data-i18n="s3.step1.desc">A 5-minute form: your business, your services, the vibe. Send us your photos — or tell us you don't have any, and we handle it.</p>
+        <div class="day" data-i18n="s3.step1.day">Jour 1 · Matin</div>
+        <h3 data-i18n="s3.step1.title">Remplir le brief</h3>
+        <p data-i18n="s3.step1.desc">Un formulaire de 5 minutes : votre activité, vos services, l'ambiance. Envoyez-nous vos photos — ou dites-nous que vous n'en avez pas, on s'en charge.</p>
       </div>
       <div class="step rv rv-d1">
         <div class="step-dot">02</div>
-        <div class="day" data-i18n="s3.step2.day">Day 1–2</div>
-        <h3 data-i18n="s3.step2.title">We build it</h3>
-        <p data-i18n="s3.step2.desc">Our automated pipeline assembles your site in 48 hours. We polish it by hand. You get one preview link.</p>
+        <div class="day" data-i18n="s3.step2.day">Jour 1–2</div>
+        <h3 data-i18n="s3.step2.title">On le construit</h3>
+        <p data-i18n="s3.step2.desc">Notre pipeline automatisé assemble votre site en 48 heures. Nous le peaufinons à la main. Vous recevez un lien d'aperçu.</p>
       </div>
       <div class="step rv rv-d2">
         <div class="step-dot">03</div>
-        <div class="day" data-i18n="s3.step3.day">Day 3</div>
-        <h3 data-i18n="s3.step3.title">You go live</h3>
-        <p data-i18n="s3.step3.desc">One round of revisions included. Then we publish to your domain. Free hosting kicks in on day one.</p>
+        <div class="day" data-i18n="s3.step3.day">Jour 3</div>
+        <h3 data-i18n="s3.step3.title">Mise en ligne</h3>
+        <p data-i18n="s3.step3.desc">Un tour de révisions inclus. Puis nous publions sur votre domaine. L'hébergement gratuit commence dès le jour 1.</p>
       </div>
     </div>
   </div>
@@ -1009,10 +991,10 @@ h1.hero-title em{
   <div class="wrap">
     <div class="sec-head rv">
       <div>
-        <div class="sec-num" data-i18n="s4.label">[04] — Selected work</div>
-        <h2 class="sec-title" data-i18n="s4.title">Small businesses, <em>online,</em><br>in 48 hours.</h2>
+        <div class="sec-num" data-i18n="s4.label">[04] — Sélection de réalisations</div>
+        <h2 class="sec-title" data-i18n="s4.title">Des PME, <em>en ligne,</em><br>en 48 heures.</h2>
       </div>
-      <p class="sec-intro" data-i18n="s4.intro">A glimpse of what your site could look like. Every one of these went live within a single week.</p>
+      <p class="sec-intro" data-i18n="s4.intro">Un aperçu de ce à quoi votre site pourrait ressembler. Chacun de ceux-ci a été mis en ligne en une semaine.</p>
     </div>
     <div class="work-grid">
 
@@ -1022,20 +1004,20 @@ h1.hero-title em{
           <div class="bw-bar"><span class="d"></span><span class="d"></span><span class="d"></span><span class="bw-url">boulangerie-du-lac.ch</span></div>
           <div class="mock">
             <div class="mock-inner m-bake">
-              <div class="mb-nav"><span class="mb-logo">du Lac</span><span class="mb-links"><span data-i18n="mock.bake.n1">Breads</span><span data-i18n="mock.bake.n2">Hours</span><span data-i18n="mock.bake.n3">Visit</span></span></div>
-              <div class="mb-hero"><h4 data-i18n="mock.bake.h">Fresh from<br>the oven</h4><p data-i18n="mock.bake.p">Artisan bakery on the lakefront since 1974</p></div>
+              <div class="mb-nav"><span class="mb-logo">du Lac</span><span class="mb-links"><span data-i18n="mock.bake.n1">Pains</span><span data-i18n="mock.bake.n2">Horaires</span><span data-i18n="mock.bake.n3">Visiter</span></span></div>
+              <div class="mb-hero"><h4 data-i18n="mock.bake.h">Tout chaud<br>du four</h4><p data-i18n="mock.bake.p">Boulangerie artisanale au bord du lac depuis 1974</p></div>
               <div class="mb-row"><i></i><i></i><i></i></div>
-              <div class="mb-strip" data-i18n="mock.bake.s">OPEN TUE–SUN · 6:30–18:30</div>
+              <div class="mb-strip" data-i18n="mock.bake.s">OUVERT MAR–DIM · 6h30–18h30</div>
             </div>
           </div>
         </div>
         <div class="work-info">
           <div>
-            <div class="wi-meta" data-i18n="s4.w1.meta">Bakery · Pastry</div>
+            <div class="wi-meta" data-i18n="s4.w1.meta">Boulangerie · Pâtisserie</div>
             <div class="wi-title">Boulangerie <em>du Lac</em></div>
             <div class="wi-city">Lausanne, VD</div>
           </div>
-          <span class="work-go"><span data-i18n="work.view">View site</span> →</span>
+          <span class="work-go"><span data-i18n="work.view">Voir le site</span> →</span>
         </div>
       </article>
 
@@ -1045,20 +1027,20 @@ h1.hero-title em{
           <div class="bw-bar"><span class="d"></span><span class="d"></span><span class="d"></span><span class="bw-url">cabinet-morel.ch</span></div>
           <div class="mock">
             <div class="mock-inner m-acc">
-              <div class="ma-nav"><span class="ma-logo">Morel</span><span class="ma-links"><span data-i18n="mock.acc.n1">Services</span><span data-i18n="mock.acc.n2">Team</span><span data-i18n="mock.acc.n3">Contact</span></span></div>
-              <div class="ma-hero"><h4 data-i18n="mock.acc.h">Accounting, <em>without the jargon.</em></h4><span class="ma-btn" data-i18n="mock.acc.b">Book a call</span></div>
+              <div class="ma-nav"><span class="ma-logo">Morel</span><span class="ma-links"><span data-i18n="mock.acc.n1">Services</span><span data-i18n="mock.acc.n2">Équipe</span><span data-i18n="mock.acc.n3">Contact</span></span></div>
+              <div class="ma-hero"><h4 data-i18n="mock.acc.h">La comptabilité, <em>sans le jargon.</em></h4><span class="ma-btn" data-i18n="mock.acc.b">Prendre RDV</span></div>
               <div class="ma-cards"><i></i><i></i><i></i></div>
-              <div class="ma-strip" data-i18n="mock.acc.s">CERTIFIED FIDUCIARY · NYON</div>
+              <div class="ma-strip" data-i18n="mock.acc.s">FIDUCIAIRE AGRÉÉE · NYON</div>
             </div>
           </div>
         </div>
         <div class="work-info">
           <div>
-            <div class="wi-meta" data-i18n="s4.w2.meta">Accounting firm</div>
+            <div class="wi-meta" data-i18n="s4.w2.meta">Fiduciaire</div>
             <div class="wi-title">Cabinet <em>Morel</em></div>
             <div class="wi-city">Nyon, VD</div>
           </div>
-          <span class="work-go"><span data-i18n="work.view">View site</span> →</span>
+          <span class="work-go"><span data-i18n="work.view">Voir le site</span> →</span>
         </div>
       </article>
 
@@ -1068,20 +1050,20 @@ h1.hero-title em{
           <div class="bw-bar"><span class="d"></span><span class="d"></span><span class="d"></span><span class="bw-url">studio-linnea.ch</span></div>
           <div class="mock">
             <div class="mock-inner m-photo">
-              <div class="mp-nav"><span class="mp-logo">Linnea</span><span class="mp-links"><span data-i18n="mock.photo.n1">Portfolio</span><span data-i18n="mock.photo.n2">About</span><span data-i18n="mock.photo.n3">Book</span></span></div>
+              <div class="mp-nav"><span class="mp-logo">Linnea</span><span class="mp-links"><span data-i18n="mock.photo.n1">Portfolio</span><span data-i18n="mock.photo.n2">À propos</span><span data-i18n="mock.photo.n3">Réserver</span></span></div>
               <div class="mp-grid"><i></i><i></i><i></i><i></i><i></i><i></i></div>
-              <div class="mp-cap" data-i18n="mock.photo.c">Light, captured.</div>
-              <div class="mp-strip" data-i18n="mock.photo.s">Weddings · Portraits · Vevey</div>
+              <div class="mp-cap" data-i18n="mock.photo.c">La lumière, capturée.</div>
+              <div class="mp-strip" data-i18n="mock.photo.s">Mariages · Portraits · Vevey</div>
             </div>
           </div>
         </div>
         <div class="work-info">
           <div>
-            <div class="wi-meta" data-i18n="s4.w3.meta">Photography</div>
+            <div class="wi-meta" data-i18n="s4.w3.meta">Photographie</div>
             <div class="wi-title">Studio <em>Linnea</em></div>
             <div class="wi-city">Vevey, VD</div>
           </div>
-          <span class="work-go"><span data-i18n="work.view">View site</span> →</span>
+          <span class="work-go"><span data-i18n="work.view">Voir le site</span> →</span>
         </div>
       </article>
 
@@ -1091,24 +1073,24 @@ h1.hero-title em{
           <div class="bw-bar"><span class="d"></span><span class="d"></span><span class="d"></span><span class="bw-url">atelier-rouge.ch</span></div>
           <div class="mock">
             <div class="mock-inner m-salon">
-              <div class="ms-nav"><span class="ms-logo">Rouge</span><span class="ms-links"><span data-i18n="mock.salon.n1">Salon</span><span data-i18n="mock.salon.n2">Prices</span><span data-i18n="mock.salon.n3">Book</span></span></div>
-              <div class="ms-hero"><h4 data-i18n="mock.salon.h">Your chair is <em>waiting.</em></h4></div>
+              <div class="ms-nav"><span class="ms-logo">Rouge</span><span class="ms-links"><span data-i18n="mock.salon.n1">Salon</span><span data-i18n="mock.salon.n2">Tarifs</span><span data-i18n="mock.salon.n3">Réserver</span></span></div>
+              <div class="ms-hero"><h4 data-i18n="mock.salon.h">Votre fauteuil vous <em>attend.</em></h4></div>
               <div class="ms-list">
-                <div><span data-i18n="mock.salon.l1">Cut & style</span><b>65.—</b></div>
-                <div><span data-i18n="mock.salon.l2">Colour</span><b>120.—</b></div>
-                <div><span data-i18n="mock.salon.l3">Treatment</span><b>45.—</b></div>
+                <div><span data-i18n="mock.salon.l1">Coupe & coiffage</span><b>65.—</b></div>
+                <div><span data-i18n="mock.salon.l2">Couleur</span><b>120.—</b></div>
+                <div><span data-i18n="mock.salon.l3">Soin</span><b>45.—</b></div>
               </div>
-              <div class="ms-strip" data-i18n="mock.salon.s">BOOK ONLINE · MONTREUX</div>
+              <div class="ms-strip" data-i18n="mock.salon.s">RÉSERVEZ EN LIGNE · MONTREUX</div>
             </div>
           </div>
         </div>
         <div class="work-info">
           <div>
-            <div class="wi-meta" data-i18n="s4.w4.meta">Hair salon</div>
+            <div class="wi-meta" data-i18n="s4.w4.meta">Coiffure · Salon</div>
             <div class="wi-title">Atelier <em>Rouge</em></div>
             <div class="wi-city">Montreux, VD</div>
           </div>
-          <span class="work-go"><span data-i18n="work.view">View site</span> →</span>
+          <span class="work-go"><span data-i18n="work.view">Voir le site</span> →</span>
         </div>
       </article>
 
@@ -1121,26 +1103,26 @@ h1.hero-title em{
   <div class="wrap">
     <div class="sec-head rv">
       <div>
-        <div class="sec-num" data-i18n="faq.label">[05] — Good questions</div>
-        <h2 class="sec-title" data-i18n="faq.title">The things <em>everyone asks.</em></h2>
+        <div class="sec-num" data-i18n="faq.label">[05] — Bonnes questions</div>
+        <h2 class="sec-title" data-i18n="faq.title">Ce que <em>tout le monde demande.</em></h2>
       </div>
     </div>
     <div class="faq-grid">
       <div class="faq-item rv">
-        <button class="faq-q"><span data-i18n="faq.q1">What if I don't have any photos?</span><span class="pm">+</span></button>
-        <div class="faq-a"><p data-i18n="faq.a1">No problem. We use high-quality, licensed imagery that fits your business, and you can swap in your own photos anytime later.</p></div>
+        <button class="faq-q"><span data-i18n="faq.q1">Et si je n'ai pas de photos ?</span><span class="pm">+</span></button>
+        <div class="faq-a"><p data-i18n="faq.a1">Aucun problème. Nous utilisons des images sous licence de haute qualité adaptées à votre activité, et vous pourrez ajouter les vôtres à tout moment.</p></div>
       </div>
       <div class="faq-item rv rv-d1">
-        <button class="faq-q"><span data-i18n="faq.q2">Do I really own the website?</span><span class="pm">+</span></button>
-        <div class="faq-a"><p data-i18n="faq.a2">Yes. The site is yours from day one. If you ever leave, we hand over all files and your domain — no lock-in, no hostage fees.</p></div>
+        <button class="faq-q"><span data-i18n="faq.q2">Suis-je vraiment propriétaire du site ?</span><span class="pm">+</span></button>
+        <div class="faq-a"><p data-i18n="faq.a2">Oui. Le site est le vôtre dès le premier jour. Si vous partez, nous vous remettons tous les fichiers et votre domaine — aucun verrouillage.</p></div>
       </div>
       <div class="faq-item rv">
-        <button class="faq-q"><span data-i18n="faq.q3">Can you write the content for me?</span><span class="pm">+</span></button>
-        <div class="faq-a"><p data-i18n="faq.a3">That's included. Tell us about your business in the brief and we write clear, professional copy for every page — in FR, EN, or both.</p></div>
+        <button class="faq-q"><span data-i18n="faq.q3">Pouvez-vous rédiger le contenu pour moi ?</span><span class="pm">+</span></button>
+        <div class="faq-a"><p data-i18n="faq.a3">C'est inclus. Parlez-nous de votre activité dans le brief et nous rédigeons des textes clairs et professionnels pour chaque page — en FR, EN, ou les deux.</p></div>
       </div>
       <div class="faq-item rv rv-d1">
-        <button class="faq-q"><span data-i18n="faq.q4">What's the catch with CHF 400?</span><span class="pm">+</span></button>
-        <div class="faq-a"><p data-i18n="faq.a4">None. Automation handles the heavy lifting, so we keep prices low and delivery fast. One flat fee, one invoice — that's the whole model.</p></div>
+        <button class="faq-q"><span data-i18n="faq.q4">Où est le piège à 400 CHF ?</span><span class="pm">+</span></button>
+        <div class="faq-a"><p data-i18n="faq.a4">Il n'y en a pas. L'automatisation fait le gros du travail, donc les prix restent bas et la livraison rapide. Un tarif fixe, une facture — c'est tout le modèle.</p></div>
       </div>
     </div>
   </div>
@@ -1149,19 +1131,19 @@ h1.hero-title em{
 <!-- CONTACT -->
 <section class="section" id="contact">
   <div class="wrap rv">
-    <div class="sec-num" data-i18n="s5.label">[06] — Start your project</div>
-    <h2 class="contact-title" data-i18n="s5.title">Let's get your business <em>online</em> this week.</h2>
+    <div class="sec-num" data-i18n="s5.label">[06] — Démarrer votre projet</div>
+    <h2 class="contact-title" data-i18n="s5.title">Mettons votre entreprise <em>en ligne</em> cette semaine.</h2>
     <div class="contact-row">
-      <a href="#" class="btn" data-open style="background:var(--accent);border-color:var(--accent)"><span data-i18n="s5.cta">Start your project</span> <span class="arw">→</span></a>
-      <a href="tel:+41799512565" class="btn btn-ghost" style="color:var(--bg);border-color:rgba(247,242,231,.3)" data-i18n="s5.call">Or call 079 951 25 65</a>
+      <a href="#" class="btn" data-open style="background:var(--accent);border-color:var(--accent)"><span data-i18n="s5.cta">Démarrer votre projet</span> <span class="arw">→</span></a>
+      <a href="tel:+41799512565" class="btn btn-ghost" style="color:var(--bg);border-color:rgba(255,255,255,.3)" data-i18n="s5.call">Ou appelez le 079 951 25 65</a>
     </div>
     <div class="contact-info">
       <div>
-        <div class="ci-label" data-i18n="s5.phone">Phone</div>
+        <div class="ci-label" data-i18n="s5.phone">Téléphone</div>
         <div class="ci-value"><a href="tel:+41799512565">079 951 25 65</a></div>
       </div>
       <div>
-        <div class="ci-label" data-i18n="s5.email">Email</div>
+        <div class="ci-label" data-i18n="s5.email">E-mail</div>
         <div class="ci-value"><a href="mailto:info@auwem.ch">info@auwem.ch</a></div>
       </div>
       <div>
@@ -1175,69 +1157,68 @@ h1.hero-title em{
 <!-- FOOTER -->
 <footer class="footer">
   <div class="wrap">
-    <div>© 2026 <span class="accent">Auwem</span> · Lausanne, CH</div>
-    <div data-i18n="footer.built">Built (of course) in 48 hours.</div>
+    <div>© 2026 <span class="accent">Auwem.ch</span> · Lausanne, CH</div>
+    <div data-i18n="footer.built">Designé dans le canton de Vaud. Pensé pour les entreprises locales suisses.</div>
   </div>
 </footer>
 
 <!-- DRAWER -->
 <div class="backdrop" id="backdrop"></div>
 
-<!-- LOGIN MODAL (demo — local only) -->
-<div class="login-modal" id="loginModal" role="dialog" aria-modal="true" aria-label="Account">
-  <button class="login-close" id="loginClose" aria-label="Close">×</button>
+<!-- LOGIN MODAL -->
+<div class="login-modal" id="loginModal" role="dialog" aria-modal="true" aria-label="Compte">
+  <button class="login-close" id="loginClose" aria-label="Fermer">×</button>
 
-  <!-- auth view (login / signup) -->
   <div class="login-auth" id="loginAuth">
-    <div class="login-eyebrow" id="loginEyebrow" data-i18n="login.eyebrowLogin">[ Your account ]</div>
-    <h2 class="login-title" id="loginTitle"><span data-i18n="login.titleLogin">Welcome</span> <em data-i18n="login.titleLoginEm">back.</em></h2>
-    <p class="login-sub" id="loginSub" data-i18n="login.subLogin">Log in to save your project and pick up where you left off.</p>
+    <div class="login-eyebrow" id="loginEyebrow" data-i18n="login.eyebrowLogin">[ Votre compte ]</div>
+    <h2 class="login-title" id="loginTitle"><span data-i18n="login.titleLogin">Bon</span> <em data-i18n="login.titleLoginEm">retour.</em></h2>
+    <p class="login-sub" id="loginSub" data-i18n="login.subLogin">Connectez-vous pour enregistrer votre projet et le reprendre plus tard.</p>
     <form class="login-form" id="loginForm" novalidate>
-      <label><span data-i18n="login.email">Email</span><input type="email" id="loginEmail" autocomplete="email" placeholder="vous@entreprise.ch"></label>
-      <label><span data-i18n="login.password">Password</span><input type="password" id="loginPassword" autocomplete="current-password" placeholder="••••••••"></label>
+      <label><span data-i18n="login.email">E-mail</span><input type="email" id="loginEmail" autocomplete="email" placeholder="vous@entreprise.ch"></label>
+      <label><span data-i18n="login.password">Mot de passe</span><input type="password" id="loginPassword" autocomplete="current-password" placeholder="••••••••"></label>
       <div class="login-msg" id="loginMsg"></div>
-      <button type="submit" class="btn login-submit"><span id="loginBtnText" data-i18n="login.btnLogin">Log in</span> <span class="arw">→</span></button>
+      <button type="submit" class="btn login-submit"><span id="loginBtnText" data-i18n="login.btnLogin">Se connecter</span> <span class="arw">→</span></button>
     </form>
     <div class="login-switch">
-      <span id="switchPrompt" data-i18n="login.noAccount">No account yet?</span>
-      <button type="button" id="loginSwitch" data-i18n="login.createOne">Create one</button>
+      <span id="switchPrompt" data-i18n="login.noAccount">Pas encore de compte ?</span>
+      <button type="button" id="loginSwitch" data-i18n="login.createOne">Créez-en un</button>
     </div>
     <div class="login-note">
-      <strong data-i18n="login.demoLabel">Demo:</strong> <span data-i18n="login.demoText">accounts are saved only in this browser, on this device. This is a preview of the account feature — not yet a real secure login.</span>
+      <strong data-i18n="login.demoLabel">Démo :</strong> <span data-i18n="login.demoText">les comptes sont enregistrés uniquement dans ce navigateur, sur cet appareil. Ceci est un aperçu de la fonction compte — pas encore une vraie connexion sécurisée.</span>
     </div>
   </div>
 
-  <!-- logged-in view -->
   <div class="login-account" id="loginAccount">
-    <div class="login-eyebrow" data-i18n="login.eyebrowAccount">[ Signed in ]</div>
-    <h2 class="login-title"><span data-i18n="login.hello">Hello</span> <em>👋</em></h2>
-    <p class="login-sub" data-i18n="login.accountSub">You're signed in. Your project draft is saved on this device.</p>
+    <div class="login-eyebrow" data-i18n="login.eyebrowAccount">[ Connecté ]</div>
+    <h2 class="login-title"><span data-i18n="login.hello">Bonjour</span> <em>👋</em></h2>
+    <p class="login-sub" data-i18n="login.accountSub">Vous êtes connecté. Le brouillon de votre projet est enregistré sur cet appareil.</p>
     <div class="acc-email" id="accEmail">—</div>
     <div class="acc-draft" id="accDraft"></div>
-    <button type="button" class="btn login-submit" id="loadDraftBtn" style="margin-bottom:10px"><span data-i18n="login.loadDraft">Open my saved project</span> <span class="arw">→</span></button>
-    <button type="button" class="btn btn-ghost-full" id="logoutBtn" data-i18n="login.logout">Log out</button>
+    <button type="button" class="btn login-submit" id="loadDraftBtn" style="margin-bottom:10px"><span data-i18n="login.loadDraft">Ouvrir mon projet enregistré</span> <span class="arw">→</span></button>
+    <button type="button" class="btn btn-ghost-full" id="logoutBtn" data-i18n="login.logout">Se déconnecter</button>
   </div>
 </div>
-<aside class="drawer" id="drawer" aria-hidden="true" aria-label="Project intake form">
-  <button class="drawer-close" id="closeDrawer" aria-label="Close form">×</button>
+
+<aside class="drawer" id="drawer" aria-hidden="true" aria-label="Formulaire de projet">
+  <button class="drawer-close" id="closeDrawer" aria-label="Fermer le formulaire">×</button>
   <div class="drawer-in">
-    <div class="dr-eyebrow" data-i18n="drawer.eyebrow">[ Project intake ]</div>
-    <h2 class="dr-title" data-i18n="drawer.title">Let's build <em>something.</em></h2>
-    <p class="dr-sub" data-i18n="drawer.sub">Drop your details. We'll be back within 24 hours with next steps and a short brief.</p>
+    <div class="dr-eyebrow" data-i18n="drawer.eyebrow">[ Démarrage projet ]</div>
+    <h2 class="dr-title" data-i18n="drawer.title">Construisons <em>ensemble.</em></h2>
+    <p class="dr-sub" data-i18n="drawer.sub">Laissez-nous vos coordonnées. Nous revenons vers vous sous 24 heures avec la suite et un bref questionnaire.</p>
     <form class="dr-form" id="form" action="https://formspree.io/f/xwvzjwzd" method="POST" enctype="multipart/form-data" accept-charset="UTF-8" novalidate>
       <input type="hidden" name="_subject" value="Nouvelle demande client Auwem">
-      <div class="form-tabs" role="tablist" aria-label="Project form sections">
-        <button type="button" class="form-tab active" data-tab="company" data-i18n="form.tabCompany">Business information</button>
-        <button type="button" class="form-tab" data-tab="style" data-i18n="form.tabStyle">Website personalization</button>
-        <button type="button" class="form-tab" data-tab="photos" data-i18n="form.tabPhotos">Desired photos</button>
-        <button type="button" class="form-tab" data-tab="extra" data-i18n="form.tabExtra">Additional information</button>
+      <div class="form-tabs" role="tablist" aria-label="Sections du formulaire">
+        <button type="button" class="form-tab active" data-tab="company" data-i18n="form.tabCompany">Entreprise</button>
+        <button type="button" class="form-tab" data-tab="style" data-i18n="form.tabStyle">Style</button>
+        <button type="button" class="form-tab" data-tab="photos" data-i18n="form.tabPhotos">Photos</button>
+        <button type="button" class="form-tab" data-tab="extra" data-i18n="form.tabExtra">Détails</button>
       </div>
 
       <div class="form-panel active" data-panel="company">
         <label>
-          <span data-i18n="form.businessType">Type of business</span>
+          <span data-i18n="form.businessType">Type d'entreprise</span>
           <select name="businessType" required>
-            <option value="" data-i18n="form.chooseType">Choose a type</option>
+            <option value="" data-i18n="form.chooseType">Choisir un type</option>
             <option>Agence immobilière</option>
             <option>Architecte / Bureau d'étude</option>
             <option>Artisan / Menuisier</option>
@@ -1263,107 +1244,107 @@ h1.hero-title em{
             <option>Autre</option>
           </select>
         </label>
-        <label><span data-i18n="form.companyName">Business name</span><input type="text" name="company" required autocomplete="organization" maxlength="80" placeholder="Boulangerie du Lac"></label>
-        <label><span data-i18n="form.companyEmail">Business email</span><input type="email" name="email" required autocomplete="email" maxlength="120" placeholder="contact@entreprise.ch"></label>
-        <label><span data-i18n="form.companyPhone">Business phone</span><input type="tel" name="companyPhone" required autocomplete="tel" maxlength="30" placeholder="079 123 45 67"></label>
-        <div class="form-nav"><button type="button" class="btn next-tab" data-next="style"><span data-i18n="form.next">Next</span> <span class="arw">→</span></button></div>
+        <label><span data-i18n="form.companyName">Nom de votre entreprise</span><input type="text" name="company" required autocomplete="organization" maxlength="80" placeholder="Boulangerie du Lac"></label>
+        <label><span data-i18n="form.companyEmail">Mail de votre entreprise</span><input type="email" name="email" required autocomplete="email" maxlength="120" placeholder="contact@entreprise.ch"></label>
+        <label><span data-i18n="form.companyPhone">Téléphone de votre entreprise</span><input type="tel" name="companyPhone" required autocomplete="tel" maxlength="30" placeholder="079 123 45 67"></label>
+        <div class="form-nav"><button type="button" class="btn next-tab" data-next="style"><span data-i18n="form.next">Suivant</span> <span class="arw">→</span></button></div>
       </div>
 
       <div class="form-panel" data-panel="style">
-        <label><span data-i18n="form.palette">Choose a color palette</span></label>
-        <div class="color-palette" aria-label="Color palette">
+        <label><span data-i18n="form.palette">Choisissez une palette de couleurs</span></label>
+        <div class="color-palette" aria-label="Palette de couleurs">
           <label class="color-choice">
             <input type="radio" name="palette" value="earth" checked>
             <span class="color-swatch"><i style="background:#6D8C54"></i><i style="background:#2C3D1E"></i><i style="background:#F4EEDD"></i><i style="background:#C8975A"></i><i style="background:#9E5A2E"></i></span>
-            <span class="pal-name" data-i18n="pal.earth">Earth &amp; olive</span>
+            <span class="pal-name" data-i18n="pal.earth">Terre &amp; olive</span>
           </label>
           <label class="color-choice">
             <input type="radio" name="palette" value="ocean">
             <span class="color-swatch"><i style="background:#8FCDEA"></i><i style="background:#2E8FB5"></i><i style="background:#0A2E44"></i><i style="background:#F5B229"></i><i style="background:#EE7A1E"></i></span>
-            <span class="pal-name" data-i18n="pal.ocean">Ocean &amp; amber</span>
+            <span class="pal-name" data-i18n="pal.ocean">Océan &amp; ambre</span>
           </label>
           <label class="color-choice">
             <input type="radio" name="palette" value="sunset">
             <span class="color-swatch"><i style="background:#274A57"></i><i style="background:#2FA39A"></i><i style="background:#E9C46A"></i><i style="background:#F0A55E"></i><i style="background:#E55C4E"></i></span>
-            <span class="pal-name" data-i18n="pal.sunset">Teal &amp; sunset</span>
+            <span class="pal-name" data-i18n="pal.sunset">Turquoise &amp; coucher</span>
           </label>
           <label class="color-choice">
             <input type="radio" name="palette" value="blush">
             <span class="color-swatch"><i style="background:#F6D8C4"></i><i style="background:#F0A48F"></i><i style="background:#E27D7A"></i><i style="background:#9C6B7C"></i><i style="background:#6A5A6E"></i></span>
-            <span class="pal-name" data-i18n="pal.blush">Blush &amp; mauve</span>
+            <span class="pal-name" data-i18n="pal.blush">Rosé &amp; mauve</span>
           </label>
           <label class="color-choice">
             <input type="radio" name="palette" value="pastel">
             <span class="color-swatch"><i style="background:#C9B6E4"></i><i style="background:#E3A9D6"></i><i style="background:#F5B9D4"></i><i style="background:#AED4F2"></i><i style="background:#8FC0EE"></i></span>
-            <span class="pal-name" data-i18n="pal.pastel">Soft pastel</span>
+            <span class="pal-name" data-i18n="pal.pastel">Pastel doux</span>
           </label>
           <label class="color-choice">
             <input type="radio" name="palette" value="mono">
             <span class="color-swatch"><i style="background:#F7F2E7"></i><i style="background:#C9C0AE"></i><i style="background:#8C8472"></i><i style="background:#3A352C"></i><i style="background:#15120C"></i></span>
-            <span class="pal-name" data-i18n="pal.mono">Warm neutral</span>
+            <span class="pal-name" data-i18n="pal.mono">Neutre chaleureux</span>
           </label>
         </div>
 
         <button type="button" class="more-colors-btn" id="moreColorsBtn">
           <span class="mc-icon" aria-hidden="true"></span>
-          <span data-i18n="form.moreColors">More colors — pick your own</span>
+          <span data-i18n="form.moreColors">Plus de couleurs — choisissez les vôtres</span>
         </button>
 
         <div class="custom-colors" id="customColors" hidden>
           <div class="cc-head">
-            <span class="cc-title" data-i18n="form.customTitle">Choose up to 5 colors</span>
+            <span class="cc-title" data-i18n="form.customTitle">Choisissez jusqu’à 5 couleurs</span>
             <span class="cc-count"><span id="ccCount">0</span>/5</span>
           </div>
-          <div class="cc-wheel" id="ccWheel" aria-label="Color wheel"></div>
-          <div class="cc-selected" id="ccSelected" data-i18n="form.customNone">No color selected yet.</div>
+          <div class="cc-wheel" id="ccWheel" aria-label="Roue chromatique"></div>
+          <div class="cc-selected" id="ccSelected" data-i18n="form.customNone">Aucune couleur sélectionnée.</div>
           <input type="hidden" name="customColors" id="customColorsField">
         </div>
 
         <input type="hidden" name="paletteMode" id="paletteMode" value="preset">
 
-        <label><span data-i18n="form.paletteNote">Notes about the desired style</span><input type="text" name="styleNote" maxlength="160" placeholder="Minimaliste, premium, chaleureux..."></label>
+        <label><span data-i18n="form.paletteNote">Notes sur le style souhaité</span><input type="text" name="styleNote" maxlength="160" placeholder="Minimaliste, premium, chaleureux..."></label>
         <div class="form-nav">
-          <button type="button" class="btn btn-ghost prev-tab" data-prev="company"><span data-i18n="form.back">Back</span></button>
-          <button type="button" class="btn next-tab" data-next="photos"><span data-i18n="form.next">Next</span> <span class="arw">→</span></button>
+          <button type="button" class="btn btn-ghost prev-tab" data-prev="company"><span data-i18n="form.back">Retour</span></button>
+          <button type="button" class="btn next-tab" data-next="photos"><span data-i18n="form.next">Suivant</span> <span class="arw">→</span></button>
         </div>
       </div>
 
       <div class="form-panel" data-panel="photos">
         <label class="dropzone" id="dropzone">
           <input type="file" name="photos" id="photos" accept=".pdf,image/png,image/jpeg,image/webp" multiple>
-          <strong data-i18n="form.dropTitle">Drag your photos or PDFs here</strong>
-          <span data-i18n="form.dropText">or click to select files</span>
+          <strong data-i18n="form.dropTitle">Glissez vos photos ou PDF ici</strong>
+          <span data-i18n="form.dropText">ou cliquez pour sélectionner des fichiers</span>
         </label>
-        <div class="file-list" id="fileList" data-i18n="form.noFiles">No file selected yet.</div>
-        <div class="file-hint" id="fileHint" data-i18n="form.fileHint">PDF, JPG, PNG or WebP · up to 10 MB each. Your files will be attached to an email that opens when you send.</div>
+        <div class="file-list" id="fileList" data-i18n="form.noFiles">Aucun fichier sélectionné pour le moment.</div>
+        <div class="file-hint" id="fileHint" data-i18n="form.fileHint">PDF, JPG, PNG ou WebP · jusqu’à 10 Mo par fichier. Vos fichiers seront joints à un e-mail qui s’ouvrira à l’envoi.</div>
         <input type="hidden" name="attachedFiles" id="attachedFiles">
         <div class="form-nav">
-          <button type="button" class="btn btn-ghost prev-tab" data-prev="style"><span data-i18n="form.back">Back</span></button>
-          <button type="button" class="btn next-tab" data-next="extra"><span data-i18n="form.next">Next</span> <span class="arw">→</span></button>
+          <button type="button" class="btn btn-ghost prev-tab" data-prev="style"><span data-i18n="form.back">Retour</span></button>
+          <button type="button" class="btn next-tab" data-next="extra"><span data-i18n="form.next">Suivant</span> <span class="arw">→</span></button>
         </div>
       </div>
 
       <div class="form-panel" data-panel="extra">
         <label>
-          <span data-i18n="form.additionalInfoLabel">Tell us what you want</span>
-          <textarea name="additionalInformation" maxlength="1200" data-i18n-placeholder="form.additionalInfoPlaceholder" placeholder="• What should visitors understand first?&#10;• Which services should be highlighted?&#10;• What style or examples do you like?&#10;• Any specific requests?"></textarea>
+          <span data-i18n="form.additionalInfoLabel">Expliquez-nous ce que vous souhaitez</span>
+          <textarea name="additionalInformation" maxlength="1200" data-i18n-placeholder="form.additionalInfoPlaceholder" placeholder="• Que doivent comprendre vos visiteurs en premier ?&#10;• Quels services voulez-vous mettre en avant ?&#10;• Quel style ou quels exemples aimez-vous ?&#10;• Avez-vous des demandes spécifiques ?"></textarea>
         </label>
-        <div class="form-nav"><button type="button" class="btn btn-ghost prev-tab" data-prev="photos"><span data-i18n="form.back">Back</span></button></div>
-        <button type="submit" class="btn dr-submit"><span data-i18n="form.submit">Send</span> <span class="arw">→</span></button>
+        <div class="form-nav"><button type="button" class="btn btn-ghost prev-tab" data-prev="photos"><span data-i18n="form.back">Retour</span></button></div>
+        <button type="submit" class="btn dr-submit"><span data-i18n="form.submit">Envoyer</span> <span class="arw">→</span></button>
       </div>
     </form>
     <div class="dr-success" id="success">
       <div class="ck">✓</div>
-      <h3 data-i18n="form.successTitle">Got it.</h3>
-      <p data-i18n="form.successText">We'll be in touch within 24 hours.</p>
+      <h3 data-i18n="form.successTitle">Reçu.</h3>
+      <p data-i18n="form.successText">Nous revenons vers vous sous 24 heures.</p>
     </div>
     <div class="dr-meta">
       <div>
-        <div class="dm-label" data-i18n="form.metaPhone">Or call</div>
+        <div class="dm-label" data-i18n="form.metaPhone">Ou téléphone</div>
         <div class="dm-value"><a href="tel:+41799512565">079 951 25 65</a></div>
       </div>
       <div>
-        <div class="dm-label" data-i18n="form.metaEmail">Or email</div>
+        <div class="dm-label" data-i18n="form.metaEmail">Ou e-mail</div>
         <div class="dm-value"><a href="mailto:info@auwem.ch">info@auwem.ch</a></div>
       </div>
     </div>
@@ -1388,6 +1369,9 @@ en:{
   'hero.p1':'Websites that make ','hero.p2':' look instantly established.',
   'hero.sub':'Auwem creates sharp, credible websites for Swiss small businesses that need to look established from day one. <b>CHF 400 flat.</b> Clear process, strong copy, polished design.',
   'hero.cta1':'Start your project','hero.cta2':'View example styles','hero.scroll':'Scroll to explore',
+  'hero.pill1':'flat fee','hero.pill2':'first version','hero.pill3':'hosting setup',
+  'preview.label':'Local business website','preview.heading':'Built to feel real — not templated.','preview.features':'Opening hours, services, booking, map',
+  'preview.floatB':'Looks premium.','preview.floatP':'Works simply on phone, tablet and desktop.',
   'stamp.top':"This week's slots",'stamp.label':'Booking closes <b>Sunday 23:59</b>',
   's1.label':'[01] — The price','s1.title':'A polished site without the <em>agency drama.</em>',
   's1.intro':'A focused, elegant website that explains what you do, builds trust, and helps customers contact you.',
@@ -1462,6 +1446,9 @@ fr:{
   'hero.p1':'Des sites qui donnent aux ','hero.p2':' une image sérieuse dès le premier clic.',
   'hero.sub':'Auwem crée des sites crédibles et élégants pour les petites entreprises suisses qui veulent inspirer confiance dès le premier jour. <b>400 CHF tout compris.</b> Processus clair, rédaction solide, design soigné.',
   'hero.cta1':'Démarrer votre projet','hero.cta2':'Voir les styles possibles','hero.scroll':'Faites défiler',
+  'hero.pill1':'tout compris','hero.pill2':'première version','hero.pill3':'hébergement inclus',
+  'preview.label':'Site PME locale','preview.heading':'Conçu pour faire vrai, pas modèle générique.','preview.features':'Horaires, services, réservation, carte',
+  'preview.floatB':'Look premium.','preview.floatP':'Fonctionne simplement sur téléphone, tablette et ordinateur.',
   'stamp.top':'Places cette semaine','stamp.label':'Clôture <b>dimanche 23h59</b>',
   's1.label':'[01] — Le tarif','s1.title':'Un site soigné, sans <em>complication d’agence.</em>',
   's1.intro':'Un site clair et élégant qui explique votre activité, inspire confiance et facilite le contact.',
@@ -1536,6 +1523,9 @@ de:{
   'hero.p1':'Schöne Websites für ','hero.p2':', die zu beschäftigt sind, eine zu bauen.',
   'hero.sub':"Auwem baut professionelle Websites für Schweizer KMU in 48 Stunden. <b>400 CHF pauschal.</b> Automatisiert wo's zählt, handgemacht wo's drauf ankommt.",
   'hero.cta1':'Projekt starten','hero.cta2':'Beispielstile ansehen','hero.scroll':'Weiter scrollen',
+  'hero.pill1':'Pauschalpreis','hero.pill2':'erste Version','hero.pill3':'Hosting Setup',
+  'preview.label':'Lokale KMU Website','preview.heading':'Gebaut um echt zu wirken — keine Vorlage.','preview.features':'Öffnungszeiten, Services, Buchung, Karte',
+  'preview.floatB':'Premium Look.','preview.floatP':'Funktioniert einfach auf Smartphone, Tablet und PC.',
   'stamp.top':'Plätze diese Woche','stamp.label':'Buchung schliesst <b>Sonntag 23:59</b>',
   's1.label':'[01] — Der Preis','s1.title':'Eine Website. <em>Ein Preis.</em><br>Eine Rechnung.',
   's1.intro':'Alles, was Sie für einen professionellen Online-Auftritt brauchen — gestaltet, geschrieben und in 48 Stunden online.',
@@ -1587,7 +1577,7 @@ de:{
   'drawer.eyebrow':'[ Projektaufnahme ]','drawer.title':'Bauen wir <em>etwas.</em>',
   'drawer.sub':'Hinterlassen Sie Ihre Daten. Wir melden uns innerhalb von 24 Stunden mit den nächsten Schritten und einem kurzen Briefing.',
   'form.name':'Ihr Name','form.company':'Unternehmen','form.email':'E-Mail','form.submit':'Senden',
-  'form.tabCompany':'Informationen zu Ihrem Unternehmen','form.tabStyle':'Personalisierung Ihrer Website','form.tabPhotos':'Gewünschte Fotos','form.tabExtra':'Zusätzliche Informationen',
+  'form.tabCompany':'Informationen zu Ihrem Unternehmen','form.tabStyle':'Personnalisierung Ihrer Website','form.tabPhotos':'Gewünschte Fotos','form.tabExtra':'Zusätzliche Informationen',
   'form.businessType':'Unternehmenstyp','form.chooseType':'Typ auswählen','form.companyName':'Name Ihres Unternehmens','form.companyEmail':'E-Mail Ihres Unternehmens','form.companyPhone':'Telefon Ihres Unternehmens',
   'form.palette':'Farbpalette wählen','form.paletteNote':'Notizen zum gewünschten Stil',
   'form.moreColors':'Mehr Farben — eigene wählen','form.customTitle':'Bis zu 5 Farben wählen','form.customNone':'Noch keine Farbe gewählt.',
@@ -1607,11 +1597,10 @@ const MQ={
   de:['400 CHF pauschal','Lieferung in 48 Stunden','Hosting gratis · Jahr 1','Aus dem Kanton Waadt','FR · EN · DE','Made in Switzerland']
 };
 
-let lang='en', words=ROT.en, wi=0;
+let lang='fr', words=ROT.fr, wi=0;
 const $=s=>document.querySelector(s), $$=s=>document.querySelectorAll(s);
 const rot=$('#rot'), mq=$('#mq');
 
-/* apply translations */
 function apply(l){
   lang=l; words=ROT[l]; document.documentElement.lang=l;
   $$('[data-i18n]').forEach(el=>{ const k=el.dataset.i18n; if(T[l][k]!=null) el.innerHTML=T[l][k]; });
@@ -1625,13 +1614,11 @@ function apply(l){
 }
 $$('.lang-btn').forEach(b=>b.addEventListener('click',()=>apply(b.dataset.lang)));
 
-/* marquee */
 function buildMarquee(){
   const set=MQ[lang].map(t=>`<span class="mq-item"><span class="star">✦</span>${t}</span>`).join('');
   mq.innerHTML=set+set;
 }
 
-/* rotating word */
 function rotate(){
   wi=(wi+1)%words.length;
   rot.style.transition='transform .32s var(--ease),opacity .32s var(--ease)';
@@ -1647,7 +1634,6 @@ function rotate(){
 }
 setInterval(rotate,2600);
 
-/* countdown to Sunday 23:59 */
 const clock=$('#clock');
 function tick(){
   const now=new Date();
@@ -1664,18 +1650,14 @@ function tick(){
 }
 tick(); setInterval(tick,1000*30);
 
-/* barcode */
 $('#barcode').innerHTML=Array.from({length:34},()=>`<i style="width:${1+Math.round(Math.random()*2)}px;opacity:${Math.random()>.78?.25:1}"></i>`).join('');
 
-/* nav scroll */
 const nav=$('#nav');
 addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>30),{passive:true});
 
-/* reveal */
 const io=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);} }),{threshold:.12});
 $$('.rv').forEach(el=>io.observe(el));
 
-/* drawer */
 const drawer=$('#drawer'), backdrop=$('#backdrop');
 function openD(){ drawer.classList.add('on'); backdrop.classList.add('on'); drawer.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden'; }
 function closeD(){ drawer.classList.remove('on'); backdrop.classList.remove('on'); drawer.setAttribute('aria-hidden','true'); document.body.style.overflow=''; }
@@ -1684,14 +1666,12 @@ $('#closeDrawer').addEventListener('click',closeD);
 backdrop.addEventListener('click',()=>{ closeD(); closeLogin(); });
 addEventListener('keydown',e=>{ if(e.key==='Escape'){ closeD(); closeLogin(); } });
 
-/* ───── login (Option A: local-only demo) ───── */
+/* Login / Account */
 const loginModal=$('#loginModal'), loginAuth=$('#loginAuth'), loginAccount=$('#loginAccount');
 const LS_USERS='auwem_users', LS_SESSION='auwem_session', LS_DRAFT='auwem_draft';
 
 function lsGet(k,def){ try{ return JSON.parse(localStorage.getItem(k)) ?? def; }catch(e){ return def; } }
 function lsSet(k,v){ try{ localStorage.setItem(k,JSON.stringify(v)); }catch(e){} }
-
-/* very light obfuscation — NOT real security. Clearly a demo. */
 function weakHash(s){ let h=0; for(let i=0;i<s.length;i++){ h=(h<<5)-h+s.charCodeAt(i); h|=0; } return 'h'+(h>>>0).toString(16); }
 
 let isSignup=false;
@@ -1713,36 +1693,33 @@ function currentUser(){ return lsGet(LS_SESSION,null); }
 function refreshLoginView(){
   const u=currentUser();
   if(u){
-    loginAuth.style.display='none';
-    loginAccount.classList.add('on');
+    loginAuth.style.display='none'; loginAccount.classList.add('on');
     $('#accEmail').textContent=u;
     const draft=lsGet(LS_DRAFT,null);
     const t=T[lang];
     if(draft && draft.company){
-      $('#accDraft').innerHTML=(t['login.draftFound']||'Saved draft:')+' <b>'+
-        draft.company+'</b>';
+      $('#accDraft').innerHTML=(t['login.draftFound']||'Brouillon enregistré :')+' <b>'+draft.company+'</b>';
       $('#loadDraftBtn').style.display='';
     }else{
-      $('#accDraft').textContent=t['login.noDraft']||'No saved project draft yet. Start a project and it will be kept here.';
+      $('#accDraft').textContent=t['login.noDraft']||'Aucun brouillon de projet pour le moment.';
       $('#loadDraftBtn').style.display='none';
     }
   }else{
-    loginAuth.style.display='';
-    loginAccount.classList.remove('on');
+    loginAuth.style.display=''; loginAccount.classList.remove('on');
     applyAuthMode();
   }
 }
 
 function applyAuthMode(){
   const t=T[lang];
-  $('#loginEyebrow').textContent = isSignup ? (t['login.eyebrowSignup']||'[ Create account ]') : (t['login.eyebrowLogin']||'[ Your account ]');
+  $('#loginEyebrow').textContent = isSignup ? (t['login.eyebrowSignup']||'[ Créer un compte ]') : (t['login.eyebrowLogin']||'[ Votre compte ]');
   $('#loginTitle').innerHTML = isSignup
-    ? '<span>'+(t['login.titleSignup']||'Create your')+'</span> <em>'+(t['login.titleSignupEm']||'account.')+'</em>'
-    : '<span>'+(t['login.titleLogin']||'Welcome')+'</span> <em>'+(t['login.titleLoginEm']||'back.')+'</em>';
-  $('#loginSub').textContent = isSignup ? (t['login.subSignup']||'Sign up to save your project and come back to it later.') : (t['login.subLogin']||'Log in to save your project and pick up where you left off.');
-  $('#loginBtnText').textContent = isSignup ? (t['login.btnSignup']||'Create account') : (t['login.btnLogin']||'Log in');
-  $('#switchPrompt').textContent = isSignup ? (t['login.haveAccount']||'Already have an account?') : (t['login.noAccount']||'No account yet?');
-  $('#loginSwitch').textContent = isSignup ? (t['login.logInstead']||'Log in') : (t['login.createOne']||'Create one');
+    ? '<span>'+(t['login.titleSignup']||'Créez votre')+'</span> <em>'+(t['login.titleSignupEm']||'compte.')+'</em>'
+    : '<span>'+(t['login.titleLogin']||'Bon')+'</span> <em>'+(t['login.titleLoginEm']||'retour.')+'</em>';
+  $('#loginSub').textContent = isSignup ? (t['login.subSignup']||'Inscrivez-vous pour enregistrer votre projet et y revenir plus tard.') : (t['login.subLogin']||'Connectez-vous pour enregistrer votre projet et le reprendre plus tard.');
+  $('#loginBtnText').textContent = isSignup ? (t['login.btnSignup']||'Créer le compte') : (t['login.btnLogin']||'Se connecter');
+  $('#switchPrompt').textContent = isSignup ? (t['login.haveAccount']||'Vous avez déjà un compte ?') : (t['login.noAccount']||'Pas encore de compte ?');
+  $('#loginSwitch').textContent = isSignup ? (t['login.logInstead']||'Se connecter') : (t['login.createOne']||'Créez-en un');
   $('#loginPassword').setAttribute('autocomplete', isSignup ? 'new-password' : 'current-password');
 }
 
@@ -1752,69 +1729,48 @@ $('#loginSwitch').addEventListener('click',()=>{ isSignup=!isSignup; applyAuthMo
 
 $('#loginForm').addEventListener('submit',e=>{
   e.preventDefault();
-  const t=T[lang];
-  const email=$('#loginEmail').value.trim().toLowerCase();
-  const pw=$('#loginPassword').value;
-  const msg=$('#loginMsg');
+  const t=T[lang], email=$('#loginEmail').value.trim().toLowerCase(), pw=$('#loginPassword').value, msg=$('#loginMsg');
   const emailOk=/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email);
-  $('#loginEmail').classList.toggle('err',!emailOk);
-  $('#loginPassword').classList.toggle('err',pw.length<6);
-  if(!emailOk){ msg.className='login-msg error'; msg.textContent=t['login.errEmail']||'Please enter a valid email address.'; return; }
-  if(pw.length<6){ msg.className='login-msg error'; msg.textContent=t['login.errPw']||'Password must be at least 6 characters.'; return; }
-
+  $('#loginEmail').classList.toggle('err',!emailOk); $('#loginPassword').classList.toggle('err',pw.length<6);
+  if(!emailOk){ msg.className='login-msg error'; msg.textContent=t['login.errEmail']||'Veuillez entrer une adresse e-mail valide.'; return; }
+  if(pw.length<6){ msg.className='login-msg error'; msg.textContent=t['login.errPw']||'Le mot de passe doit comporter au moins 6 caractères.'; return; }
   const users=lsGet(LS_USERS,{});
   if(isSignup){
-    if(users[email]){ msg.className='login-msg error'; msg.textContent=t['login.errExists']||'An account with this email already exists.'; return; }
-    users[email]=weakHash(pw); lsSet(LS_USERS,users);
-    lsSet(LS_SESSION,email);
-    finishAuth();
+    if(users[email]){ msg.className='login-msg error'; msg.textContent=t['login.errExists']||'Un compte avec cet e-mail existe déjà.'; return; }
+    users[email]=weakHash(pw); lsSet(LS_USERS,users); lsSet(LS_SESSION,email); finishAuth();
   }else{
-    if(!users[email] || users[email]!==weakHash(pw)){ msg.className='login-msg error'; msg.textContent=t['login.errWrong']||'Incorrect email or password.'; return; }
-    lsSet(LS_SESSION,email);
-    finishAuth();
+    if(!users[email] || users[email]!==weakHash(pw)){ msg.className='login-msg error'; msg.textContent=t['login.errWrong']||'E-mail ou mot de passe incorrect.'; return; }
+    lsSet(LS_SESSION,email); finishAuth();
   }
 });
 
 function finishAuth(){
   $('#loginEmail').classList.remove('err'); $('#loginPassword').classList.remove('err');
-  $('#loginForm').reset();
-  updateLoginButton();
-  refreshLoginView();
+  $('#loginForm').reset(); updateLoginButton(); refreshLoginView();
 }
 
-$('#logoutBtn').addEventListener('click',()=>{
-  localStorage.removeItem(LS_SESSION);
-  isSignup=false;
-  updateLoginButton();
-  refreshLoginView();
-});
+$('#logoutBtn').addEventListener('click',()=>{ localStorage.removeItem(LS_SESSION); isSignup=false; updateLoginButton(); refreshLoginView(); });
 
 $('#loadDraftBtn').addEventListener('click',()=>{
-  const draft=lsGet(LS_DRAFT,null);
-  if(!draft) return;
+  const draft=lsGet(LS_DRAFT,null); if(!draft) return;
   ['businessType','company','email','companyPhone','description','styleNote','additionalInformation'].forEach(k=>{
-    const el=document.querySelector('[name="'+k+'"]');
-    if(el && draft[k]!=null) el.value=draft[k];
+    const el=document.querySelector('[name="'+k+'"]'); if(el && draft[k]!=null) el.value=draft[k];
   });
   if(draft.palette){ const r=document.querySelector('input[name="palette"][value="'+draft.palette+'"]'); if(r) r.checked=true; }
-  closeLogin();
-  openD();
+  closeLogin(); openD();
 });
 
 function updateLoginButton(){
-  const u=currentUser();
-  const link=$('#loginLink');
-  const t=T[lang];
+  const u=currentUser(), link=$('#loginLink'), t=T[lang];
   if(u){
     link.classList.add('is-user');
-    link.innerHTML='<span class="avatar">'+u.charAt(0)+'</span><span>'+(t['login.account']||'My account')+'</span>';
+    link.innerHTML='<span class="avatar">'+u.charAt(0)+'</span><span>'+(t['login.account']||'Mon compte')+'</span>';
   }else{
     link.classList.remove('is-user');
-    link.innerHTML='<span data-i18n="nav.login">'+(t['nav.login']||'Log in')+'</span>';
+    link.innerHTML='<span data-i18n="nav.login">'+(t['nav.login']||'Connexion')+'</span>';
   }
 }
 
-/* Save draft whenever the project form changes (only if logged in, to respect privacy) */
 function saveDraftFromForm(){
   if(!currentUser()) return;
   const f=$('#form'); if(!f) return;
@@ -1823,14 +1779,12 @@ function saveDraftFromForm(){
     const el=f.querySelector('[name="'+k+'"]'); if(el) d[k]=el.value;
   });
   const pal=f.querySelector('input[name="palette"]:checked'); if(pal) d.palette=pal.value;
-  d.savedAt=Date.now();
-  lsSet(LS_DRAFT,d);
+  d.savedAt=Date.now(); lsSet(LS_DRAFT,d);
 }
 document.addEventListener('input',e=>{ if(e.target.closest && e.target.closest('#form')) saveDraftFromForm(); });
 document.addEventListener('change',e=>{ if(e.target.closest && e.target.closest('#form')) saveDraftFromForm(); });
 
 updateLoginButton();
-
 
 /* form tabs */
 function showTab(name){
@@ -1841,7 +1795,7 @@ $$('.form-tab').forEach(t=>t.addEventListener('click',()=>showTab(t.dataset.tab)
 $$('.next-tab').forEach(b=>b.addEventListener('click',()=>showTab(b.dataset.next)));
 $$('.prev-tab').forEach(b=>b.addEventListener('click',()=>showTab(b.dataset.prev)));
 
-/* ── custom color wheel (50 colors, pick up to 5) ── */
+/* Custom color wheel */
 (function(){
   const WHEEL=[
     '#E8453B','#F0613A','#F58634','#F7A325','#F9C513','#EBD834','#C7D63E','#9CC74B',
@@ -1852,42 +1806,26 @@ $$('.prev-tab').forEach(b=>b.addEventListener('click',()=>showTab(b.dataset.prev
     '#E27D7A','#AED4F2','#8FCDEA','#8FC0EE','#9CB89A','#78917F','#A9A892','#8C8472',
     '#566159','#C85C3A'
   ];
-  const wheel=$('#ccWheel'), out=$('#ccSelected'), countEl=$('#ccCount'),
-        field=$('#customColorsField'), btn=$('#moreColorsBtn'), box=$('#customColors'),
-        modeField=$('#paletteMode');
+  const wheel=$('#ccWheel'), out=$('#ccSelected'), countEl=$('#ccCount'), field=$('#customColorsField'), btn=$('#moreColorsBtn'), box=$('#customColors'), modeField=$('#paletteMode');
   if(!wheel) return;
   const MAX=5; let selected=[];
 
-  // build dots
   WHEEL.forEach(hex=>{
-    const d=document.createElement('button');
-    d.type='button'; d.className='cc-dot'; d.style.background=hex;
-    d.dataset.hex=hex; d.setAttribute('aria-label',hex);
-    d.addEventListener('click',()=>toggle(hex,d));
-    wheel.appendChild(d);
+    const d=document.createElement('button'); d.type='button'; d.className='cc-dot'; d.style.background=hex; d.dataset.hex=hex;
+    d.setAttribute('aria-label',hex); d.addEventListener('click',()=>toggle(hex,d)); wheel.appendChild(d);
   });
 
   function toggle(hex,dot){
     const i=selected.indexOf(hex);
     if(i>-1){ selected.splice(i,1); dot.classList.remove('sel'); }
-    else{
-      if(selected.length>=MAX) return;
-      selected.push(hex); dot.classList.add('sel');
-    }
+    else{ if(selected.length>=MAX) return; selected.push(hex); dot.classList.add('sel'); }
     render();
   }
 
   function render(){
     countEl.textContent=selected.length;
-    // dim the rest when 5 reached
-    $$('.cc-dot').forEach(d=>{
-      const isSel=selected.includes(d.dataset.hex);
-      d.classList.toggle('dim', selected.length>=MAX && !isSel);
-    });
-    // chips
-    if(!selected.length){
-      out.textContent=T[lang]['form.customNone']||'No color selected yet.';
-    }else{
+    $$('.cc-dot').forEach(d=>{ const isSel=selected.includes(d.dataset.hex); d.classList.toggle('dim', selected.length>=MAX && !isSel); });
+    if(!selected.length){ out.textContent=T[lang]['form.customNone']||'Aucune couleur sélectionnée.'; }else{
       out.innerHTML='';
       selected.forEach(hex=>{
         const chip=document.createElement('span'); chip.className='cc-chip';
@@ -1896,8 +1834,7 @@ $$('.prev-tab').forEach(b=>b.addEventListener('click',()=>showTab(b.dataset.prev
         const rm=document.createElement('button'); rm.type='button'; rm.className='rm'; rm.textContent='×';
         rm.addEventListener('click',()=>{
           selected=selected.filter(h=>h!==hex);
-          const dot=[...$$('.cc-dot')].find(d=>d.dataset.hex===hex);
-          if(dot) dot.classList.remove('sel');
+          const dot=[...$$('.cc-dot')].find(d=>d.dataset.hex===hex); if(dot) dot.classList.remove('sel');
           render();
         });
         chip.append(sw,tx,rm); out.appendChild(chip);
@@ -1906,65 +1843,40 @@ $$('.prev-tab').forEach(b=>b.addEventListener('click',()=>showTab(b.dataset.prev
     field.value=selected.join(', ');
   }
 
-  // toggle visibility + switch mode preset/custom
   btn.addEventListener('click',()=>{
     const open=box.hasAttribute('hidden');
-    if(open){
-      box.removeAttribute('hidden'); btn.classList.add('on');
-      modeField.value='custom';
-      // uncheck preset palettes so the choice is unambiguous
-      $$('input[name="palette"]').forEach(r=>r.checked=false);
-    }else{
-      box.setAttribute('hidden',''); btn.classList.remove('on');
-      modeField.value='preset';
-      if(!$$('input[name="palette"]:checked').length){
-        const first=$('input[name="palette"]'); if(first) first.checked=true;
-      }
+    if(open){ box.removeAttribute('hidden'); btn.classList.add('on'); modeField.value='custom'; $$('input[name="palette"]').forEach(r=>r.checked=false); }
+    else{
+      box.setAttribute('hidden',''); btn.classList.remove('on'); modeField.value='preset';
+      if(!$$('input[name="palette"]:checked').length){ const first=$('input[name="palette"]'); if(first) first.checked=true; }
     }
   });
 
-  // if user re-selects a preset palette, switch mode back to preset
-  $$('input[name="palette"]').forEach(r=>r.addEventListener('change',()=>{
-    if(r.checked){ modeField.value='preset'; }
-  }));
-
-  // expose for language refresh
+  $$('input[name="palette"]').forEach(r=>r.addEventListener('change',()=>{ if(r.checked){ modeField.value='preset'; } }));
   window.__renderCustomColors=render;
 })();
 
 const photos=$('#photos'), fileList=$('#fileList'), dropzone=$('#dropzone'), attachedFiles=$('#attachedFiles');
-const MAX_BYTES=10*1024*1024; // 10 MB per file
-const OK_TYPES=['application/pdf','image/png','image/jpeg','image/webp'];
-let chosenFiles=[]; // our own managed array
+const MAX_BYTES=10*1024*1024; const OK_TYPES=['application/pdf','image/png','image/jpeg','image/webp'];
+let chosenFiles=[]; 
 
 function fmtSize(b){ return b<1024?b+' B':b<1048576?(b/1024).toFixed(0)+' KB':(b/1048576).toFixed(1)+' MB'; }
 
 function syncInput(){
-  // rebuild the real <input> file list from our managed array via DataTransfer
-  const dt=new DataTransfer();
-  chosenFiles.forEach(f=>dt.items.add(f));
-  photos.files=dt.files;
-  attachedFiles.value=chosenFiles.map(f=>f.name).join(', ');
+  const dt=new DataTransfer(); chosenFiles.forEach(f=>dt.items.add(f));
+  photos.files=dt.files; attachedFiles.value=chosenFiles.map(f=>f.name).join(', ');
 }
 
 function renderFiles(){
-  if(!chosenFiles.length){
-    fileList.textContent = T[lang]['form.noFiles'] || 'No file selected yet.';
-    return;
-  }
+  if(!chosenFiles.length){ fileList.textContent = T[lang]['form.noFiles'] || 'Aucun fichier sélectionné.'; return; }
   fileList.innerHTML='';
   chosenFiles.forEach((f,idx)=>{
-    const row=document.createElement('div');
-    row.className='fitem';
-    const meta=document.createElement('span');
-    meta.className='fmeta'; meta.textContent=f.name;
-    const size=document.createElement('span');
-    size.className='fsize'; size.textContent=fmtSize(f.size);
-    const x=document.createElement('button');
-    x.type='button'; x.className='fx'; x.setAttribute('aria-label','Remove'); x.textContent='×';
+    const row=document.createElement('div'); row.className='fitem';
+    const meta=document.createElement('span'); meta.className='fmeta'; meta.textContent=f.name;
+    const size=document.createElement('span'); size.className='fsize'; size.textContent=fmtSize(f.size);
+    const x=document.createElement('button'); x.type='button'; x.className='fx'; x.textContent='×';
     x.addEventListener('click',()=>{ chosenFiles.splice(idx,1); syncInput(); renderFiles(); });
-    row.append(meta,size,x);
-    fileList.appendChild(row);
+    row.append(meta,size,x); fileList.appendChild(row);
   });
 }
 
@@ -1973,16 +1885,14 @@ function addFiles(list){
   [...list].forEach(f=>{
     const typeOk = OK_TYPES.includes(f.type) || /\.(pdf|png|jpe?g|webp)$/i.test(f.name);
     if(!typeOk){ rejected.push(f.name+' (type)'); return; }
-    if(f.size>MAX_BYTES){ rejected.push(f.name+' (>10MB)'); return; }
-    if(chosenFiles.some(x=>x.name===f.name && x.size===f.size)) return; // dedupe
+    if(f.size>MAX_BYTES){ rejected.push(f.name+' (>10Mo)'); return; }
+    if(chosenFiles.some(x=>x.name===f.name && x.size===f.size)) return; 
     chosenFiles.push(f);
   });
   syncInput(); renderFiles();
   if(rejected.length){
-    const err=document.createElement('div');
-    err.className='ferr';
-    err.textContent=(T[lang]['form.fileRejected']||'Skipped: ')+rejected.join(', ');
-    fileList.appendChild(err);
+    const err=document.createElement('div'); err.className='ferr';
+    err.textContent=(T[lang]['form.fileRejected']||'Ignoré : ')+rejected.join(', '); fileList.appendChild(err);
   }
 }
 
@@ -1991,131 +1901,72 @@ photos.addEventListener('change',()=>addFiles(photos.files));
 ['dragleave','drop'].forEach(ev=>dropzone.addEventListener(ev,e=>{e.preventDefault();dropzone.classList.remove('drag');}));
 dropzone.addEventListener('drop',e=>{ if(e.dataTransfer?.files?.length) addFiles(e.dataTransfer.files); });
 
-/* safe text validation: prevents emojis / unsupported symbols from reaching the form handler */
 const emojiRE = /[\p{Extended_Pictographic}\u{1F1E6}-\u{1F1FF}\u{1F300}-\u{1FAFF}\uFE0F\u200D]/gu;
 const controlRE = /[\u0000-\u001F\u007F]/g;
 const safeTextInputs = $$('#form input[type="text"], #form input[type="email"], #form input[type="tel"], #form textarea');
 
-function sanitizeText(value){
-  return value.replace(emojiRE,'').replace(controlRE,'').trimStart();
-}
-function hasEmoji(value){
-  emojiRE.lastIndex = 0;
-  return emojiRE.test(value);
-}
-function setFieldError(input, message){
-  input.classList.add('err');
-  input.setAttribute('aria-invalid','true');
-  input.title = message;
-}
-function clearFieldError(input){
-  input.classList.remove('err');
-  input.removeAttribute('aria-invalid');
-  input.removeAttribute('title');
-}
+function sanitizeText(value){ return value.replace(emojiRE,'').replace(controlRE,'').trimStart(); }
+function hasEmoji(value){ emojiRE.lastIndex = 0; return emojiRE.test(value); }
+function setFieldError(input, message){ input.classList.add('err'); input.setAttribute('aria-invalid','true'); input.title = message; }
+function clearFieldError(input){ input.classList.remove('err'); input.removeAttribute('aria-invalid'); input.removeAttribute('title'); }
 
 safeTextInputs.forEach(input=>{
-  input.addEventListener('input',()=>{
-    const clean = sanitizeText(input.value);
-    if(input.value !== clean) input.value = clean;
-    clearFieldError(input);
-  });
-  input.addEventListener('paste',()=>setTimeout(()=>{
-    input.value = sanitizeText(input.value);
-  },0));
+  input.addEventListener('input',()=>{ const clean = sanitizeText(input.value); if(input.value !== clean) input.value = clean; clearFieldError(input); });
+  input.addEventListener('paste',()=>setTimeout(()=>{ input.value = sanitizeText(input.value); },0));
 });
 
-/* form */
 $('#form').addEventListener('submit',e=>{
-  e.preventDefault();
-  const f=e.target; let ok=true; let firstBadPanel=null;
+  e.preventDefault(); const f=e.target; let ok=true; let firstBadPanel=null;
 
   safeTextInputs.forEach(i=>{
-    const clean=sanitizeText(i.value);
-    if(i.value!==clean) i.value=clean;
-    if(hasEmoji(i.value)){
-      setFieldError(i,'Please remove emojis from this field.');
-      ok=false;
-      firstBadPanel ||= i.closest('.form-panel');
-    }
+    const clean=sanitizeText(i.value); if(i.value!==clean) i.value=clean;
+    if(hasEmoji(i.value)){ setFieldError(i,'Veuillez retirer les emojis.'); ok=false; firstBadPanel ||= i.closest('.form-panel'); }
   });
 
   f.querySelectorAll('input[required],select[required],textarea[required]').forEach(i=>{
     const value=(i.value || '').trim();
     const bad=!value || (i.type==='email'&&!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(value));
     if(bad){
-      setFieldError(i, i.type==='email' ? 'Please enter a valid email address.' : 'Please complete this field.');
-      ok=false;
-      firstBadPanel ||= i.closest('.form-panel');
-    }else if(!hasEmoji(value)){
-      clearFieldError(i);
-    }
+      setFieldError(i, i.type==='email' ? 'Adresse e-mail invalide.' : 'Veuillez remplir ce champ.');
+      ok=false; firstBadPanel ||= i.closest('.form-panel');
+    }else if(!hasEmoji(value)){ clearFieldError(i); }
   });
 
   if(firstBadPanel) showTab(firstBadPanel.dataset.panel);
   if(!ok) return;
 
   const submitBtn = f.querySelector('button[type="submit"]');
-  if(submitBtn){ submitBtn.disabled=true; submitBtn.innerHTML='<span>'+(T[lang]['form.sending']||'Sending...')+'</span>'; }
+  if(submitBtn){ submitBtn.disabled=true; submitBtn.innerHTML='<span>'+(T[lang]['form.sending']||'Envoi...')+'</span>'; }
 
-  // Build a plain object of the text fields (NO files — the free Formspree plan rejects file uploads).
-  const data=new FormData(f);
-  data.delete('photos'); // never send the binary; we handle files via email below
-  const payload={};
-  data.forEach((v,k)=>{ payload[k]=v; });
+  const data=new FormData(f); data.delete('photos'); 
+  const payload={}; data.forEach((v,k)=>{ payload[k]=v; });
 
-  // Submit the text data via AJAX (reliable on the free plan, no page reload, no file-rejection error).
-  fetch(f.action,{
-    method:'POST',
-    headers:{'Accept':'application/json'},
-    body:JSON.stringify(payload)
-  })
+  fetch(f.action,{ method:'POST', headers:{'Accept':'application/json'}, body:JSON.stringify(payload) })
   .then(r=>{
     if(!r.ok) throw new Error('Formspree '+r.status);
-    // Text submission succeeded → show success, then handle files if any.
-    f.style.display='none';
-    $('#success').classList.add('on');
-
+    f.style.display='none'; $('#success').classList.add('on');
     if(chosenFiles.length){
-      // Files can't ride along on the free plan, so open a pre-filled email
-      // for the client to attach their already-selected files.
       const subject=encodeURIComponent('Fichiers — '+(payload.company||'Nouveau client Auwem'));
-      const names=chosenFiles.map(f=>'• '+f.name).join('%0D%0A');
       const body=encodeURIComponent(
-        (T[lang]['form.mailIntro']||'Hello Auwem, here are my files for my website:')+
+        (T[lang]['form.mailIntro']||'Bonjour Auwem, voici mes fichiers :')+
         '\r\n\r\n'+chosenFiles.map(x=>'• '+x.name).join('\r\n')+
-        '\r\n\r\n'+(T[lang]['form.mailHint']||'(Please attach the files listed above before sending.)')+
+        '\r\n\r\n'+(T[lang]['form.mailHint']||'(Merci de joindre les fichiers ci-dessus)')+
         '\r\n\r\n'+(payload.name||'')+' — '+(payload.company||'')
       );
-      // Give the success message a moment to render, then open the mail client.
-      setTimeout(()=>{ window.location.href='mailto:auwem@gmail.com?subject='+subject+'&body='+body; },900);
+      setTimeout(()=>{ window.location.href='mailto:info@auwem.ch?subject='+subject+'&body='+body; },900);
     }
   })
   .catch(()=>{
-    // Fallback: if AJAX fails (e.g. offline), let the user email everything directly.
-    if(submitBtn){ submitBtn.disabled=false; submitBtn.innerHTML='<span>'+(T[lang]['form.submit']||'Send')+'</span> <span class="arw">→</span>'; }
+    if(submitBtn){ submitBtn.disabled=false; submitBtn.innerHTML='<span>'+(T[lang]['form.submit']||'Envoyer')+'</span> <span class="arw">→</span>'; }
     const subject=encodeURIComponent('Nouvelle demande client Auwem');
     const body=encodeURIComponent(
-      'Nom: '+(payload.name||'')+'\r\n'+
-      'Entreprise: '+(payload.company||'')+'\r\n'+
-      'Email: '+(payload.email||'')+'\r\n'+
-      'Téléphone: '+(payload.companyPhone||'')+'\r\n'+
-      'Palette: '+(payload.paletteMode==='custom' ? ('Couleurs personnalisées — '+(payload.customColors||'')) : (payload.palette||''))+'\r\n'+
-      'Notes style: '+(payload.styleNote||'')+'\r\n'+
-      'Infos: '+(payload.additionalInformation||'')+'\r\n'+
-      (chosenFiles.length?('Fichiers à joindre:\r\n'+chosenFiles.map(x=>'• '+x.name).join('\r\n')):'')
+      'Nom: '+(payload.name||'')+'\r\nEntreprise: '+(payload.company||'')+'\r\nEmail: '+(payload.email||'')+'\r\nTéléphone: '+(payload.companyPhone||'')+'\r\nPalette: '+(payload.paletteMode==='custom' ? ('Personnalisée — '+(payload.customColors||'')) : (payload.palette||''))+'\r\nNotes style: '+(payload.styleNote||'')+'\r\nInfos: '+(payload.additionalInformation||'')+'\r\n'+(chosenFiles.length?('Fichiers:\r\n'+chosenFiles.map(x=>'• '+x.name).join('\r\n')):'')
     );
-    window.location.href='mailto:auwem@gmail.com?subject='+subject+'&body='+body;
+    window.location.href='mailto:info@auwem.ch?subject='+subject+'&body='+body;
   });
 });
 $$('#form input,#form select').forEach(i=>i.addEventListener('input',()=>clearFieldError(i)));
 
-/* cursor blob */
-const blob=$('#blob'); let bx=innerWidth/2,by=innerHeight/2,tx=bx,ty=by;
-addEventListener('mousemove',e=>{tx=e.clientX;ty=e.clientY;},{passive:true});
-(function loop(){ bx+=(tx-bx)*.12; by+=(ty-by)*.12; blob.style.transform=`translate(${bx-170}px,${by-170}px)`; requestAnimationFrame(loop); })();
-
-/* faq */
 $$('.faq-q').forEach(q=>q.addEventListener('click',()=>{
   const item=q.parentElement, a=item.querySelector('.faq-a');
   const open=item.classList.contains('open');
@@ -2123,7 +1974,7 @@ $$('.faq-q').forEach(q=>q.addEventListener('click',()=>{
   if(!open){ item.classList.add('open'); a.style.maxHeight=a.scrollHeight+'px'; }
 }));
 
-apply('en');
+apply('fr');
 </script>
 </body>
 </html>

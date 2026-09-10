@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Auwem.ch — Premium websites for Swiss small businesses</title>
-<meta name="description" content="Auwem designs sharp, trustworthy websites for Swiss local businesses — delivered quickly, priced clearly, and built to win customers.">
+<title>Auwem.ch — Sites web professionnels pour PME suisses</title>
+<meta name="description" content="Auwem crée des sites web crédibles et élégants pour les petites entreprises suisses — livrés rapidement, tarif clair, conçus pour inspirer confiance.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&family=Lexend:wght@700&family=Plus+Jakarta+Sans:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
@@ -19,8 +19,6 @@
   --accent:#C85C3A;
   --accent-deep:#963F29;
   --accent-soft:rgba(200,92,58,.11);
-  --pine:#000000;
-  --sage:#666666;
   --sun:#F5A623;
   --line:#E5E5E5;
   --line-soft:#F2F2F2;
@@ -33,8 +31,15 @@
   --ease:cubic-bezier(.22,.61,.36,1);
 }
 
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+/* ───── Viewport & Overflow Locking Fixes ───── */
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+}
+html{
+  scroll-behavior:smooth;
+  -webkit-text-size-adjust:100%;
+}
 body{
   background:
     radial-gradient(circle at 12% 6%,rgba(200,92,58,.08),transparent 30%),
@@ -44,7 +49,6 @@ body{
   font-size:17px;
   line-height:1.55;
   -webkit-font-smoothing:antialiased;
-  overflow-x:hidden;
   position:relative;
 }
 ::selection{background:var(--accent);color:var(--paper)}
@@ -245,7 +249,7 @@ h1.hero-title em{
 }
 .scroll-hint .ln{width:46px;height:1px;background:var(--ink-faint);position:relative;overflow:hidden}
 .scroll-hint .ln::after{content:'';position:absolute;inset:0;width:40%;background:var(--accent);animation:slide 2.4s var(--ease) infinite}
-@keyframes slide{0%{transform:translateX(-110%)}}100%{transform:translateX(280%)}}
+@keyframes slide{0%{transform:translateX(-110%)}100%{transform:translateX(280%)}}
 
 /* ───── marquee ───── */
 .marquee{
@@ -798,9 +802,9 @@ h1.hero-title em{
   <div class="nav-in">
     <a href="#top" class="brand"><span class="mark">A</span>Auwem.ch</a>
     <ul class="nav-links">
-      <li class="nav-only"><a href="#pricing" class="lnk" data-i18n="nav.pricing">Pricing</a></li>
-      <li class="nav-only"><a href="#process" class="lnk" data-i18n="nav.process">Process</a></li>
-      <li class="nav-only"><a href="#work" class="lnk" data-i18n="nav.work">Work</a></li>
+      <li class="nav-only"><a href="#pricing" class="lnk" data-i18n="nav.pricing">Tarif</a></li>
+      <li class="nav-only"><a href="#process" class="lnk" data-i18n="nav.process">Processus</a></li>
+      <li class="nav-only"><a href="#work" class="lnk" data-i18n="nav.work">Réalisations</a></li>
       <li class="nav-only"><a href="#faq" class="lnk" data-i18n="nav.faq">FAQ</a></li>
       <li>
         <div class="langs">
@@ -809,60 +813,60 @@ h1.hero-title em{
           <button class="lang-btn" data-lang="de">DE</button>
         </div>
       </li>
-      <li><button type="button" class="login-link" id="loginLink" data-i18n="nav.login">Log in</button></li>
-      <li><a href="#" class="btn btn-sm" data-open><span data-i18n="nav.cta">Start a project</span> <span class="arw">→</span></a></li>
+      <li><button type="button" class="login-link" id="loginLink" data-i18n="nav.login">Connexion</button></li>
+      <li><a href="#" class="btn btn-sm" data-open><span data-i18n="nav.cta">Démarrer un projet</span> <span class="arw">→</span></a></li>
     </ul>
   </div>
 </nav>
 
 <!-- SIDE RAIL -->
-<button class="rail" data-open aria-label="Open project intake form">
+<button class="rail" data-open aria-label="Démarrer un projet">
   <span class="dot"></span>
-  <span data-i18n="rail">Start your project</span>
+  <span data-i18n="rail">Démarrer un projet</span>
 </button>
 
 <!-- HERO -->
 <header class="hero" id="top">
   <div class="hero-grid"></div>
   <div class="wrap">
-    <div class="eyebrow"><span class="live"></span><span data-i18n="status">Available · 2 slots this week</span></div>
+    <div class="eyebrow"><span class="live"></span><span data-i18n="status">Nouvelles commandes · 2 créations cette semaine</span></div>
     <h1 class="hero-title">
-      <span data-i18n="hero.p1">Beautiful websites for </span><span class="rot-wrap"><span class="rot" id="rot">bakers</span></span><span data-i18n="hero.p2"> too busy to build one.</span>
+      <span data-i18n="hero.p1">Des sites qui donnent aux </span><span class="rot-wrap"><span class="rot" id="rot">boulangers</span></span><span data-i18n="hero.p2"> une image sérieuse dès le premier clic.</span>
     </h1>
     <div class="hero-cols">
       <div>
-        <p class="hero-sub" data-i18n="hero.sub">Auwem creates sharp, credible websites for Swiss small businesses that need to look established from day one. <b>CHF 400 flat.</b> Clear process, strong copy, polished design.</p>
+        <p class="hero-sub" data-i18n="hero.sub">Auwem crée des sites crédibles et élégants pour les petites entreprises suisses qui veulent inspirer confiance dès le premier jour. <b>400 CHF tout compris.</b> Processus clair, rédaction solide, design soigné.</p>
         <div class="hero-ctas">
-          <a href="#" class="btn" data-open><span data-i18n="hero.cta1">Start your project</span> <span class="arw">→</span></a>
-          <a href="#work" class="btn btn-ghost" data-i18n="hero.cta2">View example styles</a>
+          <a href="#" class="btn" data-open><span data-i18n="hero.cta1">Démarrer votre projet</span> <span class="arw">→</span></a>
+          <a href="#work" class="btn btn-ghost" data-i18n="hero.cta2">Voir les styles possibles</a>
         </div>
         <div class="proof-row">
-          <span class="proof-pill"><b>CHF 400</b> <span data-i18n="hero.pill1">flat fee</span></span>
-          <span class="proof-pill"><b>48h</b> <span data-i18n="hero.pill2">first version</span></span>
-          <span class="proof-pill"><b>Swiss</b> <span data-i18n="hero.pill3">hosting setup</span></span>
+          <span class="proof-pill"><b>400 CHF</b> <span data-i18n="hero.pill1">tout compris</span></span>
+          <span class="proof-pill"><b>48h</b> <span data-i18n="hero.pill2">première version</span></span>
+          <span class="proof-pill"><b>Swiss</b> <span data-i18n="hero.pill3">hébergement inclus</span></span>
         </div>
       </div>
       <div class="hero-showcase">
         <div class="site-preview" aria-hidden="true">
-          <div class="preview-top"><span class="preview-dot"></span><span class="preview-dot"></span><span class="preview-dot"></span><span class="preview-url">your-business.ch</span></div>
+          <div class="preview-top"><span class="preview-dot"></span><span class="preview-dot"></span><span class="preview-dot"></span><span class="preview-url">votre-entreprise.ch</span></div>
           <div class="preview-screen">
-            <div class="preview-label" data-i18n="preview.label">Local business website</div>
-            <div class="preview-heading" data-i18n="preview.heading">Built to feel real — not templated.</div>
-            <div class="preview-card"><span data-i18n="preview.features">Opening hours, services, booking, map</span><span>Live</span></div>
+            <div class="preview-label" data-i18n="preview.label">Site PME locale</div>
+            <div class="preview-heading" data-i18n="preview.heading">Conçu pour faire vrai, pas modèle générique.</div>
+            <div class="preview-card"><span data-i18n="preview.features">Horaires, services, réservation, carte</span><span>Live</span></div>
           </div>
         </div>
-        <div class="float-note"><b data-i18n="preview.floatB">Looks premium.</b> <span data-i18n="preview.floatP">Works simply on phone, tablet and desktop.</span></div>
+        <div class="float-note"><b data-i18n="preview.floatB">Look premium.</b> <span data-i18n="preview.floatP">Fonctionne simplement sur téléphone, tablette et ordinateur.</span></div>
         <div class="stamp">
           <div class="st-top">
-            <span data-i18n="stamp.top">This week's slots</span>
+            <span data-i18n="stamp.top">Places cette semaine</span>
             <span>●●○</span>
           </div>
           <div class="clock" id="clock">00<span class="u">d</span> 00<span class="u">h</span> 00<span class="u">m</span></div>
-          <div class="st-label" data-i18n="stamp.label">Booking closes <b>Sunday 23:59</b></div>
+          <div class="st-label" data-i18n="stamp.label">Clôture <b>dimanche 23h59</b></div>
         </div>
       </div>
     </div>
-    <div class="scroll-hint"><span class="ln"></span><span data-i18n="hero.scroll">Scroll to explore</span></div>
+    <div class="scroll-hint"><span class="ln"></span><span data-i18n="hero.scroll">Faites défiler</span></div>
   </div>
 </header>
 
@@ -874,42 +878,42 @@ h1.hero-title em{
   <div class="wrap">
     <div class="sec-head rv">
       <div>
-        <div class="sec-num" data-i18n="s1.label">[01] — The price</div>
-        <h2 class="sec-title" data-i18n="s1.title">One website. <em>One price.</em><br>One invoice.</h2>
+        <div class="sec-num" data-i18n="s1.label">[01] — Le tarif</div>
+        <h2 class="sec-title" data-i18n="s1.title">Un site soigné, sans <em>complication d’agence.</em></h2>
       </div>
-      <p class="sec-intro" data-i18n="s1.intro">Everything you need to look professional online — designed, written, and live in 48 hours.</p>
+      <p class="sec-intro" data-i18n="s1.intro">Un site clair et élégant qui explique votre activité, inspire confiance et facilite le contact.</p>
     </div>
     <div class="price-layout">
       <div class="price-pitch rv rv-d1">
-        <h3 data-i18n="s1.pitchTitle">No quotes. No hourly billing. <em>No second invoice.</em></h3>
-        <p data-i18n="s1.desc">A complete, mobile-friendly website. Automated builds, hand-crafted polish — live before the week is out.</p>
+        <h3 data-i18n="s1.pitchTitle">Prix clair, livraison rapide, <em>finition propre.</em></h3>
+        <p data-i18n="s1.desc">Nous combinons un processus rapide avec de vraies décisions de design, pour éviter l’effet modèle générique.</p>
         <div class="guar">
           <div class="ic">✓</div>
           <div>
-            <div class="gt" data-i18n="s1.guarTitle">Live in 48h, or you don't pay.</div>
-            <p data-i18n="s1.guarText">If your site isn't ready 48 hours after we receive your content, the build is on us.</p>
+            <div class="gt" data-i18n="s1.guarTitle">En ligne en 48h, ou vous ne payez pas.</div>
+            <p data-i18n="s1.guarText">Si votre site n'est pas prêt 48 heures après réception de votre contenu, la construction est offerte.</p>
           </div>
         </div>
       </div>
       <div class="receipt rv rv-d2">
         <div class="rc-head">
           <div class="rc-brand">Auwem.ch</div>
-          <div class="rc-meta">N° 2026-0042<br>Lausanne · VD<br><span data-i18n="rc.oneTime">One-time</span></div>
+          <div class="rc-meta">N° 2026-0042<br>Lausanne · VD<br><span data-i18n="rc.oneTime">Paiement unique</span></div>
         </div>
-        <div class="rc-tag" data-i18n="s1.tag">All-in flat fee</div>
-        <div class="rc-line"><span data-i18n="s1.f1">Custom-designed website, up to 5 pages</span><span class="incl" data-i18n="rc.incl">INCL</span></div>
-        <div class="rc-line"><span data-i18n="s1.f2">Mobile-first, lightning-fast loading</span><span class="incl" data-i18n="rc.incl">INCL</span></div>
-        <div class="rc-line"><span data-i18n="s1.f6">Copywriting — we write your pages for you</span><span class="incl" data-i18n="rc.incl">INCL</span></div>
-        <div class="rc-line"><span data-i18n="s1.f4">Basic SEO setup (titles, meta, sitemap)</span><span class="incl" data-i18n="rc.incl">INCL</span></div>
-        <div class="rc-line"><span data-i18n="s1.f3">Contact form & Google Maps</span><span class="incl" data-i18n="rc.incl">INCL</span></div>
-        <div class="rc-line"><span data-i18n="s1.f5">Bilingual FR / EN (or +DE on request)</span><span class="incl" data-i18n="rc.incl">INCL</span></div>
-        <div class="rc-line"><span data-i18n="rc.hosting">Hosting — Year 1</span><span class="incl" data-i18n="rc.free">FREE</span></div>
+        <div class="rc-tag" data-i18n="s1.tag">Tarif forfaitaire</div>
+        <div class="rc-line"><span data-i18n="s1.f1">Site sur mesure, jusqu'à 5 pages</span><span class="incl" data-i18n="rc.incl">INCL</span></div>
+        <div class="rc-line"><span data-i18n="s1.f2">Mobile d'abord, ultra-rapide</span><span class="incl" data-i18n="rc.incl">INCL</span></div>
+        <div class="rc-line"><span data-i18n="s1.f6">Rédaction incluse — nous écrivons vos pages</span><span class="incl" data-i18n="rc.incl">INCL</span></div>
+        <div class="rc-line"><span data-i18n="s1.f4">SEO de base (titres, méta, sitemap)</span><span class="incl" data-i18n="rc.incl">INCL</span></div>
+        <div class="rc-line"><span data-i18n="s1.f3">Formulaire de contact & Google Maps</span><span class="incl" data-i18n="rc.incl">INCL</span></div>
+        <div class="rc-line"><span data-i18n="s1.f5">Bilingue français / anglais (ou +DE sur demande)</span><span class="incl" data-i18n="rc.incl">INCL</span></div>
+        <div class="rc-line"><span data-i18n="rc.hosting">Hébergement — 1ère année</span><span class="incl" data-i18n="rc.free">OFFERT</span></div>
         <div class="rc-total">
-          <span class="lab" data-i18n="rc.total">Total due</span>
+          <span class="lab" data-i18n="rc.total">Total à payer</span>
           <span class="amt"><span class="cur">CHF</span>400</span>
         </div>
         <div class="rc-foot">
-          <span data-i18n="rc.delivery">Delivery · 48h</span>
+          <span data-i18n="rc.delivery">Livraison · 48h</span>
           <span class="rc-barcode" id="barcode"></span>
         </div>
       </div>
@@ -922,29 +926,29 @@ h1.hero-title em{
   <div class="wrap">
     <div class="sec-head rv">
       <div>
-        <div class="sec-num" data-i18n="s2.label">[02] — After launch</div>
-        <h2 class="sec-title" data-i18n="s2.title">No nasty <em>surprises.</em></h2>
+        <div class="sec-num" data-i18n="s2.label">[02] — Après la mise en ligne</div>
+        <h2 class="sec-title" data-i18n="s2.title">Pas de mauvaises <em>surprises.</em></h2>
       </div>
-      <p class="sec-intro" data-i18n="s2.intro">You pay once for the website. After that, you only pay when you actually need something.</p>
+      <p class="sec-intro" data-i18n="s2.intro">Vous payez une fois pour le site. Ensuite, vous ne payez que lorsque vous en avez réellement besoin.</p>
     </div>
     <div class="after-grid">
       <div class="after-card rv">
-        <div class="ac-num" data-i18n="s2.c1.num">// Year 1</div>
-        <h3 data-i18n="s2.c1.title">Hosting</h3>
-        <div class="ac-price free" data-i18n="s2.c1.price">Free.</div>
-        <p data-i18n="s2.c1.desc">We cover hosting, custom domain setup, SSL and backups for your first full year. Focus on your business, not your invoices.</p>
+        <div class="ac-num" data-i18n="s2.c1.num">// 1ère année</div>
+        <h3 data-i18n="s2.c1.title">Hébergement</h3>
+        <div class="ac-price free" data-i18n="s2.c1.price">Gratuit.</div>
+        <p data-i18n="s2.c1.desc">Nous prenons en charge l'hébergement, le nom de domaine, le SSL et les sauvegardes pendant toute la première année. Concentrez-vous sur votre activité, pas sur vos factures.</p>
       </div>
       <div class="after-card rv rv-d1">
-        <div class="ac-num" data-i18n="s2.c2.num">// Year 2 onward</div>
-        <h3 data-i18n="s2.c2.title">Hosting</h3>
-        <div class="ac-price">20 <span class="u" data-i18n="s2.c2.unit">CHF/mo</span></div>
-        <p data-i18n="s2.c2.desc">Fast Swiss hosting, daily backups, SSL, uptime monitoring and minor security updates. Cancel anytime — we hand over your site.</p>
+        <div class="ac-num" data-i18n="s2.c2.num">// Dès la 2e année</div>
+        <h3 data-i18n="s2.c2.title">Hébergement</h3>
+        <div class="ac-price">20 <span class="u" data-i18n="s2.c2.unit">CHF/mois</span></div>
+        <p data-i18n="s2.c2.desc">Hébergement suisse rapide, sauvegardes quotidiennes, SSL, surveillance et mises à jour de sécurité. Résiliable à tout moment — nous vous remettons votre site.</p>
       </div>
       <div class="after-card rv rv-d2">
-        <div class="ac-num" data-i18n="s2.c3.num">// On-demand</div>
-        <h3 data-i18n="s2.c3.title">Changes</h3>
-        <div class="ac-price">20 <span class="u" data-i18n="s2.c3.unit">CHF/change</span></div>
-        <p data-i18n="s2.c3.desc">New opening hours, a price, a photo, an extra service? Send us a message — we update it within 24 hours.</p>
+        <div class="ac-num" data-i18n="s2.c3.num">// À la demande</div>
+        <h3 data-i18n="s2.c3.title">Modifications</h3>
+        <div class="ac-price">20 <span class="u" data-i18n="s2.c3.unit">CHF/modif.</span></div>
+        <p data-i18n="s2.c3.desc">De nouveaux horaires, un prix, une photo, un service en plus ? Envoyez-nous un message — modification effectuée sous 24 heures.</p>
       </div>
     </div>
   </div>
@@ -955,28 +959,28 @@ h1.hero-title em{
   <div class="wrap">
     <div class="sec-head rv">
       <div>
-        <div class="sec-num" data-i18n="s3.label">[03] — How it works</div>
-        <h2 class="sec-title" data-i18n="s3.title">From <em>"we should really build one"</em><br>to live, in 3 days.</h2>
+        <div class="sec-num" data-i18n="s3.label">[03] — Comment ça marche</div>
+        <h2 class="sec-title" data-i18n="s3.title">De quelques informations à un site qui paraît <em>prêt pour vos clients.</em></h2>
       </div>
     </div>
     <div class="steps">
       <div class="step rv">
         <div class="step-dot">01</div>
-        <div class="day" data-i18n="s3.step1.day">Day 1 · Morning</div>
-        <h3 data-i18n="s3.step1.title">Fill the brief</h3>
-        <p data-i18n="s3.step1.desc">A 5-minute form: your business, your services, the vibe. Send us your photos — or tell us you don't have any, and we handle it.</p>
+        <div class="day" data-i18n="s3.step1.day">Jour 1 · Matin</div>
+        <h3 data-i18n="s3.step1.title">Remplir le brief</h3>
+        <p data-i18n="s3.step1.desc">Un formulaire de 5 minutes : votre activité, vos services, l'ambiance. Envoyez-nous vos photos — ou dites-nous que vous n'en avez pas, on s'en charge.</p>
       </div>
       <div class="step rv rv-d1">
         <div class="step-dot">02</div>
-        <div class="day" data-i18n="s3.step2.day">Day 1–2</div>
-        <h3 data-i18n="s3.step2.title">We build it</h3>
-        <p data-i18n="s3.step2.desc">Our automated pipeline assembles your site in 48 hours. We polish it by hand. You get one preview link.</p>
+        <div class="day" data-i18n="s3.step2.day">Jour 1–2</div>
+        <h3 data-i18n="s3.step2.title">On le construit</h3>
+        <p data-i18n="s3.step2.desc">Notre pipeline automatisé assemble votre site en 48 heures. Nous le peaufinons à la main. Vous recevez un lien d'aperçu.</p>
       </div>
       <div class="step rv rv-d2">
         <div class="step-dot">03</div>
-        <div class="day" data-i18n="s3.step3.day">Day 3</div>
-        <h3 data-i18n="s3.step3.title">You go live</h3>
-        <p data-i18n="s3.step3.desc">One round of revisions included. Then we publish to your domain. Free hosting kicks in on day one.</p>
+        <div class="day" data-i18n="s3.step3.day">Jour 3</div>
+        <h3 data-i18n="s3.step3.title">Mise en ligne</h3>
+        <p data-i18n="s3.step3.desc">Un tour de révisions inclus. Puis nous publions sur votre domaine. L'hébergement gratuit commence dès le jour 1.</p>
       </div>
     </div>
   </div>
@@ -987,10 +991,10 @@ h1.hero-title em{
   <div class="wrap">
     <div class="sec-head rv">
       <div>
-        <div class="sec-num" data-i18n="s4.label">[04] — Selected work</div>
-        <h2 class="sec-title" data-i18n="s4.title">Small businesses, <em>online,</em><br>in 48 hours.</h2>
+        <div class="sec-num" data-i18n="s4.label">[04] — Sélection de réalisations</div>
+        <h2 class="sec-title" data-i18n="s4.title">Des PME, <em>en ligne,</em><br>en 48 heures.</h2>
       </div>
-      <p class="sec-intro" data-i18n="s4.intro">A glimpse of what your site could look like. Every one of these went live within a single week.</p>
+      <p class="sec-intro" data-i18n="s4.intro">Un aperçu de ce à quoi votre site pourrait ressembler. Chacun de ceux-ci a été mis en ligne en une semaine.</p>
     </div>
     <div class="work-grid">
 
@@ -1000,20 +1004,20 @@ h1.hero-title em{
           <div class="bw-bar"><span class="d"></span><span class="d"></span><span class="d"></span><span class="bw-url">boulangerie-du-lac.ch</span></div>
           <div class="mock">
             <div class="mock-inner m-bake">
-              <div class="mb-nav"><span class="mb-logo">du Lac</span><span class="mb-links"><span data-i18n="mock.bake.n1">Breads</span><span data-i18n="mock.bake.n2">Hours</span><span data-i18n="mock.bake.n3">Visit</span></span></div>
-              <div class="mb-hero"><h4 data-i18n="mock.bake.h">Fresh from<br>the oven</h4><p data-i18n="mock.bake.p">Artisan bakery on the lakefront since 1974</p></div>
+              <div class="mb-nav"><span class="mb-logo">du Lac</span><span class="mb-links"><span data-i18n="mock.bake.n1">Pains</span><span data-i18n="mock.bake.n2">Horaires</span><span data-i18n="mock.bake.n3">Visiter</span></span></div>
+              <div class="mb-hero"><h4 data-i18n="mock.bake.h">Tout chaud<br>du four</h4><p data-i18n="mock.bake.p">Boulangerie artisanale au bord du lac depuis 1974</p></div>
               <div class="mb-row"><i></i><i></i><i></i></div>
-              <div class="mb-strip" data-i18n="mock.bake.s">OPEN TUE–SUN · 6:30–18:30</div>
+              <div class="mb-strip" data-i18n="mock.bake.s">OUVERT MAR–DIM · 6h30–18h30</div>
             </div>
           </div>
         </div>
         <div class="work-info">
           <div>
-            <div class="wi-meta" data-i18n="s4.w1.meta">Bakery · Pastry</div>
+            <div class="wi-meta" data-i18n="s4.w1.meta">Boulangerie · Pâtisserie</div>
             <div class="wi-title">Boulangerie <em>du Lac</em></div>
             <div class="wi-city">Lausanne, VD</div>
           </div>
-          <span class="work-go"><span data-i18n="work.view">View site</span> →</span>
+          <span class="work-go"><span data-i18n="work.view">Voir le site</span> →</span>
         </div>
       </article>
 
@@ -1023,20 +1027,20 @@ h1.hero-title em{
           <div class="bw-bar"><span class="d"></span><span class="d"></span><span class="d"></span><span class="bw-url">cabinet-morel.ch</span></div>
           <div class="mock">
             <div class="mock-inner m-acc">
-              <div class="ma-nav"><span class="ma-logo">Morel</span><span class="ma-links"><span data-i18n="mock.acc.n1">Services</span><span data-i18n="mock.acc.n2">Team</span><span data-i18n="mock.acc.n3">Contact</span></span></div>
-              <div class="ma-hero"><h4 data-i18n="mock.acc.h">Accounting, <em>without the jargon.</em></h4><span class="ma-btn" data-i18n="mock.acc.b">Book a call</span></div>
+              <div class="ma-nav"><span class="ma-logo">Morel</span><span class="ma-links"><span data-i18n="mock.acc.n1">Services</span><span data-i18n="mock.acc.n2">Équipe</span><span data-i18n="mock.acc.n3">Contact</span></span></div>
+              <div class="ma-hero"><h4 data-i18n="mock.acc.h">La comptabilité, <em>sans le jargon.</em></h4><span class="ma-btn" data-i18n="mock.acc.b">Prendre RDV</span></div>
               <div class="ma-cards"><i></i><i></i><i></i></div>
-              <div class="ma-strip" data-i18n="mock.acc.s">CERTIFIED FIDUCIARY · NYON</div>
+              <div class="ma-strip" data-i18n="mock.acc.s">FIDUCIAIRE AGRÉÉE · NYON</div>
             </div>
           </div>
         </div>
         <div class="work-info">
           <div>
-            <div class="wi-meta" data-i18n="s4.w2.meta">Accounting firm</div>
+            <div class="wi-meta" data-i18n="s4.w2.meta">Fiduciaire</div>
             <div class="wi-title">Cabinet <em>Morel</em></div>
             <div class="wi-city">Nyon, VD</div>
           </div>
-          <span class="work-go"><span data-i18n="work.view">View site</span> →</span>
+          <span class="work-go"><span data-i18n="work.view">Voir le site</span> →</span>
         </div>
       </article>
 
@@ -1046,20 +1050,20 @@ h1.hero-title em{
           <div class="bw-bar"><span class="d"></span><span class="d"></span><span class="d"></span><span class="bw-url">studio-linnea.ch</span></div>
           <div class="mock">
             <div class="mock-inner m-photo">
-              <div class="mp-nav"><span class="mp-logo">Linnea</span><span class="mp-links"><span data-i18n="mock.photo.n1">Portfolio</span><span data-i18n="mock.photo.n2">About</span><span data-i18n="mock.photo.n3">Book</span></span></div>
+              <div class="mp-nav"><span class="mp-logo">Linnea</span><span class="mp-links"><span data-i18n="mock.photo.n1">Portfolio</span><span data-i18n="mock.photo.n2">À propos</span><span data-i18n="mock.photo.n3">Réserver</span></span></div>
               <div class="mp-grid"><i></i><i></i><i></i><i></i><i></i><i></i></div>
-              <div class="mp-cap" data-i18n="mock.photo.c">Light, captured.</div>
-              <div class="mp-strip" data-i18n="mock.photo.s">Weddings · Portraits · Vevey</div>
+              <div class="mp-cap" data-i18n="mock.photo.c">La lumière, capturée.</div>
+              <div class="mp-strip" data-i18n="mock.photo.s">Mariages · Portraits · Vevey</div>
             </div>
           </div>
         </div>
         <div class="work-info">
           <div>
-            <div class="wi-meta" data-i18n="s4.w3.meta">Photography</div>
+            <div class="wi-meta" data-i18n="s4.w3.meta">Photographie</div>
             <div class="wi-title">Studio <em>Linnea</em></div>
             <div class="wi-city">Vevey, VD</div>
           </div>
-          <span class="work-go"><span data-i18n="work.view">View site</span> →</span>
+          <span class="work-go"><span data-i18n="work.view">Voir le site</span> →</span>
         </div>
       </article>
 
@@ -1069,24 +1073,24 @@ h1.hero-title em{
           <div class="bw-bar"><span class="d"></span><span class="d"></span><span class="d"></span><span class="bw-url">atelier-rouge.ch</span></div>
           <div class="mock">
             <div class="mock-inner m-salon">
-              <div class="ms-nav"><span class="ms-logo">Rouge</span><span class="ms-links"><span data-i18n="mock.salon.n1">Salon</span><span data-i18n="mock.salon.n2">Prices</span><span data-i18n="mock.salon.n3">Book</span></span></div>
-              <div class="ms-hero"><h4 data-i18n="mock.salon.h">Your chair is <em>waiting.</em></h4></div>
+              <div class="ms-nav"><span class="ms-logo">Rouge</span><span class="ms-links"><span data-i18n="mock.salon.n1">Salon</span><span data-i18n="mock.salon.n2">Tarifs</span><span data-i18n="mock.salon.n3">Réserver</span></span></div>
+              <div class="ms-hero"><h4 data-i18n="mock.salon.h">Votre fauteuil vous <em>attend.</em></h4></div>
               <div class="ms-list">
-                <div><span data-i18n="mock.salon.l1">Cut & style</span><b>65.—</b></div>
-                <div><span data-i18n="mock.salon.l2">Colour</span><b>120.—</b></div>
-                <div><span data-i18n="mock.salon.l3">Treatment</span><b>45.—</b></div>
+                <div><span data-i18n="mock.salon.l1">Coupe & coiffage</span><b>65.—</b></div>
+                <div><span data-i18n="mock.salon.l2">Couleur</span><b>120.—</b></div>
+                <div><span data-i18n="mock.salon.l3">Soin</span><b>45.—</b></div>
               </div>
-              <div class="ms-strip" data-i18n="mock.salon.s">BOOK ONLINE · MONTREUX</div>
+              <div class="ms-strip" data-i18n="mock.salon.s">RÉSERVEZ EN LIGNE · MONTREUX</div>
             </div>
           </div>
         </div>
         <div class="work-info">
           <div>
-            <div class="wi-meta" data-i18n="s4.w4.meta">Hair salon</div>
+            <div class="wi-meta" data-i18n="s4.w4.meta">Coiffure · Salon</div>
             <div class="wi-title">Atelier <em>Rouge</em></div>
             <div class="wi-city">Montreux, VD</div>
           </div>
-          <span class="work-go"><span data-i18n="work.view">View site</span> →</span>
+          <span class="work-go"><span data-i18n="work.view">Voir le site</span> →</span>
         </div>
       </article>
 
@@ -1099,26 +1103,26 @@ h1.hero-title em{
   <div class="wrap">
     <div class="sec-head rv">
       <div>
-        <div class="sec-num" data-i18n="faq.label">[05] — Good questions</div>
-        <h2 class="sec-title" data-i18n="faq.title">The things <em>everyone asks.</em></h2>
+        <div class="sec-num" data-i18n="faq.label">[05] — Bonnes questions</div>
+        <h2 class="sec-title" data-i18n="faq.title">Ce que <em>tout le monde demande.</em></h2>
       </div>
     </div>
     <div class="faq-grid">
       <div class="faq-item rv">
-        <button class="faq-q"><span data-i18n="faq.q1">What if I don't have any photos?</span><span class="pm">+</span></button>
-        <div class="faq-a"><p data-i18n="faq.a1">No problem. We use high-quality, licensed imagery that fits your business, and you can swap in your own photos anytime later.</p></div>
+        <button class="faq-q"><span data-i18n="faq.q1">Et si je n'ai pas de photos ?</span><span class="pm">+</span></button>
+        <div class="faq-a"><p data-i18n="faq.a1">Aucun problème. Nous utilisons des images sous licence de haute qualité adaptées à votre activité, et vous pourrez ajouter les vôtres à tout moment.</p></div>
       </div>
       <div class="faq-item rv rv-d1">
-        <button class="faq-q"><span data-i18n="faq.q2">Do I really own the website?</span><span class="pm">+</span></button>
-        <div class="faq-a"><p data-i18n="faq.a2">Yes. The site is yours from day one. If you ever leave, we hand over all files and your domain — no lock-in, no hostage fees.</p></div>
+        <button class="faq-q"><span data-i18n="faq.q2">Suis-je vraiment propriétaire du site ?</span><span class="pm">+</span></button>
+        <div class="faq-a"><p data-i18n="faq.a2">Oui. Le site est le vôtre dès le premier jour. Si vous partez, nous vous remettons tous les fichiers et votre domaine — aucun verrouillage.</p></div>
       </div>
       <div class="faq-item rv">
-        <button class="faq-q"><span data-i18n="faq.q3">Can you write the content for me?</span><span class="pm">+</span></button>
-        <div class="faq-a"><p data-i18n="faq.a3">That's included. Tell us about your business in the brief and we write clear, professional copy for every page — in FR, EN, or both.</p></div>
+        <button class="faq-q"><span data-i18n="faq.q3">Pouvez-vous rédiger le contenu pour moi ?</span><span class="pm">+</span></button>
+        <div class="faq-a"><p data-i18n="faq.a3">C'est inclus. Parlez-nous de votre activité dans le brief et nous rédigeons des textes clairs et professionnels pour chaque page — en FR, EN, ou les deux.</p></div>
       </div>
       <div class="faq-item rv rv-d1">
-        <button class="faq-q"><span data-i18n="faq.q4">What's the catch with CHF 400?</span><span class="pm">+</span></button>
-        <div class="faq-a"><p data-i18n="faq.a4">None. Automation handles the heavy lifting, so we keep prices low and delivery fast. One flat fee, one invoice — that's the whole model.</p></div>
+        <button class="faq-q"><span data-i18n="faq.q4">Où est le piège à 400 CHF ?</span><span class="pm">+</span></button>
+        <div class="faq-a"><p data-i18n="faq.a4">Il n'y en a pas. L'automatisation fait le gros du travail, donc les prix restent bas et la livraison rapide. Un tarif fixe, une facture — c'est tout le modèle.</p></div>
       </div>
     </div>
   </div>
@@ -1127,19 +1131,19 @@ h1.hero-title em{
 <!-- CONTACT -->
 <section class="section" id="contact">
   <div class="wrap rv">
-    <div class="sec-num" data-i18n="s5.label">[06] — Start your project</div>
-    <h2 class="contact-title" data-i18n="s5.title">Let's get your business <em>online</em> this week.</h2>
+    <div class="sec-num" data-i18n="s5.label">[06] — Démarrer votre projet</div>
+    <h2 class="contact-title" data-i18n="s5.title">Mettons votre entreprise <em>en ligne</em> cette semaine.</h2>
     <div class="contact-row">
-      <a href="#" class="btn" data-open style="background:var(--accent);border-color:var(--accent)"><span data-i18n="s5.cta">Start your project</span> <span class="arw">→</span></a>
-      <a href="tel:+41799512565" class="btn btn-ghost" style="color:var(--bg);border-color:rgba(255,255,255,.3)" data-i18n="s5.call">Or call 079 951 25 65</a>
+      <a href="#" class="btn" data-open style="background:var(--accent);border-color:var(--accent)"><span data-i18n="s5.cta">Démarrer votre projet</span> <span class="arw">→</span></a>
+      <a href="tel:+41799512565" class="btn btn-ghost" style="color:var(--bg);border-color:rgba(255,255,255,.3)" data-i18n="s5.call">Ou appelez le 079 951 25 65</a>
     </div>
     <div class="contact-info">
       <div>
-        <div class="ci-label" data-i18n="s5.phone">Phone</div>
+        <div class="ci-label" data-i18n="s5.phone">Téléphone</div>
         <div class="ci-value"><a href="tel:+41799512565">079 951 25 65</a></div>
       </div>
       <div>
-        <div class="ci-label" data-i18n="s5.email">Email</div>
+        <div class="ci-label" data-i18n="s5.email">E-mail</div>
         <div class="ci-value"><a href="mailto:info@auwem.ch">info@auwem.ch</a></div>
       </div>
       <div>
@@ -1154,66 +1158,67 @@ h1.hero-title em{
 <footer class="footer">
   <div class="wrap">
     <div>© 2026 <span class="accent">Auwem.ch</span> · Lausanne, CH</div>
-    <div data-i18n="footer.built">Built (of course) in 48 hours.</div>
+    <div data-i18n="footer.built">Designé dans le canton de Vaud. Pensé pour les entreprises locales suisses.</div>
   </div>
 </footer>
 
 <!-- DRAWER -->
 <div class="backdrop" id="backdrop"></div>
 
-<!-- LOGIN MODAL (demo — local only) -->
-<div class="login-modal" id="loginModal" role="dialog" aria-modal="true" aria-label="Account">
-  <button class="login-close" id="loginClose" aria-label="Close">×</button>
+<!-- LOGIN MODAL -->
+<div class="login-modal" id="loginModal" role="dialog" aria-modal="true" aria-label="Compte">
+  <button class="login-close" id="loginClose" aria-label="Fermer">×</button>
 
   <div class="login-auth" id="loginAuth">
-    <div class="login-eyebrow" id="loginEyebrow" data-i18n="login.eyebrowLogin">[ Your account ]</div>
-    <h2 class="login-title" id="loginTitle"><span data-i18n="login.titleLogin">Welcome</span> <em data-i18n="login.titleLoginEm">back.</em></h2>
-    <p class="login-sub" id="loginSub" data-i18n="login.subLogin">Log in to save your project and pick up where you left off.</p>
+    <div class="login-eyebrow" id="loginEyebrow" data-i18n="login.eyebrowLogin">[ Votre compte ]</div>
+    <h2 class="login-title" id="loginTitle"><span data-i18n="login.titleLogin">Bon</span> <em data-i18n="login.titleLoginEm">retour.</em></h2>
+    <p class="login-sub" id="loginSub" data-i18n="login.subLogin">Connectez-vous pour enregistrer votre projet et le reprendre plus tard.</p>
     <form class="login-form" id="loginForm" novalidate>
-      <label><span data-i18n="login.email">Email</span><input type="email" id="loginEmail" autocomplete="email" placeholder="vous@entreprise.ch"></label>
-      <label><span data-i18n="login.password">Password</span><input type="password" id="loginPassword" autocomplete="current-password" placeholder="••••••••"></label>
+      <label><span data-i18n="login.email">E-mail</span><input type="email" id="loginEmail" autocomplete="email" placeholder="vous@entreprise.ch"></label>
+      <label><span data-i18n="login.password">Mot de passe</span><input type="password" id="loginPassword" autocomplete="current-password" placeholder="••••••••"></label>
       <div class="login-msg" id="loginMsg"></div>
-      <button type="submit" class="btn login-submit"><span id="loginBtnText" data-i18n="login.btnLogin">Log in</span> <span class="arw">→</span></button>
+      <button type="submit" class="btn login-submit"><span id="loginBtnText" data-i18n="login.btnLogin">Se connecter</span> <span class="arw">→</span></button>
     </form>
     <div class="login-switch">
-      <span id="switchPrompt" data-i18n="login.noAccount">No account yet?</span>
-      <button type="button" id="loginSwitch" data-i18n="login.createOne">Create one</button>
+      <span id="switchPrompt" data-i18n="login.noAccount">Pas encore de compte ?</span>
+      <button type="button" id="loginSwitch" data-i18n="login.createOne">Créez-en un</button>
     </div>
     <div class="login-note">
-      <strong data-i18n="login.demoLabel">Demo:</strong> <span data-i18n="login.demoText">accounts are saved only in this browser, on this device. This is a preview of the account feature — not yet a real secure login.</span>
+      <strong data-i18n="login.demoLabel">Démo :</strong> <span data-i18n="login.demoText">les comptes sont enregistrés uniquement dans ce navigateur, sur cet appareil. Ceci est un aperçu de la fonction compte — pas encore une vraie connexion sécurisée.</span>
     </div>
   </div>
 
   <div class="login-account" id="loginAccount">
-    <div class="login-eyebrow" data-i18n="login.eyebrowAccount">[ Signed in ]</div>
-    <h2 class="login-title"><span data-i18n="login.hello">Hello</span> <em>👋</em></h2>
-    <p class="login-sub" data-i18n="login.accountSub">You're signed in. Your project draft is saved on this device.</p>
+    <div class="login-eyebrow" data-i18n="login.eyebrowAccount">[ Connecté ]</div>
+    <h2 class="login-title"><span data-i18n="login.hello">Bonjour</span> <em>👋</em></h2>
+    <p class="login-sub" data-i18n="login.accountSub">Vous êtes connecté. Le brouillon de votre projet est enregistré sur cet appareil.</p>
     <div class="acc-email" id="accEmail">—</div>
     <div class="acc-draft" id="accDraft"></div>
-    <button type="button" class="btn login-submit" id="loadDraftBtn" style="margin-bottom:10px"><span data-i18n="login.loadDraft">Open my saved project</span> <span class="arw">→</span></button>
-    <button type="button" class="btn btn-ghost-full" id="logoutBtn" data-i18n="login.logout">Log out</button>
+    <button type="button" class="btn login-submit" id="loadDraftBtn" style="margin-bottom:10px"><span data-i18n="login.loadDraft">Ouvrir mon projet enregistré</span> <span class="arw">→</span></button>
+    <button type="button" class="btn btn-ghost-full" id="logoutBtn" data-i18n="login.logout">Se déconnecter</button>
   </div>
 </div>
-<aside class="drawer" id="drawer" aria-hidden="true" aria-label="Project intake form">
-  <button class="drawer-close" id="closeDrawer" aria-label="Close form">×</button>
+
+<aside class="drawer" id="drawer" aria-hidden="true" aria-label="Formulaire de projet">
+  <button class="drawer-close" id="closeDrawer" aria-label="Fermer le formulaire">×</button>
   <div class="drawer-in">
-    <div class="dr-eyebrow" data-i18n="drawer.eyebrow">[ Project intake ]</div>
-    <h2 class="dr-title" data-i18n="drawer.title">Let's build <em>something.</em></h2>
-    <p class="dr-sub" data-i18n="drawer.sub">Drop your details. We'll be back within 24 hours with next steps and a short brief.</p>
+    <div class="dr-eyebrow" data-i18n="drawer.eyebrow">[ Démarrage projet ]</div>
+    <h2 class="dr-title" data-i18n="drawer.title">Construisons <em>ensemble.</em></h2>
+    <p class="dr-sub" data-i18n="drawer.sub">Laissez-nous vos coordonnées. Nous revenons vers vous sous 24 heures avec la suite et un bref questionnaire.</p>
     <form class="dr-form" id="form" action="https://formspree.io/f/xwvzjwzd" method="POST" enctype="multipart/form-data" accept-charset="UTF-8" novalidate>
       <input type="hidden" name="_subject" value="Nouvelle demande client Auwem">
-      <div class="form-tabs" role="tablist" aria-label="Project form sections">
-        <button type="button" class="form-tab active" data-tab="company" data-i18n="form.tabCompany">Business information</button>
-        <button type="button" class="form-tab" data-tab="style" data-i18n="form.tabStyle">Website personalization</button>
-        <button type="button" class="form-tab" data-tab="photos" data-i18n="form.tabPhotos">Desired photos</button>
-        <button type="button" class="form-tab" data-tab="extra" data-i18n="form.tabExtra">Additional information</button>
+      <div class="form-tabs" role="tablist" aria-label="Sections du formulaire">
+        <button type="button" class="form-tab active" data-tab="company" data-i18n="form.tabCompany">Entreprise</button>
+        <button type="button" class="form-tab" data-tab="style" data-i18n="form.tabStyle">Style</button>
+        <button type="button" class="form-tab" data-tab="photos" data-i18n="form.tabPhotos">Photos</button>
+        <button type="button" class="form-tab" data-tab="extra" data-i18n="form.tabExtra">Détails</button>
       </div>
 
       <div class="form-panel active" data-panel="company">
         <label>
-          <span data-i18n="form.businessType">Type of business</span>
+          <span data-i18n="form.businessType">Type d'entreprise</span>
           <select name="businessType" required>
-            <option value="" data-i18n="form.chooseType">Choose a type</option>
+            <option value="" data-i18n="form.chooseType">Choisir un type</option>
             <option>Agence immobilière</option>
             <option>Architecte / Bureau d'étude</option>
             <option>Artisan / Menuisier</option>
@@ -1239,107 +1244,107 @@ h1.hero-title em{
             <option>Autre</option>
           </select>
         </label>
-        <label><span data-i18n="form.companyName">Business name</span><input type="text" name="company" required autocomplete="organization" maxlength="80" placeholder="Boulangerie du Lac"></label>
-        <label><span data-i18n="form.companyEmail">Business email</span><input type="email" name="email" required autocomplete="email" maxlength="120" placeholder="contact@entreprise.ch"></label>
-        <label><span data-i18n="form.companyPhone">Business phone</span><input type="tel" name="companyPhone" required autocomplete="tel" maxlength="30" placeholder="079 123 45 67"></label>
-        <div class="form-nav"><button type="button" class="btn next-tab" data-next="style"><span data-i18n="form.next">Next</span> <span class="arw">→</span></button></div>
+        <label><span data-i18n="form.companyName">Nom de votre entreprise</span><input type="text" name="company" required autocomplete="organization" maxlength="80" placeholder="Boulangerie du Lac"></label>
+        <label><span data-i18n="form.companyEmail">Mail de votre entreprise</span><input type="email" name="email" required autocomplete="email" maxlength="120" placeholder="contact@entreprise.ch"></label>
+        <label><span data-i18n="form.companyPhone">Téléphone de votre entreprise</span><input type="tel" name="companyPhone" required autocomplete="tel" maxlength="30" placeholder="079 123 45 67"></label>
+        <div class="form-nav"><button type="button" class="btn next-tab" data-next="style"><span data-i18n="form.next">Suivant</span> <span class="arw">→</span></button></div>
       </div>
 
       <div class="form-panel" data-panel="style">
-        <label><span data-i18n="form.palette">Choose a color palette</span></label>
-        <div class="color-palette" aria-label="Color palette">
+        <label><span data-i18n="form.palette">Choisissez une palette de couleurs</span></label>
+        <div class="color-palette" aria-label="Palette de couleurs">
           <label class="color-choice">
             <input type="radio" name="palette" value="earth" checked>
             <span class="color-swatch"><i style="background:#6D8C54"></i><i style="background:#2C3D1E"></i><i style="background:#F4EEDD"></i><i style="background:#C8975A"></i><i style="background:#9E5A2E"></i></span>
-            <span class="pal-name" data-i18n="pal.earth">Earth &amp; olive</span>
+            <span class="pal-name" data-i18n="pal.earth">Terre &amp; olive</span>
           </label>
           <label class="color-choice">
             <input type="radio" name="palette" value="ocean">
             <span class="color-swatch"><i style="background:#8FCDEA"></i><i style="background:#2E8FB5"></i><i style="background:#0A2E44"></i><i style="background:#F5B229"></i><i style="background:#EE7A1E"></i></span>
-            <span class="pal-name" data-i18n="pal.ocean">Ocean &amp; amber</span>
+            <span class="pal-name" data-i18n="pal.ocean">Océan &amp; ambre</span>
           </label>
           <label class="color-choice">
             <input type="radio" name="palette" value="sunset">
             <span class="color-swatch"><i style="background:#274A57"></i><i style="background:#2FA39A"></i><i style="background:#E9C46A"></i><i style="background:#F0A55E"></i><i style="background:#E55C4E"></i></span>
-            <span class="pal-name" data-i18n="pal.sunset">Teal &amp; sunset</span>
+            <span class="pal-name" data-i18n="pal.sunset">Turquoise &amp; coucher</span>
           </label>
           <label class="color-choice">
             <input type="radio" name="palette" value="blush">
             <span class="color-swatch"><i style="background:#F6D8C4"></i><i style="background:#F0A48F"></i><i style="background:#E27D7A"></i><i style="background:#9C6B7C"></i><i style="background:#6A5A6E"></i></span>
-            <span class="pal-name" data-i18n="pal.blush">Blush &amp; mauve</span>
+            <span class="pal-name" data-i18n="pal.blush">Rosé &amp; mauve</span>
           </label>
           <label class="color-choice">
             <input type="radio" name="palette" value="pastel">
             <span class="color-swatch"><i style="background:#C9B6E4"></i><i style="background:#E3A9D6"></i><i style="background:#F5B9D4"></i><i style="background:#AED4F2"></i><i style="background:#8FC0EE"></i></span>
-            <span class="pal-name" data-i18n="pal.pastel">Soft pastel</span>
+            <span class="pal-name" data-i18n="pal.pastel">Pastel doux</span>
           </label>
           <label class="color-choice">
             <input type="radio" name="palette" value="mono">
             <span class="color-swatch"><i style="background:#F7F2E7"></i><i style="background:#C9C0AE"></i><i style="background:#8C8472"></i><i style="background:#3A352C"></i><i style="background:#15120C"></i></span>
-            <span class="pal-name" data-i18n="pal.mono">Warm neutral</span>
+            <span class="pal-name" data-i18n="pal.mono">Neutre chaleureux</span>
           </label>
         </div>
 
         <button type="button" class="more-colors-btn" id="moreColorsBtn">
           <span class="mc-icon" aria-hidden="true"></span>
-          <span data-i18n="form.moreColors">More colors — pick your own</span>
+          <span data-i18n="form.moreColors">Plus de couleurs — choisissez les vôtres</span>
         </button>
 
         <div class="custom-colors" id="customColors" hidden>
           <div class="cc-head">
-            <span class="cc-title" data-i18n="form.customTitle">Choose up to 5 colors</span>
+            <span class="cc-title" data-i18n="form.customTitle">Choisissez jusqu’à 5 couleurs</span>
             <span class="cc-count"><span id="ccCount">0</span>/5</span>
           </div>
-          <div class="cc-wheel" id="ccWheel" aria-label="Color wheel"></div>
-          <div class="cc-selected" id="ccSelected" data-i18n="form.customNone">No color selected yet.</div>
+          <div class="cc-wheel" id="ccWheel" aria-label="Roue chromatique"></div>
+          <div class="cc-selected" id="ccSelected" data-i18n="form.customNone">Aucune couleur sélectionnée.</div>
           <input type="hidden" name="customColors" id="customColorsField">
         </div>
 
         <input type="hidden" name="paletteMode" id="paletteMode" value="preset">
 
-        <label><span data-i18n="form.paletteNote">Notes about the desired style</span><input type="text" name="styleNote" maxlength="160" placeholder="Minimaliste, premium, chaleureux..."></label>
+        <label><span data-i18n="form.paletteNote">Notes sur le style souhaité</span><input type="text" name="styleNote" maxlength="160" placeholder="Minimaliste, premium, chaleureux..."></label>
         <div class="form-nav">
-          <button type="button" class="btn btn-ghost prev-tab" data-prev="company"><span data-i18n="form.back">Back</span></button>
-          <button type="button" class="btn next-tab" data-next="photos"><span data-i18n="form.next">Next</span> <span class="arw">→</span></button>
+          <button type="button" class="btn btn-ghost prev-tab" data-prev="company"><span data-i18n="form.back">Retour</span></button>
+          <button type="button" class="btn next-tab" data-next="photos"><span data-i18n="form.next">Suivant</span> <span class="arw">→</span></button>
         </div>
       </div>
 
       <div class="form-panel" data-panel="photos">
         <label class="dropzone" id="dropzone">
           <input type="file" name="photos" id="photos" accept=".pdf,image/png,image/jpeg,image/webp" multiple>
-          <strong data-i18n="form.dropTitle">Drag your photos or PDFs here</strong>
-          <span data-i18n="form.dropText">or click to select files</span>
+          <strong data-i18n="form.dropTitle">Glissez vos photos ou PDF ici</strong>
+          <span data-i18n="form.dropText">ou cliquez pour sélectionner des fichiers</span>
         </label>
-        <div class="file-list" id="fileList" data-i18n="form.noFiles">No file selected yet.</div>
-        <div class="file-hint" id="fileHint" data-i18n="form.fileHint">PDF, JPG, PNG or WebP · up to 10 MB each. Your files will be attached to an email that opens when you send.</div>
+        <div class="file-list" id="fileList" data-i18n="form.noFiles">Aucun fichier sélectionné pour le moment.</div>
+        <div class="file-hint" id="fileHint" data-i18n="form.fileHint">PDF, JPG, PNG ou WebP · jusqu’à 10 Mo par fichier. Vos fichiers seront joints à un e-mail qui s’ouvrira à l’envoi.</div>
         <input type="hidden" name="attachedFiles" id="attachedFiles">
         <div class="form-nav">
-          <button type="button" class="btn btn-ghost prev-tab" data-prev="style"><span data-i18n="form.back">Back</span></button>
-          <button type="button" class="btn next-tab" data-next="extra"><span data-i18n="form.next">Next</span> <span class="arw">→</span></button>
+          <button type="button" class="btn btn-ghost prev-tab" data-prev="style"><span data-i18n="form.back">Retour</span></button>
+          <button type="button" class="btn next-tab" data-next="extra"><span data-i18n="form.next">Suivant</span> <span class="arw">→</span></button>
         </div>
       </div>
 
       <div class="form-panel" data-panel="extra">
         <label>
-          <span data-i18n="form.additionalInfoLabel">Tell us what you want</span>
-          <textarea name="additionalInformation" maxlength="1200" data-i18n-placeholder="form.additionalInfoPlaceholder" placeholder="• What should visitors understand first?&#10;• Which services should be highlighted?&#10;• What style or examples do you like?&#10;• Any specific requests?"></textarea>
+          <span data-i18n="form.additionalInfoLabel">Expliquez-nous ce que vous souhaitez</span>
+          <textarea name="additionalInformation" maxlength="1200" data-i18n-placeholder="form.additionalInfoPlaceholder" placeholder="• Que doivent comprendre vos visiteurs en premier ?&#10;• Quels services voulez-vous mettre en avant ?&#10;• Quel style ou quels exemples aimez-vous ?&#10;• Avez-vous des demandes spécifiques ?"></textarea>
         </label>
-        <div class="form-nav"><button type="button" class="btn btn-ghost prev-tab" data-prev="photos"><span data-i18n="form.back">Back</span></button></div>
-        <button type="submit" class="btn dr-submit"><span data-i18n="form.submit">Send</span> <span class="arw">→</span></button>
+        <div class="form-nav"><button type="button" class="btn btn-ghost prev-tab" data-prev="photos"><span data-i18n="form.back">Retour</span></button></div>
+        <button type="submit" class="btn dr-submit"><span data-i18n="form.submit">Envoyer</span> <span class="arw">→</span></button>
       </div>
     </form>
     <div class="dr-success" id="success">
       <div class="ck">✓</div>
-      <h3 data-i18n="form.successTitle">Got it.</h3>
-      <p data-i18n="form.successText">We'll be in touch within 24 hours.</p>
+      <h3 data-i18n="form.successTitle">Reçu.</h3>
+      <p data-i18n="form.successText">Nous revenons vers vous sous 24 heures.</p>
     </div>
     <div class="dr-meta">
       <div>
-        <div class="dm-label" data-i18n="form.metaPhone">Or call</div>
+        <div class="dm-label" data-i18n="form.metaPhone">Ou téléphone</div>
         <div class="dm-value"><a href="tel:+41799512565">079 951 25 65</a></div>
       </div>
       <div>
-        <div class="dm-label" data-i18n="form.metaEmail">Or email</div>
+        <div class="dm-label" data-i18n="form.metaEmail">Ou e-mail</div>
         <div class="dm-value"><a href="mailto:info@auwem.ch">info@auwem.ch</a></div>
       </div>
     </div>
@@ -1592,7 +1597,7 @@ const MQ={
   de:['400 CHF pauschal','Lieferung in 48 Stunden','Hosting gratis · Jahr 1','Aus dem Kanton Waadt','FR · EN · DE','Made in Switzerland']
 };
 
-let lang='fr', words=ROT.fr, wi=0; // Default to French
+let lang='fr', words=ROT.fr, wi=0;
 const $=s=>document.querySelector(s), $$=s=>document.querySelectorAll(s);
 const rot=$('#rot'), mq=$('#mq');
 
@@ -1693,10 +1698,10 @@ function refreshLoginView(){
     const draft=lsGet(LS_DRAFT,null);
     const t=T[lang];
     if(draft && draft.company){
-      $('#accDraft').innerHTML=(t['login.draftFound']||'Saved draft:')+' <b>'+draft.company+'</b>';
+      $('#accDraft').innerHTML=(t['login.draftFound']||'Brouillon enregistré :')+' <b>'+draft.company+'</b>';
       $('#loadDraftBtn').style.display='';
     }else{
-      $('#accDraft').textContent=t['login.noDraft']||'No saved project draft yet. Start a project and it will be kept here.';
+      $('#accDraft').textContent=t['login.noDraft']||'Aucun brouillon de projet pour le moment.';
       $('#loadDraftBtn').style.display='none';
     }
   }else{
@@ -1707,14 +1712,14 @@ function refreshLoginView(){
 
 function applyAuthMode(){
   const t=T[lang];
-  $('#loginEyebrow').textContent = isSignup ? (t['login.eyebrowSignup']||'[ Create account ]') : (t['login.eyebrowLogin']||'[ Your account ]');
+  $('#loginEyebrow').textContent = isSignup ? (t['login.eyebrowSignup']||'[ Créer un compte ]') : (t['login.eyebrowLogin']||'[ Votre compte ]');
   $('#loginTitle').innerHTML = isSignup
-    ? '<span>'+(t['login.titleSignup']||'Create your')+'</span> <em>'+(t['login.titleSignupEm']||'account.')+'</em>'
-    : '<span>'+(t['login.titleLogin']||'Welcome')+'</span> <em>'+(t['login.titleLoginEm']||'back.')+'</em>';
-  $('#loginSub').textContent = isSignup ? (t['login.subSignup']||'Sign up to save your project and come back to it later.') : (t['login.subLogin']||'Log in to save your project and pick up where you left off.');
-  $('#loginBtnText').textContent = isSignup ? (t['login.btnSignup']||'Create account') : (t['login.btnLogin']||'Log in');
-  $('#switchPrompt').textContent = isSignup ? (t['login.haveAccount']||'Already have an account?') : (t['login.noAccount']||'No account yet?');
-  $('#loginSwitch').textContent = isSignup ? (t['login.logInstead']||'Log in') : (t['login.createOne']||'Create one');
+    ? '<span>'+(t['login.titleSignup']||'Créez votre')+'</span> <em>'+(t['login.titleSignupEm']||'compte.')+'</em>'
+    : '<span>'+(t['login.titleLogin']||'Bon')+'</span> <em>'+(t['login.titleLoginEm']||'retour.')+'</em>';
+  $('#loginSub').textContent = isSignup ? (t['login.subSignup']||'Inscrivez-vous pour enregistrer votre projet et y revenir plus tard.') : (t['login.subLogin']||'Connectez-vous pour enregistrer votre projet et le reprendre plus tard.');
+  $('#loginBtnText').textContent = isSignup ? (t['login.btnSignup']||'Créer le compte') : (t['login.btnLogin']||'Se connecter');
+  $('#switchPrompt').textContent = isSignup ? (t['login.haveAccount']||'Vous avez déjà un compte ?') : (t['login.noAccount']||'Pas encore de compte ?');
+  $('#loginSwitch').textContent = isSignup ? (t['login.logInstead']||'Se connecter') : (t['login.createOne']||'Créez-en un');
   $('#loginPassword').setAttribute('autocomplete', isSignup ? 'new-password' : 'current-password');
 }
 
@@ -1727,14 +1732,14 @@ $('#loginForm').addEventListener('submit',e=>{
   const t=T[lang], email=$('#loginEmail').value.trim().toLowerCase(), pw=$('#loginPassword').value, msg=$('#loginMsg');
   const emailOk=/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email);
   $('#loginEmail').classList.toggle('err',!emailOk); $('#loginPassword').classList.toggle('err',pw.length<6);
-  if(!emailOk){ msg.className='login-msg error'; msg.textContent=t['login.errEmail']||'Please enter a valid email address.'; return; }
-  if(pw.length<6){ msg.className='login-msg error'; msg.textContent=t['login.errPw']||'Password must be at least 6 characters.'; return; }
+  if(!emailOk){ msg.className='login-msg error'; msg.textContent=t['login.errEmail']||'Veuillez entrer une adresse e-mail valide.'; return; }
+  if(pw.length<6){ msg.className='login-msg error'; msg.textContent=t['login.errPw']||'Le mot de passe doit comporter au moins 6 caractères.'; return; }
   const users=lsGet(LS_USERS,{});
   if(isSignup){
-    if(users[email]){ msg.className='login-msg error'; msg.textContent=t['login.errExists']||'An account with this email already exists.'; return; }
+    if(users[email]){ msg.className='login-msg error'; msg.textContent=t['login.errExists']||'Un compte avec cet e-mail existe déjà.'; return; }
     users[email]=weakHash(pw); lsSet(LS_USERS,users); lsSet(LS_SESSION,email); finishAuth();
   }else{
-    if(!users[email] || users[email]!==weakHash(pw)){ msg.className='login-msg error'; msg.textContent=t['login.errWrong']||'Incorrect email or password.'; return; }
+    if(!users[email] || users[email]!==weakHash(pw)){ msg.className='login-msg error'; msg.textContent=t['login.errWrong']||'E-mail ou mot de passe incorrect.'; return; }
     lsSet(LS_SESSION,email); finishAuth();
   }
 });
@@ -1759,10 +1764,10 @@ function updateLoginButton(){
   const u=currentUser(), link=$('#loginLink'), t=T[lang];
   if(u){
     link.classList.add('is-user');
-    link.innerHTML='<span class="avatar">'+u.charAt(0)+'</span><span>'+(t['login.account']||'My account')+'</span>';
+    link.innerHTML='<span class="avatar">'+u.charAt(0)+'</span><span>'+(t['login.account']||'Mon compte')+'</span>';
   }else{
     link.classList.remove('is-user');
-    link.innerHTML='<span data-i18n="nav.login">'+(t['nav.login']||'Log in')+'</span>';
+    link.innerHTML='<span data-i18n="nav.login">'+(t['nav.login']||'Connexion')+'</span>';
   }
 }
 
@@ -1820,7 +1825,7 @@ $$('.prev-tab').forEach(b=>b.addEventListener('click',()=>showTab(b.dataset.prev
   function render(){
     countEl.textContent=selected.length;
     $$('.cc-dot').forEach(d=>{ const isSel=selected.includes(d.dataset.hex); d.classList.toggle('dim', selected.length>=MAX && !isSel); });
-    if(!selected.length){ out.textContent=T[lang]['form.customNone']||'No color selected yet.'; }else{
+    if(!selected.length){ out.textContent=T[lang]['form.customNone']||'Aucune couleur sélectionnée.'; }else{
       out.innerHTML='';
       selected.forEach(hex=>{
         const chip=document.createElement('span'); chip.className='cc-chip';
@@ -1863,7 +1868,7 @@ function syncInput(){
 }
 
 function renderFiles(){
-  if(!chosenFiles.length){ fileList.textContent = T[lang]['form.noFiles'] || 'No file selected yet.'; return; }
+  if(!chosenFiles.length){ fileList.textContent = T[lang]['form.noFiles'] || 'Aucun fichier sélectionné.'; return; }
   fileList.innerHTML='';
   chosenFiles.forEach((f,idx)=>{
     const row=document.createElement('div'); row.className='fitem';
@@ -1880,14 +1885,14 @@ function addFiles(list){
   [...list].forEach(f=>{
     const typeOk = OK_TYPES.includes(f.type) || /\.(pdf|png|jpe?g|webp)$/i.test(f.name);
     if(!typeOk){ rejected.push(f.name+' (type)'); return; }
-    if(f.size>MAX_BYTES){ rejected.push(f.name+' (>10MB)'); return; }
+    if(f.size>MAX_BYTES){ rejected.push(f.name+' (>10Mo)'); return; }
     if(chosenFiles.some(x=>x.name===f.name && x.size===f.size)) return; 
     chosenFiles.push(f);
   });
   syncInput(); renderFiles();
   if(rejected.length){
     const err=document.createElement('div'); err.className='ferr';
-    err.textContent=(T[lang]['form.fileRejected']||'Skipped: ')+rejected.join(', '); fileList.appendChild(err);
+    err.textContent=(T[lang]['form.fileRejected']||'Ignoré : ')+rejected.join(', '); fileList.appendChild(err);
   }
 }
 
@@ -1915,14 +1920,14 @@ $('#form').addEventListener('submit',e=>{
 
   safeTextInputs.forEach(i=>{
     const clean=sanitizeText(i.value); if(i.value!==clean) i.value=clean;
-    if(hasEmoji(i.value)){ setFieldError(i,'Please remove emojis from this field.'); ok=false; firstBadPanel ||= i.closest('.form-panel'); }
+    if(hasEmoji(i.value)){ setFieldError(i,'Veuillez retirer les emojis.'); ok=false; firstBadPanel ||= i.closest('.form-panel'); }
   });
 
   f.querySelectorAll('input[required],select[required],textarea[required]').forEach(i=>{
     const value=(i.value || '').trim();
     const bad=!value || (i.type==='email'&&!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(value));
     if(bad){
-      setFieldError(i, i.type==='email' ? 'Please enter a valid email address.' : 'Please complete this field.');
+      setFieldError(i, i.type==='email' ? 'Adresse e-mail invalide.' : 'Veuillez remplir ce champ.');
       ok=false; firstBadPanel ||= i.closest('.form-panel');
     }else if(!hasEmoji(value)){ clearFieldError(i); }
   });
@@ -1931,7 +1936,7 @@ $('#form').addEventListener('submit',e=>{
   if(!ok) return;
 
   const submitBtn = f.querySelector('button[type="submit"]');
-  if(submitBtn){ submitBtn.disabled=true; submitBtn.innerHTML='<span>'+(T[lang]['form.sending']||'Sending...')+'</span>'; }
+  if(submitBtn){ submitBtn.disabled=true; submitBtn.innerHTML='<span>'+(T[lang]['form.sending']||'Envoi...')+'</span>'; }
 
   const data=new FormData(f); data.delete('photos'); 
   const payload={}; data.forEach((v,k)=>{ payload[k]=v; });
@@ -1943,21 +1948,21 @@ $('#form').addEventListener('submit',e=>{
     if(chosenFiles.length){
       const subject=encodeURIComponent('Fichiers — '+(payload.company||'Nouveau client Auwem'));
       const body=encodeURIComponent(
-        (T[lang]['form.mailIntro']||'Hello Auwem, here are my files for my website:')+
+        (T[lang]['form.mailIntro']||'Bonjour Auwem, voici mes fichiers :')+
         '\r\n\r\n'+chosenFiles.map(x=>'• '+x.name).join('\r\n')+
-        '\r\n\r\n'+(T[lang]['form.mailHint']||'(Please attach the files listed above before sending.)')+
+        '\r\n\r\n'+(T[lang]['form.mailHint']||'(Merci de joindre les fichiers ci-dessus)')+
         '\r\n\r\n'+(payload.name||'')+' — '+(payload.company||'')
       );
-      setTimeout(()=>{ window.location.href='mailto:auwem@gmail.com?subject='+subject+'&body='+body; },900);
+      setTimeout(()=>{ window.location.href='mailto:info@auwem.ch?subject='+subject+'&body='+body; },900);
     }
   })
   .catch(()=>{
-    if(submitBtn){ submitBtn.disabled=false; submitBtn.innerHTML='<span>'+(T[lang]['form.submit']||'Send')+'</span> <span class="arw">→</span>'; }
+    if(submitBtn){ submitBtn.disabled=false; submitBtn.innerHTML='<span>'+(T[lang]['form.submit']||'Envoyer')+'</span> <span class="arw">→</span>'; }
     const subject=encodeURIComponent('Nouvelle demande client Auwem');
     const body=encodeURIComponent(
-      'Nom: '+(payload.name||'')+'\r\nEntreprise: '+(payload.company||'')+'\r\nEmail: '+(payload.email||'')+'\r\nTéléphone: '+(payload.companyPhone||'')+'\r\nPalette: '+(payload.paletteMode==='custom' ? ('Couleurs personnalisées — '+(payload.customColors||'')) : (payload.palette||''))+'\r\nNotes style: '+(payload.styleNote||'')+'\r\nInfos: '+(payload.additionalInformation||'')+'\r\n'+(chosenFiles.length?('Fichiers à joindre:\r\n'+chosenFiles.map(x=>'• '+x.name).join('\r\n')):'')
+      'Nom: '+(payload.name||'')+'\r\nEntreprise: '+(payload.company||'')+'\r\nEmail: '+(payload.email||'')+'\r\nTéléphone: '+(payload.companyPhone||'')+'\r\nPalette: '+(payload.paletteMode==='custom' ? ('Personnalisée — '+(payload.customColors||'')) : (payload.palette||''))+'\r\nNotes style: '+(payload.styleNote||'')+'\r\nInfos: '+(payload.additionalInformation||'')+'\r\n'+(chosenFiles.length?('Fichiers:\r\n'+chosenFiles.map(x=>'• '+x.name).join('\r\n')):'')
     );
-    window.location.href='mailto:auwem@gmail.com?subject='+subject+'&body='+body;
+    window.location.href='mailto:info@auwem.ch?subject='+subject+'&body='+body;
   });
 });
 $$('#form input,#form select').forEach(i=>i.addEventListener('input',()=>clearFieldError(i)));
